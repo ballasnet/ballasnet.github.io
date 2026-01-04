@@ -2,192 +2,171 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>BallasNet</title>
+<title>BALLASNET</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --bg:#0b0b0b;
-  --panel:#151515;
-  --soft:#1e1e1e;
-  --line:#2a2a2a;
-  --text:#eaeaea;
-  --muted:#9a9a9a;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#0b0b0b;color:#fff}
 
-*{box-sizing:border-box;font-family:Inter,system-ui,Arial}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-}
-
-/* ===== ÜST GÖRSEL ===== */
+/* HERO */
 .hero{
-  height:220px;
-  background:linear-gradient(180deg,#111,#000);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-.hero-title{
-  display:flex;
-  gap:22px;
-  font-weight:600;
-  letter-spacing:1px;
-}
-.hero-title span{
-  opacity:.85;
-  cursor:pointer;
-  position:relative;
-}
-.hero-title span::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:#fff;
-  transition:.3s;
-  transform:translateX(-50%);
-}
-.hero-title span:hover::after{
-  width:100%;
+max-width:1200px;
+margin:40px auto;
+padding:60px 20px;
+background:#111;
+border:1px solid #222;
+text-align:center;
 }
 
-/* ===== ARAMA ===== */
-.search-area{
-  display:flex;
-  justify-content:center;
-  margin:-28px auto 40px;
+.hero-image{
+height:200px;
+background:#000;
+border-radius:18px;
+border:1px solid #222;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#444;
+letter-spacing:4px;
+font-size:14px;
 }
+
+/* KATEGORİ */
+.hero-tags{
+margin:22px 0;
+font-size:12px;
+letter-spacing:4px;
+color:#aaa;
+}
+
+/* ARAMA */
 .search-box{
-  background:var(--panel);
-  padding:10px;
-  border-radius:999px;
-  display:flex;
-  width:90%;
-  max-width:680px;
-  box-shadow:0 0 0 1px var(--line);
+display:flex;
+max-width:640px;
+margin:30px auto 0;
+background:#000;
+border:1px solid #333;
+border-radius:30px;
+overflow:hidden;
 }
+
 .search-box input{
-  flex:1;
-  background:transparent;
-  border:0;
-  color:#fff;
-  padding:14px 18px;
-  outline:none;
-  font-size:15px;
+flex:1;
+padding:16px 20px;
+background:#000;
+border:none;
+color:#fff;
+font-size:16px;
+outline:none;
 }
+
 .search-box button{
-  background:linear-gradient(135deg,#fff,#bbb);
-  border:0;
-  border-radius:999px;
-  padding:0 26px;
-  cursor:pointer;
-  font-weight:600;
-}
-.search-box button:hover{
-  filter:brightness(.9);
+padding:16px 30px;
+background:#fff;
+color:#000;
+border:none;
+letter-spacing:2px;
+font-weight:bold;
 }
 
-/* ===== LAYOUT ===== */
-.wrap{
-  display:grid;
-  grid-template-columns:1fr 300px;
-  gap:28px;
-  width:92%;
-  max-width:1200px;
-  margin:auto;
+/* SECTION */
+.section{
+max-width:1200px;
+margin:70px auto;
+padding:0 20px;
 }
 
-/* ===== OYUN KARTLARI ===== */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:22px;
+.section h2{
+font-size:16px;
+letter-spacing:3px;
+margin-bottom:26px;
+border-bottom:1px solid #222;
+padding-bottom:12px;
 }
-.card{
-  background:var(--panel);
-  border-radius:22px;
-  overflow:hidden;
-  transition:.25s;
-  box-shadow:0 0 0 1px var(--line);
+
+/* OYUNLAR */
+.games{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:28px;
 }
-.card:hover{
-  transform:translateY(-4px);
+
+.game{
+background:#0f0f0f;
+border:1px solid #222;
+border-radius:20px;
+padding:16px;
 }
-.card img{
-  width:100%;
-  height:120px;
-  object-fit:cover;
+
+.game-image{
+height:150px;
+background:#000;
+margin-bottom:14px;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#444;
+font-size:12px;
+border:1px solid #222;
 }
-.card .info{
-  padding:14px;
+
+.game-title{
+font-size:15px;
+margin-bottom:8px;
 }
-.card h4{
-  margin:0 0 6px;
-  font-size:14px;
+
+.game-tag{
+font-size:12px;
+color:#aaa;
+background:#111;
+padding:6px 10px;
+border-radius:12px;
+display:inline-block;
 }
-.card small{
-  color:var(--muted);
+
+/* FORM */
+.form-box{
+background:#0f0f0f;
+border:1px solid #222;
+border-radius:20px;
+padding:24px;
 }
+
+.form-box input,
+.form-box textarea{
+width:100%;
+background:#000;
+border:1px solid #333;
+color:#fff;
+padding:12px;
+margin-bottom:12px;
+border-radius:12px;
+}
+
+.form-box button{
+background:#fff;
+color:#000;
+border:none;
+padding:12px 28px;
+font-weight:bold;
+border-radius:20px;
+}
+
+/* ETİKETLER */
 .tags{
-  margin-top:10px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-.tag{
-  background:var(--soft);
-  padding:4px 10px;
-  border-radius:999px;
-  font-size:11px;
-  color:#cfcfcf;
+font-size:12px;
+color:#777;
+line-height:2.1;
 }
 
-/* ===== SAĞ PANEL (GRİ OLAN) ===== */
-.side{
-  background:var(--soft);
-  border-radius:28px;
-  padding:20px;
-  min-height:100%;
-  box-shadow:0 0 0 1px var(--line);
-}
-.side h3{
-  margin-top:0;
-  font-size:16px;
-}
-.side textarea,
-.side input{
-  width:100%;
-  background:#0f0f0f;
-  border:0;
-  border-radius:14px;
-  padding:12px;
-  margin-bottom:10px;
-  color:#fff;
-}
-.side button{
-  width:100%;
-  padding:12px;
-  border-radius:999px;
-  border:0;
-  background:#fff;
-  color:#000;
-  font-weight:700;
-  cursor:pointer;
-}
-.side button:hover{opacity:.9}
-
-/* ===== ALT ===== */
-.footer{
-  text-align:center;
-  padding:40px 0;
-  color:#666;
-  font-size:13px;
+/* ALT */
+footer{
+text-align:center;
+padding:40px;
+color:#555;
+font-size:12px;
 }
 </style>
 </head>
@@ -195,65 +174,60 @@ body{
 <body>
 
 <div class="hero">
-  <div class="hero-title">
-    <span>İNDİE / BAĞIMSIZ</span>
-    <span>POPÜLER OYUNLAR</span>
-    <span>KÜÇÜK BOYUTLU</span>
-  </div>
-</div>
+  <div class="hero-image">GÖRSEL ALANI</div>
 
-<div class="search-area">
+  <div class="hero-tags">
+    İNDİE / BAĞIMSIZ • POPÜLER OYUNLAR • KÜÇÜK BOYUTLU
+  </div>
+
   <div class="search-box">
-    <input placeholder="oyun ara... (Terraria, Undertale)">
+    <input type="text" placeholder="Oyun ara... örn: Terraria, Undertale">
     <button>ARA</button>
   </div>
 </div>
 
-<div class="wrap">
-
-  <div class="cards">
-    <div class="card">
-      <img src="https://picsum.photos/400/300?1">
-      <div class="info">
-        <h4>Minecraft</h4>
-        <small>Full PC</small>
-        <div class="tags">
-          <div class="tag">sandbox</div>
-          <div class="tag">indie</div>
-          <div class="tag">offline</div>
-          <div class="tag">modlu</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/400/300?2">
-      <div class="info">
-        <h4>Undertale</h4>
-        <small>Full PC</small>
-        <div class="tags">
-          <div class="tag">story</div>
-          <div class="tag">pixel</div>
-          <div class="tag">low size</div>
-          <div class="tag">classic</div>
-        </div>
-      </div>
-    </div>
+<div class="section">
+<h2>POPÜLER OYUNLAR</h2>
+<div class="games">
+  <div class="game">
+    <div class="game-image">GÖRSEL</div>
+    <div class="game-title">Minecraft</div>
+    <div class="game-tag">Full PC</div>
   </div>
-
-  <div class="side">
-    <h3>İSTEK GÖNDER / YORUM YAP</h3>
-    <input placeholder="İsminiz">
-    <input placeholder="Oyun Adı">
-    <textarea rows="4" placeholder="Yorumunuz / isteğiniz"></textarea>
-    <button>GÖNDER</button>
+  <div class="game">
+    <div class="game-image">GÖRSEL</div>
+    <div class="game-title">GTA San Andreas</div>
+    <div class="game-tag">Offline</div>
   </div>
-
+  <div class="game">
+    <div class="game-image">GÖRSEL</div>
+    <div class="game-title">Terraria</div>
+    <div class="game-tag">Küçük Boyut</div>
+  </div>
+</div>
 </div>
 
-<div class="footer">
-  ballasnet © underground indie archive
+<div class="section">
+<h2>İSTEK GÖNDER / YORUM YAP</h2>
+<div class="form-box">
+  <input type="text" placeholder="İsminiz" required>
+  <input type="text" placeholder="Oyun Adı" required>
+  <textarea rows="4" placeholder="Yorumunuz / isteğiniz" required></textarea>
+  <button>GÖNDER</button>
 </div>
+</div>
+
+<div class="section">
+<h2>ETİKETLER</h2>
+<div class="tags">
+oyun indir pc, pc oyun indir, indie oyunlar, bağımsız oyunlar, küçük boyutlu pc oyunlar,
+offline pc oyun, düşük sistem oyunları, eski pc oyunları, nostaljik oyunlar,
+tek oyunculu pc oyun, hikayeli oyunlar, pixel oyun indir, korku indie oyun,
+az yer kaplayan oyunlar, sade pc oyun siteleri
+</div>
+</div>
+
+<footer>© BALLASNET</footer>
 
 </body>
 </html>
