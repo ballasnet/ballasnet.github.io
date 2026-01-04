@@ -6,296 +6,246 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== GENEL ===== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#0b0b0b;color:#fff}
+
+/* HERO */
+.hero{
+max-width:1200px;
+margin:40px auto;
+padding:60px 20px;
+background:#111;
+border:1px solid #222;
+text-align:center;
+position:relative;
 }
 
-body {
-  background: #0b0b0b;
-  color: #fff;
+.hero-image{
+height:200px;
+background:#000;
+border:1px solid #222;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#444;
+letter-spacing:4px;
+font-size:14px;
 }
 
-/* ===== ÜST MENÜ ===== */
-header {
-  background: #000;
-  border-bottom: 1px solid #222;
+/* KATEGORİ YAZISI */
+.hero-tags{
+margin:20px 0;
+font-size:13px;
+letter-spacing:3px;
+color:#aaa;
 }
 
-.nav {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px;
+/* ARAMA */
+.search-box{
+display:flex;
+max-width:620px;
+margin:30px auto 0;
+border:1px solid #333;
+background:#000;
 }
 
-.logo {
-  font-weight: bold;
-  letter-spacing: 2px;
+.search-box input{
+flex:1;
+padding:16px;
+background:#000;
+border:none;
+color:#fff;
+font-size:16px;
 }
 
-.menu a {
-  color: #ccc;
-  text-decoration: none;
-  margin-left: 20px;
-  font-size: 14px;
+.search-box button{
+padding:16px 26px;
+background:#111;
+color:#fff;
+border-left:1px solid #333;
+cursor:pointer;
+letter-spacing:2px;
 }
 
-.menu a:hover {
-  color: #fff;
+.search-box button:hover{
+background:#fff;
+color:#000;
 }
 
-/* ===== HERO ===== */
-.hero {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 60px 20px;
-  background: #111;
-  border: 1px solid #222;
-  text-align: center;
+/* SECTION */
+.section{
+max-width:1200px;
+margin:60px auto;
+padding:0 20px;
 }
 
-.hero-image {
-  height: 180px;
-  background: #000;
-  border: 1px solid #222;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  letter-spacing: 3px;
+.section h2{
+font-size:18px;
+letter-spacing:2px;
+margin-bottom:20px;
+border-bottom:1px solid #222;
+padding-bottom:10px;
 }
 
-/* ===== ARAMA ===== */
-.search-box {
-  display: flex;
-  max-width: 600px;
-  margin: auto;
+/* OYUNLAR */
+.games{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:26px;
 }
 
-.search-box input {
-  flex: 1;
-  padding: 16px;
-  background: #000;
-  border: 1px solid #333;
-  color: #fff;
-  font-size: 16px;
+.game{
+background:#0f0f0f;
+border:1px solid #222;
+padding:14px;
+transition:.2s;
 }
 
-.search-box button {
-  padding: 16px 24px;
-  background: #fff;
-  color: #000;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
+.game:hover{
+border-color:#666;
 }
 
-.search-box button:hover {
-  background: #ddd;
+.game-image{
+height:150px;
+background:#000;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#444;
+font-size:12px;
+border:1px solid #222;
 }
 
-/* ===== BÖLÜMLER ===== */
-.section {
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 0 20px;
+.game-title{
+font-size:15px;
+margin-bottom:6px;
 }
 
-.section h2 {
-  font-size: 18px;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #222;
-  padding-bottom: 10px;
+.game-tag{
+font-size:12px;
+color:#888;
+background:#111;
+padding:4px 6px;
+display:inline-block;
 }
 
-/* ===== OYUN KARTLARI ===== */
-.games {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+/* İSTEK / YORUM */
+.form-box{
+background:#0f0f0f;
+border:1px solid #222;
+padding:20px;
 }
 
-.game {
-  background: #0f0f0f;
-  border: 1px solid #222;
-  padding: 10px;
-  transition: 0.2s;
+.form-box input,
+.form-box textarea{
+width:100%;
+background:#000;
+border:1px solid #333;
+color:#fff;
+padding:10px;
+margin-bottom:10px;
 }
 
-.game:hover {
-  border-color: #555;
+.form-box button{
+background:#fff;
+color:#000;
+border:none;
+padding:10px 24px;
+font-weight:bold;
+cursor:pointer;
 }
 
-.game-image {
-  height: 120px;
-  background: #000;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #444;
-  font-size: 12px;
+.form-box button:hover{
+background:#ddd;
 }
 
-.game-title {
-  font-size: 14px;
-  margin-bottom: 4px;
+/* YORUMLAR */
+.comment{
+border-left:3px solid #333;
+padding:10px 14px;
+margin-bottom:10px;
+background:#0d0d0d;
+font-size:13px;
 }
 
-.game-tag {
-  font-size: 11px;
-  color: #888;
+.comment span{
+color:#777;
 }
 
-/* ===== İSTEK ===== */
-.request {
-  background: #0f0f0f;
-  border: 1px solid #222;
-  padding: 20px;
+/* ETİKETLER */
+.tags{
+font-size:12px;
+color:#777;
+line-height:2;
 }
 
-.request input,
-.request textarea {
-  width: 100%;
-  background: #000;
-  border: 1px solid #333;
-  color: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.request button {
-  background: #fff;
-  color: #000;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* ===== YORUMLAR ===== */
-.comment {
-  border-bottom: 1px solid #222;
-  padding: 10px 0;
-  font-size: 13px;
-}
-
-.comment span {
-  color: #888;
-}
-
-/* ===== ETİKETLER ===== */
-.tags {
-  font-size: 12px;
-  color: #777;
-  line-height: 1.8;
-}
-
-/* ===== ALT ===== */
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #555;
-  font-size: 12px;
+/* ALT */
+footer{
+text-align:center;
+padding:40px;
+color:#555;
+font-size:12px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">BALLASNET</div>
-    <div class="menu">
-      <a href="#">İNDİE / BAĞIMSIZ</a>
-      <a href="#">POPÜLER</a>
-      <a href="#">KÜÇÜK BOYUTLU</a>
-    </div>
-  </div>
-</header>
-
 <div class="hero">
-  <div class="hero-image">
-    GÖRSEL ALANI
-  </div>
+<div class="hero-image">GÖRSEL ALANI</div>
 
-  <div class="search-box">
-    <input type="text" placeholder="Oyun ara... örn: Terraria, Undertale">
-    <button>ARA</button>
-  </div>
+<div class="hero-tags">
+İNDİE / BAĞIMSIZ • POPÜLER OYUNLAR • KÜÇÜK BOYUTLU
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Oyun ara... örn: Terraria, Undertale">
+<button>ARA</button>
+</div>
 </div>
 
 <div class="section">
-  <h2>POPÜLER OYUNLAR</h2>
-  <div class="games">
-    <div class="game">
-      <div class="game-image">GÖRSEL</div>
-      <div class="game-title">Minecraft</div>
-      <div class="game-tag">Full PC</div>
-    </div>
-    <div class="game">
-      <div class="game-image">GÖRSEL</div>
-      <div class="game-title">GTA San Andreas</div>
-      <div class="game-tag">Full PC</div>
-    </div>
-    <div class="game">
-      <div class="game-image">GÖRSEL</div>
-      <div class="game-title">Terraria</div>
-      <div class="game-tag">Full PC</div>
-    </div>
-  </div>
+<h2>POPÜLER OYUNLAR</h2>
+<div class="games">
+<div class="game">
+<div class="game-image">GÖRSEL</div>
+<div class="game-title">Minecraft</div>
+<div class="game-tag">Full PC</div>
+</div>
+<div class="game">
+<div class="game-image">GÖRSEL</div>
+<div class="game-title">GTA San Andreas</div>
+<div class="game-tag">Offline</div>
+</div>
+<div class="game">
+<div class="game-image">GÖRSEL</div>
+<div class="game-title">Terraria</div>
+<div class="game-tag">Küçük Boyut</div>
+</div>
+</div>
 </div>
 
 <div class="section">
-  <h2>YENİ EKLENENLER</h2>
-  <div class="games">
-    <div class="game">
-      <div class="game-image">GÖRSEL</div>
-      <div class="game-title">Indie Oyun</div>
-      <div class="game-tag">Küçük Boyut</div>
-    </div>
-    <div class="game">
-      <div class="game-image">GÖRSEL</div>
-      <div class="game-title">Bağımsız Oyun</div>
-      <div class="game-tag">Offline</div>
-    </div>
-  </div>
+<h2>İSTEK GÖNDER / YORUM YAP</h2>
+<div class="form-box">
+<input type="text" placeholder="İsminiz" required>
+<input type="text" placeholder="Oyun Adı" required>
+<textarea rows="4" placeholder="Yorumunuz / isteğiniz" required></textarea>
+<button>GÖNDER</button>
+</div>
 </div>
 
 <div class="section">
-  <h2>İSTEK GÖNDER</h2>
-  <div class="request">
-    <input type="text" placeholder="İsminiz">
-    <input type="text" placeholder="Oyun adı">
-    <textarea rows="4" placeholder="Yorumunuz / isteğiniz"></textarea>
-    <button>GÖNDER</button>
-  </div>
+<h2>ETİKETLER</h2>
+<div class="tags">
+oyun indir pc, pc oyun indir, indie oyunlar, bağımsız oyunlar, küçük boyutlu pc oyunlar,
+offline pc oyun, düşük sistem oyunları, eski pc oyunları, nostaljik oyunlar,
+crack pc oyun, full pc oyun indir, türkçe pc oyun, tek oyunculu oyunlar
+</div>
 </div>
 
-<div class="section">
-  <h2>YORUMLAR</h2>
-  <div class="comment"><span>prooyuncu:</span> site sade ve güzel</div>
-  <div class="comment"><span>bilmemne:</span> indie oyunlar hoş</div>
-</div>
-
-<div class="section">
-  <h2>ETİKETLER</h2>
-  <div class="tags">
-    oyunindirpc, pc oyun indir, indie oyunlar, küçük boyutlu oyunlar, offline pc oyun
-  </div>
-</div>
-
-<footer>
-  © BALLASNET
-</footer>
+<footer>© BALLASNET</footer>
 
 </body>
 </html>
