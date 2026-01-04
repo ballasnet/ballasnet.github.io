@@ -2,72 +2,87 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>BALLASNET</title>
+<title>BALLASNET | Indie & Küçük Boyutlu PC Oyunları</title>
+
+<meta name="description" content="BALLASNET – Indie, bağımsız, küçük boyutlu ve offline PC oyunları indir. Terraria, Undertale, Minecraft ve daha fazlası.">
+<meta name="keywords" content="pc oyun indir, indie oyun indir, küçük boyutlu pc oyunlar, offline pc oyun, terraria indir, undertale indir, minecraft indir pc, düşük sistem oyunları, bağımsız oyunlar">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 body{background:#0b0b0b;color:#fff}
 
+h1{position:absolute;left:-9999px}
+
 /* HERO */
 .hero{
 max-width:1200px;
 margin:40px auto;
-padding:60px 20px;
+padding:40px 20px;
 background:#111;
 border:1px solid #222;
 text-align:center;
 }
 
+/* KARE GÖRSEL */
 .hero-image{
-height:200px;
+width:100%;
+height:320px;       /* büyüklük buradan ayarlanır */
+margin:0 auto 20px;
 background:#000;
-border-radius:18px;
 border:1px solid #222;
 display:flex;
 align-items:center;
 justify-content:center;
-color:#444;
-letter-spacing:4px;
+color:#333;
+letter-spacing:6px;
 font-size:14px;
 }
 
-/* KATEGORİ */
+/* TIKLANABİLİR KATEGORİLER */
 .hero-tags{
-margin:22px 0;
-font-size:12px;
-letter-spacing:4px;
+margin:18px 0;
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.hero-tags a{
+font-size:11px;
+letter-spacing:2px;
 color:#aaa;
+border:1px solid #222;
+padding:6px 10px;
+text-decoration:none;
+background:#0e0e0e;
 }
 
 /* ARAMA */
 .search-box{
 display:flex;
-max-width:640px;
-margin:30px auto 0;
-background:#000;
+max-width:620px;
+margin:26px auto 0;
 border:1px solid #333;
-border-radius:30px;
-overflow:hidden;
+background:#000;
 }
 
 .search-box input{
 flex:1;
-padding:16px 20px;
+padding:14px;
 background:#000;
 border:none;
 color:#fff;
-font-size:16px;
+font-size:15px;
 outline:none;
 }
 
 .search-box button{
-padding:16px 30px;
-background:#fff;
-color:#000;
-border:none;
+padding:14px 26px;
+background:#111;
+color:#fff;
+border-left:1px solid #333;
 letter-spacing:2px;
-font-weight:bold;
 }
 
 /* SECTION */
@@ -78,32 +93,30 @@ padding:0 20px;
 }
 
 .section h2{
-font-size:16px;
+font-size:15px;
 letter-spacing:3px;
-margin-bottom:26px;
+margin-bottom:22px;
 border-bottom:1px solid #222;
-padding-bottom:12px;
+padding-bottom:10px;
 }
 
 /* OYUNLAR */
 .games{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:28px;
+gap:26px;
 }
 
 .game{
 background:#0f0f0f;
 border:1px solid #222;
-border-radius:20px;
-padding:16px;
+padding:14px;
 }
 
 .game-image{
 height:150px;
 background:#000;
-margin-bottom:14px;
-border-radius:16px;
+margin-bottom:12px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -114,15 +127,14 @@ border:1px solid #222;
 
 .game-title{
 font-size:15px;
-margin-bottom:8px;
+margin-bottom:6px;
 }
 
 .game-tag{
 font-size:12px;
-color:#aaa;
+color:#888;
 background:#111;
 padding:6px 10px;
-border-radius:12px;
 display:inline-block;
 }
 
@@ -130,8 +142,7 @@ display:inline-block;
 .form-box{
 background:#0f0f0f;
 border:1px solid #222;
-border-radius:20px;
-padding:24px;
+padding:20px;
 }
 
 .form-box input,
@@ -140,25 +151,23 @@ width:100%;
 background:#000;
 border:1px solid #333;
 color:#fff;
-padding:12px;
-margin-bottom:12px;
-border-radius:12px;
+padding:10px;
+margin-bottom:10px;
 }
 
 .form-box button{
 background:#fff;
 color:#000;
 border:none;
-padding:12px 28px;
+padding:10px 26px;
 font-weight:bold;
-border-radius:20px;
 }
 
 /* ETİKETLER */
 .tags{
 font-size:12px;
 color:#777;
-line-height:2.1;
+line-height:2;
 }
 
 /* ALT */
@@ -173,20 +182,24 @@ font-size:12px;
 
 <body>
 
+<h1>BALLASNET PC Oyun İndir – Indie ve Küçük Boyutlu Oyunlar</h1>
+
 <div class="hero">
-  <div class="hero-image">GÖRSEL ALANI</div>
+  <div class="hero-image">GÖRSEL</div>
 
   <div class="hero-tags">
-    İNDİE / BAĞIMSIZ • POPÜLER OYUNLAR • KÜÇÜK BOYUTLU
+    <a href="#">KÜÇÜK BOYUTLU</a>
+    <a href="#">POPÜLER OYUNLAR</a>
+    <a href="#">İNDİE / BAĞIMSIZ</a>
   </div>
 
   <div class="search-box">
-    <input type="text" placeholder="Oyun ara... örn: Terraria, Undertale">
+    <input type="text" placeholder="Oyun ara... Terraria, Undertale">
     <button>ARA</button>
   </div>
 </div>
 
-<div class="section">
+<section class="section">
 <h2>POPÜLER OYUNLAR</h2>
 <div class="games">
   <div class="game">
@@ -196,18 +209,18 @@ font-size:12px;
   </div>
   <div class="game">
     <div class="game-image">GÖRSEL</div>
-    <div class="game-title">GTA San Andreas</div>
-    <div class="game-tag">Offline</div>
-  </div>
-  <div class="game">
-    <div class="game-image">GÖRSEL</div>
     <div class="game-title">Terraria</div>
     <div class="game-tag">Küçük Boyut</div>
   </div>
+  <div class="game">
+    <div class="game-image">GÖRSEL</div>
+    <div class="game-title">Undertale</div>
+    <div class="game-tag">Offline</div>
+  </div>
 </div>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
 <h2>İSTEK GÖNDER / YORUM YAP</h2>
 <div class="form-box">
   <input type="text" placeholder="İsminiz" required>
@@ -215,17 +228,19 @@ font-size:12px;
   <textarea rows="4" placeholder="Yorumunuz / isteğiniz" required></textarea>
   <button>GÖNDER</button>
 </div>
-</div>
+</section>
 
-<div class="section">
+<section class="section">
 <h2>ETİKETLER</h2>
 <div class="tags">
-oyun indir pc, pc oyun indir, indie oyunlar, bağımsız oyunlar, küçük boyutlu pc oyunlar,
-offline pc oyun, düşük sistem oyunları, eski pc oyunları, nostaljik oyunlar,
-tek oyunculu pc oyun, hikayeli oyunlar, pixel oyun indir, korku indie oyun,
-az yer kaplayan oyunlar, sade pc oyun siteleri
+pc oyun indir, indie pc oyun, küçük boyutlu oyunlar, offline pc oyun,
+terraria indir pc, undertale indir pc, minecraft indir pc,
+düşük sistem gereksinimli oyunlar, bağımsız oyunlar, pixel oyun indir,
+tek oyunculu pc oyun, hikayeli indie oyunlar, az mb pc oyun,
+eski pc oyunları, nostaljik pc oyunlar, ücretsiz pc oyun indir,
+indie korku oyunları, düşük ram oyunlar
 </div>
-</div>
+</section>
 
 <footer>© BALLASNET</footer>
 
