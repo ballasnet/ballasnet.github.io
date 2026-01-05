@@ -114,13 +114,40 @@ h1{position:absolute;left:-9999px}
   padding-bottom:10px;
 }
 
-/* OYUNLAR */
-.games{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:26px;
+/* SLIDER */
+.slider-wrapper{
+  position:relative;
+  overflow:hidden;
 }
 
+.slider{
+  display:flex;
+  gap:26px;
+  transition:transform 0.4s ease;
+}
+
+.slider .game{
+  min-width:200px;
+  flex-shrink:0;
+}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#000;
+  color:#fff;
+  border:1px solid #222;
+  font-size:24px;
+  padding:6px 12px;
+  cursor:pointer;
+  z-index:5;
+}
+
+.slider-btn.left{ left:5px; }
+.slider-btn.right{ right:5px; }
+
+/* OYUN */
 .game{
   background:#0f0f0f;
   border:1px solid #222;
@@ -188,19 +215,12 @@ footer{
   color:#555;
   font-size:12px;
 }
+
 a{
   color:#fff;
   text-decoration:none;
 }
-
-a:visited{
-  color:#fff;
-}
-
-a:hover{
-  color:#ccc;
-}
-
+a:hover{ color:#ccc; }
 </style>
 </head>
 
@@ -226,40 +246,46 @@ a:hover{
 <section class="section">
 <h2>POPÜLER OYUNLAR</h2>
 
-<div class="games">
+<div class="slider-wrapper">
+  <button class="slider-btn left">&#10094;</button>
 
-  <a href="minecraft.html" class="game-link">
-    <div class="game">
-      <div class="game-image">
-        <img src="minecraft.jpg" alt="Minecraft">
+  <div class="slider">
+
+    <a href="minecraft.html">
+      <div class="game">
+        <div class="game-image">
+          <img src="minecraft.jpg">
+        </div>
+        <div class="game-title">Minecraft</div>
+        <div class="game-tag">Full PC</div>
       </div>
-      <div class="game-title">Minecraft</div>
-      <div class="game-tag">Full PC</div>
-    </div>
-  </a>
+    </a>
 
-  <a href="terraria.html" class="game-link">
-    <div class="game">
-      <div class="game-image">
-        <img src="terraria.jpg" alt="Terraria">
+    <a href="terraria.html">
+      <div class="game">
+        <div class="game-image">
+          <img src="terraria.jpg">
+        </div>
+        <div class="game-title">Terraria</div>
+        <div class="game-tag">Offline</div>
       </div>
-      <div class="game-title">Terraria</div>
-      <div class="game-tag">Offline</div>
-    </div>
-  </a>
+    </a>
 
-  <a href="gta-sa.html" class="game-link">
-    <div class="game">
-      <div class="game-image">
-        <img src="gta-sa.jpg" alt="GTA San Andreas">
+    <a href="gta-sa.html">
+      <div class="game">
+        <div class="game-image">
+          <img src="gta-sa.jpg">
+        </div>
+        <div class="game-title">GTA San Andreas</div>
+        <div class="game-tag">Düşük Sistem</div>
       </div>
-      <div class="game-title">GTA San Andreas</div>
-      <div class="game-tag">Düşük Sistem</div>
-    </div>
-  </a>
+    </a>
 
+  </div>
+
+  <button class="slider-btn right">&#10095;</button>
 </div>
-
+</section>
 
 <section class="section">
 <h2>İSTEK GÖNDER / YORUM YAP</h2>
@@ -279,11 +305,31 @@ full oyun indir, ücretsiz oyun indir pc,
 torrent oyun indir, repack oyun indir,
 offline oyun indir, düşük sistem oyun indir,
 full pc oyun crack, oyun indir ücretsiz
-
 </div>
 </section>
 
 <footer>© BALLASNET</footer>
 
+<script>
+const slider = document.querySelector('.slider');
+const leftBtn = document.querySelector('.slider-btn.left');
+const rightBtn = document.querySelector('.slider-btn.right');
+
+let scrollAmount = 0;
+const cardWidth = 226;
+
+rightBtn.onclick = () => {
+  scrollAmount -= cardWidth;
+  slider.style.transform = `translateX(${scrollAmount}px)`;
+};
+
+leftBtn.onclick = () => {
+  scrollAmount += cardWidth;
+  if(scrollAmount > 0) scrollAmount = 0;
+  slider.style.transform = `translateX(${scrollAmount}px)`;
+};
+</script>
+
 </body>
 </html>
+
