@@ -7,20 +7,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 
 <meta name="description" content="BALLASNET – PC oyun indir. Indie, AAA, offline, online, düşük sistem ve büyük boyutlu tüm PC oyunları.">
-<meta name="keywords" content="
-crack oyun indir,
-oyun indir full,
-pc crack oyun indir,
-full oyun indir,
-oyun indir ücretsiz,
-torrent oyun indir,
-repack oyun indir,
-offline oyun indir,
-düşük sistem oyun indir,
-pc oyun crack,
-full pc oyun indir,
-oyun indir ücretsiz pc
-">
+<meta name="keywords" content="crack oyun indir, oyun indir full, pc crack oyun indir">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -87,7 +74,6 @@ h1{position:absolute;left:-9999px}
   background:#000;
   border:none;
   color:#fff;
-  font-size:14px;
 }
 
 .search-box button{
@@ -96,7 +82,6 @@ h1{position:absolute;left:-9999px}
   color:#bbb;
   border-left:1px solid #222;
   cursor:pointer;
-  letter-spacing:2px;
 }
 
 /* SECTION */
@@ -175,39 +160,6 @@ h1{position:absolute;left:-9999px}
   display:inline-block;
 }
 
-/* FORM */
-.form-box{
-  background:#0f0f0f;
-  border:1px solid #222;
-  padding:20px;
-}
-
-.form-box input,
-.form-box textarea{
-  width:100%;
-  background:#000;
-  border:1px solid #333;
-  color:#fff;
-  padding:10px;
-  margin-bottom:10px;
-}
-
-.form-box button{
-  background:#fff;
-  color:#000;
-  border:none;
-  padding:10px 26px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* ETİKETLER */
-.tags{
-  font-size:12px;
-  color:#777;
-  line-height:2;
-}
-
 /* FOOTER */
 footer{
   text-align:center;
@@ -216,11 +168,8 @@ footer{
   font-size:12px;
 }
 
-a{
-  color:#fff;
-  text-decoration:none;
-}
-a:hover{ color:#ccc; }
+a{color:#fff;text-decoration:none}
+a:hover{color:#ccc}
 </style>
 </head>
 
@@ -233,12 +182,12 @@ a:hover{ color:#ccc; }
 
   <div class="hero-tags">
     <a href="#">POPÜLER OYUNLAR</a>
-    <a href="#">DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</a>
-    <a href="#">İNDİE OYUNLAR</a>
+    <a href="#">DÜŞÜK SİSTEM</a>
+    <a href="#">İNDİE</a>
   </div>
 
   <div class="search-box">
-    <input type="text" placeholder="Oyun ara... GTA, Minecraft, Terraria">
+    <input type="text" placeholder="Oyun ara...">
     <button>ARA</button>
   </div>
 </div>
@@ -251,34 +200,22 @@ a:hover{ color:#ccc; }
 
   <div class="slider">
 
-    <a href="minecraft.html">
-      <div class="game">
-        <div class="game-image">
-          <img src="minecraft.jpg">
-        </div>
-        <div class="game-title">Minecraft</div>
-        <div class="game-tag">Full PC</div>
-      </div>
+    <a href="minecraft.html" class="game">
+      <div class="game-image"><img src="minecraft.jpg"></div>
+      <div class="game-title">Minecraft</div>
+      <div class="game-tag">Full PC</div>
     </a>
 
-    <a href="terraria.html">
-      <div class="game">
-        <div class="game-image">
-          <img src="terraria.jpg">
-        </div>
-        <div class="game-title">Terraria</div>
-        <div class="game-tag">Offline</div>
-      </div>
+    <a href="terraria.html" class="game">
+      <div class="game-image"><img src="terraria.jpg"></div>
+      <div class="game-title">Terraria</div>
+      <div class="game-tag">Offline</div>
     </a>
 
-    <a href="gta-sa.html">
-      <div class="game">
-        <div class="game-image">
-          <img src="gta-sa.jpg">
-        </div>
-        <div class="game-title">GTA San Andreas</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
+    <a href="gta-sa.html" class="game">
+      <div class="game-image"><img src="gta-sa.jpg"></div>
+      <div class="game-title">GTA San Andreas</div>
+      <div class="game-tag">Düşük Sistem</div>
     </a>
 
   </div>
@@ -287,47 +224,36 @@ a:hover{ color:#ccc; }
 </div>
 </section>
 
-<section class="section">
-<h2>İSTEK GÖNDER / YORUM YAP</h2>
-<div class="form-box">
-  <input type="text" placeholder="İsminiz">
-  <input type="text" placeholder="Oyun Adı">
-  <textarea rows="4" placeholder="Yorumunuz / isteğiniz"></textarea>
-  <button>GÖNDER</button>
-</div>
-</section>
-
-<section class="section">
-<h2>ETİKETLER</h2>
-<div class="tags">
-crack oyun indir, oyun indir full, pc crack oyun indir,
-full oyun indir, ücretsiz oyun indir pc,
-torrent oyun indir, repack oyun indir,
-offline oyun indir, düşük sistem oyun indir,
-full pc oyun crack, oyun indir ücretsiz
-</div>
-</section>
-
 <footer>© BALLASNET</footer>
 
 <script>
 const slider = document.querySelector('.slider');
+const cards = document.querySelectorAll('.slider .game');
 const leftBtn = document.querySelector('.slider-btn.left');
 const rightBtn = document.querySelector('.slider-btn.right');
 
-let scrollAmount = 0;
 const cardWidth = 226;
+let scrollAmount = 0;
 
-rightBtn.onclick = () => {
-  scrollAmount -= cardWidth;
-  slider.style.transform = `translateX(${scrollAmount}px)`;
-};
+// 🔥 OYUN SAYISI KONTROLÜ (BUG FIX)
+if (cards.length < 4) {
+  leftBtn.style.display = "none";
+  rightBtn.style.display = "none";
+} else {
 
-leftBtn.onclick = () => {
-  scrollAmount += cardWidth;
-  if(scrollAmount > 0) scrollAmount = 0;
-  slider.style.transform = `translateX(${scrollAmount}px)`;
-};
+  rightBtn.onclick = () => {
+    const maxScroll = -(cardWidth * (cards.length - 3));
+    scrollAmount -= cardWidth;
+    if (scrollAmount < maxScroll) scrollAmount = maxScroll;
+    slider.style.transform = `translateX(${scrollAmount}px)`;
+  };
+
+  leftBtn.onclick = () => {
+    scrollAmount += cardWidth;
+    if (scrollAmount > 0) scrollAmount = 0;
+    slider.style.transform = `translateX(${scrollAmount}px)`;
+  };
+}
 </script>
 
 </body>
