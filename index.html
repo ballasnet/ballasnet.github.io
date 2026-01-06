@@ -140,23 +140,27 @@ h1{position:absolute;left:-9999px}
 
 /* YAZILAR GÖRSELİN ALTINDA */
 .slider .game-title{
-  font-size:18px;      /* başlığı büyüttük */
-  font-weight:bold;
-  margin-bottom:4px;
+  font-size:16px;      /* normal boyut */
+  font-weight:normal;  /* kalınlık kaldırıldı */
+  margin:8px 0 4px 4px; /* üstten biraz boşluk, solda 4px */
   text-align:left;     /* solda hizalama */
-  width:100%;          /* başlık tüm genişliği kaplasın */
-  padding-left:4px;    /* görsele biraz boşluk */
 }
 
 .slider .game-tag{
-  font-size:12px;      /* popüler yazısı daha küçük */
-  color:#aaa;          /* hafif gri */
-  background:#111;
-  padding:2px 6px;
-  border-radius:2px;
-  display:inline-block;
+  font-size:12px;      /* alt yazılar daha küçük */
+  color:#aaa;
+  background:none;     /* gereksiz stil kaldırıldı */
+  padding:0;           /* ekstra boşluk kaldırıldı */
+  margin-left:4px;     /* soldan biraz boşluk */
   text-align:left;     /* solda hizalama */
-  margin-left:4px;     /* başlığa biraz boşluk */
+}
+
+/* Eğer alt birden fazla kategori varsa örnek: */
+.slider .game-tags-container{
+  display:flex;
+  gap:6px;
+  margin-left:4px;
+  margin-bottom:4px;
 }
 
 
