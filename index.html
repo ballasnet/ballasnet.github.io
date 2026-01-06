@@ -158,18 +158,23 @@ h1{position:absolute;left:-9999px}
 }
 
 
-/* 🎯 Başlık ve alt tag’leri sola hizala ve alt birden fazla kategori varsa düzenle */
+/* 🎯 Başlık ve alt tag’leri sola hizala ve mesafeyi optimize et */
 .slider .game-tags-container {
   display: flex;
-  gap: 6px;
+  gap: 4px;            /* kategori yazıları arasındaki yatay boşluk */
   margin-left: 4px;
-  margin-bottom: 4px;
+  margin-top: 2px;     /* başlığa olan üst mesafe */
+  margin-bottom: 4px;  /* alt boşluk, çok sıkılaşmasın */
 }
 
 .slider .game-title,
 .slider .game-tag {
   align-self: flex-start; /* başlık ve tag’leri sola hizalar */
+  margin-top: 4px;        /* başlıktan sonra biraz boşluk */
+  font-weight: normal;     /* düz stil */
+  text-align: left;
 }
+
 
 
 /* SLIDER BUTTON */
