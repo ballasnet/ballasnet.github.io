@@ -223,24 +223,6 @@ a{
   text-decoration:none;
 }
 a:hover{ color:#ccc; }
-
-/* MOBILE */
-@media(max-width:768px){
-  .hero-image{
-    height:180px;
-  }
-  .slider .game{
-    width:300px;
-    height:150px;
-  }
-  .slider .game-image{
-    height:100px;
-  }
-  .slider-btn{
-    font-size:18px;
-    padding:4px 8px;
-  }
-}
 </style>
 </head>
 
@@ -276,8 +258,10 @@ a:hover{ color:#ccc; }
         <div class="game-image">
           <img src="minecraft.jpg" alt="Minecraft">
         </div>
-        <div class="game-title">Minecraft</div>
-        <div class="game-tag">Sandbox</div>
+        <div style="width:100%; margin-top:-28px; padding-left:8px;">
+          <div class="game-title" style="text-align:left;">Minecraft</div>
+          <div class="game-tag" style="text-align:left;">Popüler</div>
+        </div>
       </div>
     </a>
 
@@ -286,8 +270,10 @@ a:hover{ color:#ccc; }
         <div class="game-image">
           <img src="terraria.jpg" alt="Terraria">
         </div>
-        <div class="game-title">Terraria</div>
-        <div class="game-tag">Indie</div>
+        <div style="width:100%; margin-top:-28px; padding-left:8px;">
+          <div class="game-title" style="text-align:left;">Terraria</div>
+          <div class="game-tag" style="text-align:left;">Indie</div>
+        </div>
       </div>
     </a>
 
@@ -296,8 +282,10 @@ a:hover{ color:#ccc; }
         <div class="game-image">
           <img src="gta-sa.jpg" alt="GTA San Andreas">
         </div>
-        <div class="game-title">GTA San Andreas</div>
-        <div class="game-tag">Klasik</div>
+        <div style="width:100%; margin-top:-28px; padding-left:8px;">
+          <div class="game-title" style="text-align:left;">GTA San Andreas</div>
+          <div class="game-tag" style="text-align:left;">Düşük Sistem</div>
+        </div>
       </div>
     </a>
 
@@ -324,7 +312,7 @@ pc oyunları, indie oyunlar, düşük sistem gerektiren oyunlar, sandbox oyunlar
 </div>
 </section>
 
-<footer>© BALLASNET — Bu site dosya barındırmaz. Tüm içerik bilgilendirme ve yönlendirme amaçlıdır.</footer>
+<footer>© BALLASNET — Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
 const slider = document.querySelector('.slider');
