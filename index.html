@@ -158,12 +158,17 @@ h1{position:absolute;left:-9999px}
 }
 
 
-/* Eğer alt birden fazla kategori varsa örnek: */
-.slider .game-tags-container{
-  display:flex;
-  gap:6px;
-  margin-left:4px;
-  margin-bottom:4px;
+/* 🎯 Başlık ve alt tag’leri sola hizala ve alt birden fazla kategori varsa düzenle */
+.slider .game-tags-container {
+  display: flex;
+  gap: 6px;
+  margin-left: 4px;
+  margin-bottom: 4px;
+}
+
+.slider .game-title,
+.slider .game-tag {
+  align-self: flex-start; /* başlık ve tag’leri sola hizalar */
 }
 
 
