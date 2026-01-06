@@ -7,7 +7,20 @@
 <link rel="icon" type="image/png" href="favicon.png">
 
 <meta name="description" content="BALLASNET – PC oyun indir. Indie, AAA, offline, online, düşük sistem ve büyük boyutlu tüm PC oyunları.">
-<meta name="keywords" content="crack oyun indir, oyun indir full, pc crack oyun indir, full oyun indir">
+<meta name="keywords" content="
+crack oyun indir,
+oyun indir full,
+pc crack oyun indir,
+full oyun indir,
+oyun indir ücretsiz,
+torrent oyun indir,
+repack oyun indir,
+offline oyun indir,
+düşük sistem oyun indir,
+pc oyun crack,
+full pc oyun indir,
+oyun indir ücretsiz pc
+">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -59,7 +72,7 @@ h1{position:absolute;left:-9999px}
   text-decoration:none;
 }
 
-/* SEARCH */
+/* ARAMA */
 .search-box{
   display:flex;
   max-width:640px;
@@ -74,6 +87,7 @@ h1{position:absolute;left:-9999px}
   background:#000;
   border:none;
   color:#fff;
+  font-size:14px;
 }
 
 .search-box button{
@@ -82,6 +96,7 @@ h1{position:absolute;left:-9999px}
   color:#bbb;
   border-left:1px solid #222;
   cursor:pointer;
+  letter-spacing:2px;
 }
 
 /* SECTION */
@@ -107,34 +122,61 @@ h1{position:absolute;left:-9999px}
 
 .slider{
   display:flex;
-  gap:20px;
+  gap:26px;
   transition:transform 0.4s ease;
 }
 
+.slider .game{
+  flex-shrink:0;
+  width:200px;       /* Kart genişliği eşitlendi */
+  height:300px;      /* Kart yüksekliği eşitlendi */
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#000;
+  color:#fff;
+  border:1px solid #222;
+  font-size:24px;
+  padding:6px 12px;
+  cursor:pointer;
+  z-index:5;
+}
+
+.slider-btn.left{ left:5px; }
+.slider-btn.right{ right:5px; }
+
+/* OYUN */
 .game{
-  width:240px;
-  height:360px;
   background:#0f0f0f;
   border:1px solid #222;
-  padding:10px;
-  flex-shrink:0;
+  padding:8px;
+  border-radius:4px;
 }
 
 .game-image{
   width:100%;
-  height:260px;
+  height:180px;  /* Görsel boyutu eşitlendi */
   overflow:hidden;
+  margin-bottom:8px;
+  border:1px solid #222;
+  border-radius:4px;
 }
 
 .game-image img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover;  /* Cover ile sığdırıldı */
 }
 
 .game-title{
-  margin-top:8px;
-  font-size:14px;
+  font-size:15px;
+  margin-bottom:6px;
   text-align:center;
 }
 
@@ -146,24 +188,8 @@ h1{position:absolute;left:-9999px}
   display:block;
   text-align:center;
   border-radius:3px;
-  margin-top:6px;
+  margin:0 auto;
 }
-
-/* SLIDER BUTTONS */
-.slider-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:#000;
-  color:#fff;
-  border:1px solid #222;
-  font-size:22px;
-  padding:6px 12px;
-  cursor:pointer;
-}
-
-.slider-btn.left{left:5px}
-.slider-btn.right{right:5px}
 
 /* FORM */
 .form-box{
@@ -191,11 +217,12 @@ h1{position:absolute;left:-9999px}
   cursor:pointer;
 }
 
-/* TAGS */
+/* ETİKETLER */
 .tags{
   font-size:12px;
   color:#777;
   line-height:2;
+  margin-top:30px;
 }
 
 /* FOOTER */
@@ -206,7 +233,26 @@ footer{
   font-size:12px;
 }
 
-a{color:#fff;text-decoration:none}
+a{
+  color:#fff;
+  text-decoration:none;
+}
+a:hover{ color:#ccc; }
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero-image{
+    height:180px;
+  }
+  .slider .game{
+    width:150px;
+    height:220px;
+  }
+  .slider-btn{
+    font-size:18px;
+    padding:4px 8px;
+  }
+}
 </style>
 </head>
 
@@ -219,12 +265,12 @@ a{color:#fff;text-decoration:none}
 
   <div class="hero-tags">
     <a href="#">POPÜLER OYUNLAR</a>
-    <a href="#">DÜŞÜK SİSTEM</a>
-    <a href="#">İNDİE</a>
+    <a href="#">DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</a>
+    <a href="#">İNDİE OYUNLAR</a>
   </div>
 
   <div class="search-box">
-    <input type="text" placeholder="Oyun ara...">
+    <input type="text" placeholder="Oyun ara... GTA, Minecraft, Terraria">
     <button>ARA</button>
   </div>
 </div>
@@ -236,23 +282,37 @@ a{color:#fff;text-decoration:none}
   <button class="slider-btn left">&#10094;</button>
 
   <div class="slider">
-    <a href="#"><div class="game">
-      <div class="game-image"><img src="minecraft.jpg"></div>
-      <div class="game-title">Minecraft</div>
-      <span class="game-tag">Full PC</span>
-    </div></a>
 
-    <a href="#"><div class="game">
-      <div class="game-image"><img src="terraria.jpg"></div>
-      <div class="game-title">Terraria</div>
-      <span class="game-tag">Offline</span>
-    </div></a>
+    <a href="minecraft.html">
+      <div class="game">
+        <div class="game-image">
+          <img src="minecraft.jpg" alt="Minecraft">
+        </div>
+        <div class="game-title">Minecraft</div>
+        <div class="game-tag">Full PC</div>
+      </div>
+    </a>
 
-    <a href="#"><div class="game">
-      <div class="game-image"><img src="gta-sa.jpg"></div>
-      <div class="game-title">GTA San Andreas</div>
-      <span class="game-tag">Düşük Sistem</span>
-    </div></a>
+    <a href="terraria.html">
+      <div class="game">
+        <div class="game-image">
+          <img src="terraria.jpg" alt="Terraria">
+        </div>
+        <div class="game-title">Terraria</div>
+        <div class="game-tag">Offline</div>
+      </div>
+    </a>
+
+    <a href="gta-sa.html">
+      <div class="game">
+        <div class="game-image">
+          <img src="gta-sa.jpg" alt="GTA San Andreas">
+        </div>
+        <div class="game-title">GTA San Andreas</div>
+        <div class="game-tag">Düşük Sistem</div>
+      </div>
+    </a>
+
   </div>
 
   <button class="slider-btn right">&#10095;</button>
@@ -260,11 +320,11 @@ a{color:#fff;text-decoration:none}
 </section>
 
 <section class="section">
-<h2>İSTEK / YORUM</h2>
+<h2>İSTEK GÖNDER / YORUM YAP</h2>
 <div class="form-box">
-  <input placeholder="İsminiz">
-  <input placeholder="Oyun adı">
-  <textarea rows="4" placeholder="Yorumunuz"></textarea>
+  <input type="text" placeholder="İsminiz">
+  <input type="text" placeholder="Oyun Adı">
+  <textarea rows="4" placeholder="Yorumunuz / isteğiniz"></textarea>
   <button>GÖNDER</button>
 </div>
 </section>
@@ -273,7 +333,10 @@ a{color:#fff;text-decoration:none}
 <h2>ETİKETLER</h2>
 <div class="tags">
 crack oyun indir, oyun indir full, pc crack oyun indir,
-offline oyun indir, düşük sistem oyun indir
+full oyun indir, ücretsiz oyun indir pc,
+torrent oyun indir, repack oyun indir,
+offline oyun indir, düşük sistem oyun indir,
+full pc oyun crack, oyun indir ücretsiz
 </div>
 </section>
 
@@ -281,27 +344,24 @@ offline oyun indir, düşük sistem oyun indir
 
 <script>
 const slider = document.querySelector('.slider');
-const left = document.querySelector('.slider-btn.left');
-const right = document.querySelector('.slider-btn.right');
+const leftBtn = document.querySelector('.slider-btn.left');
+const rightBtn = document.querySelector('.slider-btn.right');
 
-let index = 0;
-const cardWidth = 260;
+let scrollAmount = 0;
+const cardWidth = 226; // Slider kart genişliği
 
-right.onclick = () => {
-  if(index < slider.children.length - 3){
-    index++;
-    slider.style.transform = `translateX(-${index * cardWidth}px)`;
-  }
-}
+rightBtn.onclick = () => {
+  scrollAmount -= cardWidth;
+  if(scrollAmount < -((slider.children.length - 3) * cardWidth)) scrollAmount = -((slider.children.length - 3) * cardWidth);
+  slider.style.transform = `translateX(${scrollAmount}px)`;
+};
 
-left.onclick = () => {
-  if(index > 0){
-    index--;
-    slider.style.transform = `translateX(-${index * cardWidth}px)`;
-  }
-}
+leftBtn.onclick = () => {
+  scrollAmount += cardWidth;
+  if(scrollAmount > 0) scrollAmount = 0;
+  slider.style.transform = `translateX(${scrollAmount}px)`;
+};
 </script>
 
 </body>
 </html>
-
