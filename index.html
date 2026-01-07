@@ -417,7 +417,7 @@ function updateSuggestions() {
     return;
   }
 
-  const matches = Object.keys(gameRedirects).filter(name => name.startsWith(query));
+const matches = Object.keys(gameRedirects).filter(name => name.toLowerCase().includes(query));
   if (matches.length === 0) {
     suggestionBox.style.display = 'none';
     return;
