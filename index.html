@@ -12,6 +12,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ...mevcut stil kodların... */
+
+/* Arama öneri kutusu */
+.search-suggestions {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 300px;
+  background: #111;
+  color: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #222;
+  display: none;
+  z-index: 10;
+}
+
+.search-suggestions div {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.search-suggestions div:hover {
+  background: #222;
+}
+</style>
+
 *{
   margin:0;
   padding:0;
@@ -241,6 +268,15 @@ a{
     <button>ARA</button>
   </div>
 </div>
+
+<div class="search-box">
+  <input type="text" placeholder="Oyun ara...">
+  <button>ARA</button>
+
+  <!-- öneri kutusu buraya -->
+  <div class="search-suggestions"></div>
+</div>
+
 
 <section class="section">
 <h2>POPÜLER OYUNLAR</h2>
