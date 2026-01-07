@@ -105,11 +105,7 @@ h1{position:absolute;left:-9999px}
   display: flex;
   gap: 26px;
   transition: transform 0.4s ease;
-  position: relative;
-  z-index: 1;
 }
-
-
 
 .slider .game{
   flex-shrink:0;
@@ -121,15 +117,9 @@ h1{position:absolute;left:-9999px}
   background:#0f0f0f;
   border:1px solid #222;
 }
-.game-image{width:100%;height:130px;}
-.game-image img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-.game-image{
-  background:#000;
-}
+
+.game-image{width:100%;height:130px;background:#000;}
+.game-image img{width:100%;height:100%;object-fit:contain;}
 
 .game-title{margin-top:6px;font-size:15px;}
 .game-tags-container{display:flex;gap:4px;margin-top:2px;}
@@ -174,7 +164,6 @@ a{color:#fff;text-decoration:none}
   </div>
 </div>
 
-
 <section class="section">
 <h2>POPÜLER OYUNLAR</h2>
 
@@ -184,126 +173,78 @@ a{color:#fff;text-decoration:none}
 
 <div class="slider">
 
-<section class="section">
-  <h2>POPÜLER OYUNLAR</h2>
+<a href="minecraft.html">
+  <div class="game">
+    <div class="game-image"><img src="minecraft.jpg"></div>
+    <div class="game-title">Minecraft</div>
+    <div class="game-tags-container"><div class="game-tag">Popüler</div></div>
+  </div>
+</a>
 
-  <a href="minecraft.html">
-    <div class="game">
-      <div class="game-image">
-        <img src="minecraft.jpg" alt="Minecraft">
-      </div>
-      <div class="game-title">Minecraft</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-      </div>
+<a href="halflife2.html">
+  <div class="game">
+    <div class="game-image"><img src="halflife2.jpg"></div>
+    <div class="game-title">Half-Life 2</div>
+    <div class="game-tags-container">
+      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
     </div>
-  </a>
+  </div>
+</a>
 
-  <a href="halflife2.html">
-    <div class="game">
-      <div class="game-image">
-        <img src="halflife2.jpg" alt="Half-Life 2">
-      </div>
-      <div class="game-title">Half-Life 2</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
+<a href="portal2.html">
+  <div class="game">
+    <div class="game-image"><img src="portal2.jpg"></div>
+    <div class="game-title">Portal 2</div>
+    <div class="game-tags-container">
+      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
     </div>
-  </a>
+  </div>
+</a>
 
-  <a href="portal2.html">
-    <div class="game">
-      <div class="game-image">
-        <img src="portal2.jpg" alt="Portal 2">
-      </div>
-      <div class="game-title">Portal 2</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
+<a href="doometernal.html">
+  <div class="game">
+    <div class="game-image"><img src="doometernal.jpg"></div>
+    <div class="game-title">Doom Eternal</div>
+    <div class="game-tags-container">
+      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
     </div>
-  </a>
+  </div>
+</a>
 
-  <a href="doometernal.html">
-    <div class="game">
-      <div class="game-image">
-        <img src="doometernal.jpg" alt="Doom Eternal">
-      </div>
-      <div class="game-title">Doom Eternal</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
+<a href="gta-sa.html">
+  <div class="game">
+    <div class="game-image"><img src="gta-sa.jpg"></div>
+    <div class="game-title">GTA San Andreas</div>
+    <div class="game-tags-container">
+      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
     </div>
-  </a>
+  </div>
+</a>
 
-  <a href="gta-sa.html">
-    <div class="game">
-      <div class="game-image">
-        <img src="gta-sa.jpg" alt="GTA San Andreas">
-      </div>
-      <div class="game-title">GTA San Andreas</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
+<a href="terraria.html">
+  <div class="game">
+    <div class="game-image"><img src="terraria.jpg"></div>
+    <div class="game-title">Terraria</div>
+    <div class="game-tags-container">
+      <div class="game-tag">Indie</div><div class="game-tag">Düşük Sistem</div>
     </div>
-  </a>
+  </div>
+</a>
 
-  <a href="terraria.html">
-    <div class="game">
-      <div class="game-image">
-        <img src="terraria.jpg" alt="Terraria">
-      </div>
-      <div class="game-title">Terraria</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Indie</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
-    </div>
-  </a>
-
-</div> <!-- slider -->
-</div> <!-- slider-wrapper -->
+</div>
+</div>
 </section>
-
 
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-const input=document.querySelector('.search-box input');
-const button=document.querySelector('.search-box button');
-const suggestionBox=document.querySelector('.search-suggestions');
-
-const gameRedirects={
-  "minecraft":"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  "gta san andreas":"https://www.youtube.com/watch?v=QH2-TGUlwu4"
-};
-
-function updateSuggestions(){
-  const q=input.value.toLowerCase().trim();
-  suggestionBox.innerHTML="";
-  if(!q){suggestionBox.style.display="none";return;}
-
-  Object.keys(gameRedirects).filter(n=>n.includes(q)).forEach(n=>{
-    const d=document.createElement("div");
-    d.textContent=n;
-    d.onclick=()=>location.href=gameRedirects[n];
-    suggestionBox.appendChild(d);
-  });
-  suggestionBox.style.display="block";
-}
-
-input.addEventListener("input",updateSuggestions);
-button.onclick=()=>updateSuggestions();
-</script>
-
-<script>
 const slider=document.querySelector('.slider');
 let scroll=0,card=346;
-document.querySelector('.right').onclick=()=>slider.style.transform=`translateX(${scroll-=card}px)`;
-document.querySelector('.left').onclick=()=>{
+document.querySelector('.slider-btn.right').onclick=()=>{
+  scroll-=card;
+  slider.style.transform=`translateX(${scroll}px)`;
+};
+document.querySelector('.slider-btn.left').onclick=()=>{
   scroll+=card;
   if(scroll>0)scroll=0;
   slider.style.transform=`translateX(${scroll}px)`;
