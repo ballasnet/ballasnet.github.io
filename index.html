@@ -200,11 +200,11 @@ h1{position:absolute;left:-9999px}
 }
 
 .slider-btn.left{
-  left: 40px;  /* soldaki butonu 40px sola çekiyoruz */
+  left: -40px;  /* soldaki butonu 40px sola çekiyoruz */
 }
 
 .slider-btn.right{
-  right: 40px; /* sağdaki butonu 40px sağa çekiyoruz */
+  right: -40px; /* sağdaki butonu 40px sağa çekiyoruz */
 }
 
 
@@ -336,6 +336,87 @@ a{
 <footer>
 © Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.
 </footer>
+<script>
+const searchInput = document.querySelector('.search-box input');
+const searchButton = document.querySelector('.search-box button');
+
+// Oyun isimleri ve yönlendirme linkleri
+const gameRedirects = {
+  'minecraft': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+  'gta san andreas': 'https://www.youtube.com/watch?v=QH2-TGUlwu4'
+};
+
+// Öneri listesini oluşturacak container
+const suggestionBox = document.createElement('div');
+suggestionBox.style.position = 'absolute';
+suggestionBox.style.background = '#111';
+suggestionBox.style.color = '#fff';
+suggestionBox.style.width = 'calc(100% - 24px)';
+suggestionBox.style.maxHeight = '200px';
+suggestionBox.style.overflowY = 'auto';
+suggestionBox.style.zIndex = '10';
+suggestionBox.style.display = 'none';
+searchInput.parentNode.appendChild(suggestionBox);
+
+// Önerileri güncelleyen fonksiyon
+function updateSuggestions() {
+  const query = searchInput.value.toLowerCase().trim();
+  suggestionBox.innerHTML = '';
+  if (!query) {
+    suggestionBox.style.display = 'none';
+    return;
+  }
+
+  const matches = Object.keys(gameRedirects).filter(name => name.startsWith(query));
+  if (matches.length === 0) {
+    suggestionBox.style.display = 'none';
+    return;
+  }
+
+  matches.forEach(name => {
+    const div = document.createElement('div');
+    div.textContent = name;
+    div.style.padding = '4px 8px';
+    div.style.cursor = 'pointer';
+    div.addEventListener('click', () => {
+      window.location.href = gameRedirects[name];
+    });
+    suggestionBox.appendChild(div);
+  });
+
+  suggestionBox.style.display = 'block';
+}
+
+// Input eventleri
+searchInput.addEventListener('input', updateSuggestions);
+
+// Enter tuşu ile yönlendirme
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const query = searchInput.value.toLowerCase().trim();
+    for (const key in gameRedirects) {
+      if (query.startsWith(key)) {
+        window.location.href = gameRedirects[key];
+        return;
+      }
+    }
+    alert('Aradığınız oyun bulunamadı.');
+  }
+});
+
+// Arama butonu tıklayınca
+searchButton.addEventListener('click', () => {
+  const query = searchInput.value.toLowerCase().trim();
+  for (const key in gameRedirects) {
+    if (query.startsWith(key)) {
+      window.location.href = gameRedirects[key];
+      return;
+    }
+  }
+  alert('Aradığınız oyun bulunamadı.');
+});
+</script>
+
 
 <script>
 const slider = document.querySelector('.slider');
