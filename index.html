@@ -15,9 +15,9 @@
 /* Arama öneri kutusu */
 .search-suggestions {
   position: absolute;
-  top: 110%;
+  top: 100%; /* input’un altına gelsin */
   left: 0;
-  width: 100%;
+  width: 100%; /* input ile aynı genişlik */
   background: #111;
   color: #fff;
   max-height: 200px;
@@ -83,12 +83,14 @@ h1{position:absolute;left:-9999px}
 
 /* ARAMA */
 .search-box{
-  display:flex;
-  max-width:640px;
-  margin:0 auto;
-  border:1px solid #222;
-  background:#000;
+  display: flex;
+  max-width: 640px;
+  margin: 0 auto;
+  border: 1px solid #222;
+  background: #000;
+  position: relative; 
 }
+
 
 .search-box input{
   flex:1;
