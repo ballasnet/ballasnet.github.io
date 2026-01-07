@@ -113,7 +113,7 @@ h1{position:absolute;left:-9999px}
 .slider .game{
   flex-shrink:0;
   width:320px;       
-  height:220px;      
+  height:200px;      
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -121,13 +121,14 @@ h1{position:absolute;left:-9999px}
   padding:8px;
   background:#0f0f0f;
   border:1px solid #222;
-  border-radius:0px;   /* köşeleri sivri yapmak için 0px */
+  border-radius:0px;   /* köşeleri sivri yapmak için 0px yapıyoruz */
   cursor:pointer;
 }
 
+
 .slider .game-image{
   width:100%;
-  height:200px; /* görsel yüksekliği */
+  height:130px;
   overflow:hidden;
 }
 
@@ -137,37 +138,42 @@ h1{position:absolute;left:-9999px}
   object-fit:cover;
 }
 
-/* 🎯 Başlık ve alt tag’leri sola hizala, yazı boyutunu küçült, hafif sağa kaydır */
+/* YAZILAR GÖRSELİN ALTINDA */
 .slider .game-title{
-  font-weight: normal;     
-  text-align: left;        
-  font-size: 15px;         
-  margin-top: 6px;         
-  margin-left: 1px;        
+  font-weight: normal;      /* düz stil */
+  text-align: left;         /* sola hizalı */
+  margin-top: 8px;          /* biraz boşluk üstten */
+  font-size: 16px;          /* mevcut boyut korunabilir */
 }
 
 .slider .game-tag{
-  font-size:12px;          
+  font-size:13px;
   color:#888;
   background:#111;
   padding:4px 8px;
   border-radius:3px;
   display:inline-block;
-  margin-top:2px;          
+  margin-top:4px;           /* başlığın altına biraz boşluk */
+  text-align: left;         /* sola hizalı */
+}
+
+
+/* 🎯 Başlık ve alt tag’leri sola hizala ve mesafeyi optimize et */
+.slider .game-tags-container {
+  display: flex;
+  gap: 4px;            /* kategori yazıları arasındaki yatay boşluk */
+  margin-left: 4px;
+  margin-top: 2px;     /* başlığa olan üst mesafe */
+  margin-bottom: 4px;  /* alt boşluk, çok sıkılaşmasın */
+}
+
+.slider .game-title,
+.slider .game-tag {
+  align-self: flex-start; /* başlık ve tag’leri sola hizalar */
+  margin-top: 4px;        /* başlıktan sonra biraz boşluk */
+  font-weight: normal;     /* düz stil */
   text-align: left;
-  margin-left: 3px;        /* popüler/indie yazısını başlığa göre 3px sağa kaydırdık */
 }
-
-/* Alt birden fazla kategori varsa örnek */
-.slider .game-tags-container{
-  display:flex;
-  gap:4px;                 
-  margin-left:4px;
-  margin-top:2px;           
-  margin-bottom:4px;        
-}
-
-
 
 /* SLIDER BUTTON */
 .slider-btn{
