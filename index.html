@@ -96,12 +96,38 @@ h1{position:absolute;left:-9999px}
   padding-bottom:10px;
 }
 
-.slider-wrapper{position:relative;overflow:hidden;}
-.slider{
-  display:flex;
-  gap:26px;
-  transition:transform 0.4s ease;
+.slider-wrapper{
+  position: relative;
+  overflow: hidden;
 }
+
+.slider{
+  display: flex;
+  gap: 26px;
+  transition: transform 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.slider-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.slider-btn.left{
+  left: 5px;
+}
+
+.slider-btn.right{
+  right: 5px;
+}
+
 
 .slider .game{
   flex-shrink:0;
