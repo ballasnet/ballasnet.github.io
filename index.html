@@ -97,14 +97,21 @@ h1{position:absolute;left:-9999px}
 }
 
 .slider-wrapper{
-  position: relative;
-  overflow: hidden;
+  position:relative;
+  overflow:hidden;
 }
 
 .slider{
-  display: flex;
-  gap: 26px;
-  transition: transform 0.4s ease;
+  display:flex;
+  gap:26px;
+  transition:transform .4s ease;
+}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:999; /* ÇAK */
 }
 
 .slider .game{
