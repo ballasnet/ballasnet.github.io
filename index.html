@@ -337,7 +337,68 @@ a{
 </footer>
 
 <script>
-const searchInput = document.querySelector('.search-box input');
+const searchBoxes = document.querySelectorAll('.search-box');
+
+searchBoxes.forEach(box => {
+  const input = box.querySelector('input');
+  const button = box.querySelector('button');
+  const suggestionBox = document.createElement('div');
+  suggestionBox.classList.add('search-suggestions');
+  box.appendChild(suggestionBox);
+
+  function updateSuggestions() {
+    const query = input.value.toLowerCase().trim();
+    suggestionBox.innerHTML = '';
+    if (!query) {
+      suggestionBox.style.display = 'none';
+      return;
+    }
+
+    const matches = Object.keys(gameRedirects).filter(name => name.startsWith(query));
+    if (matches.length === 0) {
+      suggestionBox.style.display = 'none';
+      return;
+    }
+
+    matches.forEach(name => {
+      const div = document.createElement('div');
+      div.textContent = name;
+      div.addEventListener('click', () => {
+        window.location.href = gameRedirects[name];
+      });
+      suggestionBox.appendChild(div);
+    });
+
+    suggestionBox.style.display = 'block';
+  }
+
+  input.addEventListener('input', updateSuggestions);
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const query = input.value.toLowerCase().trim();
+      for (const key in gameRedirects) {
+        if (query.startsWith(key)) {
+          window.location.href = gameRedirects[key];
+          return;
+        }
+      }
+      alert('Aradığınız oyun bulunamadı.');
+    }
+  });
+
+  button.addEventListener('click', () => {
+    const query = input.value.toLowerCase().trim();
+    for (const key in gameRedirects) {
+      if (query.startsWith(key)) {
+        window.location.href = gameRedirects[key];
+        return;
+      }
+    }
+    alert('Aradığınız oyun bulunamadı.');
+  });
+});
+
 const searchButton = document.querySelector('.search-box button');
 const suggestionBox = document.querySelector('.search-suggestions');
 
