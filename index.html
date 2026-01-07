@@ -158,20 +158,30 @@ h1{position:absolute;left:-9999px}
 }
 
 
-/* 🎯 Başlık ve alt tag’leri sola hizala ve mesafeyi optimize et */
-.slider .game-tags-container {
-  display: flex;
-  gap: 4px;            /* kategori yazıları arasındaki yatay boşluk */
-  margin-left: 4px;
-  margin-top: 2px;     /* başlığa olan üst mesafe */
-  margin-bottom: 4px;  /* alt boşluk, çok sıkılaşmasın */
+/* 🎯 Başlık ve alt tag’leri sola hizala */
+.slider .game-title {
+  font-weight: normal;      /* düz stil */
+  text-align: left;         /* sola hizala */
+  margin-top: 6px;
+  margin-left: 1px;         /* başlığı 1px sağa kaydır */
+  font-size: 15px;          /* biraz küçült */
 }
 
-.slider .game-title,
+/* Alt tag container */
+.slider .game-tags-container {
+  display: flex;
+  gap: 4px;                 /* tag’lar arası boşluk */
+  justify-content: flex-start; /* sola hizala */
+  margin-top: 2px;           /* başlık altına boşluk */
+}
+
+/* Tag’ler */
 .slider .game-tag {
-  align-self: flex-start; /* başlık ve tag’leri sola hizalar */
-  margin-top: 4px;        /* başlıktan sonra biraz boşluk */
-  font-weight: normal;     /* düz stil */
+  font-size: 12px;
+  color: #888;
+  background: #111;
+  padding: 4px 8px;
+  border-radius: 3px;
   text-align: left;
 }
 
