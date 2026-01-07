@@ -8,49 +8,34 @@
 
 <meta name="description" content="BALLASNET – PC oyun vitrin sitesi. Indie, düşük sistem ve popüler PC oyunları.">
 <meta name="keywords" content="pc oyunları, indie oyunlar, düşük sistem oyunları, oyun vitrini">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* Arama öneri kutusu */
-.search-suggestions {
-  position: absolute;
-  top: 100%; /* input’un altına gelsin */
-  left: 0;
-  width: 100%; /* input ile aynı genişlik */
-  background: #111;
-  color: #fff;
-  max-height: 200px;
-  overflow-y: auto;
-  border: 1px solid #222;
-  display: none;
-  z-index: 10;
-}
-
-.search-suggestions div {
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.search-suggestions div:hover {
-  background: #222;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-  background:#0b0b0b;
+.search-suggestions{
+  position:absolute;
+  top:100%;
+  left:0;
+  width:100%;
+  background:#111;
   color:#fff;
+  max-height:200px;
+  overflow-y:auto;
+  border:1px solid #222;
+  display:none;
+  z-index:10;
+}
+.search-suggestions div{
+  padding:6px 12px;
+  cursor:pointer;
+}
+.search-suggestions div:hover{
+  background:#222;
 }
 
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{background:#0b0b0b;color:#fff;}
 h1{position:absolute;left:-9999px}
 
-/* HERO */
 .hero{
   max-width:1000px;
   margin:24px auto;
@@ -58,14 +43,12 @@ h1{position:absolute;left:-9999px}
   background:#0f0f0f;
   border:1px solid #222;
 }
-
 .hero-image{
   width:100%;
   height:220px;
-  background:url("hero.jpg") center / cover no-repeat;
+  background:url("hero.jpg") center/cover no-repeat;
   margin-bottom:8px;
 }
-
 .hero-tags{
   display:flex;
   justify-content:center;
@@ -75,23 +58,16 @@ h1{position:absolute;left:-9999px}
   letter-spacing:2px;
   margin-bottom:10px;
 }
+.hero-tags a{color:#aaa;text-decoration:none;}
 
-.hero-tags a{
-  color:#aaa;
-  text-decoration:none;
-}
-
-/* ARAMA */
 .search-box{
-  display: flex;
-  max-width: 640px;
-  margin: 0 auto;
-  border: 1px solid #222;
-  background: #000;
-  position: relative; 
+  display:flex;
+  max-width:640px;
+  margin:0 auto;
+  border:1px solid #222;
+  background:#000;
+  position:relative;
 }
-
-
 .search-box input{
   flex:1;
   padding:12px;
@@ -99,7 +75,6 @@ h1{position:absolute;left:-9999px}
   border:none;
   color:#fff;
 }
-
 .search-box button{
   padding:12px 22px;
   background:#0f0f0f;
@@ -108,13 +83,11 @@ h1{position:absolute;left:-9999px}
   cursor:pointer;
 }
 
-/* SECTION */
 .section{
   max-width:1200px;
   margin:60px auto;
   padding:0 20px;
 }
-
 .section h2{
   font-size:15px;
   letter-spacing:3px;
@@ -123,71 +96,29 @@ h1{position:absolute;left:-9999px}
   padding-bottom:10px;
 }
 
-/* SLIDER */
-.slider-wrapper{
-  position:relative;
-  overflow:hidden;
-}
-
+.slider-wrapper{position:relative;overflow:hidden;}
 .slider{
   display:flex;
   gap:26px;
   transition:transform 0.4s ease;
 }
 
-/* OYUN KARTI */
 .slider .game{
   flex-shrink:0;
-  width:320px;       
-  height:200px;      
+  width:320px;
+  height:200px;
   display:flex;
   flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
   padding:8px;
   background:#0f0f0f;
   border:1px solid #222;
-  border-radius:0px;
-  cursor:pointer;
 }
+.game-image{width:100%;height:130px;}
+.game-image img{width:100%;height:100%;object-fit:cover;}
+.game-title{margin-top:6px;font-size:15px;}
+.game-tags-container{display:flex;gap:4px;margin-top:2px;}
+.game-tag{font-size:12px;color:#888;background:#111;padding:4px 8px;}
 
-.slider .game-image{
-  width:100%;
-  height:130px;
-  overflow:hidden;
-}
-
-.slider .game-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.slider .game-title{
-  font-weight: normal;
-  text-align: left;
-  margin-top: 6px;
-  margin-left: 1px;
-  font-size: 15px;
-}
-
-.slider .game-tags-container {
-  display: flex;
-  gap: 4px;
-  justify-content: flex-start;
-  margin-top: 2px;
-}
-
-.slider .game-tag {
-  font-size: 12px;
-  color: #888;
-  background: #111;
-  padding: 4px 8px;
-  border-radius: 3px;
-  text-align: left;
-}
-
-/* SLIDER BUTTON */
 .slider-btn{
   position:absolute;
   top:50%;
@@ -198,29 +129,12 @@ h1{position:absolute;left:-9999px}
   font-size:24px;
   padding:6px 12px;
   cursor:pointer;
-  z-index:5;
 }
+.slider-btn.left{left:10px}
+.slider-btn.right{right:10px}
 
-.slider-btn.left{
-  left: 10px;
-}
-
-.slider-btn.right{
-  right: 10px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:40px;
-  color:#555;
-  font-size:12px;
-}
-
-a{
-  color:#fff;
-  text-decoration:none;
-}
+footer{text-align:center;padding:40px;color:#555;font-size:12px;}
+a{color:#fff;text-decoration:none}
 </style>
 </head>
 
@@ -245,273 +159,76 @@ a{
 </div>
 
 <section class="section">
-  <h2>POPÜLER OYUNLAR</h2>
+<h2>POPÜLER OYUNLAR</h2>
 
-  <div class="slider-wrapper">
-    <button class="slider-btn left">&#10094;</button>
-    <button class="slider-btn right">&#10095;</button>
+<div class="slider-wrapper">
+<button class="slider-btn left">&#10094;</button>
+<button class="slider-btn right">&#10095;</button>
 
-    <div class="slider">
-      <!-- Oyun kartları buraya gelecek -->
-    </div> <!-- slider kapatma -->
+<div class="slider">
 
-    <!-- POPÜLER OYUNLAR ALTINDA GÖRSEL BLOK -->
-    <div class="featured-visual" style="display:flex; justify-content:center; align-items:flex-start; gap:12px; margin-top:30px;">
+<a href="minecraft.html"><div class="game">
+<div class="game-image"><img src="minecraft.jpg"></div>
+<div class="game-title">Minecraft</div>
+<div class="game-tags-container"><div class="game-tag">Popüler</div></div>
+</div></a>
 
-      <!-- Sol iki küçük görsel (üst üste) -->
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <img src="sol1.jpg" alt="" style="width:80px; height:80px; object-fit:cover;">
-        <img src="sol2.jpg" alt="" style="width:80px; height:80px; object-fit:cover;">
-      </div>
+<a href="halflife2.html"><div class="game">
+<div class="game-image"><img src="halflife2.jpg"></div>
+<div class="game-title">Half-Life 2</div>
+<div class="game-tags-container">
+<div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
+</div></div></a>
 
-      <!-- Ortadaki büyük dikey dikdörtgen -->
-      <div>
-        <img src="orta.jpg" alt="" style="width:80px; height:172px; object-fit:cover;">
-      </div>
-
-      <!-- Sağ iki küçük görsel (üst üste) -->
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <img src="sag1.jpg" alt="" style="width:80px; height:80px; object-fit:cover;">
-        <img src="sag2.jpg" alt="" style="width:80px; height:80px; object-fit:cover;">
-      </div>
-
-    </div> <!-- featured-visual kapatma -->
-  </div> <!-- slider-wrapper kapatma -->
-</section>
-
-<a href="minecraft.html">
-  <div class="game">
-    <div class="game-image">
-      <img src="minecraft.jpg" alt="Minecraft">
-    </div>
-    <div class="game-title">Minecraft</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div>
-    </div>
-  </div>
-</a>
-
-<a href="halflife2.html">
-  <div class="game">
-    <div class="game-image">
-      <img src="halflife2.jpg" alt="Half-Life 2">
-    </div>
-    <div class="game-title">Half-Life 2</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div>
-      <div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="portal2.html">
-  <div class="game">
-    <div class="game-image">
-      <img src="portal2.jpg" alt="Portal 2">
-    </div>
-    <div class="game-title">Portal 2</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div>
-      <div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="doometernal.html">
-  <div class="game">
-    <div class="game-image">
-      <img src="doometernal.jpg" alt="Doom Eternal">
-    </div>
-    <div class="game-title">Doom Eternal</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div>
-      <div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="gta-sa.html">
-  <div class="game">
-    <div class="game-image">
-      <img src="gta-sa.jpg" alt="GTA San Andreas">
-    </div>
-    <div class="game-title">GTA San Andreas</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div>
-      <div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="terraria.html">
-  <div class="game">
-    <div class="game-image">
-      <img src="terraria.jpg" alt="Terraria">
-    </div>
-    <div class="game-title">Terraria</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Indie</div>
-      <div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
+<a href="portal2.html"><div class="game">
+<div class="game-image"><img src="portal2.jpg"></div>
+<div class="game-title">Portal 2</div>
+<div class="game-tags-container">
+<div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
+</div></div></a>
 
 </div>
 </div>
 </section>
 
-<footer>
-© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.
-</footer>
+<footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-const searchBoxes = document.querySelectorAll('.search-box');
+const input=document.querySelector('.search-box input');
+const button=document.querySelector('.search-box button');
+const suggestionBox=document.querySelector('.search-suggestions');
 
-searchBoxes.forEach(box => {
-  const input = box.querySelector('input');
-  const button = box.querySelector('button');
-  const suggestionBox = document.createElement('div');
-  suggestionBox.classList.add('search-suggestions');
-  box.appendChild(suggestionBox);
-
-  function updateSuggestions() {
-    const query = input.value.toLowerCase().trim();
-    suggestionBox.innerHTML = '';
-    if (!query) {
-      suggestionBox.style.display = 'none';
-      return;
-    }
-
-    const matches = Object.keys(gameRedirects).filter(name => name.startsWith(query));
-    if (matches.length === 0) {
-      suggestionBox.style.display = 'none';
-      return;
-    }
-
-    matches.forEach(name => {
-      const div = document.createElement('div');
-      div.textContent = name;
-      div.addEventListener('click', () => {
-        window.location.href = gameRedirects[name];
-      });
-      suggestionBox.appendChild(div);
-    });
-
-    suggestionBox.style.display = 'block';
-  }
-
-  input.addEventListener('input', updateSuggestions);
-
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      const query = input.value.toLowerCase().trim();
-      for (const key in gameRedirects) {
-        if (query.startsWith(key)) {
-          window.location.href = gameRedirects[key];
-          return;
-        }
-      }
-      alert('Aradığınız oyun bulunamadı.');
-    }
-  });
-
-  button.addEventListener('click', () => {
-    const query = input.value.toLowerCase().trim();
-    for (const key in gameRedirects) {
-      if (query.startsWith(key)) {
-        window.location.href = gameRedirects[key];
-        return;
-      }
-    }
-    alert('Aradığınız oyun bulunamadı.');
-  });
-});
-
-const searchButton = document.querySelector('.search-box button');
-const suggestionBox = document.querySelector('.search-suggestions');
-
-// Oyun isimleri ve yönlendirme linkleri
-const gameRedirects = {
-  'minecraft': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-  'gta san andreas': 'https://www.youtube.com/watch?v=QH2-TGUlwu4'
+const gameRedirects={
+  "minecraft":"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "gta san andreas":"https://www.youtube.com/watch?v=QH2-TGUlwu4"
 };
 
-// Önerileri güncelleyen fonksiyon
-function updateSuggestions() {
-  const query = searchInput.value.toLowerCase().trim();
-  suggestionBox.innerHTML = '';
-  if (!query) {
-    suggestionBox.style.display = 'none';
-    return;
-  }
+function updateSuggestions(){
+  const q=input.value.toLowerCase().trim();
+  suggestionBox.innerHTML="";
+  if(!q){suggestionBox.style.display="none";return;}
 
-const matches = Object.keys(gameRedirects).filter(name => name.toLowerCase().includes(query));
-  if (matches.length === 0) {
-    suggestionBox.style.display = 'none';
-    return;
-  }
-
-  matches.forEach(name => {
-    const div = document.createElement('div');
-    div.textContent = name;
-    div.style.padding = '4px 8px';
-    div.style.cursor = 'pointer';
-    div.addEventListener('click', () => {
-      window.location.href = gameRedirects[name];
-    });
-    suggestionBox.appendChild(div);
+  Object.keys(gameRedirects).filter(n=>n.includes(q)).forEach(n=>{
+    const d=document.createElement("div");
+    d.textContent=n;
+    d.onclick=()=>location.href=gameRedirects[n];
+    suggestionBox.appendChild(d);
   });
-
-  suggestionBox.style.display = 'block';
+  suggestionBox.style.display="block";
 }
 
-// Input eventleri
-searchInput.addEventListener('input', updateSuggestions);
-
-// Enter tuşu ile yönlendirme
-searchInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const query = searchInput.value.toLowerCase().trim();
-    for (const key in gameRedirects) {
-      if (query.startsWith(key)) {
-        window.location.href = gameRedirects[key];
-        return;
-      }
-    }
-    alert('Aradığınız oyun bulunamadı.');
-  }
-});
-
-// Arama butonu tıklayınca
-searchButton.addEventListener('click', () => {
-  const query = searchInput.value.toLowerCase().trim();
-  for (const key in gameRedirects) {
-    if (query.startsWith(key)) {
-      window.location.href = gameRedirects[key];
-      return;
-    }
-  }
-  alert('Aradığınız oyun bulunamadı.');
-});
+input.addEventListener("input",updateSuggestions);
+button.onclick=()=>updateSuggestions();
 </script>
 
 <script>
-const slider = document.querySelector('.slider');
-const leftBtn = document.querySelector('.slider-btn.left');
-const rightBtn = document.querySelector('.slider-btn.right');
-
-let scroll = 0;
-const card = 386;
-
-rightBtn.onclick = () => {
-  scroll -= card;
-  slider.style.transform = `translateX(${scroll}px)`;
-};
-
-leftBtn.onclick = () => {
-  scroll += card;
-  if(scroll > 0) scroll = 0;
-  slider.style.transform = `translateX(${scroll}px)`;
+const slider=document.querySelector('.slider');
+let scroll=0,card=346;
+document.querySelector('.right').onclick=()=>slider.style.transform=`translateX(${scroll-=card}px)`;
+document.querySelector('.left').onclick=()=>{
+  scroll+=card;
+  if(scroll>0)scroll=0;
+  slider.style.transform=`translateX(${scroll}px)`;
 };
 </script>
 
