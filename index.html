@@ -208,12 +208,11 @@ a{color:#fff;text-decoration:none;}
 
 <section class="section">
   <h2>POPÜLER OYUNLAR</h2>
-
   <div class="slider-wrapper">
     <button class="slider-btn left">&#10094;</button>
     <button class="slider-btn right">&#10095;</button>
 
-    <div class="slider">
+    <div class="slider shuffle-populer">
       <a href="minecraft.html"><div class="game"><div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div><div class="game-title">Minecraft</div><div class="game-tags-container"><div class="game-tag">Popüler</div></div></div></a>
       <a href="halflife2.html"><div class="game"><div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div><div class="game-title">Half-Life 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
       <a href="portal2.html"><div class="game"><div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div><div class="game-title">Portal 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
@@ -223,33 +222,56 @@ a{color:#fff;text-decoration:none;}
     </div>
   </div>
 
-<div class="mozaik-grid">
-  <div class="mozaik-card kare"><img src="papersplease2.jpg" alt="Papers Please"><div class="mozaik-title">Papers Please</div></div>
-  <div class="mozaik-card dikdortgen"><img src="celeste2.jpg" alt="Celeste"><div class="mozaik-title">Celeste</div></div>
-  <div class="mozaik-card kare"><img src="babaisyou.jpg" alt="Baba Is You"><div class="mozaik-title">Baba Is You</div></div>
-  <div class="mozaik-card dikdortgen"><img src="hollow-knight.jpg" alt="Hollow Knight"><div class="mozaik-title">Hollow Knight</div></div>
-  <div class="mozaik-card kare"><img src="undertale.jpg" alt="Undertale"><div class="mozaik-title">Undertale</div></div>
-  <div class="mozaik-card kare"><img src="stardewvalley.jpg" alt="Stardew Valley"><div class="mozaik-title">Stardew Valley</div></div>
-</div>
+  <!-- Mozaik Kartlar -->
+  <div class="mozaik-grid">
+    <div class="mozaik-card kare"><img src="papersplease2.jpg" alt="Papers Please"><div class="mozaik-title">Papers Please</div></div>
+    <div class="mozaik-card dikdortgen"><img src="celeste2.jpg" alt="Celeste"><div class="mozaik-title">Celeste</div></div>
+    <div class="mozaik-card kare"><img src="babaisyou.jpg" alt="Baba Is You"><div class="mozaik-title">Baba Is You</div></div>
+    <div class="mozaik-card dikdortgen"><img src="hollow-knight.jpg" alt="Hollow Knight"><div class="mozaik-title">Hollow Knight</div></div>
+    <div class="mozaik-card kare"><img src="undertale.jpg" alt="Undertale"><div class="mozaik-title">Undertale</div></div>
+    <div class="mozaik-card kare"><img src="stardewvalley.jpg" alt="Stardew Valley"><div class="mozaik-title">Stardew Valley</div></div>
+  </div>
+
+  <!-- Düşük Sistem Slider -->
+  <h2>DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</h2>
+  <div class="slider-wrapper">
+    <button class="slider-btn left">&#10094;</button>
+    <button class="slider-btn right">&#10095;</button>
+
+    <div class="slider shuffle-dusuk">
+      <a href="halflife2.html"><div class="game"><div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div><div class="game-title">Half-Life 2</div><div class="game-tags-container"><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="portal2.html"><div class="game"><div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div><div class="game-title">Portal 2</div><div class="game-tags-container"><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="terraria.html"><div class="game"><div class="game-image"><img src="terraria.jpg" alt="Terraria"></div><div class="game-title">Terraria</div><div class="game-tags-container"><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="stardewvalley.html"><div class="game"><div class="game-image"><img src="stardewvalley.jpg" alt="Stardew Valley"></div><div class="game-title">Stardew Valley</div><div class="game-tags-container"><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="celeste2.html"><div class="game"><div class="game-image"><img src="celeste2.jpg" alt="Celeste"></div><div class="game-title">Celeste</div><div class="game-tags-container"><div class="game-tag">Düşük Sistem</div></div></div></a>
+    </div>
+  </div>
+
 </section>
 
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-const slider=document.querySelector('.slider');
-let scroll=0,card=346;
-document.querySelector('.slider-btn.right').onclick=()=>{scroll-=card;slider.style.transform=`translateX(${scroll}px)`};
-document.querySelector('.slider-btn.left').onclick=()=>{scroll+=card;if(scroll>0)scroll=0;slider.style.transform=`translateX(${scroll}px)`};
+// Slider scroll
+const sliderBtns = document.querySelectorAll('.slider-wrapper');
+sliderBtns.forEach(wrapper => {
+  const slider = wrapper.querySelector('.slider');
+  const btnLeft = wrapper.querySelector('.slider-btn.left');
+  const btnRight = wrapper.querySelector('.slider-btn.right');
+  let scrollPos = 0;
+  const cardWidth = 346;
+  btnRight.onclick = () => { scrollPos -= cardWidth; slider.style.transform = `translateX(${scrollPos}px)`; };
+  btnLeft.onclick = () => { scrollPos += cardWidth; if(scrollPos>0) scrollPos=0; slider.style.transform = `translateX(${scrollPos}px)`; };
+});
 
+// Search
 const input=document.querySelector('.search-box input');
 const button=document.querySelector('.search-box button');
 const suggestionBox=document.querySelector('.search-suggestions');
-
 const gameRedirects={
   "minecraft":"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
   "gta san andreas":"https://www.youtube.com/watch?v=QH2-TGUlwu4"
 };
-
 function updateSuggestions(){
   const q=input.value.toLowerCase().trim();
   suggestionBox.innerHTML="";
@@ -262,9 +284,24 @@ function updateSuggestions(){
   });
   suggestionBox.style.display="block";
 }
-
 input.addEventListener("input",updateSuggestions);
 button.onclick=()=>updateSuggestions();
+
+// Shuffle Sliders
+function shuffleSlider(selector){
+  const slider = document.querySelector(selector);
+  if(!slider) return;
+  const items = Array.from(slider.children);
+  for(let i = items.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  items.forEach(item => slider.appendChild(item));
+}
+window.addEventListener("load", () => {
+  shuffleSlider(".shuffle-populer");
+  shuffleSlider(".shuffle-dusuk");
+});
 </script>
 
 </body>
