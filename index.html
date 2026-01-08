@@ -147,10 +147,17 @@ a{color:#fff;text-decoration:none;}
   height:100%;
   object-fit:cover;
   display:block;
+
+  /* NETLİK FIX */
   image-rendering:-webkit-optimize-contrast;
-  backface-visibility:visible;
+  image-rendering:crisp-edges;
+
+  /* GPU BLUR FIX */
   transform:none;
+  backface-visibility:visible;
+  will-change:auto;
 }
+
 
 .mozaik-grid{
   display:grid;
