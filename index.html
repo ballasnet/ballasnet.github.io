@@ -9,13 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* Genel Reset ve Body */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
 body{background:#0b0b0b;color:#fff;}
 h1{position:absolute;left:-9999px;}
 a{color:#fff;text-decoration:none;}
 
-/* Arama Kutusu */
 .search-box{
   display:flex;
   max-width:640px;
@@ -59,7 +57,6 @@ a{color:#fff;text-decoration:none;}
   background:#222;
 }
 
-/* Hero */
 .hero{
   max-width:1000px;
   margin:24px auto;
@@ -82,9 +79,8 @@ a{color:#fff;text-decoration:none;}
   letter-spacing:2px;
   margin-bottom:10px;
 }
-.hero-tags a{color:#aaa;text-decoration:none;}
+.hero-tags a{color:#aaa;}
 
-/* Section Başlıkları */
 .section{
   max-width:1200px;
   margin:60px auto;
@@ -98,7 +94,6 @@ a{color:#fff;text-decoration:none;}
   padding-bottom:10px;
 }
 
-/* Slider */
 .slider-wrapper{
   position:relative;
   overflow:hidden;
@@ -125,7 +120,6 @@ a{color:#fff;text-decoration:none;}
 .game-tags-container{display:flex;gap:4px;margin-top:2px;}
 .game-tag{font-size:12px;color:#888;background:#111;padding:4px 8px;}
 
-/* Slider Butonları */
 .slider-btn{
   position:absolute;
   top:50%;
@@ -141,18 +135,13 @@ a{color:#fff;text-decoration:none;}
 .slider-btn.left{left:10px;}
 .slider-btn.right{right:10px;}
 
-/* MOZAİK KARTLAR */
 .mozaik-card img{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
-
-  /* NETLİK FIX */
   image-rendering:-webkit-optimize-contrast;
   image-rendering:crisp-edges;
-
-  /* GPU BLUR FIX */
   transform:none;
   backface-visibility:visible;
   will-change:auto;
@@ -175,7 +164,6 @@ a{color:#fff;text-decoration:none;}
   will-change:transform;
   isolation:isolate;
 }
-
 .mozaik-card:hover{
   transform:scale(1.04);
   box-shadow:0 0 0 1px #333, 0 6px 18px rgba(0,0,0,0.55);
@@ -193,10 +181,8 @@ a{color:#fff;text-decoration:none;}
   color:#fff;
 }
 
-/* Kare ve Dikdörtgen boyutları */
 .mozaik-card.kare{grid-column:span 1;grid-row:span 1;}
 .mozaik-card.dikdortgen{grid-column:span 2;grid-row:span 1;}
-
 </style>
 </head>
 
@@ -241,7 +227,7 @@ a{color:#fff;text-decoration:none;}
     <div class="mozaik-card kare"><img src="papersplease.jpg" alt="Papers Please"><div class="mozaik-title">Papers Please</div></div>
     <div class="mozaik-card dikdortgen"><img src="celeste.jpg" alt="Celeste"><div class="mozaik-title">Celeste</div></div>
     <div class="mozaik-card kare"><img src="baba_is_you.jpg" alt="Baba Is You"><div class="mozaik-title">Baba Is You</div></div>
-    <div class="mozaik-card dikdortgen"><img src="hollowknight.jpg" alt="Hollow Knight"><div class="mozaik-title">Hollow Knight</div></div>
+    <div class="mozaik-card dikdortgen"><img src="hollow-knight.jpg" alt="Hollow Knight"><div class="mozaik-title">Hollow Knight</div></div>
     <div class="mozaik-card kare"><img src="undertale.jpg" alt="Undertale"><div class="mozaik-title">Undertale</div></div>
     <div class="mozaik-card kare"><img src="stardew_valley.jpg" alt="Stardew Valley"><div class="mozaik-title">Stardew Valley</div></div>
   </div>
