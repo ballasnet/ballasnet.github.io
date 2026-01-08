@@ -147,9 +147,9 @@ a{color:#fff;text-decoration:none;}
   height:100%;
   object-fit:cover;
   display:block;
-  image-rendering:auto;
-  backface-visibility:hidden;
-  transform:translateZ(0);
+  image-rendering:-webkit-optimize-contrast;
+  backface-visibility:visible;
+  transform:none;
 }
 
 .mozaik-grid{
@@ -166,11 +166,13 @@ a{color:#fff;text-decoration:none;}
   border:1px solid #222;
   cursor:pointer;
   transition:transform 0.25s ease, box-shadow 0.25s ease;
+  will-change:transform;
+  isolation:isolate;
 }
 
 .mozaik-card:hover{
   transform:scale(1.04);
-  box-shadow:0 0 0 1px #333, 0 8px 24px rgba(0,0,0,0.6);
+  box-shadow:0 0 0 1px #333, 0 6px 18px rgba(0,0,0,0.55);
 }
 
 .mozaik-title{
@@ -188,6 +190,7 @@ a{color:#fff;text-decoration:none;}
 /* Kare ve Dikdörtgen boyutları */
 .mozaik-card.kare{grid-column:span 1;grid-row:span 1;}
 .mozaik-card.dikdortgen{grid-column:span 2;grid-row:span 1;}
+
 </style>
 </head>
 
