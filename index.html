@@ -147,34 +147,34 @@ a{color:#fff;text-decoration:none;}
   height:100%;
   object-fit:cover;
   display:block;
-  image-rendering: auto;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  image-rendering:auto;
+  backface-visibility:hidden;
+  transform:translateZ(0);
 }
 
 .mozaik-grid{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 150px;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  grid-auto-rows:150px;
   gap:12px;
 }
 
 .mozaik-card{
-  position: relative;
-  overflow: hidden;
+  position:relative;
+  overflow:hidden;
   background:#0f0f0f;
   border:1px solid #222;
   cursor:pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .mozaik-card:hover{
-  transform: scale(1.04);
-  box-shadow: 0 0 0 1px #333, 0 8px 24px rgba(0,0,0,0.6);
+  transform:scale(1.04);
+  box-shadow:0 0 0 1px #333, 0 8px 24px rgba(0,0,0,0.6);
 }
 
 .mozaik-title{
-  position: absolute;
+  position:absolute;
   bottom:0;
   left:0;
   right:0;
@@ -186,9 +186,14 @@ a{color:#fff;text-decoration:none;}
 }
 
 /* Kare ve Dikdörtgen boyutları */
-.mozaik-card.kare{grid-column: span 1; grid-row: span 1;}
-.mozaik-card.dikdortgen{grid-column: span 2; grid-row: span 1;}
+.mozaik-card.kare{grid-column:span 1;grid-row:span 1;}
+.mozaik-card.dikdortgen{grid-column:span 2;grid-row:span 1;}
+</style>
+</head>
 
+<body>
+
+<h1>BALLASNET</h1>
 
 <div class="hero">
   <div class="hero-image"></div>
@@ -209,120 +214,38 @@ a{color:#fff;text-decoration:none;}
 <section class="section">
   <h2>POPÜLER OYUNLAR</h2>
 
-
-  <!-- Slider -->
   <div class="slider-wrapper">
     <button class="slider-btn left">&#10094;</button>
     <button class="slider-btn right">&#10095;</button>
 
     <div class="slider">
-      <a href="minecraft.html">
-        <div class="game">
-          <div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div>
-          <div class="game-title">Minecraft</div>
-          <div class="game-tags-container"><div class="game-tag">Popüler</div></div>
-        </div>
-      </a>
-      <a href="halflife2.html">
-        <div class="game">
-          <div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div>
-          <div class="game-title">Half-Life 2</div>
-          <div class="game-tags-container">
-            <div class="game-tag">Popüler</div>
-            <div class="game-tag">Düşük Sistem</div>
-          </div>
-        </div>
-      </a>
-      <a href="portal2.html">
-        <div class="game">
-          <div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div>
-          <div class="game-title">Portal 2</div>
-          <div class="game-tags-container">
-            <div class="game-tag">Popüler</div>
-            <div class="game-tag">Düşük Sistem</div>
-          </div>
-        </div>
-      </a>
-      <a href="doometernal.html">
-        <div class="game">
-          <div class="game-image"><img src="doometernal.jpg" alt="Doom Eternal"></div>
-          <div class="game-title">Doom Eternal</div>
-          <div class="game-tags-container">
-            <div class="game-tag">Popüler</div>
-            <div class="game-tag">Düşük Sistem</div>
-          </div>
-        </div>
-      </a>
-      <a href="gta-sa.html">
-        <div class="game">
-          <div class="game-image"><img src="gta-sa.jpg" alt="GTA San Andreas"></div>
-          <div class="game-title">GTA San Andreas</div>
-          <div class="game-tags-container">
-            <div class="game-tag">Popüler</div>
-            <div class="game-tag">Düşük Sistem</div>
-          </div>
-        </div>
-      </a>
-      <a href="terraria.html">
-        <div class="game">
-          <div class="game-image"><img src="terraria.jpg" alt="Terraria"></div>
-          <div class="game-title">Terraria</div>
-          <div class="game-tags-container">
-            <div class="game-tag">Indie</div>
-            <div class="game-tag">Düşük Sistem</div>
-          </div>
-        </div>
-      </a>
+      <a href="minecraft.html"><div class="game"><div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div><div class="game-title">Minecraft</div><div class="game-tags-container"><div class="game-tag">Popüler</div></div></div></a>
+      <a href="halflife2.html"><div class="game"><div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div><div class="game-title">Half-Life 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="portal2.html"><div class="game"><div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div><div class="game-title">Portal 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="doometernal.html"><div class="game"><div class="game-image"><img src="doometernal.jpg" alt="Doom Eternal"></div><div class="game-title">Doom Eternal</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="gta-sa.html"><div class="game"><div class="game-image"><img src="gta-sa.jpg" alt="GTA San Andreas"></div><div class="game-title">GTA San Andreas</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="terraria.html"><div class="game"><div class="game-image"><img src="terraria.jpg" alt="Terraria"></div><div class="game-title">Terraria</div><div class="game-tags-container"><div class="game-tag">Indie</div><div class="game-tag">Düşük Sistem</div></div></div></a>
     </div>
   </div>
 
-  <!-- MOZAİK KARTLAR POPÜLER SLIDER ALTINDA -->
   <div class="mozaik-grid">
-    <div class="mozaik-card kare">
-      <img src="papersplease.jpg" alt="Papers Please">
-      <div class="mozaik-title">Papers Please</div>
-    </div>
-    <div class="mozaik-card dikdortgen">
-      <img src="celeste.jpg" alt="Celeste">
-      <div class="mozaik-title">Celeste</div>
-    </div>
-    <div class="mozaik-card kare">
-      <img src="baba_is_you.jpg" alt="Baba Is You">
-      <div class="mozaik-title">Baba Is You</div>
-    </div>
-    <div class="mozaik-card dikdortgen">
-      <img src="hollow_knight.jpg" alt="Hollow Knight">
-      <div class="mozaik-title">Hollow Knight</div>
-    </div>
-    <div class="mozaik-card kare">
-      <img src="undertale.jpg" alt="Undertale">
-      <div class="mozaik-title">Undertale</div>
-    </div>
-    <div class="mozaik-card kare">
-      <img src="stardew_valley.jpg" alt="Stardew Valley">
-      <div class="mozaik-title">Stardew Valley</div>
-    </div>
+    <div class="mozaik-card kare"><img src="papersplease.jpg" alt="Papers Please"><div class="mozaik-title">Papers Please</div></div>
+    <div class="mozaik-card dikdortgen"><img src="celeste.jpg" alt="Celeste"><div class="mozaik-title">Celeste</div></div>
+    <div class="mozaik-card kare"><img src="baba_is_you.jpg" alt="Baba Is You"><div class="mozaik-title">Baba Is You</div></div>
+    <div class="mozaik-card dikdortgen"><img src="hollow_knight.jpg" alt="Hollow Knight"><div class="mozaik-title">Hollow Knight</div></div>
+    <div class="mozaik-card kare"><img src="undertale.jpg" alt="Undertale"><div class="mozaik-title">Undertale</div></div>
+    <div class="mozaik-card kare"><img src="stardew_valley.jpg" alt="Stardew Valley"><div class="mozaik-title">Stardew Valley</div></div>
   </div>
-
 </section>
 
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-/* Slider İşlevi */
 const slider=document.querySelector('.slider');
 let scroll=0,card=346;
-document.querySelector('.slider-btn.right').onclick=()=>{
-  scroll-=card;
-  slider.style.transform=`translateX(${scroll}px)`;
-};
-document.querySelector('.slider-btn.left').onclick=()=>{
-  scroll+=card;
-  if(scroll>0)scroll=0;
-  slider.style.transform=`translateX(${scroll}px)`;
-};
+document.querySelector('.slider-btn.right').onclick=()=>{scroll-=card;slider.style.transform=`translateX(${scroll}px)`};
+document.querySelector('.slider-btn.left').onclick=()=>{scroll+=card;if(scroll>0)scroll=0;slider.style.transform=`translateX(${scroll}px)`};
 
-/* Arama önerileri */
 const input=document.querySelector('.search-box input');
 const button=document.querySelector('.search-box button');
 const suggestionBox=document.querySelector('.search-suggestions');
