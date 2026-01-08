@@ -11,6 +11,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* Genel Reset ve Body */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{background:#0b0b0b;color:#fff;}
+h1{position:absolute;left:-9999px}
+a{color:#fff;text-decoration:none;}
+
+/* Arama Kutusu */
+.search-box{
+  display:flex;
+  max-width:640px;
+  margin:0 auto;
+  border:1px solid #222;
+  background:#000;
+  position:relative;
+}
+.search-box input{
+  flex:1;
+  padding:12px;
+  background:#000;
+  border:none;
+  color:#fff;
+}
+.search-box button{
+  padding:12px 22px;
+  background:#0f0f0f;
+  color:#bbb;
+  border-left:1px solid #222;
+  cursor:pointer;
+}
 .search-suggestions{
   position:absolute;
   top:100%;
@@ -32,10 +61,7 @@
   background:#222;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
-body{background:#0b0b0b;color:#fff;}
-h1{position:absolute;left:-9999px}
-
+/* Hero */
 .hero{
   max-width:1000px;
   margin:24px auto;
@@ -60,29 +86,7 @@ h1{position:absolute;left:-9999px}
 }
 .hero-tags a{color:#aaa;text-decoration:none;}
 
-.search-box{
-  display:flex;
-  max-width:640px;
-  margin:0 auto;
-  border:1px solid #222;
-  background:#000;
-  position:relative;
-}
-.search-box input{
-  flex:1;
-  padding:12px;
-  background:#000;
-  border:none;
-  color:#fff;
-}
-.search-box button{
-  padding:12px 22px;
-  background:#0f0f0f;
-  color:#bbb;
-  border-left:1px solid #222;
-  cursor:pointer;
-}
-
+/* Section Başlıkları */
 .section{
   max-width:1200px;
   margin:60px auto;
@@ -96,24 +100,17 @@ h1{position:absolute;left:-9999px}
   padding-bottom:10px;
 }
 
+/* Slider */
 .slider-wrapper{
   position:relative;
   overflow:hidden;
+  margin-bottom:40px;
 }
-
 .slider{
   display:flex;
   gap:26px;
   transition:transform .4s ease;
 }
-
-.slider-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:999; /* ÇAK */
-}
-
 .slider .game{
   flex-shrink:0;
   width:320px;
@@ -124,14 +121,13 @@ h1{position:absolute;left:-9999px}
   background:#0f0f0f;
   border:1px solid #222;
 }
-
 .game-image{width:100%;height:130px;background:#000;}
-.game-image img{width:100%;height:100%;object-fit:contain;}
-
+.game-image img{width:100%;height:100%;object-fit:cover;}
 .game-title{margin-top:6px;font-size:15px;}
 .game-tags-container{display:flex;gap:4px;margin-top:2px;}
 .game-tag{font-size:12px;color:#888;background:#111;padding:4px 8px;}
 
+/* Slider Butonları */
 .slider-btn{
   position:absolute;
   top:50%;
@@ -142,12 +138,51 @@ h1{position:absolute;left:-9999px}
   font-size:24px;
   padding:6px 12px;
   cursor:pointer;
+  z-index:10;
 }
 .slider-btn.left{left:10px}
 .slider-btn.right{right:10px}
 
+/* Footer */
 footer{text-align:center;padding:40px;color:#555;font-size:12px;}
-a{color:#fff;text-decoration:none}
+
+/* MOZAİK KARTLAR */
+.mozaik-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 150px;
+  gap:12px;
+}
+.mozaik-card{
+  position: relative;
+  overflow: hidden;
+  background:#0f0f0f;
+  border:1px solid #222;
+  cursor:pointer;
+  transition: transform 0.3s ease;
+}
+.mozaik-card:hover{
+  transform: scale(1.05);
+}
+.mozaik-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.mozaik-title{
+  position: absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:6px 8px;
+  background:rgba(0,0,0,0.7);
+  font-size:13px;
+  text-align:center;
+  color:#fff;
+}
+.mozaik-card.kare{grid-column: span 1; grid-row: span 1;}
+.mozaik-card.dikdortgen{grid-column: span 2; grid-row: span 1;}
 </style>
 </head>
 
@@ -157,13 +192,11 @@ a{color:#fff;text-decoration:none}
 
 <div class="hero">
   <div class="hero-image"></div>
-
   <div class="hero-tags">
     <a href="#">POPÜLER</a>
     <a href="#">DÜŞÜK SİSTEM</a>
     <a href="#">İNDİE</a>
   </div>
-
   <div class="search-box">
     <input type="text" placeholder="Oyun ara...">
     <button>ARA</button>
@@ -174,18 +207,71 @@ a{color:#fff;text-decoration:none}
 <section class="section">
   <h2>POPÜLER OYUNLAR</h2>
 
-  <!-- Slider Başlangıcı -->
+  <!-- Slider -->
   <div class="slider-wrapper">
     <button class="slider-btn left">&#10094;</button>
     <button class="slider-btn right">&#10095;</button>
 
     <div class="slider">
-      <a href="minecraft.html">...</a>
-      <a href="terraria.html">...</a>
-      <!-- vs. -->
+      <a href="minecraft.html">
+        <div class="game">
+          <div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div>
+          <div class="game-title">Minecraft</div>
+          <div class="game-tags-container"><div class="game-tag">Popüler</div></div>
+        </div>
+      </a>
+      <a href="halflife2.html">
+        <div class="game">
+          <div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div>
+          <div class="game-title">Half-Life 2</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Popüler</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+      <a href="portal2.html">
+        <div class="game">
+          <div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div>
+          <div class="game-title">Portal 2</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Popüler</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+      <a href="doometernal.html">
+        <div class="game">
+          <div class="game-image"><img src="doometernal.jpg" alt="Doom Eternal"></div>
+          <div class="game-title">Doom Eternal</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Popüler</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+      <a href="gta-sa.html">
+        <div class="game">
+          <div class="game-image"><img src="gta-sa.jpg" alt="GTA San Andreas"></div>
+          <div class="game-title">GTA San Andreas</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Popüler</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+      <a href="terraria.html">
+        <div class="game">
+          <div class="game-image"><img src="terraria.jpg" alt="Terraria"></div>
+          <div class="game-title">Terraria</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Indie</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
-  <!-- Slider Bitişi -->
 
   <!-- MOZAİK KARTLAR POPÜLER SLIDER ALTINDA -->
   <div class="mozaik-grid">
@@ -214,132 +300,13 @@ a{color:#fff;text-decoration:none}
       <div class="mozaik-title">Stardew Valley</div>
     </div>
   </div>
-</section>
 
-
-<style>
-.mozaik-grid{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 150px;
-  gap:12px;
-}
-
-.mozaik-card{
-  position: relative;
-  overflow: hidden;
-  background:#0f0f0f;
-  border:1px solid #222;
-  cursor:pointer;
-  transition: transform 0.3s ease;
-}
-.mozaik-card:hover{
-  transform: scale(1.05);
-}
-
-.mozaik-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.mozaik-title{
-  position: absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:6px 8px;
-  background:rgba(0,0,0,0.7);
-  font-size:13px;
-  text-align:center;
-  color:#fff;
-}
-
-/* Kare ve Dikdörtgen boyutları */
-.mozaik-card.kare{
-  grid-column: span 1;
-  grid-row: span 1;
-}
-
-.mozaik-card.dikdortgen{
-  grid-column: span 2;
-  grid-row: span 1;
-}
-</style>
-
-
-<div class="slider-wrapper">
-<button class="slider-btn left">&#10094;</button>
-<button class="slider-btn right">&#10095;</button>
-
-<div class="slider">
-
-<a href="minecraft.html">
-  <div class="game">
-    <div class="game-image"><img src="minecraft.jpg"></div>
-    <div class="game-title">Minecraft</div>
-    <div class="game-tags-container"><div class="game-tag">Popüler</div></div>
-  </div>
-</a>
-
-<a href="halflife2.html">
-  <div class="game">
-    <div class="game-image"><img src="halflife2.jpg"></div>
-    <div class="game-title">Half-Life 2</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="portal2.html">
-  <div class="game">
-    <div class="game-image"><img src="portal2.jpg"></div>
-    <div class="game-title">Portal 2</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="doometernal.html">
-  <div class="game">
-    <div class="game-image"><img src="doometernal.jpg"></div>
-    <div class="game-title">Doom Eternal</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="gta-sa.html">
-  <div class="game">
-    <div class="game-image"><img src="gta-sa.jpg"></div>
-    <div class="game-title">GTA San Andreas</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-<a href="terraria.html">
-  <div class="game">
-    <div class="game-image"><img src="terraria.jpg"></div>
-    <div class="game-title">Terraria</div>
-    <div class="game-tags-container">
-      <div class="game-tag">Indie</div><div class="game-tag">Düşük Sistem</div>
-    </div>
-  </div>
-</a>
-
-</div>
-</div>
 </section>
 
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
+/* Slider İşlevi */
 const slider=document.querySelector('.slider');
 let scroll=0,card=346;
 document.querySelector('.slider-btn.right').onclick=()=>{
@@ -351,6 +318,32 @@ document.querySelector('.slider-btn.left').onclick=()=>{
   if(scroll>0)scroll=0;
   slider.style.transform=`translateX(${scroll}px)`;
 };
+
+/* Arama önerileri */
+const input=document.querySelector('.search-box input');
+const button=document.querySelector('.search-box button');
+const suggestionBox=document.querySelector('.search-suggestions');
+
+const gameRedirects={
+  "minecraft":"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "gta san andreas":"https://www.youtube.com/watch?v=QH2-TGUlwu4"
+};
+
+function updateSuggestions(){
+  const q=input.value.toLowerCase().trim();
+  suggestionBox.innerHTML="";
+  if(!q){suggestionBox.style.display="none";return;}
+  Object.keys(gameRedirects).filter(n=>n.includes(q)).forEach(n=>{
+    const d=document.createElement("div");
+    d.textContent=n;
+    d.onclick=()=>location.href=gameRedirects[n];
+    suggestionBox.appendChild(d);
+  });
+  suggestionBox.style.display="block";
+}
+
+input.addEventListener("input",updateSuggestions);
+button.onclick=()=>updateSuggestions();
 </script>
 
 </body>
