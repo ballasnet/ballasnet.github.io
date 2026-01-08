@@ -97,12 +97,12 @@ a{color:#fff;text-decoration:none;}
 .slider-wrapper{
   position:relative;
   overflow:hidden;
-  margin-bottom:40px;
+  margin-bottom:60px;
 }
 .slider{
   display:flex;
   gap:26px;
-  transition:transform .4s ease;
+  transition:transform 0.4s ease;
 }
 .slider .game{
   flex-shrink:0;
@@ -211,146 +211,54 @@ a{color:#fff;text-decoration:none;}
   <div class="slider-wrapper">
     <button class="slider-btn left">&#10094;</button>
     <button class="slider-btn right">&#10095;</button>
-
-<div class="slider shuffle-populer">
-  <a href="minecraft.html">
-    <div class="game">
-      <div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div>
-      <div class="game-title">Minecraft</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-      </div>
+    <div class="slider shuffle-populer">
+      <!-- Game cards burada -->
     </div>
-  </a>
-  <a href="halflife2.html">
-    <div class="game">
-      <div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div>
-      <div class="game-title">Half-Life 2</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
-    </div>
-  </a>
-  <a href="portal2.html">
-    <div class="game">
-      <div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div>
-      <div class="game-title">Portal 2</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
-    </div>
-  </a>
-  <a href="doometernal.html">
-    <div class="game">
-      <div class="game-image"><img src="doometernal.jpg" alt="Doom Eternal"></div>
-      <div class="game-title">Doom Eternal</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
-    </div>
-  </a>
-  <a href="gta-sa.html">
-    <div class="game">
-      <div class="game-image"><img src="gta-sa.jpg" alt="GTA San Andreas"></div>
-      <div class="game-title">GTA San Andreas</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Popüler</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
-    </div>
-  </a>
-  <a href="terraria.html">
-    <div class="game">
-      <div class="game-image"><img src="terraria.jpg" alt="Terraria"></div>
-      <div class="game-title">Terraria</div>
-      <div class="game-tags-container">
-        <div class="game-tag">Indie</div>
-        <div class="game-tag">Düşük Sistem</div>
-      </div>
-    </div>
-  </a>
-</div>
-
-<h2>DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</h2>
-<div class="slider-wrapper">
-  <button class="slider-btn left">&#10094;</button>
-  <button class="slider-btn right">&#10095;</button>
-
-  <div class="slider shuffle-dusuk">
-    <a href="halflife2.html">
-      <div class="game">
-        <div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div>
-        <div class="game-title">Half-Life 2</div>
-        <div class="game-tags-container">
-          <div class="game-tag">Düşük Sistem</div>
-          <div class="game-tag">Popüler</div>
-        </div>
-      </div>
-    </a>
-    <a href="portal2.html">
-      <div class="game">
-        <div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div>
-        <div class="game-title">Portal 2</div>
-        <div class="game-tags-container">
-          <div class="game-tag">Düşük Sistem</div>
-          <div class="game-tag">Popüler</div>
-        </div>
-      </div>
-    </a>
-    <a href="terraria.html">
-      <div class="game">
-        <div class="game-image"><img src="terraria.jpg" alt="Terraria"></div>
-        <div class="game-title">Terraria</div>
-        <div class="game-tags-container">
-          <div class="game-tag">Düşük Sistem</div>
-          <div class="game-tag">Indie</div>
-        </div>
-      </div>
-    </a>
-    <a href="stardewvalley.html">
-      <div class="game">
-        <div class="game-image"><img src="stardewvalley.jpg" alt="Stardew Valley"></div>
-        <div class="game-title">Stardew Valley</div>
-        <div class="game-tags-container">
-          <div class="game-tag">Düşük Sistem</div>
-        </div>
-      </div>
-    </a>
-    <a href="celeste2.html">
-      <div class="game">
-        <div class="game-image"><img src="celeste2.jpg" alt="Celeste"></div>
-        <div class="game-title">Celeste</div>
-        <div class="game-tags-container">
-          <div class="game-tag">Düşük Sistem</div>
-          <div class="game-tag">Indie</div>
-        </div>
-      </div>
-    </a>
   </div>
-</div>
 
+  <h2>DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</h2>
+  <div class="slider-wrapper">
+    <button class="slider-btn left">&#10094;</button>
+    <button class="slider-btn right">&#10095;</button>
+    <div class="slider shuffle-dusuk">
+      <!-- Game cards burada -->
+    </div>
+  </div>
 
+  <h2>MOZAİK OYUNLAR</h2>
+  <div class="mozaik-grid">
+    <!-- Mozaik kartlar burada -->
+  </div>
 </section>
 
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-// Slider scroll
-const sliderBtns = document.querySelectorAll('.slider-wrapper');
-sliderBtns.forEach(wrapper => {
+// Slider: her slider-wrapper kendi scrollPos ile çalışacak
+document.querySelectorAll('.slider-wrapper').forEach(wrapper=>{
   const slider = wrapper.querySelector('.slider');
+  if(!slider) return;
   const btnLeft = wrapper.querySelector('.slider-btn.left');
   const btnRight = wrapper.querySelector('.slider-btn.right');
   let scrollPos = 0;
-  const cardWidth = 346;
-  btnRight.onclick = () => { scrollPos -= cardWidth; slider.style.transform = `translateX(${scrollPos}px)`; };
-  btnLeft.onclick = () => { scrollPos += cardWidth; if(scrollPos>0) scrollPos=0; slider.style.transform = `translateX(${scrollPos}px)`; };
+  const gap = parseInt(getComputedStyle(slider).gap) || 26;
+  const cardWidth = slider.querySelector('.game').offsetWidth + gap;
+
+  btnRight.addEventListener('click', ()=>{
+    const maxScroll = -(slider.scrollWidth - wrapper.offsetWidth);
+    scrollPos -= cardWidth;
+    if(scrollPos < maxScroll) scrollPos = maxScroll;
+    slider.style.transform = `translateX(${scrollPos}px)`;
+  });
+
+  btnLeft.addEventListener('click', ()=>{
+    scrollPos += cardWidth;
+    if(scrollPos>0) scrollPos=0;
+    slider.style.transform = `translateX(${scrollPos}px)`;
+  });
 });
 
-// Search
+// Search script
 const input=document.querySelector('.search-box input');
 const button=document.querySelector('.search-box button');
 const suggestionBox=document.querySelector('.search-suggestions');
@@ -371,7 +279,7 @@ function updateSuggestions(){
   suggestionBox.style.display="block";
 }
 input.addEventListener("input",updateSuggestions);
-button.onclick=()=>updateSuggestions();
+button.addEventListener("click",updateSuggestions);
 
 // Shuffle Sliders
 function shuffleSlider(selector){
@@ -379,12 +287,12 @@ function shuffleSlider(selector){
   if(!slider) return;
   const items = Array.from(slider.children);
   for(let i = items.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(Math.random()*(i+1));
     [items[i], items[j]] = [items[j], items[i]];
   }
-  items.forEach(item => slider.appendChild(item));
+  items.forEach(item=>slider.appendChild(item));
 }
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
   shuffleSlider(".shuffle-populer");
   shuffleSlider(".shuffle-dusuk");
 });
