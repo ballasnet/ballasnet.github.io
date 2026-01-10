@@ -416,26 +416,32 @@ function fillSlider(slider, games) {
   });
 }
 
-function initSlider(wrapperSelector, games, doShuffle = false) {
+function initSlider(wrapperSelector, games, doShuffle=true) {
   const wrapper = document.querySelector(wrapperSelector);
   if(!wrapper) return;
 
   const slider = wrapper.querySelector(".slider");
   const left = wrapper.querySelector(".slider-btn.left");
   const right = wrapper.querySelector(".slider-btn.right");
+
   if(!slider || !left || !right) return;
 
-  if(doShuffle) shuffle(games);  // sadece shuffle gerekiyorsa uygula
+  if(doShuffle) shuffle(games); // sadece shuffle true ise karıştır
+
   fillSlider(slider, games);
 
   let index = 0;
   const cardWidth = 346;
+
   function update() { slider.style.transform = `translateX(${-index * cardWidth}px)`; }
 
   right.addEventListener("click", () => { if(index < slider.children.length-1){ index++; update(); } });
   left.addEventListener("click", () => { if(index > 0){ index--; update(); } });
+
   update();
+  return slider;
 }
+
 
 // Tag değiştirme ve kaydetme fonksiyonu
 function updateGameTags(slug, newTags) {
@@ -480,7 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Sliderlar
-  initSlider(".shuffle-populer", allGames.filter(g=>g.tags.includes("Popüler")), true); // random olsun
+  initSlider(".shuffle-populer", allGames.filter(g=>g.tags.includes("Popüler")), false); // random olsun
   initSlider(".indie-wrapper", allGames, true);  // Indie slider da random
   initSlider(".dusuk-wrapper", allGames.filter(g=>g.tags.includes("Düşük Sistem")), true);
 });
