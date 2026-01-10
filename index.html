@@ -66,78 +66,7 @@ a{color:#fff;text-decoration:none;}
 .mozaik-card.kare{grid-column:span 1;grid-row:span 1;}
 .mozaik-card.dikdortgen{grid-column:span 2;grid-row:span 1;}
 
-/* İNDİE slider'ı POPÜLER gibi yapmak */
-.slider-wrapper.indie-wrapper { 
-  position: relative; 
-  overflow: hidden; 
-  margin-bottom: 40px; 
-}
 
-.slider.indie-slider { 
-  display: flex; 
-  gap: 26px; 
-  transition: transform .4s ease; 
-}
-
-/* Burada > a > .game ile <a> içindeki game div'ini seçiyoruz */
-.slider.indie-slider > a > .game { 
-  flex-shrink: 0; 
-  width: 320px; 
-  height: 200px; 
-  display: flex; 
-  flex-direction: column; 
-  padding: 8px; 
-  background: #0f0f0f; 
-  border: 1px solid #222; 
-}
-
-.slider.indie-slider > a > .game .game-image { 
-  width: 100%; 
-  height: 130px; 
-  background: #000; 
-}
-
-.slider.indie-slider > a > .game .game-image img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
-}
-
-.slider.indie-slider > a > .game .game-title { 
-  margin-top: 6px; 
-  font-size: 15px; 
-}
-
-.slider-indie-slider > a > .game .game-tags-container { 
-  display: flex; 
-  gap: 4px; 
-  margin-top: 2px; 
-}
-
-.slider-indie-slider > a > .game .game-tag { 
-  font-size: 12px; 
-  color: #888; 
-  background: #111; 
-  padding: 4px 8px; 
-}
-
-/* Slider butonları */
-.slider-wrapper.indie-wrapper .slider-btn { 
-  position: absolute; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  background: #000; 
-  color: #fff; 
-  border: 1px solid #222; 
-  font-size: 24px; 
-  padding: 6px 12px; 
-  cursor: pointer; 
-  z-index: 10; 
-}
-.slider-wrapper.indie-wrapper .slider-btn.left { left: 10px; }
-.slider-wrapper.indie-wrapper .slider-btn.right { right: 10px; }
-
- 
 </style>
 </head>
 <body>
@@ -289,7 +218,7 @@ a{color:#fff;text-decoration:none;}
 
 <div class="section">
   <h2>İNDİE OYUNLAR</h2>
-  <div class="slider-wrapper indie-wrapper">
+  <div class="slider indie-slider">
     <button class="slider-btn left">&#10094;</button>
     <button class="slider-btn right">&#10095;</button>
     <div class="slider indie-slider">
