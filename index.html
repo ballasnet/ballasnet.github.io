@@ -347,6 +347,16 @@ a{color:#fff;text-decoration:none;}
 
 <script>
 
+const allGames = [
+  { title: "Terraria", slug: "terraria", image: "terraria.jpg", tags: ["Indie","Düşük Sistem"] },
+  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie"] },
+  { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie"] },
+  { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie"] },
+  // diğer oyunları ekle
+];
+
+  
+
 /* =========================
    MOZAİK OYUN HAVUZLARI
    ========================= */
@@ -461,13 +471,16 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Indie tag'li oyunları seç
-const indieGames = [
-  { title: "Terraria", slug: "terraria", image: "terraria.jpg", tags: ["Indie","Düşük Sistem"] },
-  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie"] },
-  { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie"] },
-  { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie"] }
-];
+  const indieGames = [
+    { title: "Terraria", slug: "terraria", image: "terraria.jpg", tags: ["Indie","Düşük Sistem"] },
+    { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem"] },
+    { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie","Düşük Sistem"] },
+    { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie","Düşük Sistem"] }
+  ];
+
+  // Slider oluşturma, img/title/tag ekleme ve butonlar
+});
+
 
 // Shuffle fonksiyonu
 function shuffle(array) {
@@ -548,6 +561,44 @@ indieGames.forEach(game => {
   // Shuffle sonrası sıfırla
   update();
 });
+
+function fillSlider(slider, games) {
+  games.forEach(game => {
+    const a = document.createElement("a");
+    a.href = game.slug + ".html";
+
+    const div = document.createElement("div");
+    div.className = "game";
+
+    const imgDiv = document.createElement("div");
+    imgDiv.className = "game-image";
+    const img = document.createElement("img");
+    img.src = game.image;
+    img.alt = game.title;
+    imgDiv.appendChild(img);
+
+    const titleDiv = document.createElement("div");
+    titleDiv.className = "game-title";
+    titleDiv.textContent = game.title;
+
+    const tagsContainer = document.createElement("div");
+    tagsContainer.className = "game-tags-container";
+    game.tags.forEach(tagText => {
+      const tagDiv = document.createElement("div");
+      tagDiv.className = "game-tag";
+      tagDiv.textContent = tagText;
+      tagsContainer.appendChild(tagDiv);
+    });
+
+    div.appendChild(imgDiv);
+    div.appendChild(titleDiv);
+    div.appendChild(tagsContainer);
+
+    a.appendChild(div);
+    slider.appendChild(a);
+  });
+}
+
 
 </script>
 
