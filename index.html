@@ -343,7 +343,7 @@ a{color:#fff;text-decoration:none;}
    MOZAİK OYUN HAVUZLARI
    ========================= */
 
-// 🔲 KARE KART OYUNLARI (sadece kare görseller)
+// 🔲 KARE KART OYUNLARI
 const smallGames = [
   { title: "Doki Doki Literature Club", slug: "DDLC", image: "dokidoki.jpg" },
   { title: "Papers, Please", slug: "papers-please", image: "papersplease2.jpg" },
@@ -352,29 +352,16 @@ const smallGames = [
   { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" }
 ];
 
-// ▭ DİKDÖRTGEN KART OYUNLARI (sadece büyük görseller)
+// ▭ DİKDÖRTGEN KART OYUNLARI
 const largeGames = [
   { title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
   { title: "Hollow Knight", slug: "hollow-knight", image: "hollow-knight.jpg" }
 ];
 
 /* =========================
-   SHUFFLE FONKSİYONU
-   ========================= */
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
-/* =========================
    MOZAİK DOLDURMA
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-
-  shuffle(smallGames);
-  shuffle(largeGames);
 
   let smallIndex = 0;
   let largeIndex = 0;
@@ -382,16 +369,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".mozaik-card").forEach(card => {
     const img = card.querySelector("img");
     const titleBox = card.querySelector(".mozaik-title");
-
     let game;
 
-    // 🟩 KARE KART
     if (card.classList.contains("kare")) {
       if (!smallGames[smallIndex]) return;
       game = smallGames[smallIndex++];
     }
 
-    // 🟦 DİKDÖRTGEN KART
     if (card.classList.contains("dikdortgen")) {
       if (!largeGames[largeIndex]) return;
       game = largeGames[largeIndex++];
@@ -410,27 +394,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* ===== MOZAİK SABİT GÖRÜNÜR YAPMA ===== */
-
-
-document.querySelectorAll(".mozaik-card").forEach(card => {
-  const slug = card.dataset.slug;
-  const game = mozaikGames[slug];
-  if (!game) return;
-
-  const img = card.querySelector("img");
-  const title = card.querySelector(".mozaik-title");
-
-  img.src = game.image;
-  img.alt = game.title;
-  title.textContent = game.title;
-
-  card.addEventListener("click", () => {
-    window.location.href = slug + ".html";
-  });
-});
-
-
+/* =========================
+   SLIDER KONTROL
+   ========================= */
 window.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".slider-wrapper").forEach(wrapper => {
@@ -441,7 +407,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!slider || !left || !right) return;
 
     let index = 0;
-    const cardWidth = 346; // game width + gap
+    const cardWidth = 346;
 
     function update() {
       slider.style.transform = `translateX(${-index * cardWidth}px)`;
@@ -462,24 +428,22 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // F5 sonrası kesin reset
     index = 0;
     update();
   });
 
 });
 
-/* ===== SLIDER RANDOM (F5) + KİLİTLİ BAŞLANGIÇ ===== */
+/* =========================
+   SLIDER RANDOM (F5) 
+   ========================= */
 function shuffleSliderSafe(slider) {
   const items = Array.from(slider.children);
-
   for (let i = items.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     slider.insertBefore(items[j], items[i]);
     [items[i], items[j]] = [items[j], items[i]];
   }
-
-  // her shuffle sonrası slider kesin sıfırlanır
   slider.style.transform = "translateX(0px)";
 }
 
@@ -489,8 +453,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 </script>
+
 
 
 
