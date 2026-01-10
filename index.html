@@ -346,143 +346,31 @@ a{color:#fff;text-decoration:none;}
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-
 const allGames = [
   { title: "Terraria", slug: "terraria", image: "terraria.jpg", tags: ["Indie","Düşük Sistem"] },
-  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie"] },
-  { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie"] },
-  { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie"] },
-  // diğer oyunları ekle
+  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie","Düşük Sistem"] },
+  { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie","Düşük Sistem"] }
+  // diğer oyunları ekleyebilirsin
 ];
 
-  
-
 /* =========================
-   MOZAİK OYUN HAVUZLARI
-   ========================= */
-
-// 🔲 KARE KART OYUNLARI
+   Mozaik Oyunlar
+========================= */
 const smallGames = [
   { title: "Papers, Please", slug: "papers-please", image: "papersplease2.jpg" },
   { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg" },
   { title: "Undertale", slug: "undertale", image: "undertale.jpg" },
   { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" }
 ];
-
-// ▭ DİKDÖRTGEN KART OYUNLARI
 const largeGames = [
   { title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
   { title: "Hollow Knight", slug: "hollow-knight", image: "hollow-knight.jpg" }
 ];
 
 /* =========================
-   MOZAİK DOLDURMA
-   ========================= */
-document.addEventListener("DOMContentLoaded", () => {
-
-  let smallIndex = 0;
-  let largeIndex = 0;
-
-  document.querySelectorAll(".mozaik-card").forEach(card => {
-    const img = card.querySelector("img");
-    const titleBox = card.querySelector(".mozaik-title");
-    let game;
-
-    if (card.classList.contains("kare")) {
-      if (!smallGames[smallIndex]) return;
-      game = smallGames[smallIndex++];
-    }
-
-    if (card.classList.contains("dikdortgen")) {
-      if (!largeGames[largeIndex]) return;
-      game = largeGames[largeIndex++];
-    }
-
-    if (!game) return;
-
-    img.src = game.image;
-    img.alt = game.title;
-    titleBox.textContent = game.title;
-
-    card.onclick = () => {
-      window.location.href = game.slug + ".html";
-    };
-  });
-
-});
-
-/* =========================
-   SLIDER KONTROL
-   ========================= */
-window.addEventListener("DOMContentLoaded", () => {
-
-  document.querySelectorAll(".slider-wrapper").forEach(wrapper => {
-    const slider = wrapper.querySelector(".slider");
-    const left = wrapper.querySelector(".slider-btn.left");
-    const right = wrapper.querySelector(".slider-btn.right");
-
-    if (!slider || !left || !right) return;
-
-    let index = 0;
-    const cardWidth = 346;
-
-    function update() {
-      slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    }
-
-    right.addEventListener("click", () => {
-      const maxIndex = slider.children.length - 1;
-      if (index < maxIndex) {
-        index++;
-        update();
-      }
-    });
-
-    left.addEventListener("click", () => {
-      if (index > 0) {
-        index--;
-        update();
-      }
-    });
-
-    index = 0;
-    update();
-  });
-
-});
-
-/* =========================
-   SLIDER RANDOM (F5) 
-   ========================= */
-function shuffleSliderSafe(slider) {
-  const items = Array.from(slider.children);
-  for (let i = items.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    slider.insertBefore(items[j], items[i]);
-    [items[i], items[j]] = [items[j], items[i]];
-  }
-  slider.style.transform = "translateX(0px)";
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".slider").forEach(slider => {
-    shuffleSliderSafe(slider);
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const indieGames = [
-    { title: "Terraria", slug: "terraria", image: "terraria.jpg", tags: ["Indie","Düşük Sistem"] },
-    { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem"] },
-    { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie","Düşük Sistem"] },
-    { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie","Düşük Sistem"] }
-  ];
-
-  // Slider oluşturma, img/title/tag ekleme ve butonlar
-});
-
-
-// Shuffle fonksiyonu
+   Shuffle Fonksiyonu
+========================= */
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -490,78 +378,9 @@ function shuffle(array) {
   }
 }
 
-shuffle(indieGames);
-
-const slider = document.querySelector(".shuffle-indie");
-
-indieGames.forEach(game => {
-  const a = document.createElement("a");
-  a.href = game.slug + ".html";
-
-  const div = document.createElement("div");
-  div.className = "game";
-
-  // Resim bölümü
-  const imgDiv = document.createElement("div");
-  imgDiv.className = "game-image";
-  const img = document.createElement("img");
-  img.src = game.image;
-  img.alt = game.title;
-  imgDiv.appendChild(img);
-
-  // Başlık
-  const titleDiv = document.createElement("div");
-  titleDiv.className = "game-title";
-  titleDiv.textContent = game.title;
-
-  // Tagler
-  const tagsContainer = document.createElement("div");
-  tagsContainer.className = "game-tags-container";
-  game.tags.forEach(tagText => {
-    const tagDiv = document.createElement("div");
-    tagDiv.className = "game-tag";
-    tagDiv.textContent = tagText;
-    tagsContainer.appendChild(tagDiv);
-  });
-
-  // Tüm elementleri div içine ekle
-  div.appendChild(imgDiv);
-  div.appendChild(titleDiv);
-  div.appendChild(tagsContainer);
-
-  // div'i linke ekle, slider'a ekle
-  a.appendChild(div);
-  slider.appendChild(a);
-});
-
-  // Slider butonları
-  const left = document.querySelector(".indie-wrapper .slider-btn.left");
-  const right = document.querySelector(".indie-wrapper .slider-btn.right");
-  let index = 0;
-  const cardWidth = 346;
-
-  function update() {
-    slider.style.transform = `translateX(${-index * cardWidth}px)`;
-  }
-
-  right.addEventListener("click", () => {
-    if (index < slider.children.length - 1) {
-      index++;
-      update();
-    }
-  });
-
-  left.addEventListener("click", () => {
-    if (index > 0) {
-      index--;
-      update();
-    }
-  });
-
-  // Shuffle sonrası sıfırla
-  update();
-});
-
+/* =========================
+   Slider’a Oyun Ekleme Fonksiyonu
+========================= */
 function fillSlider(slider, games) {
   games.forEach(game => {
     const a = document.createElement("a");
@@ -599,7 +418,50 @@ function fillSlider(slider, games) {
   });
 }
 
+/* =========================
+   DOMContentLoaded
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
+  // Mozaik Kartları Doldur
+  let smallIndex = 0, largeIndex = 0;
+  document.querySelectorAll(".mozaik-card").forEach(card => {
+    const img = card.querySelector("img");
+    const titleBox = card.querySelector(".mozaik-title");
+    let game;
+
+    if (card.classList.contains("kare")) game = smallGames[smallIndex++];
+    if (card.classList.contains("dikdortgen")) game = largeGames[largeIndex++];
+
+    if (!game) return;
+
+    img.src = game.image;
+    img.alt = game.title;
+    titleBox.textContent = game.title;
+
+    card.onclick = () => window.location.href = game.slug + ".html";
+  });
+
+  // Indie Slider
+  const indieSlider = document.querySelector(".shuffle-indie");
+  shuffle(allGames);
+  fillSlider(indieSlider, allGames);
+
+  const left = document.querySelector(".indie-wrapper .slider-btn.left");
+  const right = document.querySelector(".indie-wrapper .slider-btn.right");
+  let index = 0;
+  const cardWidth = 346;
+
+  function update() { indieSlider.style.transform = `translateX(${-index * cardWidth}px)`; }
+
+  right.addEventListener("click", () => { if(index < indieSlider.children.length-1){ index++; update(); } });
+  left.addEventListener("click", () => { if(index > 0){ index--; update(); } });
+
+  update();
+
+  // Tüm slider’ları shuffle et
+  document.querySelectorAll(".slider").forEach(slider => shuffle(slider.children));
+});
 </script>
 
 
