@@ -351,26 +351,20 @@ const allGames = [
   { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem"] },
   { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie","Düşük Sistem"] },
   { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie","Düşük Sistem"] }
-  // diğer oyunları ekleyebilirsin
 ];
 
-/* =========================
-   Mozaik Oyunlar
-========================= */
 const smallGames = [
   { title: "Papers, Please", slug: "papers-please", image: "papersplease2.jpg" },
   { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg" },
   { title: "Undertale", slug: "undertale", image: "undertale.jpg" },
   { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" }
 ];
+
 const largeGames = [
   { title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
   { title: "Hollow Knight", slug: "hollow-knight", image: "hollow-knight.jpg" }
 ];
 
-/* =========================
-   Shuffle Fonksiyonu
-========================= */
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -378,10 +372,8 @@ function shuffle(array) {
   }
 }
 
-/* =========================
-   Slider’a Oyun Ekleme Fonksiyonu
-========================= */
 function fillSlider(slider, games) {
+  slider.innerHTML = ""; // Önce temizle
   games.forEach(game => {
     const a = document.createElement("a");
     a.href = game.slug + ".html";
@@ -402,7 +394,7 @@ function fillSlider(slider, games) {
 
     const tagsContainer = document.createElement("div");
     tagsContainer.className = "game-tags-container";
-    game.tags.forEach(tagText => {
+    if(game.tags) game.tags.forEach(tagText => {
       const tagDiv = document.createElement("div");
       tagDiv.className = "game-tag";
       tagDiv.textContent = tagText;
@@ -412,28 +404,48 @@ function fillSlider(slider, games) {
     div.appendChild(imgDiv);
     div.appendChild(titleDiv);
     div.appendChild(tagsContainer);
-
     a.appendChild(div);
     slider.appendChild(a);
   });
 }
 
-/* =========================
-   DOMContentLoaded
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
+function initSlider(wrapperSelector, games) {
+  const wrapper = document.querySelector(wrapperSelector);
+  if(!wrapper) return;
 
-  // Mozaik Kartları Doldur
+  const slider = wrapper.querySelector(".slider");
+  const left = wrapper.querySelector(".slider-btn.left");
+  const right = wrapper.querySelector(".slider-btn.right");
+
+  if(!slider || !left || !right) return;
+
+  shuffle(games);
+  fillSlider(slider, games);
+
+  let index = 0;
+  const cardWidth = 346;
+
+  function update() { slider.style.transform = `translateX(${-index * cardWidth}px)`; }
+
+  right.addEventListener("click", () => { if(index < slider.children.length-1){ index++; update(); } });
+  left.addEventListener("click", () => { if(index > 0){ index--; update(); } });
+
+  update();
+  return slider;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Mozaik doldurma
   let smallIndex = 0, largeIndex = 0;
   document.querySelectorAll(".mozaik-card").forEach(card => {
     const img = card.querySelector("img");
     const titleBox = card.querySelector(".mozaik-title");
     let game;
 
-    if (card.classList.contains("kare")) game = smallGames[smallIndex++];
-    if (card.classList.contains("dikdortgen")) game = largeGames[largeIndex++];
+    if(card.classList.contains("kare")) game = smallGames[smallIndex++];
+    if(card.classList.contains("dikdortgen")) game = largeGames[largeIndex++];
 
-    if (!game) return;
+    if(!game) return;
 
     img.src = game.image;
     img.alt = game.title;
@@ -442,27 +454,13 @@ document.addEventListener("DOMContentLoaded", () => {
     card.onclick = () => window.location.href = game.slug + ".html";
   });
 
-  // Indie Slider
-  const indieSlider = document.querySelector(".shuffle-indie");
-  shuffle(allGames);
-  fillSlider(indieSlider, allGames);
-
-  const left = document.querySelector(".indie-wrapper .slider-btn.left");
-  const right = document.querySelector(".indie-wrapper .slider-btn.right");
-  let index = 0;
-  const cardWidth = 346;
-
-  function update() { indieSlider.style.transform = `translateX(${-index * cardWidth}px)`; }
-
-  right.addEventListener("click", () => { if(index < indieSlider.children.length-1){ index++; update(); } });
-  left.addEventListener("click", () => { if(index > 0){ index--; update(); } });
-
-  update();
-
-  // Tüm slider’ları shuffle et
-  document.querySelectorAll(".slider").forEach(slider => shuffle(slider.children));
+  // Sliderlar
+  initSlider(".indie-wrapper", allGames);
+  initSlider(".shuffle-populer", allGames.filter(g=>g.tags.includes("Popüler")));
+  initSlider(".dusuk-wrapper", allGames.filter(g=>g.tags.includes("Düşük Sistem")));
 });
 </script>
+
 
 
 
