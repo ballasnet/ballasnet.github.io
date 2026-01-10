@@ -53,7 +53,9 @@ a{color:#fff;text-decoration:none;}
   padding:6px 12px;
   cursor:pointer;
 }
-.search-suggestions div:hover{background:#222;}
+.search-suggestions div:hover{
+  background:#222;
+}
 
 .hero{
   max-width:1000px;
@@ -92,8 +94,17 @@ a{color:#fff;text-decoration:none;}
   padding-bottom:10px;
 }
 
-.slider-wrapper{position:relative;overflow:hidden;margin-bottom:40px;}
-.slider{display:flex;gap:26px;transition:transform .4s ease;}
+.slider-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px; 
+}
+
+.slider{
+  display:flex;
+  gap:26px;
+  transition:transform .4s ease;
+}
 .slider .game{
   flex-shrink:0;
   width:320px;
@@ -104,7 +115,7 @@ a{color:#fff;text-decoration:none;}
   background:#0f0f0f;
   border:1px solid #222;
 }
-.game-image{width:100%;height:130px;}
+.game-image{width:100%;height:130px;background:#000;}
 .game-image img{width:100%;height:100%;object-fit:cover;}
 .game-title{margin-top:6px;font-size:15px;}
 .game-tags-container{display:flex;gap:4px;margin-top:2px;}
@@ -125,37 +136,65 @@ a{color:#fff;text-decoration:none;}
 .slider-btn.left{left:10px;}
 .slider-btn.right{right:10px;}
 
+.dusuk-section {
+  margin-top: 60px; /* Mozaiklerden aşağı kaydırmak için başlık ve slider birlikte */
+}
+
+
+.mozaik-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:crisp-edges;
+  transform:none;
+  backface-visibility:visible;
+  will-change:auto;
+}
+
 .mozaik-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(4, 1fr);
   grid-auto-rows:150px;
   gap:12px;
 }
+
 .mozaik-card{
   position:relative;
   overflow:hidden;
+  background:#0f0f0f;
   border:1px solid #222;
   cursor:pointer;
-  transition:.25s;
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  will-change:transform;
+  isolation:isolate;
 }
-.mozaik-card:hover{transform:scale(1.04);}
+.mozaik-card:hover{
+  transform:scale(1.04);
+  box-shadow:0 0 0 1px #333, 0 6px 18px rgba(0,0,0,0.55);
+}
+
 .mozaik-title{
   position:absolute;
-  bottom:0;left:0;right:0;
-  padding:6px;
-  background:rgba(0,0,0,.7);
+  bottom:0;
+  left:0;
+  right:0;
+  padding:6px 8px;
+  background:rgba(0,0,0,0.7);
   font-size:13px;
   text-align:center;
+  color:#fff;
 }
-.mozaik-card.kare{grid-column:span 1;}
-.mozaik-card.dikdortgen{grid-column:span 2;}
-.mozaik-card img{width:100%;height:100%;object-fit:cover;}
+
+.mozaik-card.kare{grid-column:span 1;grid-row:span 1;}
+.mozaik-card.dikdortgen{grid-column:span 2;grid-row:span 1;}
 </style>
 </head>
 
 <body>
 
-<h1>BallasNet</h1>
+<h1>BALLASNET</h1>
 
 <div class="hero">
   <div class="hero-image"></div>
@@ -172,62 +211,227 @@ a{color:#fff;text-decoration:none;}
 </div>
 
 <section class="section">
-<h2>POPÜLER OYUNLAR</h2>
+  <h2>POPÜLER OYUNLAR</h2>
+  <div class="slider-wrapper">
+    <button class="slider-btn left">&#10094;</button>
+    <button class="slider-btn right">&#10095;</button>
+    <div class="slider shuffle-populer">
+      <a href="minecraft.html"><div class="game"><div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div><div class="game-title">Minecraft</div><div class="game-tags-container"><div class="game-tag">Popüler</div></div></div></a>
+      <a href="halflife2.html"><div class="game"><div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div><div class="game-title">Half-Life 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="portal2.html"><div class="game"><div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div><div class="game-title">Portal 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="doometernal.html"><div class="game"><div class="game-image"><img src="doometernal.jpg" alt="Doom Eternal"></div><div class="game-title">Doom Eternal</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="gta-sa.html"><div class="game"><div class="game-image"><img src="gta-sa.jpg" alt="GTA San Andreas"></div><div class="game-title">GTA San Andreas</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+      <a href="terraria.html"><div class="game"><div class="game-image"><img src="terraria.jpg" alt="Terraria"></div><div class="game-title">Terraria</div><div class="game-tags-container"><div class="game-tag">Indie</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+    </div>
+  </div>
 
-<div class="slider-wrapper">
-  <button class="slider-btn left">&#10094;</button>
-  <button class="slider-btn right">&#10095;</button>
-  <div class="slider shuffle-populer">
-    <!-- içerik aynı, ELLEMEDİM -->
+  <!-- Mozaik Kartlar -->
+<div class="mozaik-grid">
+
+  <div class="mozaik-card kare" data-slug="papers-please">
+    <img>
+    <div class="mozaik-title"></div>
+  </div>
+
+  <div class="mozaik-card dikdortgen" data-slug="celeste">
+    <img>
+    <div class="mozaik-title"></div>
+  </div>
+
+  <div class="mozaik-card kare" data-slug="baba-is-you">
+    <img>
+    <div class="mozaik-title"></div>
+  </div>
+
+  <div class="mozaik-card dikdortgen" data-slug="hollow-knight">
+    <img>
+    <div class="mozaik-title"></div>
+  </div>
+
+  <div class="mozaik-card kare" data-slug="undertale">
+    <img>
+    <div class="mozaik-title"></div>
+  </div>
+
+  <div class="mozaik-card kare" data-slug="stardew-valley">
+    <img>
+    <div class="mozaik-title"></div>
+  </div>
+
+</div>
+
+
+<!-- Düşük Sistem Slider -->
+<div class="dusuk-section">
+  <h2>DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</h2>
+
+  <div class="slider-wrapper dusuk-wrapper">
+    <button class="slider-btn left">&#10094;</button>
+    <button class="slider-btn right">&#10095;</button>
+
+    <div class="slider shuffle-dusuk">
+
+      <a href="halflife2.html">
+        <div class="game">
+          <div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div>
+          <div class="game-title">Half-Life 2</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Popüler</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="portal2.html">
+        <div class="game">
+          <div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div>
+          <div class="game-title">Portal 2</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Popüler</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="terraria.html">
+        <div class="game">
+          <div class="game-image"><img src="terraria.jpg" alt="Terraria"></div>
+          <div class="game-title">Terraria</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Indie</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="stardewvalley.html">
+        <div class="game">
+          <div class="game-image"><img src="stardewvalley.jpg" alt="Stardew Valley"></div>
+          <div class="game-title">Stardew Valley</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Indie</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="celeste2.html">
+        <div class="game">
+          <div class="game-image"><img src="celeste2.jpg" alt="Celeste"></div>
+          <div class="game-title">Celeste</div>
+          <div class="game-tags-container">
+            <div class="game-tag">Indie</div>
+            <div class="game-tag">Düşük Sistem</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
   </div>
 </div>
 
-<div class="mozaik-grid">
-  <div class="mozaik-card kare" data-slug="papers-please"><img><div class="mozaik-title"></div></div>
-  <div class="mozaik-card dikdortgen" data-slug="celeste"><img><div class="mozaik-title"></div></div>
-  <div class="mozaik-card kare" data-slug="baba-is-you"><img><div class="mozaik-title"></div></div>
-  <div class="mozaik-card dikdortgen" data-slug="hollow-knight"><img><div class="mozaik-title"></div></div>
-  <div class="mozaik-card kare" data-slug="undertale"><img><div class="mozaik-title"></div></div>
-  <div class="mozaik-card kare" data-slug="stardew-valley"><img><div class="mozaik-title"></div></div>
-</div>
-</section>
 
-<footer>© ballasnetindir.com</footer>
+<footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-/* ===== SLIDER ===== */
-document.querySelectorAll(".slider-wrapper").forEach(wrapper=>{
-  const slider=wrapper.querySelector(".slider");
-  if(!slider)return;
-  let pos=0;
-  const w=346;
-  wrapper.querySelector(".right").onclick=()=>{pos-=w;slider.style.transform=`translateX(${pos}px)`;}
-  wrapper.querySelector(".left").onclick=()=>{pos=Math.min(pos+w,0);slider.style.transform=`translateX(${pos}px)`;}
+// Slider scroll
+const sliderBtns = document.querySelectorAll('.slider-wrapper');
+sliderBtns.forEach(wrapper => {
+  const slider = wrapper.querySelector('.slider');
+  const btnLeft = wrapper.querySelector('.slider-btn.left');
+  const btnRight = wrapper.querySelector('.slider-btn.right');
+  let scrollPos = 0;
+  const cardWidth = 346;
+  btnRight.onclick = () => { scrollPos -= cardWidth; slider.style.transform = `translateX(${scrollPos}px)`; };
+  btnLeft.onclick = () => { scrollPos += cardWidth; if(scrollPos>0) scrollPos=0; slider.style.transform = `translateX(${scrollPos}px)`; };
 });
 
-/* ===== SHUFFLE ===== */
-function shuffle(el){
-  [...el.children].sort(()=>Math.random()-.5).forEach(i=>el.appendChild(i));
+// Search
+const input=document.querySelector('.search-box input');
+const button=document.querySelector('.search-box button');
+const suggestionBox=document.querySelector('.search-suggestions');
+const gameRedirects={
+  "minecraft":"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "gta san andreas":"https://www.youtube.com/watch?v=QH2-TGUlwu4"
+};
+function updateSuggestions(){
+  const q=input.value.toLowerCase().trim();
+  suggestionBox.innerHTML="";
+  if(!q){suggestionBox.style.display="none";return;}
+  Object.keys(gameRedirects).filter(n=>n.includes(q)).forEach(n=>{
+    const d=document.createElement("div");
+    d.textContent=n;
+    d.onclick=()=>location.href=gameRedirects[n];
+    suggestionBox.appendChild(d);
+  });
+  suggestionBox.style.display="block";
 }
-shuffle(document.querySelector(".shuffle-populer"));
+input.addEventListener("input",updateSuggestions);
+button.onclick=()=>updateSuggestions();
 
-/* ===== MOZAİK ===== */
-const mozaikGames={
-  "papers-please":{title:"Papers, Please",image:"papersplease2.jpg"},
-  "celeste":{title:"Celeste",image:"celeste2.jpg"},
-  "baba-is-you":{title:"Baba Is You",image:"babaisyou.jpg"},
-  "hollow-knight":{title:"Hollow Knight",image:"hollow-knight.jpg"},
-  "undertale":{title:"Undertale",image:"undertale.jpg"},
-  "stardew-valley":{title:"Stardew Valley",image:"stardewvalley.jpg"}
+// Shuffle Sliders
+function shuffleSlider(selector){
+  const slider = document.querySelector(selector);
+  if(!slider) return;
+  const items = Array.from(slider.children);
+  for(let i = items.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  items.forEach(item => slider.appendChild(item));
+}
+window.addEventListener("load", () => {
+  shuffleSlider(".shuffle-populer");
+  shuffleSlider(".shuffle-dusuk");
+});
+
+<script>
+/* ===== MOZAİK OYUN VERİLERİ ===== */
+const mozaikGames = {
+  "papers-please": {
+    title: "Papers, Please",
+    image: "papersplease2.jpg"
+  },
+  "celeste": {
+    title: "Celeste",
+    image: "celeste2.jpg"
+  },
+  "baba-is-you": {
+    title: "Baba Is You",
+    image: "babaisyou.jpg"
+  },
+  "hollow-knight": {
+    title: "Hollow Knight",
+    image: "hollow-knight.jpg"
+  },
+  "undertale": {
+    title: "Undertale",
+    image: "undertale.jpg"
+  },
+  "stardew-valley": {
+    title: "Stardew Valley",
+    image: "stardewvalley.jpg"
+  }
 };
 
-document.querySelectorAll(".mozaik-card").forEach(c=>{
-  const g=mozaikGames[c.dataset.slug];
-  if(!g)return;
-  c.querySelector("img").src=g.image;
-  c.querySelector(".mozaik-title").textContent=g.title;
-  c.onclick=()=>location.href=c.dataset.slug+".html";
+/* ===== MOZAİK DOLDURMA + TIKLAMA ===== */
+document.querySelectorAll(".mozaik-card").forEach(card => {
+  const slug = card.dataset.slug;
+  const game = mozaikGames[slug];
+  if (!game) return;
+
+  const img = card.querySelector("img");
+  const title = card.querySelector(".mozaik-title");
+
+  img.src = game.image;
+  img.alt = game.title;
+  title.textContent = game.title;
+
+  card.addEventListener("click", () => {
+    window.location.href = slug + ".html";
+  });
 });
+
 </script>
 
 </body>
