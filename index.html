@@ -462,25 +462,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Indie tag'li oyunları seç
-  const indieGames = [
+const indieGames = [
   { title: "Terraria", slug: "terraria", image: "terraria.jpg", tags: ["Indie","Düşük Sistem"] },
   { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie"] },
   { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie"] },
   { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie"] }
 ];
 
-
-  // Shuffle fonksiyonu
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
+// Shuffle fonksiyonu
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
+}
 
-  shuffle(indieGames);
+shuffle(indieGames);
 
-  const slider = document.querySelector(".shuffle-indie");
+const slider = document.querySelector(".shuffle-indie");
 
 indieGames.forEach(game => {
   const a = document.createElement("a");
@@ -489,6 +488,7 @@ indieGames.forEach(game => {
   const div = document.createElement("div");
   div.className = "game";
 
+  // Resim bölümü
   const imgDiv = document.createElement("div");
   imgDiv.className = "game-image";
   const img = document.createElement("img");
@@ -496,11 +496,12 @@ indieGames.forEach(game => {
   img.alt = game.title;
   imgDiv.appendChild(img);
 
+  // Başlık
   const titleDiv = document.createElement("div");
   titleDiv.className = "game-title";
   titleDiv.textContent = game.title;
 
-  // Taglar
+  // Tagler
   const tagsContainer = document.createElement("div");
   tagsContainer.className = "game-tags-container";
   game.tags.forEach(tagText => {
@@ -510,21 +511,15 @@ indieGames.forEach(game => {
     tagsContainer.appendChild(tagDiv);
   });
 
-  // Sadece bir kez append
+  // Tüm elementleri div içine ekle
   div.appendChild(imgDiv);
   div.appendChild(titleDiv);
   div.appendChild(tagsContainer);
 
+  // div'i linke ekle, slider'a ekle
   a.appendChild(div);
   slider.appendChild(a);
 });
-
-
-
-div.appendChild(tagsContainer); // TAGLARI ekliyoruz
-
-  
-  });
 
   // Slider butonları
   const left = document.querySelector(".indie-wrapper .slider-btn.left");
