@@ -334,6 +334,52 @@ a{color:#fff;text-decoration:none;}
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
+/* ===== MOZAİK SABİT GÖRÜNÜR YAPMA ===== */
+const mozaikGames = {
+  "papers-please": {
+    title: "Papers, Please",
+    image: "papersplease2.jpg"
+  },
+  "celeste": {
+    title: "Celeste",
+    image: "celeste2.jpg"
+  },
+  "baba-is-you": {
+    title: "Baba Is You",
+    image: "babaisyou.jpg"
+  },
+  "hollow-knight": {
+    title: "Hollow Knight",
+    image: "hollow-knight.jpg"
+  },
+  "undertale": {
+    title: "Undertale",
+    image: "undertale.jpg"
+  },
+  "stardew-valley": {
+    title: "Stardew Valley",
+    image: "stardewvalley.jpg"
+  }
+};
+
+document.querySelectorAll(".mozaik-card").forEach(card => {
+  const slug = card.dataset.slug;
+  const game = mozaikGames[slug];
+  if (!game) return;
+
+  const img = card.querySelector("img");
+  const title = card.querySelector(".mozaik-title");
+
+  img.src = game.image;
+  img.alt = game.title;
+  title.textContent = game.title;
+
+  card.addEventListener("click", () => {
+    window.location.href = slug + ".html";
+  });
+});
+
+
 window.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".slider-wrapper").forEach(wrapper => {
