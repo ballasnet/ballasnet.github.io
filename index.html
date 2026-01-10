@@ -334,30 +334,48 @@ a{color:#fff;text-decoration:none;}
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-// Slider scroll
-const sliderBtns = document.querySelectorAll('.slider-wrapper');
-sliderBtns.forEach(wrapper => {
-  const slider = wrapper.querySelector('.slider');
-  const btnLeft = wrapper.querySelector('.slider-btn.left');
-  const btnRight = wrapper.querySelector('.slider-btn.right');
-let scrollPos = 0;
-const cardWidth = 346;
+/* ===== SLIDER %100 KİLİTLİ SİSTEM ===== */
+document.querySelectorAll(".slider-wrapper").forEach(wrapper => {
+  const slider = wrapper.querySelector(".slider");
+  const leftBtn = wrapper.querySelector(".slider-btn.left");
+  const rightBtn = wrapper.querySelector(".slider-btn.right");
 
-function resetSlider() {
-  scrollPos = 0;
-  slider.style.transform = "translateX(0px)";
-}
+  let position = 0;
+  const gap = 26;
+  const cardWidth = 320 + gap;
 
-btnRight.onclick = () => {
-  scrollPos -= cardWidth;
-  slider.style.transform = `translateX(${scrollPos}px)`;
-};
+  function getMaxScroll() {
+    const visibleWidth = wrapper.clientWidth;
+    const totalWidth = slider.scrollWidth;
+    return Math.min(0, visibleWidth - totalWidth);
+  }
 
-btnLeft.onclick = () => {
-  scrollPos += cardWidth;
-  if (scrollPos > 0) scrollPos = 0;
-  slider.style.transform = `translateX(${scrollPos}px)`;
-};
+  function update() {
+    const maxScroll = getMaxScroll();
+    if (position > 0) position = 0;
+    if (position < maxScroll) position = maxScroll;
+    slider.style.transform = `translateX(${position}px)`;
+  }
+
+  rightBtn.onclick = () => {
+    position -= cardWidth;
+    update();
+  };
+
+  leftBtn.onclick = () => {
+    position += cardWidth;
+    update();
+  };
+
+window.addEventListener("load", () => {
+  shuffleSlider(".shuffle-populer");
+  shuffleSlider(".shuffle-dusuk");
+
+  document.querySelectorAll(".slider").forEach(slider => {
+    slider.style.transform = "translateX(0px)";
+  });
+});
+
 
 // Sayfa yüklenince kesin sıfırla
 resetSlider();
