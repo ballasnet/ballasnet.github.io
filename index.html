@@ -371,6 +371,14 @@ allGames.forEach(game => {
   if(saved) game.tags = JSON.parse(saved);
 });
 
+// Rastgele sıralama fonksiyonu
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 function fillSlider(slider, games) {
   slider.innerHTML = "";
   games.forEach(game => {
@@ -408,7 +416,7 @@ function fillSlider(slider, games) {
   });
 }
 
-function initSlider(wrapperSelector, games) {
+function initSlider(wrapperSelector, games, doShuffle = false) {
   const wrapper = document.querySelector(wrapperSelector);
   if(!wrapper) return;
 
@@ -417,6 +425,7 @@ function initSlider(wrapperSelector, games) {
   const right = wrapper.querySelector(".slider-btn.right");
   if(!slider || !left || !right) return;
 
+  if(doShuffle) shuffle(games);  // sadece shuffle gerekiyorsa uygula
   fillSlider(slider, games);
 
   let index = 0;
@@ -471,11 +480,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Sliderlar
-  initSlider(".indie-wrapper", allGames);
-  initSlider(".shuffle-populer", allGames.filter(g=>g.tags.includes("Popüler")));
-  initSlider(".dusuk-wrapper", allGames.filter(g=>g.tags.includes("Düşük Sistem")));
+  initSlider(".shuffle-populer", allGames.filter(g=>g.tags.includes("Popüler")), true); // random olsun
+  initSlider(".indie-wrapper", allGames, true);  // Indie slider da random
+  initSlider(".dusuk-wrapper", allGames.filter(g=>g.tags.includes("Düşük Sistem")), true);
 });
 </script>
+
 
 
 
