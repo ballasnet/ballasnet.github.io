@@ -225,6 +225,18 @@ a{color:#fff;text-decoration:none;}
     </div>
   </div>
 
+  <!-- Indie Slider -->
+<div class="section">
+  <h2>INDIE OYUNLAR</h2>
+  <div class="slider-wrapper indie-wrapper">
+    <button class="slider-btn left">&#10094;</button>
+    <button class="slider-btn right">&#10095;</button>
+    <div class="slider shuffle-indie">
+      <!-- Indie oyunlar JS ile doldurulacak -->
+    </div>
+  </div>
+</div>
+
   <!-- Mozaik Kartlar -->
 <div class="mozaik-grid">
   
@@ -446,6 +458,80 @@ window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".slider").forEach(slider => {
     shuffleSliderSafe(slider);
   });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Indie tag'li oyunları seç
+  const indieGames = [
+    { title: "Terraria", slug: "terraria", image: "terraria.jpg" },
+    { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" },
+    { title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
+    { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg" }
+    // İstersen yarın ekleme zamanı daha fazla oyun ekleyebilirsin
+  ];
+
+  // Shuffle fonksiyonu
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  shuffle(indieGames);
+
+  const slider = document.querySelector(".shuffle-indie");
+
+  indieGames.forEach(game => {
+    const a = document.createElement("a");
+    a.href = game.slug + ".html";
+
+    const div = document.createElement("div");
+    div.className = "game";
+
+    const imgDiv = document.createElement("div");
+    imgDiv.className = "game-image";
+    const img = document.createElement("img");
+    img.src = game.image;
+    img.alt = game.title;
+    imgDiv.appendChild(img);
+
+    const titleDiv = document.createElement("div");
+    titleDiv.className = "game-title";
+    titleDiv.textContent = game.title;
+
+    div.appendChild(imgDiv);
+    div.appendChild(titleDiv);
+    a.appendChild(div);
+    slider.appendChild(a);
+  });
+
+  // Slider butonları
+  const left = document.querySelector(".indie-wrapper .slider-btn.left");
+  const right = document.querySelector(".indie-wrapper .slider-btn.right");
+  let index = 0;
+  const cardWidth = 346;
+
+  function update() {
+    slider.style.transform = `translateX(${-index * cardWidth}px)`;
+  }
+
+  right.addEventListener("click", () => {
+    if (index < slider.children.length - 1) {
+      index++;
+      update();
+    }
+  });
+
+  left.addEventListener("click", () => {
+    if (index > 0) {
+      index--;
+      update();
+    }
+  });
+
+  // Shuffle sonrası sıfırla
+  update();
 });
 
 </script>
