@@ -417,6 +417,28 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+/* ===== SLIDER RANDOM (F5) + KİLİTLİ BAŞLANGIÇ ===== */
+function shuffleSliderSafe(slider) {
+  const items = Array.from(slider.children);
+
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    slider.insertBefore(items[j], items[i]);
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+
+  // her shuffle sonrası slider kesin sıfırlanır
+  slider.style.transform = "translateX(0px)";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".slider").forEach(slider => {
+    shuffleSliderSafe(slider);
+  });
+});
+
+
 </script>
 
 
