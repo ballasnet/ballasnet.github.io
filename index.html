@@ -334,6 +334,77 @@ a{color:#fff;text-decoration:none;}
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
+
+/* =========================
+   MOZAİK OYUN HAVUZLARI
+   ========================= */
+
+// 🔲 KARE KART OYUNLARI (sadece kare görseller)
+const smallGames = [
+  { title: "Papers, Please", slug: "papers-please", image: "papersplease2.jpg" },
+  { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg" },
+  { title: "Undertale", slug: "undertale", image: "undertale.jpg" },
+  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" }
+];
+
+// ▭ DİKDÖRTGEN KART OYUNLARI (sadece büyük görseller)
+const largeGames = [
+  { title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
+  { title: "Hollow Knight", slug: "hollow-knight", image: "hollow-knight.jpg" }
+];
+
+/* =========================
+   SHUFFLE FONKSİYONU
+   ========================= */
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+/* =========================
+   MOZAİK DOLDURMA
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+  shuffle(smallGames);
+  shuffle(largeGames);
+
+  let smallIndex = 0;
+  let largeIndex = 0;
+
+  document.querySelectorAll(".mozaik-card").forEach(card => {
+    const img = card.querySelector("img");
+    const titleBox = card.querySelector(".mozaik-title");
+
+    let game;
+
+    // 🟩 KARE KART
+    if (card.classList.contains("kare")) {
+      if (!smallGames[smallIndex]) return;
+      game = smallGames[smallIndex++];
+    }
+
+    // 🟦 DİKDÖRTGEN KART
+    if (card.classList.contains("dikdortgen")) {
+      if (!largeGames[largeIndex]) return;
+      game = largeGames[largeIndex++];
+    }
+
+    if (!game) return;
+
+    img.src = game.image;
+    img.alt = game.title;
+    titleBox.textContent = game.title;
+
+    card.onclick = () => {
+      window.location.href = game.slug + ".html";
+    };
+  });
+
+});
+
 /* ===== MOZAİK SABİT GÖRÜNÜR YAPMA ===== */
 const mozaikGames = {
   "papers-please": {
