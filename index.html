@@ -459,6 +459,54 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider(".shuffle-populer", allGames.filter(g=>g.tags.includes("Popüler")));
   initSlider(".dusuk-wrapper", allGames.filter(g=>g.tags.includes("Düşük Sistem")));
 });
+
+/* ===== TAGLARI KALICI YAPMA ===== */
+
+// Sayfa açıldığında kaydedilmiş tag'ları uygula
+allGames.forEach(game => {
+  const saved = localStorage.getItem('gameTags-' + game.slug);
+  if(saved) game.tags = JSON.parse(saved);
+});
+
+// Tag değiştirme ve kaydetme fonksiyonu
+function updateGameTags(slug, newTags) {
+  const game = allGames.find(g => g.slug === slug);
+  if(!game) return;
+
+  // 1️⃣ Diziyi güncelle
+  game.tags = newTags;
+
+  // 2️⃣ LocalStorage'a kaydet
+  localStorage.setItem('gameTags-' + slug, JSON.stringify(newTags));
+
+  // 3️⃣ Slider ve mozaik güncelle
+  document.querySelectorAll('.game').forEach(div => {
+    const a = div.closest('a');
+    if(a && a.getAttribute('href') === slug + '.html') {
+      const tagContainer = div.querySelector('.game-tags-container');
+      if(tagContainer){
+        tagContainer.innerHTML = '';
+        newTags.forEach(tag => {
+          const t = document.createElement('div');
+          t.className = 'game-tag';
+          t.textContent = tag;
+          tagContainer.appendChild(t);
+        });
+      }
+    }
+  });
+
+  // Mozaik kartları da kontrol et
+  document.querySelectorAll('.mozaik-card').forEach(card => {
+    if(card.dataset.slug === slug){
+      const titleBox = card.querySelector('.mozaik-title');
+      // Eğer mozaik’de tag gösteriyorsan burayı ekleyebilirsin
+      // Şu an sadece title var, tag yok
+    }
+  });
+}
+
+
 </script>
 
 
