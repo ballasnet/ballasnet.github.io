@@ -227,6 +227,10 @@ a{color:#fff;text-decoration:none;}
 
   <!-- Mozaik Kartlar -->
 <div class="mozaik-grid">
+  <div class="mozaik-card kare" data-slug="DDLC">
+    <img>
+    <div class="mozaik-title"></div>
+ </div>
 
   <div class="mozaik-card kare" data-slug="papers-please">
     <img>
@@ -432,6 +436,10 @@ const mozaikGames = {
     image: "stardewvalley.jpg"
   }
 };
+DDLC": {
+    title: "Doki Doki Literature Club",
+    image: "dokidoki.jpg"
+  },
 
 document.querySelectorAll(".mozaik-card").forEach(card => {
   const slug = card.dataset.slug;
