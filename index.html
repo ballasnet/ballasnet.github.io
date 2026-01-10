@@ -340,11 +340,28 @@ sliderBtns.forEach(wrapper => {
   const slider = wrapper.querySelector('.slider');
   const btnLeft = wrapper.querySelector('.slider-btn.left');
   const btnRight = wrapper.querySelector('.slider-btn.right');
-  let scrollPos = 0;
-  const cardWidth = 346;
-  btnRight.onclick = () => { scrollPos -= cardWidth; slider.style.transform = `translateX(${scrollPos}px)`; };
-  btnLeft.onclick = () => { scrollPos += cardWidth; if(scrollPos>0) scrollPos=0; slider.style.transform = `translateX(${scrollPos}px)`; };
-});
+let scrollPos = 0;
+const cardWidth = 346;
+
+function resetSlider() {
+  scrollPos = 0;
+  slider.style.transform = "translateX(0px)";
+}
+
+btnRight.onclick = () => {
+  scrollPos -= cardWidth;
+  slider.style.transform = `translateX(${scrollPos}px)`;
+};
+
+btnLeft.onclick = () => {
+  scrollPos += cardWidth;
+  if (scrollPos > 0) scrollPos = 0;
+  slider.style.transform = `translateX(${scrollPos}px)`;
+};
+
+// Sayfa yüklenince kesin sıfırla
+resetSlider();
+
 
 // Search
 const input=document.querySelector('.search-box input');
@@ -383,9 +400,13 @@ function shuffleSlider(selector){
 window.addEventListener("load", () => {
   shuffleSlider(".shuffle-populer");
   shuffleSlider(".shuffle-dusuk");
+
+  document.querySelectorAll(".slider").forEach(slider => {
+    slider.style.transform = "translateX(0px)";
+  });
 });
 
-<script>
+
 /* ===== MOZAİK OYUN VERİLERİ ===== */
 const mozaikGames = {
   "papers-please": {
