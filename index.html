@@ -334,12 +334,45 @@ a{color:#fff;text-decoration:none;}
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 
 <script>
-alert("JS CALISIYOR");
+window.addEventListener("DOMContentLoaded", () => {
 
-window.addEventListener("DOMContentLoaded", function () {
-  alert("DOM YUKLENDI");
+  document.querySelectorAll(".slider-wrapper").forEach(wrapper => {
+    const slider = wrapper.querySelector(".slider");
+    const left = wrapper.querySelector(".slider-btn.left");
+    const right = wrapper.querySelector(".slider-btn.right");
+
+    if (!slider || !left || !right) return;
+
+    let index = 0;
+    const cardWidth = 346; // game width + gap
+
+    function update() {
+      slider.style.transform = `translateX(${-index * cardWidth}px)`;
+    }
+
+    right.addEventListener("click", () => {
+      const maxIndex = slider.children.length - 1;
+      if (index < maxIndex) {
+        index++;
+        update();
+      }
+    });
+
+    left.addEventListener("click", () => {
+      if (index > 0) {
+        index--;
+        update();
+      }
+    });
+
+    // F5 sonrası kesin reset
+    index = 0;
+    update();
+  });
+
 });
 </script>
+
 
 </body>
 </html>
