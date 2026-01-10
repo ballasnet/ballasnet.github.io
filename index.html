@@ -12,18 +12,40 @@
 body{background:#0b0b0b;color:#fff;}
 h1{position:absolute;left:-9999px;}
 a{color:#fff;text-decoration:none;}
-.search-box{ display:flex; max-width:640px; margin:0 auto; border:1px solid #222; background:#000; position:relative; }
-.search-box input{ flex:1; padding:12px; background:#000; border:none; color:#fff; }
-.search-box button{ padding:12px 22px; background:#0f0f0f; color:#bbb; border-left:1px solid #222; cursor:pointer; }
-.search-suggestions{ position:absolute; top:100%; left:0; width:100%; background:#111; color:#fff; max-height:200px; overflow-y:auto; border:1px solid #222; display:none; z-index:10; }
-.search-suggestions div{ padding:6px 12px; cursor:pointer; }
-.search-suggestions div:hover{ background:#222; }
-.hero{ max-width:1000px; margin:24px auto; padding:14px; background:#0f0f0f; border:1px solid #222; }
-.hero-image{ width:100%; height:220px; background:url("hero.jpg") center/cover no-repeat; margin-bottom:8px; }
-.hero-tags{ display:flex; justify-content:center; gap:18px; flex-wrap:wrap; font-size:13px; letter-spacing:2px; margin-bottom:10px; }
+.search-box{
+ display:flex; max-width:640px; margin:0 auto; border:1px solid #222; background:#000; position:relative;
+}
+.search-box input{
+ flex:1; padding:12px; background:#000; border:none; color:#fff;
+}
+.search-box button{
+ padding:12px 22px; background:#0f0f0f; color:#bbb; border-left:1px solid #222; cursor:pointer;
+}
+.search-suggestions{
+ position:absolute; top:100%; left:0; width:100%; background:#111; color:#fff; max-height:200px; overflow-y:auto; border:1px solid #222; display:none; z-index:10;
+}
+.search-suggestions div{
+ padding:6px 12px; cursor:pointer;
+}
+.search-suggestions div:hover{
+ background:#222;
+}
+.hero{
+ max-width:1000px; margin:24px auto; padding:14px; background:#0f0f0f; border:1px solid #222;
+}
+.hero-image{
+ width:100%; height:220px; background:url("hero.jpg") center/cover no-repeat; margin-bottom:8px;
+}
+.hero-tags{
+ display:flex; justify-content:center; gap:18px; flex-wrap:wrap; font-size:13px; letter-spacing:2px; margin-bottom:10px;
+}
 .hero-tags a{color:#aaa;}
-.section{ max-width:1200px; margin:60px auto; padding:0 20px; }
-.section h2{ font-size:15px; letter-spacing:3px; margin-bottom:22px; border-bottom:1px solid #222; padding-bottom:10px; }
+.section{
+ max-width:1200px; margin:60px auto; padding:0 20px;
+}
+.section h2{
+ font-size:15px; letter-spacing:3px; margin-bottom:22px; border-bottom:1px solid #222; padding-bottom:10px;
+}
 .slider-wrapper { position: relative; overflow: hidden; margin-bottom: 40px; }
 .slider{ display:flex; gap:26px; transition:transform .4s ease; }
 .slider .game{ flex-shrink:0; width:320px; height:200px; display:flex; flex-direction:column; padding:8px; background:#0f0f0f; border:1px solid #222; }
@@ -48,96 +70,185 @@ a{color:#fff;text-decoration:none;}
 <body>
 <h1>BALLASNET</h1>
 <div class="hero">
-  <div class="hero-image"></div>
-  <div class="hero-tags">
-    <a href="#">POPÜLER</a>
-    <a href="#">DÜŞÜK SİSTEM</a>
-    <a href="#">İNDİE</a>
-  </div>
-  <div class="search-box">
-    <input type="text" placeholder="Oyun ara...">
-    <button>ARA</button>
-    <div class="search-suggestions"></div>
-  </div>
+<div class="hero-image"></div>
+<div class="hero-tags">
+<a href="#">POPÜLER</a>
+<a href="#">DÜŞÜK SİSTEM</a>
+<a href="#">İNDİE</a>
+</div>
+<div class="search-box">
+<input type="text" placeholder="Oyun ara...">
+<button>ARA</button>
+<div class="search-suggestions"></div>
+</div>
 </div>
 <section class="section">
-  <h2>POPÜLER OYUNLAR</h2>
-  <div class="slider-wrapper">
-    <button class="slider-btn left">&#10094;</button>
-    <button class="slider-btn right">&#10095;</button>
-    <div class="slider shuffle-populer">
-      <!-- Buradaki taglar sadece senin değiştirebileceğin şekilde burada kodlanacak -->
-    </div>
-  </div>
-
-  <div class="mozaik-grid">
-    <div class="mozaik-card kare" data-slug="papers-please">
-      <img>
-      <div class="mozaik-title"></div>
-    </div>
-    <div class="mozaik-card dikdortgen" data-slug="celeste">
-      <img>
-      <div class="mozaik-title"></div>
-    </div>
-    <div class="mozaik-card kare" data-slug="baba-is-you">
-      <img>
-      <div class="mozaik-title"></div>
-    </div>
-    <div class="mozaik-card dikdortgen" data-slug="hollow-knight">
-      <img>
-      <div class="mozaik-title"></div>
-    </div>
-    <div class="mozaik-card kare" data-slug="undertale">
-      <img>
-      <div class="mozaik-title"></div>
-    </div>
-    <div class="mozaik-card kare" data-slug="stardew-valley">
-      <img>
-      <div class="mozaik-title"></div>
-    </div>
-  </div>
-</section>
-
+<h2>POPÜLER OYUNLAR</h2>
+<div class="slider-wrapper">
+<button class="slider-btn left">&#10094;</button>
+<button class="slider-btn right">&#10095;</button>
+<div class="slider shuffle-populer">
+<a href="minecraft.html"><div class="game"><div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div><div class="game-title">Minecraft</div><div class="game-tags-container"><div class="game-tag">Popüler</div></div></div></a>
+<a href="halflife2.html"><div class="game"><div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div><div class="game-title">Half-Life 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+<a href="portal2.html"><div class="game"><div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div><div class="game-title">Portal 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+<a href="doometernal.html"><div class="game"><div class="game-image"><img src="doometernal.jpg" alt="Doom Eternal"></div><div class="game-title">Doom Eternal</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+<a href="gta-sa.html"><div class="game"><div class="game-image"><img src="gta-sa.jpg" alt="GTA San Andreas"></div><div class="game-title">GTA San Andreas</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+<a href="terraria.html"><div class="game"><div class="game-image"><img src="terraria.jpg" alt="Terraria"></div><div class="game-title">Terraria</div><div class="game-tags-container"><div class="game-tag">Indie</div><div class="game-tag">Düşük Sistem</div></div></div></a>
+</div>
+</div>
+<div class="mozaik-grid">
+<div class="mozaik-card kare" data-slug="papers-please">
+<img>
+<div class="mozaik-title"></div>
+</div>
+<div class="mozaik-card dikdortgen" data-slug="celeste">
+<img>
+<div class="mozaik-title"></div>
+</div>
+<div class="mozaik-card kare" data-slug="baba-is-you">
+<img>
+<div class="mozaik-title"></div>
+</div>
+<div class="mozaik-card dikdortgen" data-slug="hollow-knight">
+<img>
+<div class="mozaik-title"></div>
+</div>
+<div class="mozaik-card kare" data-slug="undertale">
+<img>
+<div class="mozaik-title"></div>
+</div>
+<div class="mozaik-card kare" data-slug="stardew-valley">
+<img>
+<div class="mozaik-title"></div>
+</div>
+</div>
+<div class="dusuk-section">
+<h2>DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</h2>
+<div class="slider-wrapper dusuk-wrapper">
+<button class="slider-btn left">&#10094;</button>
+<button class="slider-btn right">&#10095;</button>
+<div class="slider shuffle-dusuk">
+<a href="halflife2.html">
+<div class="game">
+<div class="game-image"><img src="halflife2.jpg" alt="Half-Life 2"></div>
+<div class="game-title">Half-Life 2</div>
+<div class="game-tags-container">
+<div class="game-tag">Popüler</div>
+<div class="game-tag">Düşük Sistem</div>
+</div>
+</div>
+</a>
+<a href="portal2.html">
+<div class="game">
+<div class="game-image"><img src="portal2.jpg" alt="Portal 2"></div>
+<div class="game-title">Portal 2</div>
+<div class="game-tags-container">
+<div class="game-tag">Popüler</div>
+<div class="game-tag">Düşük Sistem</div>
+</div>
+</div>
+</a>
+<a href="terraria.html">
+<div class="game">
+<div class="game-image"><img src="terraria.jpg" alt="Terraria"></div>
+<div class="game-title">Terraria</div>
+<div class="game-tags-container">
+<div class="game-tag">Indie</div>
+<div class="game-tag">Düşük Sistem</div>
+</div>
+</div>
+</a>
+<a href="stardewvalley.html">
+<div class="game">
+<div class="game-image"><img src="stardewvalley.jpg" alt="Stardew Valley"></div>
+<div class="game-title">Stardew Valley</div>
+<div class="game-tags-container">
+<div class="game-tag">Indie</div>
+<div class="game-tag">Düşük Sistem</div>
+</div>
+</div>
+</a>
+<a href="celeste2.html">
+<div class="game">
+<div class="game-image"><img src="celeste2.jpg" alt="Celeste"></div>
+<div class="game-title">Celeste</div>
+<div class="game-tags-container">
+<div class="game-tag">Indie</div>
+<div class="game-tag">Düşük Sistem</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div>
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
-
 <script>
-/* ========================= MOZAİK OYUN HAVUZLARI ========================= */
 const smallGames = [
-  { title: "Papers, Please", slug: "papers-please", image: "papersplease2.jpg" },
-  { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg" },
-  { title: "Undertale", slug: "undertale", image: "undertale.jpg" },
-  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" }
+{ title: "Papers, Please", slug: "papers-please", image: "papersplease2.jpg" },
+{ title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg" },
+{ title: "Undertale", slug: "undertale", image: "undertale.jpg" },
+{ title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" }
 ];
-
 const largeGames = [
-  { title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
-  { title: "Hollow Knight", slug: "hollow-knight", image: "hollow-knight.jpg" }
+{ title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
+{ title: "Hollow Knight", slug: "hollow-knight", image: "hollow-knight.jpg" }
 ];
-
-/* ========================= MOZAİK DOLDURMA ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  let smallIndex = 0;
-  let largeIndex = 0;
-  document.querySelectorAll(".mozaik-card").forEach(card => {
-    const img = card.querySelector("img");
-    const titleBox = card.querySelector(".mozaik-title");
-    let game;
-    if (card.classList.contains("kare")) {
-      if (!smallGames[smallIndex]) return;
-      game = smallGames[smallIndex++];
-    }
-    if (card.classList.contains("dikdortgen")) {
-      if (!largeGames[largeIndex]) return;
-      game = largeGames[largeIndex++];
-    }
-    if (!game) return;
-    img.src = game.image;
-    img.alt = game.title;
-    titleBox.textContent = game.title;
-    card.onclick = () => {
-      window.location.href = game.slug + ".html";
-    };
-  });
+let smallIndex = 0;
+let largeIndex = 0;
+document.querySelectorAll(".mozaik-card").forEach(card => {
+const img = card.querySelector("img");
+const titleBox = card.querySelector(".mozaik-title");
+let game;
+if (card.classList.contains("kare")) {
+if (!smallGames[smallIndex]) return;
+game = smallGames[smallIndex++];
+}
+if (card.classList.contains("dikdortgen")) {
+if (!largeGames[largeIndex]) return;
+game = largeGames[largeIndex++];
+}
+if (!game) return;
+img.src = game.image;
+img.alt = game.title;
+titleBox.textContent = game.title;
+card.onclick = () => {
+window.location.href = game.slug + ".html";
+};
+});
+});
+window.addEventListener("DOMContentLoaded", () => {
+document.querySelectorAll(".slider-wrapper").forEach(wrapper => {
+const slider = wrapper.querySelector(".slider");
+const left = wrapper.querySelector(".slider-btn.left");
+const right = wrapper.querySelector(".slider-btn.right");
+if (!slider || !left || !right) return;
+let index = 0;
+const cardWidth = 346;
+function update() { slider.style.transform = `translateX(${-index * cardWidth}px)`; }
+right.addEventListener("click", () => {
+const maxIndex = slider.children.length - 1;
+if (index < maxIndex) { index++; update(); }
+});
+left.addEventListener("click", () => {
+if (index > 0) { index--; update(); }
+});
+index = 0; update();
+});
+});
+function shuffleSliderSafe(slider) {
+const items = Array.from(slider.children);
+for (let i = items.length - 1; i > 0; i--) {
+const j = Math.floor(Math.random() * (i + 1));
+slider.insertBefore(items[j], items[i]);
+[items[i], items[j]] = [items[j], items[i]];
+}
+slider.style.transform = "translateX(0px)";
+}
+window.addEventListener("DOMContentLoaded", () => {
+document.querySelectorAll(".slider").forEach(slider => {
+shuffleSliderSafe(slider);
+});
 });
 </script>
 </body>
