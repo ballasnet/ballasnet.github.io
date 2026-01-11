@@ -102,22 +102,14 @@ a{color:#fff;text-decoration:none;}
 }
 
 /* çizginin HEMEN altı */
-.feature-rect{
-  display:block;
-  width:520px;
-  height:260px;
-
-  margin-top:12px;     /* ← aşırı değil, çizginin az altı */
-
-  overflow:hidden;
-  cursor:pointer;
-  border:1px solid #222;
-
-  /* DİK köşe */
-  border-radius:0;
-
-  transition:transform .25s ease;
+.feature-layout{
+  display:flex;
+  gap:24px;
+  max-width:1200px;
+  margin:72px auto 0; /* çizginin biraz altı */
+  align-items:flex-start;
 }
+
 
 /* görsel */
 .feature-rect img{
@@ -128,13 +120,41 @@ a{color:#fff;text-decoration:none;}
   transition:transform .25s ease;
 }
 
-/* HOVER – dışa büyüme */
+.feature-rect{
+  display:block;
+  width:620px;   /* ← BÜYÜK OLAN BU */
+  height:260px;
+
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid #222;
+  border-radius:0;
+
+  transition:transform .25s ease;
+}
+
 .feature-rect:hover{
   transform:scale(1.06);
   z-index:5;
 }
 
-/* ekstra kararma / yazı YOK */
+.feature-square{
+  display:block;
+  width:260px;
+  height:260px;
+
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid #222;
+  border-radius:0;
+
+  transition:transform .25s ease;
+}
+
+.feature-square:hover{
+  transform:scale(1.06);
+  z-index:5;
+}
 
 
 
