@@ -72,99 +72,58 @@ a{color:#fff;text-decoration:none;}
 }
 
 
-/* === ALT ÇİZGİ === */
-
-
-/* === FEATURE ALANI (TEK SATIR) === */
-.feature-layout{
-  display:flex;
-  gap:28px;                 /* çok yakın DEĞİL */
-  max-width:1200px;
-  margin:0 auto;
-}
-
-/* SOL – ÇOK BÜYÜK DİKDÖRTGEN */
-.feature-rect{
-  flex:1;                   /* sağdaki kareye kadar uzar */
-  height:260px;
-
-  overflow:hidden;
-  cursor:pointer;
-  border:1px solid #222;
-  border-radius:0;
-
-  transition:transform .25s ease;
-}
-
-.feature-rect img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.feature-rect:hover{
-  transform:scale(1.06);
-  z-index:5;
-}
-
-/* SAĞ – KARE */
-.feature-square{
-  width:260px;
-  height:260px;
-
-  overflow:hidden;
-  cursor:pointer;
-  border:1px solid #222;
-  border-radius:0;
-
-  transition:transform .25s ease;
-}
-
-.feature-square img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.feature-square:hover{
-  transform:scale(1.06);
-  z-index:5;
-}
-
+/* ANA ALAN */
 .feature-area{
   position:relative;
   max-width:1200px;
-  margin:80px auto;
-  height:420px; /* alan yüksekliği */
+  margin:100px auto;
+  height:420px;
 }
 
-/* MASA */
+/* MASA – PNG BURAYA */
 .feature-base{
   position:absolute;
-  inset:0;
-  background:#111;
+  bottom:0;
+  left:0;
+  right:0;
+  height:260px;
+
+  background:url("masa.png") center/contain no-repeat;
+  background-color:#0e0e0e;
+
   border:1px solid #222;
   z-index:1;
 }
 
-/* ÜSTTEKİ KARTLAR */
+/* ÜSTTEKİ İNCE ÇİZGİ */
+.feature-line{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:#222;
+  z-index:2;
+}
+
+/* KARTLAR */
 .feature-layout{
   position:relative;
   z-index:5;
+
   display:flex;
   gap:32px;
   padding:40px;
 }
 
-/* BÜYÜK DİKDÖRTGEN */
+/* SOL DİKDÖRTGEN */
 .feature-rect{
   width:620px;
   height:260px;
-  overflow:hidden;
+
   border:1px solid #222;
-  transition:transform .25s ease;
+  overflow:hidden;
+  background:#000;
 }
 
 .feature-rect img{
@@ -173,26 +132,20 @@ a{color:#fff;text-decoration:none;}
   object-fit:cover;
 }
 
-/* SAĞDAKİ KARE */
+/* SAĞ KARE */
 .feature-square{
   width:260px;
   height:260px;
-  overflow:hidden;
+
   border:1px solid #222;
-  transition:transform .25s ease;
+  overflow:hidden;
+  background:#000;
 }
 
 .feature-square img{
   width:100%;
   height:100%;
   object-fit:cover;
-}
-
-/* HOVER – dışa büyüme, kararma YOK */
-.feature-rect:hover,
-.feature-square:hover{
-  transform:scale(1.06);
-  z-index:10;
 }
 
 
@@ -398,34 +351,29 @@ a{color:#fff;text-decoration:none;}
 </div>
 </div>
 
-
-<div class="divider-with-image">
-  <span></span>
-</div>
-
-
-<div class="feature-layout">
-  <div class="feature-rect">
-    <!-- sol büyük dikdörtgen -->
-  </div>
-
-  <div class="feature-square">
-    <!-- sağ büyük kare -->
-  </div>
-</div>
-
 <section class="feature-area">
 
-  <!-- MASA (arkadaki aşırı büyük kare) -->
+  <!-- MASA (arka plan / PNG buraya gelecek) -->
   <div class="feature-base"></div>
 
-  <!-- ÜSTTEKİ KARTLAR -->
+  <!-- ÜSTTEKİ ÇİZGİ -->
+  <div class="feature-line"></div>
+
+  <!-- KARTLAR -->
   <div class="feature-layout">
     <a href="#" class="feature-rect">
       <img src="big-rect.png" alt="">
     </a>
 
+    <a href="#" class="feature-square">
+      <img src="big-square.png" alt="">
+    </a>
+  </div>
 
+</section>
+
+
+ 
 </section>
 
 
