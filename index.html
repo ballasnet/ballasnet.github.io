@@ -71,6 +71,29 @@ a{color:#fff;text-decoration:none;}
   margin-right:-20px;
 }
 
+
+.divider-with-image{
+  position: relative;
+  max-width:1200px;
+  margin:80px auto 100px; /* yukarıdan & aşağıdan boşluk */
+  height:1px;
+  background:#222; /* çizgi */
+}
+
+.divider-with-image span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:80px;
+  height:40px;
+  background:url("divider.png") center/contain no-repeat;
+  background-color:#0b0b0b; /* çizgiyi keser */
+  padding:0 10px;
+}
+
+
+
 .feature-layout{
   display:flex;
   gap:20px;
@@ -293,6 +316,11 @@ a{color:#fff;text-decoration:none;}
 
 
 </div>
+</div>
+
+
+<div class="divider-with-image">
+  <span></span>
 </div>
 
 
