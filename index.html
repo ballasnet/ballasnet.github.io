@@ -102,18 +102,53 @@ a{color:#fff;text-decoration:none;}
 }
 
 .feature-rect{
-  flex:2;                 /* sol daha geniş */
+  position:relative;
+  display:block;
+  width:500px;      /* dikdörtgen */
   height:260px;
-  background:#0f0f0f;
-  border:1px solid #222;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+  text-decoration:none;
 }
 
-.feature-square{
-  flex:1;                 /* sağ daha dar */
-  height:260px;           /* YÜKSEKLİK AYNI */
-  background:#0f0f0f;
-  border:1px solid #222;
+/* görsel */
+.feature-rect img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .4s ease;
 }
+
+/* hover overlay */
+.feature-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  opacity:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity .3s ease;
+}
+
+/* yazı */
+.feature-overlay span{
+  color:#fff;
+  font-size:22px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+/* HOVER */
+.feature-rect:hover img{
+  transform:scale(1.07);
+}
+
+.feature-rect:hover .feature-overlay{
+  opacity:1;
+}
+
 
 
 </style>
@@ -334,6 +369,12 @@ a{color:#fff;text-decoration:none;}
   </div>
 </div>
 
+<a href="ornek-link.html" class="feature-rect">
+  <img src="buyuk-gorsel.jpg" alt="Öne Çıkan Oyun">
+  <div class="feature-overlay">
+    <span>İNCELE</span>
+  </div>
+</a>
 
 
 
