@@ -160,15 +160,17 @@ a{color:#fff;text-decoration:none;}
 /* MASA */
 .feature-table {
   position: absolute;
-  width: 100%;
-  height: 340px;       /* masa boyu */
-  top: -360px;              /* burayı değiştirerek yukarı kaydırabilirsin */
-  left: 10px;
+  top: -360px;               /* yukarı-aşağı konum, istediğin gibi değiştir */
+  left: 50%;                 /* yatay merkez */
+  transform: translateX(-50%); /* tam merkezleme */
+  width: 1000px;             /* başlangıç genişliği, istediğin gibi değiştir */
+  height: 340px;             /* masa boyu */
   background: url("table.png") center bottom / contain no-repeat;
-  background-color: #111;
+  background-color: #111;    /* png yoksa arka plan */
   border: 1px solid #222;
   z-index: 1;
 }
+
 
 .feature-layout {
     position: relative;
