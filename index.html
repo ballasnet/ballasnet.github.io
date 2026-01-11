@@ -71,6 +71,27 @@ a{color:#fff;text-decoration:none;}
   margin-right:-20px;
 }
 
+.feature-layout{
+  display:flex;
+  gap:20px;
+  max-width:1200px;
+  margin:60px auto;
+}
+
+.feature-rect{
+  flex:2;                 /* sol daha geniş */
+  height:260px;
+  background:#0f0f0f;
+  border:1px solid #222;
+}
+
+.feature-square{
+  flex:1;                 /* sağ daha dar */
+  height:260px;           /* YÜKSEKLİK AYNI */
+  background:#0f0f0f;
+  border:1px solid #222;
+}
+
 
 </style>
 </head>
@@ -272,6 +293,17 @@ a{color:#fff;text-decoration:none;}
 
 
 </div>
+</div>
+
+
+<div class="feature-layout">
+  <div class="feature-rect">
+    <!-- sol büyük dikdörtgen -->
+  </div>
+
+  <div class="feature-square">
+    <!-- sağ büyük kare -->
+  </div>
 </div>
 
 
