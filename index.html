@@ -72,57 +72,37 @@ a{color:#fff;text-decoration:none;}
 }
 
 
+/* === ALT ÇİZGİ === */
 .divider-with-image{
-  position: relative;
+  position:relative;
   max-width:1200px;
-  margin:80px auto 100px; /* yukarıdan & aşağıdan boşluk */
+  margin:80px auto 24px;
   height:1px;
-  background:#222; /* çizgi */
+  background:#222;
 }
 
 .divider-with-image span{
   position:absolute;
   top:50%;
   left:50%;
-  transform:translate(-50%, -50%);
+  transform:translate(-50%,-50%);
   width:80px;
   height:40px;
   background:url("divider.png") center/contain no-repeat;
-  background-color:#0b0b0b; /* çizgiyi keser */
-  padding:0 10px;
+  background-color:#0b0b0b;
 }
 
-
-
+/* === FEATURE ALANI (TEK SATIR) === */
 .feature-layout{
   display:flex;
-  gap:20px;
+  gap:28px;                 /* çok yakın DEĞİL */
   max-width:1200px;
-  margin:60px auto; /* 60 → 120 */
+  margin:0 auto;
 }
 
-/* çizginin HEMEN altı */
-.feature-layout{
-  display:flex;
-  gap:24px;
-  max-width:1200px;
-  margin:72px auto 0; /* çizginin biraz altı */
-  align-items:flex-start;
-}
-
-
-/* görsel */
-.feature-rect img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition:transform .25s ease;
-}
-
+/* SOL – ÇOK BÜYÜK DİKDÖRTGEN */
 .feature-rect{
-  display:block;
-  width:620px;   /* ← BÜYÜK OLAN BU */
+  flex:1;                   /* sağdaki kareye kadar uzar */
   height:260px;
 
   overflow:hidden;
@@ -133,13 +113,20 @@ a{color:#fff;text-decoration:none;}
   transition:transform .25s ease;
 }
 
+.feature-rect img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
 .feature-rect:hover{
   transform:scale(1.06);
   z-index:5;
 }
 
+/* SAĞ – KARE */
 .feature-square{
-  display:block;
   width:260px;
   height:260px;
 
@@ -149,6 +136,13 @@ a{color:#fff;text-decoration:none;}
   border-radius:0;
 
   transition:transform .25s ease;
+}
+
+.feature-square img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 .feature-square:hover{
