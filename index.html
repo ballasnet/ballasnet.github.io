@@ -157,9 +157,18 @@ a{color:#fff;text-decoration:none;}
   height:420px; /* masanın ve kartların kapsadığı alan */
 }
 
+.feature-layout {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    gap: 32px;
+}
+
+ 
 .feature-table{
   position:absolute;
   top: -200px; left:0; right:0; bottom:0;
+  height: 10px
   background:url("table.png") center bottom / contain no-repeat;
   background-color:#111; /* png yoksa arka plan */
   border:1px solid #222;
