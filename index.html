@@ -319,7 +319,9 @@ const left = wrapper.querySelector(".slider-btn.left");
 const right = wrapper.querySelector(".slider-btn.right");
 if (!slider || !left || !right) return;
 let index = 0;
-const cardWidth = 346;
+const cardWidth =
+  slider.children[0].offsetWidth +
+  parseInt(getComputedStyle(slider).gap || 0);
 function update() { slider.style.transform = `translateX(${-index * cardWidth}px)`; }
 right.addEventListener("click", () => {
 const maxIndex = slider.children.length - 1;
