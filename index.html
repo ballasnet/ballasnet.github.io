@@ -150,6 +150,21 @@ a{color:#fff;text-decoration:none;}
   z-index:5;
 }
 
+.feature-wrapper{
+  position:relative;
+  max-width:1200px;
+  margin:60px auto;
+  height:420px; /* masanın ve kartların kapsadığı alan */
+}
+
+.feature-table{
+  position:absolute;
+  inset:0;
+  background:url("table.png") center bottom / contain no-repeat;
+  background-color:#111; /* png yoksa arka plan */
+  border:1px solid #222;
+  z-index:1;
+}
 
 
 </style>
@@ -368,6 +383,11 @@ a{color:#fff;text-decoration:none;}
   <div class="feature-square">
     <!-- sağ büyük kare -->
   </div>
+</div>
+
+<div class="feature-wrapper">
+  <!-- MASA (ARKA PLAN – PNG KOYULACAK) -->
+  <div class="feature-table"></div>
 </div>
 
 
