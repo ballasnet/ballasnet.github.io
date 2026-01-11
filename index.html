@@ -150,6 +150,67 @@ a{color:#fff;text-decoration:none;}
   z-index:5;
 }
 
+.feature-area{
+  position:relative;
+  max-width:1200px;
+  margin:80px auto;
+  height:420px; /* alan yüksekliği */
+}
+
+/* MASA */
+.feature-base{
+  position:absolute;
+  inset:0;
+  background:#111;
+  border:1px solid #222;
+  z-index:1;
+}
+
+/* ÜSTTEKİ KARTLAR */
+.feature-layout{
+  position:relative;
+  z-index:5;
+  display:flex;
+  gap:32px;
+  padding:40px;
+}
+
+/* BÜYÜK DİKDÖRTGEN */
+.feature-rect{
+  width:620px;
+  height:260px;
+  overflow:hidden;
+  border:1px solid #222;
+  transition:transform .25s ease;
+}
+
+.feature-rect img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* SAĞDAKİ KARE */
+.feature-square{
+  width:260px;
+  height:260px;
+  overflow:hidden;
+  border:1px solid #222;
+  transition:transform .25s ease;
+}
+
+.feature-square img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* HOVER – dışa büyüme, kararma YOK */
+.feature-rect:hover,
+.feature-square:hover{
+  transform:scale(1.06);
+  z-index:10;
+}
 
 
 </style>
@@ -369,6 +430,24 @@ a{color:#fff;text-decoration:none;}
     <!-- sağ büyük kare -->
   </div>
 </div>
+
+<section class="feature-area">
+
+  <!-- MASA (arkadaki aşırı büyük kare) -->
+  <div class="feature-base"></div>
+
+  <!-- ÜSTTEKİ KARTLAR -->
+  <div class="feature-layout">
+    <a href="#" class="feature-rect">
+      <img src="big-rect.png" alt="">
+    </a>
+
+    <a href="#" class="feature-square">
+      <img src="big-square.png" alt="">
+    </a>
+  </div>
+
+</section>
 
 
 
