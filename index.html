@@ -145,10 +145,42 @@ a{color:#fff;text-decoration:none;}
   display:block;
 }
 
-.feature-square:hover{
-  transform:scale(1.06);
-  z-index:5;
+.feature-square{
+  position:relative;
+  overflow:hidden; /* kar dışarı taşmasın */
 }
+
+/* kar alanı */
+.snow{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  display:none;
+}
+
+/* mouse gelince kar başlasın */
+.feature-square:hover .snow{
+  display:block;
+}
+
+/* tek kar tanesi */
+.snow span{
+  position:absolute;
+  top:-10px;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  opacity:0.8;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall{
+  to{
+    transform:translateY(300px);
+  }
+}
+
 
 .feature-wrapper {
   position: relative;
@@ -178,6 +210,7 @@ a{color:#fff;text-decoration:none;}
     display: flex;
     gap: 32px;
 }
+
 
 
 </style>
@@ -393,8 +426,11 @@ a{color:#fff;text-decoration:none;}
     <!-- sol büyük dikdörtgen -->
   </div>
 
-  <div class="feature-square">
-    <!-- sağ büyük kare -->
+  <a href="#" class="feature-square">
+  <img src="images/big-square.png" alt="">
+  <div class="snow"></div>
+</a>
+
   </div>
 </div>
 
@@ -474,6 +510,31 @@ window.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll(".slider").forEach(slider => {
 shuffleSliderSafe(slider);
 });
+});
+
+const snowBox = document.querySelector(".feature-square .snow");
+
+function createSnow(){
+  const snow = document.createElement("span");
+  snow.style.left = Math.random() * 100 + "%";
+  snow.style.animationDuration = (2 + Math.random() * 3) + "s";
+  snow.style.opacity = Math.random();
+  snowBox.appendChild(snow);
+
+  setTimeout(() => {
+    snow.remove();
+  }, 5000);
+}
+
+let snowInterval;
+
+document.querySelector(".feature-square").addEventListener("mouseenter", () => {
+  snowInterval = setInterval(createSnow, 150);
+});
+
+document.querySelector(".feature-square").addEventListener("mouseleave", () => {
+  clearInterval(snowInterval);
+  snowBox.innerHTML = "";
 });
 </script>
 </body>
