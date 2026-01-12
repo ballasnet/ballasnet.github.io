@@ -120,11 +120,6 @@ a{color:#fff;text-decoration:none;}
   display:block;
 }
 
-.feature-rect:hover{
-  transform:scale(1.06);
-  z-index:5;
-}
-
 /* SAĞ – KARE */
 .feature-square{
   width:260px;
@@ -143,6 +138,11 @@ a{color:#fff;text-decoration:none;}
   height:100%;
   object-fit:cover;
   display:block;
+  transition: transform .25s ease;
+}
+
+.feature-square:hover img{
+  transform:scale(1.06);
 }
 
 .feature-square{
