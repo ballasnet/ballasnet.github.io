@@ -93,125 +93,111 @@ a{color:#fff;text-decoration:none;}
 }
 
 /* === FEATURE ALANI (TEK SATIR) === */
-.feature-layout{
-  display:flex;
-  gap:28px;                 /* çok yakın DEĞİL */
-  max-width:1200px;
-  margin:0 auto;
-}
-
-/* SOL – ÇOK BÜYÜK DİKDÖRTGEN */
-.feature-rect{
-  flex:1;                   /* sağdaki kareye kadar uzar */
-  height:260px;
-
-  overflow:hidden;
-  cursor:pointer;
-  border:1px solid #222;
-  border-radius:0;
-
-  transition:transform .25s ease;
-}
-
-.feature-rect img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-/* SAĞ – KARE */
-.feature-square{
-  width:260px;
-  height:260px;
-
-  overflow:hidden;
-  cursor:pointer;
-  border:1px solid #222;
-  border-radius:0;
-
-  transition:transform .25s ease;
-}
-
-.feature-square img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition: transform .25s ease;
-}
-
-.feature-square:hover img{
-  transform:scale(1.06);
-}
-
-.feature-square{
-  position:relative;
-  overflow:hidden; /* kar dışarı taşmasın */
-}
-
-/* kar alanı */
-.snow{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  display:none;
-}
-
-/* mouse gelince kar başlasın */
-.feature-square:hover .snow{
-  display:block;
-}
-
-/* tek kar tanesi */
-.snow span{
-  position:absolute;
-  top:-10px;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
-  opacity:0.8;
-  animation: snowfall linear infinite;
-}
-
-@keyframes snowfall{
-  to{
-    transform:translateY(300px);
-  }
-}
-
-
-.feature-wrapper {
+/* WRAPPER */
+.feature-wrapper{
   position: relative;
   max-width: 1200px;
   margin: 60px auto;
   z-index: 0; /* masa arkada */
 }
 
-/* MASA */
-.feature-table {
+/* MASA (ARKA PLAN) */
+.feature-table{
   position: absolute;
-  top: -360px;               /* yukarı-aşağı konum, istediğin gibi değiştir */
-  left: 50%;                 /* yatay merkez */
-  transform: translateX(-50%); /* tam merkezleme */
-  width: 1200px;             /* başlangıç genişliği, istediğin gibi değiştir */
-  height: 340px;             /* masa boyu */
+  top: -360px;                 /* yukarı-aşağı BURADAN */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1200px;               /* sağa-sola BURADAN */
+  height: 340px;               /* masa boyu */
   background: url("table2.jpg") center bottom / contain no-repeat;
-  background-color: #111;    /* png yoksa arka plan */
+  background-color: #111;
   border: 1px solid #222;
   z-index: 1;
 }
 
-
-.feature-layout {
-    position: relative;
-    z-index: 5;
-    display: flex;
-    gap: 32px;
+/* KARTLAR */
+.feature-layout{
+  position: relative;
+  z-index: 5;                  /* MASANIN ÜSTÜ */
+  display: flex;
+  gap: 28px;                   /* çok yakın değil */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* SOL – BÜYÜK DİKDÖRTGEN */
+.feature-rect{
+  flex: 1;                     /* sağdaki kareye kadar uzar */
+  height: 260px;
 
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #222;
+  border-radius: 0;
+}
+
+.feature-rect img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* SAĞ – KARE */
+.feature-square{
+  position: relative;
+  width: 260px;
+  height: 260px;
+
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #222;
+  border-radius: 0;
+}
+
+.feature-square img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .25s ease;
+}
+
+/* HOVER – ZOOM */
+.feature-square:hover img{
+  transform: scale(1.06);
+}
+
+/* KAR ALANI */
+.snow{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* hover olunca kar başlasın */
+.feature-square:hover .snow{
+  display: block;
+}
+
+/* KAR TANESİ */
+.snow span{
+  position: absolute;
+  top: -10px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall{
+  to{
+    transform: translateY(300px);
+  }
+}
 
 </style>
 </head>
@@ -421,21 +407,24 @@ a{color:#fff;text-decoration:none;}
 </div>
 
 
-<div class="feature-rect">
-  <img src="feature-rect.png" alt="">
-</div>
+<div class="feature-wrapper">
 
-  <a href="#" class="feature-square">
-  <img src="feature-square.png" alt="">
-  <div class="snow"></div>
-</a>
+  <!-- ARKA PLAN MASA -->
+  <div class="feature-table"></div>
+
+  <!-- ÜSTTEKİ KARTLAR -->
+  <div class="feature-layout">
+
+    <div class="feature-rect">
+      <img src="feature-rect.png" alt="">
+    </div>
+
+    <div class="feature-square">
+      <img src="feature-square.png" alt="">
+      <div class="snow"></div>
+    </div>
 
   </div>
-</div>
-
-<div class="feature-wrapper">
-  <!-- MASA (ARKA PLAN – PNG KOYULACAK) -->
-  <div class="feature-table"></div>
 </div>
 
 
