@@ -493,7 +493,8 @@ document.querySelectorAll(".mozaik-card").forEach(card => {
 
   // Sliderlar
 initSlider(".indie-wrapper", allGames); 
-initSlider(".populer-wrapper", allGames.filter(g => g.tags.includes("Popüler")), true);
+const populerWrapper = document.querySelector('.shuffle-populer').closest('.slider-wrapper');
+initSlider(populerWrapper, allGames.filter(g => g.tags.includes("Popüler")), true);
 initSlider(".dusuk-wrapper", allGames.filter(g=>g.tags.includes("Düşük Sistem")));
 
 });
