@@ -491,11 +491,10 @@ document.querySelectorAll(".mozaik-card").forEach(card => {
 });
 
 
-  // Sliderlar
+// Sliderlar
 initSlider(".indie-wrapper", allGames); 
-const populerWrapper = document.querySelector('.shuffle-populer').closest('.slider-wrapper');
-initSlider(populerWrapper, allGames.filter(g => g.tags.includes("Popüler")), true);
-initSlider(".dusuk-wrapper", allGames.filter(g=>g.tags.includes("Düşük Sistem")));
+initSlider(".populer-wrapper", allGames.filter(g => g.tags.includes("Popüler")), true);
+initSlider(".dusuk-wrapper", allGames.filter(g => g.tags.includes("Düşük Sistem")));
 
 });
 </script>
