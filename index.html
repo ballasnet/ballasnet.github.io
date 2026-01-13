@@ -461,21 +461,26 @@ function updateGameTags(slug, newTags) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Mozaik doldurma
-  let smallIndex = 0, largeIndex = 0;
-  document.querySelectorAll(".mozaik-card").forEach(card => {
-    const img = card.querySelector("img");
-    const titleBox = card.querySelector(".mozaik-title");
-    let game;
-    if(card.classList.contains("kare")) game = smallGames[smallIndex++];
-    if(card.classList.contains("dikdortgen")) game = largeGames[largeIndex++];
-    if(!game) return;
+// Mozaik doldurma (slug bazlı – sağlam)
+document.querySelectorAll(".mozaik-card").forEach(card => {
+  const slug = card.dataset.slug;
+  const img = card.querySelector("img");
+  const titleBox = card.querySelector(".mozaik-title");
 
-    img.src = game.image;
-    img.alt = game.title;
-    titleBox.textContent = game.title;
-    card.onclick = () => window.location.href = game.slug + ".html";
-  });
+  const game =
+    smallGames.find(g => g.slug === slug) ||
+    largeGames.find(g => g.slug === slug);
+
+  if (!game) return;
+
+  img.src = game.image;
+  img.alt = game.title;
+  titleBox.textContent = game.title;
+  card.onclick = () => {
+    window.location.href = game.slug + ".html";
+  };
+});
+
 
   // Sliderlar
 initSlider(".indie-wrapper", allGames); 
