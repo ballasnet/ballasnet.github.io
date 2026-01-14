@@ -419,8 +419,11 @@ function fillSlider(slider, games) {
   });
 }
 
-function initSlider(wrapperSelector, games, doShuffle=true) {
-  const wrapper = document.querySelector(wrapperSelector);
+function initSlider(wrapperSelector, games) {
+  const wrapper = typeof wrapperSelector === "string"
+    ? document.querySelector(wrapperSelector)
+    : wrapperSelector;
+
   if(!wrapper) return;
 
   const slider = wrapper.querySelector(".slider");
@@ -429,21 +432,32 @@ function initSlider(wrapperSelector, games, doShuffle=true) {
 
   if(!slider || !left || !right) return;
 
-  if(doShuffle) shuffle(games); // sadece shuffle true ise karıştır
-
   fillSlider(slider, games);
 
   let index = 0;
   const cardWidth = 346;
 
-  function update() { slider.style.transform = `translateX(${-index * cardWidth}px)`; }
+  function update() {
+    slider.style.transform = `translateX(${-index * cardWidth}px)`;
+  }
 
-  right.addEventListener("click", () => { if(index < slider.children.length-1){ index++; update(); } });
-  left.addEventListener("click", () => { if(index > 0){ index--; update(); } });
+  right.onclick = () => {
+    if(index < slider.children.length - 1) {
+      index++;
+      update();
+    }
+  };
+
+  left.onclick = () => {
+    if(index > 0) {
+      index--;
+      update();
+    }
+  };
 
   update();
-  return slider;
 }
+
 // Tag değiştirme ve kaydetme fonksiyonu
 function updateGameTags(slug, newTags) {
   const game = allGames.find(g => g.slug === slug);
@@ -492,10 +506,22 @@ document.querySelectorAll(".mozaik-card").forEach(card => {
 
 
 // Sliderlar
-initSlider(".indie-wrapper", allGames); 
-const populerWrapper = document.querySelector('.shuffle-populer').parentElement;
-initSlider(populerWrapper, allGames.filter(g => g.tags.includes("Popüler")), true);
-initSlider(".dusuk-wrapper", allGames.filter(g => g.tags.includes("Düşük Sistem")));
+// Indie (aynı kalsın)
+const indieGames = [...allGames];
+shuffle(indieGames);
+initSlider(".indie-wrapper", indieGames);
+
+// Popüler
+const populerGames = allGames.filter(g => g.tags.includes("Popüler"));
+shuffle(populerGames);
+const populerWrapper = document.querySelector(".shuffle-populer").parentElement;
+initSlider(populerWrapper, populerGames);
+
+// Düşük Sistem
+const dusukGames = allGames.filter(g => g.tags.includes("Düşük Sistem"));
+shuffle(dusukGames);
+initSlider(".dusuk-wrapper", dusukGames);
+
 
 });
 </script>
