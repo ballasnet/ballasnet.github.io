@@ -511,15 +511,18 @@ const indieGames = [...allGames];
 shuffle(indieGames);
 initSlider(".indie-wrapper", indieGames);
 
-// Popüler
-const populerGames = allGames.filter(g => g.tags && g.tags.includes("Popüler"));
-shuffle(populerGames);
+// Popüler (HTML sabit – sadece slider mantığı)
 initSlider(
   document.querySelector(".shuffle-populer").closest(".slider-wrapper"),
-  populerGames
+  Array.from(
+    document.querySelectorAll(".shuffle-populer .game")
+  ).map(g => ({
+    title: g.querySelector(".game-title").textContent,
+    slug: g.closest("a").getAttribute("href").replace(".html",""),
+    image: g.querySelector("img").getAttribute("src"),
+    tags: []
+  }))
 );
-
-
 
 // Düşük Sistem
 const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
