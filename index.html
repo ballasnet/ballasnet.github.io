@@ -520,7 +520,8 @@ initSlider(
     title: g.querySelector(".game-title").textContent,
     slug: g.closest("a").getAttribute("href").replace(".html",""),
     image: g.querySelector("img").getAttribute("src"),
-    tags: []
+    tags: Array.from(g.querySelectorAll(".game-tag"))
+           .map(t => t.textContent)
   }))
 );
 
