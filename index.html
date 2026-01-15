@@ -235,20 +235,21 @@ a{color:#fff;text-decoration:none;}
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Görsel taşarsa kutunun dışına çıkmasın */
+  overflow: hidden;
+  border-radius: 8px; /* opsiyonel: biraz yuvarlat */
 }
 
 .wheel img {
-  width: 80px;      /* Görsel boyutu */
-  height: 80px;     /* Kare ise 80x80 ideal */
-  object-fit: contain; /* Görseli bozmadan sığdır */
+  width: 120px;      /* artık kutunun büyük kısmını kaplıyor */
+  height: 120px;
+  object-fit: contain;
   transition: transform 0.2s ease;
 }
 
-/* Hover efekti: içe doğru basılma hissi */
 .wheel:hover img {
   transform: scale(0.95);
 }
+
 
 
 .wheel-placeholder {
