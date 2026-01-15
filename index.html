@@ -235,6 +235,19 @@ a{color:#fff;text-decoration:none;}
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wheel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wheel:hover {
+  transform: scale(0.9); /* hover’da içe küçülme */
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
 }
 
 .wheel-placeholder {
@@ -242,6 +255,7 @@ a{color:#fff;text-decoration:none;}
   font-size: 14px;
   text-align: center;
 }
+
 
 /* Ortadaki yatay dikdörtgen */
 .haftanin-oyunu {
@@ -444,10 +458,10 @@ a{color:#fff;text-decoration:none;}
 <section class="haftanin-oyunu-section">
   <div class="haftanin-oyunu-container">
 
-    <!-- Çark -->
-    <div class="wheel">
-      <div class="wheel-placeholder">Çark</div>
-    </div>
+<div class="wheel">
+  <img src="random.png" alt="Random Oyun">
+  <div class="wheel-placeholder">Çark</div>
+</div>
 
     <!-- Ortadaki Yatay Dikdörtgen -->
     <div class="haftanin-oyunu">
