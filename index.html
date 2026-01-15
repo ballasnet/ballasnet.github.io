@@ -238,14 +238,15 @@ a{color:#fff;text-decoration:none;}
 }
 
 .haftanin-oyunu img {
-  width: 120%;   /* kutuyu taşır */
-  height: 120%;
+  width: 120%;      /* kutuyu biraz taşır, hover sırasında boşluk kalmaz */
+  height: 120%;     /* kutuyu biraz taşır */
   object-fit: cover;
   transition: transform 0.2s ease;
+  transform-origin: center center; /* merkezden küçülme */
 }
 
 .haftanin-oyunu:hover img {
-  transform: scale(0.95);
+  transform: scale(0.95); /* hover efekti aynen kalıyor */
 }
 
 
