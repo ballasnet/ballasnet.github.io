@@ -227,22 +227,26 @@ a{color:#fff;text-decoration:none;}
 }
 
 .haftanin-oyunu {
-  width: 400px;
-  height: 150px;
+  width: 400px;   /* kutu genişliği */
+  height: 150px;  /* kutu yüksekliği */
   overflow: hidden;
   border: 2px solid #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .haftanin-oyunu img {
-  width: 110%;
+  width: 110%;    /* kutuyu taşır, hover için boşluk kalmaz */
   height: 110%;
   object-fit: cover;
   transition: transform 0.2s ease;
 }
 
 .haftanin-oyunu:hover img {
-  transform: scale(0.95); /* içe doğru hover efekti */
+  transform: scale(0.95);
 }
+
 
 
 
@@ -500,9 +504,9 @@ a{color:#fff;text-decoration:none;}
 
     <!-- Ortadaki Yatay Dikdörtgen -->
 <div class="haftanin-oyunu">
-  <img src="haftaninoyunu.jpg" alt="Haftanın Oyunu">
-  <div class="haftanin-oyunu-text">HAFTANIN OYUNU</div>
+  <img src="haftaninoyunu2.jpg" alt="Haftanın Oyunu">
 </div>
+
 
 
     <!-- Sağdaki Çekiliş/Placeholder -->
