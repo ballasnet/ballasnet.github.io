@@ -228,25 +228,26 @@ a{color:#fff;text-decoration:none;}
 
 /* Haftanın Oyunu Görseli */
 .haftanin-oyunu {
-  width: 400px;          /* istenilen genişlik */
-  height: 200px;         /* daha yüksek yaparak boşluğu doldur */
+  width: 400px;
+  height: 200px;
   overflow: hidden;
   border: 2px solid #222;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #0f0f0f;
 }
 
 .haftanin-oyunu img {
-  width: 120%;      /* kutuyu biraz taşır, hover sırasında boşluk kalmaz */
-  height: 120%;     /* kutuyu biraz taşır */
+  width: 110%;     /* kutuyu aşacak, hover sırasında boşluk kalmasın */
+  height: 130%;    /* kutuyu aşacak */
   object-fit: cover;
   transition: transform 0.2s ease;
-  transform-origin: center center; /* merkezden küçülme */
+  transform-origin: center center;
 }
 
 .haftanin-oyunu:hover img {
-  transform: scale(0.95); /* hover efekti aynen kalıyor */
+  transform: scale(0.95); /* içe doğru hover aynen çalışacak */
 }
 
 
