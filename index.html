@@ -214,6 +214,69 @@ a{color:#fff;text-decoration:none;}
   padding-right: 0;
 }
 
+.haftanin-oyunu-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.haftanin-oyunu-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* öğeler arasındaki boşluk */
+}
+
+/* Çark */
+.wheel {
+  width: 150px;
+  height: 150px;
+  background: #111;
+  border: 2px solid #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel-placeholder {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Ortadaki yatay dikdörtgen */
+.haftanin-oyunu {
+  flex: 1; /* kalan alanı kaplasın */
+  height: 150px;
+  background: #0f0f0f;
+  border: 2px solid #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-placeholder {
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Sağdaki çekiliş/placeholder */
+.cekilis-placeholder {
+  width: 200px;
+  height: 150px;
+  background: #111;
+  border: 2px solid #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeholder-box {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
 
 </style>
 </head>
@@ -376,6 +439,29 @@ a{color:#fff;text-decoration:none;}
     </div>
   </div>
 </section>
+
+
+<section class="haftanin-oyunu-section">
+  <div class="haftanin-oyunu-container">
+
+    <!-- Çark -->
+    <div class="wheel">
+      <div class="wheel-placeholder">Çark</div>
+    </div>
+
+    <!-- Ortadaki Yatay Dikdörtgen -->
+    <div class="haftanin-oyunu">
+      <div class="thumbnail-placeholder">HAFTANIN OYUNU</div>
+    </div>
+
+    <!-- Sağdaki Çekiliş/Placeholder -->
+    <div class="cekilis-placeholder">
+      <div class="placeholder-box">Çekiliş</div>
+    </div>
+
+  </div>
+</section>
+
 
 <footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
 <script>
