@@ -313,6 +313,18 @@ a{color:#fff;text-decoration:none;}
   text-align: center;
 }
 
+.haftanin-oyunu-text {
+  position: absolute;
+  bottom: -24px; /* kutunun altına yazı taşsın */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: bold;
+  color: #0ff; /* neon mavi, havalı bir renk */
+  text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+  letter-spacing: 1px;
+}
+
 
 </style>
 </head>
@@ -487,9 +499,11 @@ a{color:#fff;text-decoration:none;}
 
 
     <!-- Ortadaki Yatay Dikdörtgen -->
-    <div class="haftanin-oyunu">
-      <div class="thumbnail-placeholder">HAFTANIN OYUNU</div>
-    </div>
+<div class="haftanin-oyunu">
+  <img src="haftaninoyunu.jpg" alt="Haftanın Oyunu">
+  <div class="haftanin-oyunu-text">HAFTANIN OYUNU</div>
+</div>
+
 
     <!-- Sağdaki Çekiliş/Placeholder -->
     <div class="cekilis-placeholder">
