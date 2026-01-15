@@ -235,20 +235,21 @@ a{color:#fff;text-decoration:none;}
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* Görsel taşarsa kutunun dışına çıkmasın */
 }
 
 .wheel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 80px;      /* Görsel boyutu */
+  height: 80px;     /* Kare ise 80x80 ideal */
+  object-fit: contain; /* Görseli bozmadan sığdır */
+  transition: transform 0.2s ease;
 }
 
-.wheel:hover {
-  transform: scale(0.9); /* hover’da içe küçülme */
-  box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
+/* Hover efekti: içe doğru basılma hissi */
+.wheel:hover img {
+  transform: scale(0.95);
 }
+
 
 .wheel-placeholder {
   color: #fff;
@@ -458,10 +459,11 @@ a{color:#fff;text-decoration:none;}
 <section class="haftanin-oyunu-section">
   <div class="haftanin-oyunu-container">
 
+<!-- Random Oyna Görseli -->
 <div class="wheel">
-  <img src="random.png" alt="Random Oyun">
-  <div class="wheel-placeholder">Çark</div>
+  <img src="random.png" alt="Random Oyna">
 </div>
+
 
     <!-- Ortadaki Yatay Dikdörtgen -->
     <div class="haftanin-oyunu">
