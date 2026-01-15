@@ -236,18 +236,18 @@ a{color:#fff;text-decoration:none;}
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 8px; /* opsiyonel: biraz yuvarlat */
+  border-radius: 8px; /* isteğe bağlı */
 }
 
 .wheel img {
-  width: 120px;      /* artık kutunun büyük kısmını kaplıyor */
-  height: 120px;
-  object-fit: contain;
+  width: 100%;     /* kutuyu tamamen kaplasın */
+  height: 100%;    /* kutuyu tamamen kaplasın */
+  object-fit: cover;  /* görsel kesilmeden kutuya sığar */
   transition: transform 0.2s ease;
 }
 
 .wheel:hover img {
-  transform: scale(0.95);
+  transform: scale(0.95);  /* içe doğru basılma efekti */
 }
 
 
