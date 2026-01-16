@@ -961,6 +961,34 @@ toggleBtn.addEventListener('click', () => {
   toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
 
+function getAllGamesForSearch(){
+  const map = new Map();
+
+  // 1️⃣ JS oyunları
+  allGames.forEach(g=>{
+    map.set(g.slug, g);
+  });
+
+  // 2️⃣ HTML slider + mozaik oyunları
+  document.querySelectorAll(".game").forEach(gameEl=>{
+    const a = gameEl.closest("a");
+    if(!a) return;
+
+    const title = gameEl.querySelector(".game-title")?.textContent.trim();
+    const href = a.getAttribute("href");
+    if(!title || !href) return;
+
+    const slug = href.replace(".html","");
+    map.set(slug,{
+      title,
+      slug
+    });
+  });
+
+  return Array.from(map.values());
+}
+
+
 const searchInput = document.getElementById("searchInput");
 const suggestionsBox = document.querySelector(".search-suggestions");
 
@@ -975,7 +1003,7 @@ if(searchInput && suggestionsBox){
       return;
     }
 
-    const results = allGames.filter(game =>
+    const results = getAllGamesForSearch().filter(game =>
       game.title.toLowerCase().includes(value)
     );
 
