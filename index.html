@@ -803,9 +803,9 @@ function initSlider(wrapperSelector, games){
 
   const CLONE_COUNT = 3;
 
-  // 🔁 SADECE SONA CLONE
-  realCards.slice(0, CLONE_COUNT).forEach(c=>{
-    slider.appendChild(c.cloneNode(true));
+  // 🔁 sadece SONA clone
+  realCards.slice(0, CLONE_COUNT).forEach(card=>{
+    slider.appendChild(card.cloneNode(true));
   });
 
   const cardWidth = 346;
@@ -820,7 +820,7 @@ function initSlider(wrapperSelector, games){
     index++;
     move();
 
-    // 🔥 2. clone görünürken sessiz reset
+    // 🔥 2. CLONE GÖRÜNDÜĞÜ ANDA RESET
     if(index === realLen + 1){
       setTimeout(()=>{
         slider.style.transition = "none";
@@ -832,7 +832,6 @@ function initSlider(wrapperSelector, games){
 
   left.onclick = ()=>{
     if(index === 0){
-      // baştan sola basınca sona at (klasik davranış)
       slider.style.transition = "none";
       index = realLen - 1;
       slider.style.transform = `translateX(${-index * cardWidth}px)`;
