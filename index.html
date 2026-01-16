@@ -946,22 +946,19 @@ toggleBtn.addEventListener('click',()=>{
   updateTagColors();
 });
 
-function updateTagColors(){
-  const isDark=document.body.classList.contains('dark');
-  document.querySelectorAll('.game-title, .game-tag').forEach(el=>{
-    el.style.color=isDark?'#fff':'#111';
-  });
-}
+const toggleBtn = document.getElementById('theme-toggle');
 
+// Başlangıçta gece modu
+document.body.classList.add('dark');
+toggleBtn.textContent = '☀️';
 
-
-function updateDayModeColors() {
+function updateColors() {
   const isDark = document.body.classList.contains('dark');
 
   // Arka plan
-  document.body.style.background = isDark ? '#111' : '#F5F5E6';
+  document.body.style.background = isDark ? '#111' : '#F5FEFD';
 
-  // Tag ve başlıklar
+  // Tag ve başlık renkleri
   document.querySelectorAll('.game-title, .game-tag').forEach(el => {
     el.style.color = isDark ? '#fff' : '#333';
   });
@@ -970,7 +967,20 @@ function updateDayModeColors() {
   document.querySelectorAll('.snowflake').forEach(snow => {
     snow.style.background = isDark ? 'rgba(255,255,255,0.6)' : 'rgba(200,200,200,0.8)';
   });
+
+  // Buton ikon
+  toggleBtn.textContent = isDark ? '☀️' : '🌙';
 }
+
+// Toggle buton event
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  updateColors();
+});
+
+// Sayfa yüklendiğinde bir kez çağır
+document.addEventListener('DOMContentLoaded', updateColors);
+
 
 // Toggle buton event’inde de çağır
 toggleBtn.addEventListener('click', () => {
