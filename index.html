@@ -497,29 +497,30 @@ body:not(.dark) .section h2 {
   color: #111; /* tam siyah değil, koyu gri de olabilir #111, #222 vs */
 }
 
-.site-footer {
-  margin-top: 60px;
-  padding: 20px 10px;
-  text-align: center;
-
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  color: #777;
-
-  background: transparent;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-/* Çok uzun sayfalarda bile en altta dursun */
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.site-footer {
-  margin-top: auto;
+/* Ana içerik kapsayıcın varsa (örn .container, .content, main) */
+main {
+  padding-bottom: 30px; /* footer’a nefes */
 }
+
+/* Footer */
+.site-footer {
+  margin-top: 30px; /* auto YOK */
+  padding: 14px 10px;
+
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #777;
+
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
 
 
 
