@@ -1051,19 +1051,28 @@ function updateTagColors() {
 }
 
 // Toggle buton event’inde çağır
+const toggleBtn = document.getElementById('theme-toggle');
+
+// Başlangıçta gece modu
+document.body.classList.add('dark');
+toggleBtn.textContent = '☀️';
+
+function updateTagColors() {
+  const isDark = document.body.classList.contains('dark');
+  document.querySelectorAll('.game-title, .game-tag').forEach(el => {
+    el.style.color = isDark ? '#fff' : '#111';
+  });
+}
+
+// Toggle buton
 toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark'); // toggle
-  if(document.body.classList.contains('dark')){
-    toggleBtn.textContent = '☀️';
-  } else {
-    toggleBtn.textContent = '🌙';
-  }
+  document.body.classList.toggle('dark'); // gece/gündüz toggle
+  updateTagColors();                       // tag renklerini güncelle
+  toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
 
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  updateTagColors();
-});
+// Sayfa yüklendiğinde tag renklerini güncelle
+document.addEventListener('DOMContentLoaded', updateTagColors);
 
 
 
