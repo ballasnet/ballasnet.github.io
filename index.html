@@ -349,21 +349,29 @@ a{color:#fff;text-decoration:none;}
 
 /* MASA / PANEL */
 .masa-panel {
-  position: fixed; /* ekranın zemini gibi */
-  inset: 0;        /* top right bottom left = 0 */
+  position: absolute;
+  inset: 0;
   background: #111;
-  border: 3px solid #222;
 
+  border: 3px solid #222;
   box-shadow:
     inset 0 0 0 2px #000,
     inset 0 40px 80px rgba(0,0,0,0.8);
 
-  z-index: 0;
+  z-index: 1;
 }
+
 
 .ui-container {
   position: relative;
   z-index: 5;
+}
+
+
+.site-root {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
 }
 
 
@@ -532,11 +540,14 @@ a{color:#fff;text-decoration:none;}
 </section>
 
 
-<div class="masa-panel"></div>
+<div class="site-root">
+  <div class="masa-panel"></div>
 
-<div class="ui-container">
-  <!-- butonlar, paneller, kartlar vs -->
+  <div class="ui-container">
+    <!-- her şey burada -->
+  </div>
 </div>
+
 
 
 <section class="haftanin-oyunu-section">
