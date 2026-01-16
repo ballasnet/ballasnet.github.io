@@ -105,9 +105,12 @@ a{color:#fff;text-decoration:none;}
 
 .slider{
   display:flex;
-  gap:26px;
-  transition:transform .4s ease;
 }
+
+.slider > a{
+  margin-right:26px;
+}
+
 .slider .game{
   flex-shrink:0;
   width:320px;
@@ -789,7 +792,7 @@ function initSlider(wrapperSelector, games){
 
   fillSlider(slider, games);
 
-  const cardWidth = 346;
+  const cardWidth = slider.children[1].offsetWidth;
 
   // --- clone (SADECE 1 BAŞ + 1 SON) ---
   const first = slider.children[0].cloneNode(true);
