@@ -804,28 +804,70 @@ function initSlider(wrapperSelector, games){
   const FAKE_COUNT = 4;
   const cardWidth = 346;
 
-  // 🔁 sona 4 fake
+  // 🔁 SADECE SONA fake
   for(let i = 0; i < FAKE_COUNT; i++){
     slider.appendChild(realCards[i].cloneNode(true));
   }
 
+  const allCards = Array.from(slider.children);
+  const firstFake = allCards[realLen];                 // ilk fake
+  const lastFake  = allCards[realLen + FAKE_COUNT -1]; // son fake
+
   let index = 0;
-  let resetPending = false;
+  let locked = false;
 
   const move = ()=>{
     slider.style.transition = "transform 0.4s ease";
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
   };
 
+  const checkFakeFake = ()=>{
+    if(locked) return;
+
+    const matrix = new DOMMatrixReadOnly(
+      getComputedStyle(slider).transform
+    );
+    const sliderX = Math.abs(matrix.m41);
+
+    const viewStart = sliderX;
+    const viewEnd   = sliderX + wrapper.offsetWidth;
+
+    const ffStart = firstFake.offsetLeft;
+    const ffEnd   = ffStart + cardWidth;
+
+    const lfStart = lastFake.offsetLeft;
+
+    // 🔥 TEK VE DOĞRU ŞART
+    if(
+      ffEnd > viewStart &&   // ilk fake solda görünüyorsa
+      lfStart < viewEnd     // son fake sağda görünüyorsa
+    ){
+      locked = true;
+
+      slider.style.transition = "none";
+      index = 0;
+      slider.style.transform = "translateX(0px)";
+
+      slider.offsetHeight; // reflow
+      slider.style.transition = "transform 0.4s ease";
+
+      locked = false;
+    }
+  };
+
   right.onclick = ()=>{
     index++;
     move();
-
-    // ✅ SADECE 4. FAKE GÖRÜNDÜĞÜNDE
-    if(index === realLen + 3){
-      resetPending = true;
-    }
+    requestAnimationFrame(checkFakeFake);
   };
+
+  left.onclick = ()=>{
+    if(index === 0) return;
+    index--;
+    move();
+  };
+}
+
 
   slider.addEventListener("transitionend", ()=>{
     if(!resetPending) return;
