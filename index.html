@@ -791,55 +791,47 @@ function initSlider(wrapperSelector, games){
 
   const cardWidth = 346;
 
-  const realCards = Array.from(slider.children);
-  if(realCards.length < 2) return;
+  // --- clone (SADECE 1 BAŞ + 1 SON) ---
+  const first = slider.children[0].cloneNode(true);
+  const last  = slider.children[slider.children.length - 1].cloneNode(true);
 
-  const firstClone = realCards[0].cloneNode(true);
-  const lastClone  = realCards[realCards.length - 1].cloneNode(true);
-
-  slider.insertBefore(lastClone, realCards[0]);
-  slider.appendChild(firstClone);
+  slider.appendChild(first);
+  slider.insertBefore(last, slider.children[0]);
 
   let index = 1;
-  let isMoving = false;
 
   slider.style.transition = "none";
   slider.style.transform = `translateX(${-index * cardWidth}px)`;
 
   const move = () => {
-    isMoving = true;
     slider.style.transition = "transform 0.4s ease";
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
   };
 
-  slider.addEventListener("transitionend", () => {
-    // ➜ sağdan fake sona geçildiyse
-    if(index === slider.children.length - 1){
-      slider.style.transition = "none";
-      index = 1;
-      slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    }
-
-    // ➜ soldan fake başa geçildiyse
-    if(index === 0){
-      slider.style.transition = "none";
-      index = slider.children.length - 2;
-      slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    }
-
-    isMoving = false;
-  });
-
   right.onclick = () => {
-    if(isMoving) return;
     index++;
     move();
+
+    if(index === slider.children.length - 1){
+      requestAnimationFrame(() => {
+        slider.style.transition = "none";
+        index = 1;
+        slider.style.transform = `translateX(${-index * cardWidth}px)`;
+      });
+    }
   };
 
   left.onclick = () => {
-    if(isMoving) return;
     index--;
     move();
+
+    if(index === 0){
+      requestAnimationFrame(() => {
+        slider.style.transition = "none";
+        index = slider.children.length - 2;
+        slider.style.transform = `translateX(${-index * cardWidth}px)`;
+      });
+    }
   };
 }
 
