@@ -852,19 +852,19 @@ function createSnowflake() {
   const snowflake = document.createElement('div');
   snowflake.classList.add('snowflake');
 
-  // panel boyutuna göre sol konum
   const containerWidth = snowContainer.offsetWidth;
   const containerHeight = snowContainer.offsetHeight;
 
   snowflake.style.left = Math.random() * containerWidth + 'px';
-  snowflake.style.opacity = Math.random();
-  snowflake.style.width = 5 + Math.random()*5 + 'px';
-  snowflake.style.height = snowflake.style.width;
+  snowflake.style.opacity = 0.6 + Math.random() * 0.4; // biraz daha yoğun
+  const size = 6 + Math.random() * 6; // 6-12px arası
+  snowflake.style.width = size + 'px';
+  snowflake.style.height = size + 'px';
 
   let x = parseFloat(snowflake.style.left);
   let y = -10;
-  const speed = 1 + Math.random() * 2;
-  const tilt = Math.random() * 1 - 0.5;
+  const speed = 2 + Math.random() * 2; // daha hızlı
+  const tilt = 0.5 + Math.random() * 0.5; // sağa eğimli
 
   snowContainer.appendChild(snowflake);
 
@@ -874,7 +874,7 @@ function createSnowflake() {
     snowflake.style.top = y + 'px';
     snowflake.style.left = x + 'px';
 
-    if (y > containerHeight) {
+    if (y > containerHeight || x > containerWidth) {
       snowflake.remove();
     } else {
       requestAnimationFrame(fall);
@@ -884,8 +884,9 @@ function createSnowflake() {
   fall();
 }
 
-// Daha stabil performans için interval 300ms
-setInterval(createSnowflake, 300);
+// Daha yoğun ve hızlı kar için intervali 200ms yaptık
+setInterval(createSnowflake, 200);
+
 
 
 
