@@ -911,6 +911,34 @@ setInterval(createSnowflake, 150);
 
 
 
+// Mouse kaçışı için smooth (lerp)
+const lerp = (start, end, t) => start + (end - start) * t;
+
+function fall() {
+  // Düşüş
+  y += speed;
+  x += tilt;
+
+  // Mouse kaçışı
+  const dx = x - mouseX;
+  const dy = y - mouseY;
+  const distance = Math.sqrt(dx*dx + dy*dy);
+
+  if(distance < 80) { // biraz daha geniş alan
+    // Ani değişiklik yerine smooth
+    x = lerp(x, x + (dx / distance) * 12, 0.15); 
+    y = lerp(y, y + (dy / distance) * 6, 0.15);
+  }
+
+  snowflake.style.left = x + 'px';
+  snowflake.style.top = y + 'px';
+
+  if(y > containerHeight || x > containerWidth || y < -20) {
+    snowflake.remove();
+  } else {
+    requestAnimationFrame(fall);
+  }
+}
 
 
 
