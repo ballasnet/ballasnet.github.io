@@ -801,9 +801,9 @@ function initSlider(wrapperSelector, games){
   const realLen = realCards.length;
   if(realLen < 2) return;
 
-  const CLONE_COUNT = 3;
+  const CLONE_COUNT = 4;
 
-  // 🔁 sadece SONA clone
+  // 🔁 SADECE SONA 4 KOPYA
   realCards.slice(0, CLONE_COUNT).forEach(card=>{
     slider.appendChild(card.cloneNode(true));
   });
@@ -820,8 +820,8 @@ function initSlider(wrapperSelector, games){
     index++;
     move();
 
-    // 🔥 2. CLONE GÖRÜNDÜĞÜ ANDA RESET
-    if(index === realLen + 1){
+    // 🔥 4. KOPYA GÖRÜNDÜĞÜ ANDA RESET
+    if(index === realLen + 3){
       setTimeout(()=>{
         slider.style.transition = "none";
         index = 0;
