@@ -497,6 +497,31 @@ body:not(.dark) .section h2 {
   color: #111; /* tam siyah değil, koyu gri de olabilir #111, #222 vs */
 }
 
+.site-footer {
+  margin-top: 60px;
+  padding: 20px 10px;
+  text-align: center;
+
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #777;
+
+  background: transparent;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Çok uzun sayfalarda bile en altta dursun */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-footer {
+  margin-top: auto;
+}
+
+
 
 </style>
 </head>
@@ -711,7 +736,10 @@ body:not(.dark) .section h2 {
 </section>
 
 
-<footer>© Bu site ballasnetindir.com’a yönlendirme amaçlı vitrin olarak hazırlanmıştır.</footer>
+<footer class="site-footer">
+  © BALLASNET – ORJİNAL SİTESİ
+</footer>
+
 <script>
 // --- Oyun verileri ---
 const allGames = [
