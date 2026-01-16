@@ -963,21 +963,11 @@ function updateDayModeTags() {
   });
 }
 
-function updateDayModeTags() {
-  const isDark = document.body.classList.contains('dark'); // gece modu mu
-  document.querySelectorAll('.game-title, .game-tag').forEach(el => {
-    el.style.color = isDark ? '#fff' : '#111'; // gündüz modunda #111
-    el.style.opacity = 1; // görünür yap
-    el.style.filter = 'none'; // herhangi bir filtreyi kaldır
-  });
-}
-
 
 toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark');          // gece/gündüz değiştir
-  updateTagColors();                               // oyun başlık ve tag renkleri
-  updateDayModeTags();                             // gündüz modunda görünürlük
+  document.body.classList.toggle('dark'); // gece/gündüz değiştir
 });
+
 
 
 
