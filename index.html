@@ -879,8 +879,17 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
 
   // --- Gündüz/gece renkleri ---
-  updateTagColors();
+function updateDayModeTags(){
+  const isDark = document.body.classList.contains('dark');
+  document.querySelectorAll('.game-title, .game-tag').forEach(el => {
+    el.style.color = isDark ? '#fff' : '#111';
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateDayModeTags();
 });
+
 
 // --- Snow ---
 const snowContainer = document.querySelector('.snow');
