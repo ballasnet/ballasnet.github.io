@@ -339,6 +339,10 @@ a{color:#fff;text-decoration:none;}
 }
 
 
+.random-link {
+  cursor: pointer;
+}
+
 
 </style>
 </head>
@@ -513,8 +517,8 @@ a{color:#fff;text-decoration:none;}
 
 
     <!-- Ortadaki Yatay Dikdörtgen -->
-<div class="haftanin-oyunu">
-  <img src="keudea.jpg" alt="Haftanın Oyunu">
+<div class="haftanin-oyunu random-link">
+  <img src="keudea.jpg">
 </div>
 
 
@@ -716,6 +720,18 @@ const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sist
 shuffle(dusukGames);
 initSlider(".dusuk-wrapper", dusukGames);
 
+
+document.querySelectorAll(".random-link").forEach(el => {
+  el.addEventListener("click", () => {
+    const links = [
+      "https://www.youtube.com/watch?v=YVkUvmDQ3HY", // Eminem - Without Me
+      "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"  // Eazy-E - Real Muthaphuckkin G's
+    ];
+
+    const random = Math.floor(Math.random() * links.length);
+    window.open(links[random], "_blank");
+  });
+});
 
 });
 </script>
