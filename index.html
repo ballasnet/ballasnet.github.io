@@ -408,13 +408,26 @@ a{color:#fff;text-decoration:none;}
 /* Kar efekti */
 .snow {
   position: absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background-image: url('kar.png');
-  background-repeat: repeat;
-  animation: snow-fall 10s linear infinite;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events: none; /* tıklamayı engelleme */
+  overflow: hidden;
   z-index: 2;
 }
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
 
 /* Karın aşağı doğru hareketi */
 @keyframes snow-fall {
@@ -592,7 +605,6 @@ a{color:#fff;text-decoration:none;}
   <!-- Üst plan (logo + snow) -->
   <div class="masa-overlay">
     <div class="snow"></div>
-    <img src="B-logo.png" alt="B Logo" class="masa-logo">
   </div>
 
 
@@ -834,6 +846,49 @@ document.querySelectorAll(".single-link").forEach(el => {
     window.open("https://www.discord.com", "_blank");
   });
 });
+
+
+
+const snowContainer = document.querySelector('.snow');
+
+function createSnowflake() {
+  const snowflake = document.createElement('div');
+  snowflake.classList.add('snowflake');
+
+  // Rastgele başlangıç konumu
+  snowflake.style.left = Math.random() * window.innerWidth + 'px';
+  snowflake.style.opacity = Math.random();
+  snowflake.style.width = 5 + Math.random()*5 + 'px';
+  snowflake.style.height = snowflake.style.width;
+
+  // Hız ve eğim
+  let x = parseFloat(snowflake.style.left);
+  let y = -10;
+  const speed = 1 + Math.random() * 2;
+  const tilt = Math.random() * 1 - 0.5; // sola/sağa eğim
+
+  snowContainer.appendChild(snowflake);
+
+  function fall() {
+    y += speed;
+    x += tilt;
+    snowflake.style.top = y + 'px';
+    snowflake.style.left = x + 'px';
+
+    if (y > window.innerHeight) {
+      snowflake.remove();
+    } else {
+      requestAnimationFrame(fall);
+    }
+  }
+
+  fall();
+}
+
+// Sürekli yeni kar üret
+setInterval(createSnowflake, 200);
+
+
 
 </script>
 
