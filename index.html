@@ -786,13 +786,45 @@ function initSlider(wrapperSelector, games){
 
   fillSlider(slider, games);
 
-  let index = 0;
+  let index = 1; // Sonsuz loop için başlangıç 1
   const cardWidth = 346;
+
+  // --- İlk ve son öğeyi klonla ---
+  const cloneFirst = slider.children[0].cloneNode(true);
+  const cloneLast = slider.children[slider.children.length-1].cloneNode(true);
+  slider.appendChild(cloneFirst);
+  slider.insertBefore(cloneLast, slider.children[0]);
+
   const update = () => slider.style.transform = `translateX(${-index * cardWidth}px)`;
-right.onclick = () => { if(index < slider.children.length-1){ index++; update(); }};
-left.onclick = () => { if(index > 0){ index--; update(); }};
   update();
-};
+
+  right.onclick = () => {
+    index++;
+    slider.style.transition = "transform 0.4s ease";
+    update();
+    if(index === slider.children.length-1){ // sona geldiğinde
+      setTimeout(()=>{
+        slider.style.transition = "none";
+        index = 1; // gerçek ilk oyun
+        update();
+      }, 410); // transition süresi kadar bekle
+    }
+  };
+
+  left.onclick = () => {
+    index--;
+    slider.style.transition = "transform 0.4s ease";
+    update();
+    if(index === 0){ // başa geldiğinde
+      setTimeout(()=>{
+        slider.style.transition = "none";
+        index = slider.children.length-2; // gerçek son oyun
+        update();
+      }, 410);
+    }
+  };
+}
+
 
 
 // --- Tag güncelleme ---
