@@ -1033,8 +1033,7 @@ const toggleBtn = document.getElementById('theme-toggle');
 document.body.classList.add('dark');
 toggleBtn.textContent = '☀️';
 
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark'); // toggle
+
 
   if(document.body.classList.contains('dark')){
     toggleBtn.textContent = '☀️'; // gündüz modu ikonu
@@ -1052,10 +1051,32 @@ function updateTagColors() {
 }
 
 // Toggle buton event’inde çağır
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('theme-toggle');
+  
+  // Başlangıçta gece modu
+  document.body.classList.add('dark');
+  toggleBtn.textContent = '☀️';
+
+  // Toggle buton
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+
+    // Tag ve başlık renklerini güncelle
+    updateTagColors();
+
+    // İkon değişimi
+    if(document.body.classList.contains('dark')){
+      toggleBtn.textContent = '☀️'; // gündüz modu ikonu
+    } else {
+      toggleBtn.textContent = '🌙'; // gece modu ikonu
+    }
+  });
+
+  // Sayfa yüklendiğinde tag renklerini ayarla
   updateTagColors();
 });
+
 
 // Sayfa yüklendiğinde de çağır
 document.addEventListener('DOMContentLoaded', updateTagColors);
