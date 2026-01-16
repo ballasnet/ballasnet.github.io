@@ -381,6 +381,39 @@ a{color:#fff;text-decoration:none;}
 }
 
 
+/* B logosu ortada üstte */
+.masa-logo {
+  position: absolute;
+  top: 10px; /* üstten boşluk */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px; /* isteğe bağlı boyut */
+  height: auto;
+  z-index: 5; /* diğer öğelerin üstünde */
+}
+
+/* Kar efekti */
+.snow {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* arka planda kalacak */
+  background-image: url('kar.png'); /* minik şeffaf kar taneleri PNG */
+  background-repeat: repeat;
+  animation: snow-fall 10s linear infinite;
+}
+
+/* Karın aşağı doğru hareketi */
+@keyframes snow-fall {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1000px; } /* düşme mesafesi */
+}
+
+
+
 
 
 </style>
@@ -550,6 +583,12 @@ a{color:#fff;text-decoration:none;}
 
   <!-- MASA (ARKA PLAN) -->
   <div class="masa-panel">
+    <!-- Kar efekti ve B logosu -->
+<div class="snow"></div>
+<img src="B-logo.jpg" alt="B Logo" class="masa-logo">
+
+
+  
 
     <!-- ÜSTÜNDEKİ ŞEYLER -->
     <div class="haftanin-oyunu-container">
