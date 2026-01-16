@@ -849,67 +849,67 @@ document.querySelectorAll(".single-link").forEach(el => {
 const snowContainer = document.querySelector('.snow');
 let mouseX = -1000, mouseY = -1000;
 
-snowContainer.addEventListener('mousemove', e => {
-  const rect = snowContainer.getBoundingClientRect();
+// Mouse koordinatlarını .masa-panel üzerinden al
+const panel = document.querySelector('.masa-panel');
+panel.addEventListener('mousemove', e => {
+  const rect = panel.getBoundingClientRect();
   mouseX = e.clientX - rect.left;
   mouseY = e.clientY - rect.top;
 });
 
-// Lerp fonksiyonu smooth kaçış için
-const lerp = (start, end, t) => start + (end - start) * t;
-
 function createSnowflake() {
-  // Her çağrıda 2-3 kar üretecek
-  const flakes = 2 + Math.floor(Math.random() * 2);
-  for(let i=0;i<flakes;i++){
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    const containerWidth = snowContainer.offsetWidth;
-    const containerHeight = snowContainer.offsetHeight;
+  const snowflake = document.createElement('div');
+  snowflake.classList.add('snowflake');
+  const containerWidth = snowContainer.offsetWidth;
+  const containerHeight = snowContainer.offsetHeight;
 
-    // Başlangıç koordinatları
-    let x = Math.random() * containerWidth;
-    let y = -10;
-    const speed = 2 + Math.random() * 2;
-    const tilt = 0.5 + Math.random() * 0.5;
-    const size = 6 + Math.random() * 6;
+  // Başlangıç koordinatları
+  let x = Math.random() * containerWidth;
+  let y = -10;
+  const speed = 2 + Math.random() * 2;
+  const tilt = 0.5 + Math.random() * 0.5;
+  const size = 6 + Math.random() * 6;
 
-    snowflake.style.width = size + 'px';
-    snowflake.style.height = size + 'px';
-    snowflake.style.opacity = 0.6 + Math.random() * 0.4;
+  snowflake.style.width = size + 'px';
+  snowflake.style.height = size + 'px';
+  snowflake.style.opacity = 0.6 + Math.random() * 0.4;
 
-    snowContainer.appendChild(snowflake);
+  snowContainer.appendChild(snowflake);
 
-    function fall() {
-      y += speed;
-      x += tilt;
+  function fall() {
+    // Düşüş
+    y += speed;
+    x += tilt;
 
-      // Mouse kaçışı
-      const dx = x - mouseX;
-      const dy = y - mouseY;
-      const distance = Math.sqrt(dx*dx + dy*dy);
+    // Mouse kaçışı
+    const dx = x - mouseX;
+    const dy = y - mouseY;
+    const distance = Math.sqrt(dx*dx + dy*dy);
 
-      if(distance < 80){
-        x = lerp(x, x + (dx / distance) * 12, 0.15); 
-        y = lerp(y, y + (dy / distance) * 6, 0.15);
-      }
-
-      snowflake.style.left = x + 'px';
-      snowflake.style.top = y + 'px';
-
-      if(y > containerHeight || x > containerWidth || y < -20){
-        snowflake.remove();
-      } else {
-        requestAnimationFrame(fall);
-      }
-    }
-
-    fall();
-  }
+if(distance < 120){   // mouse etkisi 
+  x = lerp(x, x + (dx / distance) * 20, 0.25); // sağa-sola daha hızlı ve smooth
+  y = lerp(y, y + (dy / distance) * 10, 0.25); // yukarı-aşağı da kaçış
 }
 
-// Daha yoğun kar: interval süresi 100ms (öncekinden daha hızlı)
-setInterval(createSnowflake, 100);
+
+    // Karın pozisyonunu uygula
+    snowflake.style.left = x + 'px';
+    snowflake.style.top = y + 'px';
+
+    // Panel dışına çıktıysa sil
+    if(y > containerHeight || x > containerWidth || y < -20) {
+      snowflake.remove();
+    } else {
+      requestAnimationFrame(fall);
+    }
+  }
+
+  fall();
+}
+
+// Daha yoğun kar
+setInterval(createSnowflake, 150);
+
 
 
 
