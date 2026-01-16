@@ -348,24 +348,28 @@ a{color:#fff;text-decoration:none;}
 }
 
 /* MASA / PANEL */
-.masa-panel {
-  position: absolute;
-  inset: 0;
-
-  background: #111;
-  border: 3px solid #222;
+.masa-panel{
+  max-width:1300px;
+  margin:80px auto;
+  padding:40px;
+  background:#111;
+  border:3px solid #222;
+  border-radius:14px;
   box-shadow:
     inset 0 0 0 2px #000,
-    inset 0 40px 80px rgba(0,0,0,0.8);
-
-  z-index: 0;
-  pointer-events: none; /* 🔥 EN KRİTİK SATIR */
+    0 30px 80px rgba(0,0,0,.75);
 }
 
+.haftanin-oyunu-container{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
 
-.ui-container {
-  position: relative;
-  z-index: 5;
+.wheel,
+.haftanin-oyunu,
+.cekilis{
+  cursor:pointer;
 }
 
 
@@ -542,34 +546,34 @@ a{color:#fff;text-decoration:none;}
 </section>
 
 
-<div class="site-root">
-  <div class="masa-panel"></div>
-
-  <div class="ui-container">
-    <!-- her şey burada -->
-  </div>
-</div>
-
-
-
 <section class="haftanin-oyunu-section">
-  <div class="haftanin-oyunu-container">
 
-<!-- Random Oyna Görseli -->
-<div class="wheel random-link">
-  <img src="random.png" alt="Random Oyna">
-</div>
+  <!-- MASA (ARKA PLAN) -->
+  <div class="masa-panel">
 
+    <!-- ÜSTÜNDEKİ ŞEYLER -->
+    <div class="haftanin-oyunu-container">
 
-    <!-- Ortadaki Yatay Dikdörtgen -->
-<div class="haftanin-oyunu">
-  <img src="keudea.jpg">
-</div>
+      <!-- Random Oyna -->
+      <a href="https://www.youtube.com/watch?v=YVkUvmDQ3HY" class="wheel random-link">
+        <img src="random.png" alt="Random Oyna">
+      </a>
 
+      <!-- Haftanın Oyunu -->
+      <a href="https://www.youtube.com/watch?v=YVkUvmDQ3HY" class="haftanin-oyunu">
+        <img src="keudea.jpg" alt="Haftanın Oyunu">
+      </a>
 
-<div class="cekilis single-link">
-  <img src="cekilis2.jpg" alt="Çekiliş">
-</div>
+      <!-- Çekiliş -->
+      <a href="https://www.youtube.com/watch?v=YVkUvmDQ3HY" class="cekilis single-link">
+        <img src="cekilis2.jpg" alt="Çekiliş">
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
 
 
   </div>
