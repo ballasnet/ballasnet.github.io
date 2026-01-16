@@ -789,10 +789,18 @@ function initSlider(wrapperSelector, games){
   let index = 0;
   const cardWidth = 346;
   const update = () => slider.style.transform = `translateX(${-index * cardWidth}px)`;
-  right.onclick = () => { if(index < slider.children.length-1){ index++; update(); }};
-  left.onclick = () => { if(index > 0){ index--; update(); }};
+right.onclick = () => {
+  index++;
+  if(index >= slider.children.length) index = 0; // başa dön
   update();
-}
+};
+
+left.onclick = () => {
+  index--;
+  if(index < 0) index = slider.children.length - 1; // sona git
+  update();
+};
+
 
 // --- Tag güncelleme ---
 function updateGameTags(slug,newTags){
