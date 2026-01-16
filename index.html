@@ -808,32 +808,35 @@ function initSlider(wrapperSelector, games){
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
   };
 
-  right.onclick = () => {
-    index++;
-    move();
+right.onclick = () => {
+  index++;
+  move();
 
-    if(index === slider.children.length - 1){
-      setTimeout(() => {
-        slider.style.transition = "none";
-        index = 1;
-        slider.style.transform = `translateX(${-index * cardWidth}px)`;
-      }, 400);
-    }
-  };
+  // 🔥 SON GERÇEK KART GÖRÜNÜRKEN
+  if(index === slider.children.length - 2){
+    setTimeout(() => {
+      slider.style.transition = "none";
+      index = 1;
+      slider.style.transform = `translateX(${-index * cardWidth}px)`;
+    }, 400);
+  }
+};
 
-  left.onclick = () => {
-    index--;
-    move();
 
-    if(index === 0){
-      setTimeout(() => {
-        slider.style.transition = "none";
-        index = slider.children.length - 2;
-        slider.style.transform = `translateX(${-index * cardWidth}px)`;
-      }, 400);
-    }
-  };
-}
+left.onclick = () => {
+  index--;
+  move();
+
+  // 🔥 İLK GERÇEK KART GÖRÜNÜRKEN
+  if(index === 1){
+    setTimeout(() => {
+      slider.style.transition = "none";
+      index = slider.children.length - 2;
+      slider.style.transform = `translateX(${-index * cardWidth}px)`;
+    }, 400);
+  }
+};
+
 
 
 
