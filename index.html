@@ -797,48 +797,56 @@ function initSlider(wrapperSelector, games){
 
   fillSlider(slider, games);
 
-  const cardWidth = slider.children[1].offsetWidth;
+  const realCards = Array.from(slider.children);
+  const realLen = realCards.length;
+  if(realLen < 2) return;
 
-  // --- clone (SADECE 1 BAŞ + 1 SON) ---
-  const first = slider.children[0].cloneNode(true);
-  const last  = slider.children[slider.children.length - 1].cloneNode(true);
+  const CLONE_COUNT = 3;
 
-  slider.appendChild(first);
-  slider.insertBefore(last, slider.children[0]);
+  // 🔁 başa clone
+  realCards.slice(-CLONE_COUNT).forEach(c=>{
+    slider.insertBefore(c.cloneNode(true), slider.firstChild);
+  });
 
-  let index = 1;
+  // 🔁 sona clone
+  realCards.slice(0, CLONE_COUNT).forEach(c=>{
+    slider.appendChild(c.cloneNode(true));
+  });
+
+  const cardWidth = slider.children[CLONE_COUNT].offsetWidth;
+  let index = CLONE_COUNT;
 
   slider.style.transition = "none";
   slider.style.transform = `translateX(${-index * cardWidth}px)`;
 
-  const move = () => {
+  const move = ()=>{
     slider.style.transition = "transform 0.4s ease";
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
   };
 
-  right.onclick = () => {
+  right.onclick = ()=>{
     index++;
     move();
 
-    if(index === slider.children.length - 1){
-      requestAnimationFrame(() => {
+    if(index >= realLen + CLONE_COUNT){
+      setTimeout(()=>{
         slider.style.transition = "none";
-        index = 1;
+        index = CLONE_COUNT;
         slider.style.transform = `translateX(${-index * cardWidth}px)`;
-      });
+      }, 400);
     }
   };
 
-  left.onclick = () => {
+  left.onclick = ()=>{
     index--;
     move();
 
-    if(index === 0){
-      requestAnimationFrame(() => {
+    if(index < CLONE_COUNT){
+      setTimeout(()=>{
         slider.style.transition = "none";
-        index = slider.children.length - 2;
+        index = realLen + CLONE_COUNT - 1;
         slider.style.transform = `translateX(${-index * cardWidth}px)`;
-      });
+      }, 400);
     }
   };
 }
