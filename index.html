@@ -1044,6 +1044,24 @@ toggleBtn.addEventListener('click', () => {
 });
 
 
+function updateTagColors() {
+  const isDark = document.body.classList.contains('dark');
+  document.querySelectorAll('.game-title, .game-tag').forEach(el => {
+    el.style.color = isDark ? '#fff' : '#111';
+  });
+}
+
+// Toggle buton event’inde çağır
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  updateTagColors();
+});
+
+// Sayfa yüklendiğinde de çağır
+document.addEventListener('DOMContentLoaded', updateTagColors);
+
+
+
 </script>
 
 
