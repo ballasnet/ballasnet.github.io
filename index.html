@@ -801,60 +801,26 @@ function initSlider(wrapperSelector, games){
   const cardWidth = 346;
   const maxIndex = slider.children.length - 1;
 
-  const update = (smooth = true) => {
-    slider.style.transition = smooth ? "transform 0.4s ease" : "none";
+  const update = () => {
+    slider.style.transition = "transform 0.4s ease";
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
   };
 
-  right.addEventListener("click", () => {
-    index++;
-    update(true);
-
-    // 🔥 SONA YAKLAŞINCA HİSSETTİRMEDEN BAŞA SAR
-    if(index >= maxIndex - 1){
-      setTimeout(() => {
-        index = 0;
-        update(false); // anında
-      }, 420); // animasyon bitince
-    }
-  });
-
-  left.addEventListener("click", () => {
-    if(index === 0) return;
-    index--;
-    update(true);
-  });
-
-  update(false);
-}
-
-
-
-  slider.addEventListener("transitionend", ()=>{
-    if(!resetPending) return;
-
-    slider.style.transition = "none";
-    index = 0;
-    slider.style.transform = "translateX(0px)";
-
-    // reflow (çok kritik)
-    slider.offsetHeight;
-
-    resetPending = false;
-  });
-
-  left.onclick = ()=>{
-    if(index === 0){
-      slider.style.transition = "none";
-      index = realLen - 1;
-      slider.style.transform = `translateX(${-index * cardWidth}px)`;
-      slider.offsetHeight;
-      move();
-    } else {
-      index--;
-      move();
+  right.onclick = () => {
+    if(index < maxIndex){
+      index++;
+      update();
     }
   };
+
+  left.onclick = () => {
+    if(index > 0){
+      index--;
+      update();
+    }
+  };
+
+  update();
 }
 
 
