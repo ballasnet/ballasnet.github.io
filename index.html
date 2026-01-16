@@ -849,8 +849,10 @@ document.querySelectorAll(".single-link").forEach(el => {
 const snowContainer = document.querySelector('.snow');
 let mouseX = -1000, mouseY = -1000;
 
-snowContainer.addEventListener('mousemove', e => {
-  const rect = snowContainer.getBoundingClientRect();
+// Mouse koordinatlarını .masa-panel üzerinden al
+const panel = document.querySelector('.masa-panel');
+panel.addEventListener('mousemove', e => {
+  const rect = panel.getBoundingClientRect();
   mouseX = e.clientX - rect.left;
   mouseY = e.clientY - rect.top;
 });
