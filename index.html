@@ -349,16 +349,24 @@ a{color:#fff;text-decoration:none;}
 
 /* MASA / PANEL */
 .masa-panel {
-  max-width: 1300px;
-  margin: 80px auto;
-  padding: 30px;
+  position: fixed; /* ekranın zemini gibi */
+  inset: 0;        /* top right bottom left = 0 */
   background: #111;
   border: 3px solid #222;
+
   box-shadow:
-    0 0 0 2px #000 inset,
-    0 20px 60px rgba(0,0,0,0.7);
-  border-radius: 12px;
+    inset 0 0 0 2px #000,
+    inset 0 40px 80px rgba(0,0,0,0.8);
+
+  z-index: 0;
 }
+
+.ui-container {
+  position: relative;
+  z-index: 5;
+}
+
+
 
 
 </style>
@@ -524,6 +532,13 @@ a{color:#fff;text-decoration:none;}
 </section>
 
 
+<div class="masa-panel"></div>
+
+<div class="ui-container">
+  <!-- butonlar, paneller, kartlar vs -->
+</div>
+
+
 <section class="haftanin-oyunu-section">
   <div class="haftanin-oyunu-container">
 
@@ -542,10 +557,6 @@ a{color:#fff;text-decoration:none;}
 <div class="cekilis single-link">
   <img src="cekilis2.jpg" alt="Çekiliş">
 </div>
-
-
-<div class="masa-panel">MASA BURADA</div>
-
 
 
   </div>
