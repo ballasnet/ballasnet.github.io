@@ -879,17 +879,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
 
   // --- Gündüz/gece renkleri ---
-function updateDayModeTags(){
-  const isDark = document.body.classList.contains('dark');
-  document.querySelectorAll('.game-title, .game-tag').forEach(el => {
-    el.style.color = isDark ? '#fff' : '#111';
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateDayModeTags();
+  updateTagColors();
 });
-
 
 // --- Snow ---
 const snowContainer = document.querySelector('.snow');
@@ -962,6 +953,26 @@ function updateTagColors(){
   });
 }
 
+
+function updateDayModeTags() {
+  const isDark = document.body.classList.contains('dark'); // gece modu mu
+  document.querySelectorAll('.game-title, .game-tag').forEach(el => {
+    el.style.color = isDark ? '#fff' : '#111'; // gündüz modunda #111
+    el.style.opacity = 1; // görünür yap
+    el.style.filter = 'none'; // herhangi bir filtreyi kaldır
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateDayModeTags();
+});
+
+
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  updateTagColors();      // mevcut gece/gündüz renk fonksiyonu
+  updateDayModeTags();    // ekledik, taglar her zaman görünür olur
+});
 
 
 
