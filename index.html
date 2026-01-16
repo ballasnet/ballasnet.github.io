@@ -455,6 +455,40 @@ a{color:#fff;text-decoration:none;}
 }
 
 
+/* GECE MODU (default) */
+body.dark {
+  background-color: #111;  /* site arka planı */
+  color: #fff;             /* yazılar */
+}
+
+/* Örnek: slider, masa paneli, kartlar vs gece modu */
+body.dark .masa-panel {
+  background: #111;
+  border-color: #222;
+}
+
+body.dark .game-title,
+body.dark .game-tag {
+  color: #fff;
+}
+
+/* GÜNDÜZ MODU */
+body:not(.dark) {
+  background-color: #f5f5f5;  /* açık arka plan */
+  color: #111;                 /* yazılar */
+}
+
+body:not(.dark) .masa-panel {
+  background: #fff;
+  border-color: #ccc;
+}
+
+body:not(.dark) .game-title,
+body:not(.dark) .game-tag {
+  color: #111;
+}
+
+
 
 
 </style>
