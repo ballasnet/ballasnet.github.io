@@ -385,13 +385,14 @@ a{color:#fff;text-decoration:none;}
 /* B logosu ortada üstte */
 .masa-logo {
   position: absolute;
-  top: 10px; /* üstten boşluk */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px; /* isteğe bağlı boyut */
+  top: 0;               /* en üst */
+  left: 50%;            /* yatay ortala */
+  transform: translateX(-50%); /* tam ortalanması için */
+  z-index: 5;           /* kar vs logonun altında/üstünde çakışmayı önlemek için */
+  width: 80px;          /* istediğin boyutu ver */
   height: auto;
-  z-index: 5; /* diğer öğelerin üstünde */
 }
+
 
 /* Kar efekti */
 .snow {
