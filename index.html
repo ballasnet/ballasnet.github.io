@@ -513,7 +513,7 @@ body:not(.dark) .section h2 {
     <a href="#">İNDİE</a>
   </div>
   <div class="search-box">
-    <input type="text" placeholder="Oyun ara...">
+    <input id="searchInput" type="text" placeholder="Oyun ara...">
     <button>ARA</button>
     <div class="search-suggestions"></div>
   </div>
@@ -961,6 +961,56 @@ toggleBtn.addEventListener('click', () => {
   toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
 
+const searchInput = document.getElementById("searchInput");
+const suggestionsBox = document.querySelector(".search-suggestions");
+
+if(searchInput && suggestionsBox){
+
+  searchInput.addEventListener("input", () => {
+    const value = searchInput.value.trim().toLowerCase();
+    suggestionsBox.innerHTML = "";
+
+    if(value.length === 0){
+      suggestionsBox.style.display = "none";
+      return;
+    }
+
+    const results = allGames.filter(game =>
+      game.title.toLowerCase().includes(value)
+    );
+
+    if(results.length === 0){
+      suggestionsBox.style.display = "none";
+      return;
+    }
+
+    results.slice(0, 6).forEach(game => {
+      const div = document.createElement("div");
+      div.textContent = game.title;
+      div.onclick = () => {
+        window.location.href = game.slug + ".html";
+      };
+      suggestionsBox.appendChild(div);
+    });
+
+    suggestionsBox.style.display = "block";
+  });
+
+  // dışarı tıklanınca kapansın
+  document.addEventListener("click", e => {
+    if(!e.target.closest(".search-box")){
+      suggestionsBox.style.display = "none";
+    }
+  });
+
+  // Enter = ilk sonucu aç
+  searchInput.addEventListener("keydown", e => {
+    if(e.key === "Enter"){
+      const first = suggestionsBox.querySelector("div");
+      if(first) first.click();
+    }
+  });
+}
 
 </script>
 
