@@ -491,8 +491,11 @@ body:not(.dark) .game-tag {
 
 body:not(.dark) .game-title,
 body:not(.dark) .game-tag {
-  color: #111; /* zaten koyu, F5FEFD arka plana karşı görünür */
+  color: #111 !important; /* mutlaka görünür */
+  opacity: 1 !important;
+  filter: none !important;
 }
+
 
 /* Eğer hâlâ görünmüyorsa, opacity veya filter kontrol et */
 body:not(.dark) .game-title,
