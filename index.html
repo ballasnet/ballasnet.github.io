@@ -430,36 +430,30 @@ a{color:#fff;text-decoration:none;}
 }
 
 
-#theme-toggle-container {
-  display: flex;
-  justify-content: center; /* tam ortaya */
-  margin: 20px 0; /* indie slider ile masa paneli arası boşluk */
-  pointer-events: none; /* container fareyi engellemez */
-  z-index: 10;
-  position: relative;
-}
-
 #theme-toggle {
-  pointer-events: auto; /* sadece buton tıklanabilir */
+  position: fixed;       /* sayfanın her yerinde sabit */
+  top: 20px;             /* üstten boşluk */
+  right: 30px;           /* sağdan boşluk, çok yapışmasın */
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #222; /* gece modu uyumlu */
+  background: #222;      /* gece modu uyumlu */
   color: #fff;
   font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 999;          /* her şeyin üstünde */
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
 }
 
 #theme-toggle:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  box-shadow: 0 0 15px rgba(255,255,255,0.7);
 }
-/*BAŞLA DELETE*/
+
 
 
 </style>
@@ -482,6 +476,10 @@ a{color:#fff;text-decoration:none;}
     <div class="search-suggestions"></div>
   </div>
 </div>
+
+<div id="theme-toggle">☀️</div>
+
+
 
 <section class="section">
 <h2>POPÜLER OYUNLAR</h2>
@@ -623,11 +621,6 @@ a{color:#fff;text-decoration:none;}
     </div>
   </div>
 </section>
-
-<div id="theme-toggle-container">
-  <div id="theme-toggle">☀️</div>
-</div>
-<!-- DELETE  -->
 
 
 <section class="haftanin-oyunu-section">
@@ -981,20 +974,19 @@ function fall() {
 
 const toggleBtn = document.getElementById('theme-toggle');
 
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark'); // gece/gündüz toggle
+// Başlangıçta gece modu
+document.body.classList.add('dark');
+toggleBtn.textContent = '☀️';
 
-  // İkon değişimi
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark'); // toggle
+
   if(document.body.classList.contains('dark')){
-    toggleBtn.textContent = '☀️'; // gündüzye geçiş ikonu
+    toggleBtn.textContent = '☀️'; // gündüz modu ikonu
   } else {
     toggleBtn.textContent = '🌙'; // gece modu ikonu
   }
 });
-
-// Başlangıçta site zaten gece modu sayılıyor
-document.body.classList.add('dark');
-toggleBtn.textContent = '☀️';
 
 
 </script>
