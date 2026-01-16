@@ -847,56 +847,55 @@ document.querySelectorAll(".single-link").forEach(el => {
 
 
 const snowContainer = document.querySelector('.snow');
-const snowflakes = [];
+let mouseX = -1000, mouseY = -1000;
+
+snowContainer.addEventListener('mousemove', e => {
+  const rect = snowContainer.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+});
 
 function createSnowflake() {
   const snowflake = document.createElement('div');
   snowflake.classList.add('snowflake');
-
   const containerWidth = snowContainer.offsetWidth;
   const containerHeight = snowContainer.offsetHeight;
 
+  // Başlangıç koordinatları
   let x = Math.random() * containerWidth;
   let y = -10;
   const speed = 2 + Math.random() * 2;
   const tilt = 0.5 + Math.random() * 0.5;
   const size = 6 + Math.random() * 6;
 
-  snowflake.style.left = x + 'px';
-  snowflake.style.top = y + 'px';
   snowflake.style.width = size + 'px';
   snowflake.style.height = size + 'px';
   snowflake.style.opacity = 0.6 + Math.random() * 0.4;
 
   snowContainer.appendChild(snowflake);
 
-  snowflakes.push({el: snowflake, x, y, speed, tilt});
-
   function fall() {
-    // Kar düşme
+    // Düşüş
     y += speed;
     x += tilt;
 
-    // Mouse kaçış etkisi
-    snowflakes.forEach(s => {
-      const dx = s.x - mouseX;
-      const dy = s.y - mouseY;
-      const distance = Math.sqrt(dx*dx + dy*dy);
+    // Mouse kaçışı
+    const dx = x - mouseX;
+    const dy = y - mouseY;
+    const distance = Math.sqrt(dx*dx + dy*dy);
 
-      if(distance < 50) {
-        s.x += (dx / distance) * 5; // kaçış gücü
-        s.y += (dy / distance) * 2;
-      }
-    });
+    if(distance < 60) { // yakınlık sınırı
+      x += (dx / distance) * 8; // kaçış gücü x
+      y += (dy / distance) * 4; // kaçış gücü y
+    }
 
+    // Karın pozisyonunu uygula
     snowflake.style.left = x + 'px';
     snowflake.style.top = y + 'px';
 
-    // Panel dışına çıkarsa sil
-    if (y > containerHeight || x > containerWidth || y < -20) {
+    // Panel dışına çıktıysa sil
+    if(y > containerHeight || x > containerWidth || y < -20) {
       snowflake.remove();
-      const index = snowflakes.findIndex(s => s.el === snowflake);
-      if(index !== -1) snowflakes.splice(index, 1);
     } else {
       requestAnimationFrame(fall);
     }
@@ -905,16 +904,8 @@ function createSnowflake() {
   fall();
 }
 
-let mouseX = -1000, mouseY = -1000;
-snowContainer.addEventListener('mousemove', e => {
-  const rect = snowContainer.getBoundingClientRect();
-  mouseX = e.clientX - rect.left;
-  mouseY = e.clientY - rect.top;
-});
-
-// Sürekli yeni kar üret
-setInterval(createSnowflake, 200);
-
+// Daha yoğun kar
+setInterval(createSnowflake, 150);
 
 
 
