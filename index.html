@@ -412,10 +412,11 @@ a{color:#fff;text-decoration:none;}
   left:0;
   width:100%;
   height:100%;
-  pointer-events: none; /* tıklamayı engelleme */
+  pointer-events: none;
   overflow: hidden;
-  z-index: 2;
+  z-index: 5; /* diğer interaktif kutuların üstünde görünmesi için */
 }
+
 
 .snowflake {
   position: absolute;
@@ -429,11 +430,7 @@ a{color:#fff;text-decoration:none;}
 }
 
 
-/* Karın aşağı doğru hareketi */
-@keyframes snow-fall {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 1000px; }
-}
+
 
 </style>
 </head>
@@ -855,17 +852,19 @@ function createSnowflake() {
   const snowflake = document.createElement('div');
   snowflake.classList.add('snowflake');
 
-  // Rastgele başlangıç konumu
-  snowflake.style.left = Math.random() * window.innerWidth + 'px';
+  // panel boyutuna göre sol konum
+  const containerWidth = snowContainer.offsetWidth;
+  const containerHeight = snowContainer.offsetHeight;
+
+  snowflake.style.left = Math.random() * containerWidth + 'px';
   snowflake.style.opacity = Math.random();
   snowflake.style.width = 5 + Math.random()*5 + 'px';
   snowflake.style.height = snowflake.style.width;
 
-  // Hız ve eğim
   let x = parseFloat(snowflake.style.left);
   let y = -10;
   const speed = 1 + Math.random() * 2;
-  const tilt = Math.random() * 1 - 0.5; // sola/sağa eğim
+  const tilt = Math.random() * 1 - 0.5;
 
   snowContainer.appendChild(snowflake);
 
@@ -875,7 +874,7 @@ function createSnowflake() {
     snowflake.style.top = y + 'px';
     snowflake.style.left = x + 'px';
 
-    if (y > window.innerHeight) {
+    if (y > containerHeight) {
       snowflake.remove();
     } else {
       requestAnimationFrame(fall);
@@ -885,8 +884,9 @@ function createSnowflake() {
   fall();
 }
 
-// Sürekli yeni kar üret
-setInterval(createSnowflake, 200);
+// Daha stabil performans için interval 300ms
+setInterval(createSnowflake, 300);
+
 
 
 
