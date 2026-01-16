@@ -803,21 +803,13 @@ function initSlider(wrapperSelector, games){
 
   const CLONE_COUNT = 3;
 
-  // 🔁 başa clone
-  realCards.slice(-CLONE_COUNT).forEach(c=>{
-    slider.insertBefore(c.cloneNode(true), slider.firstChild);
-  });
-
-  // 🔁 sona clone
+  // 🔁 SADECE SONA CLONE
   realCards.slice(0, CLONE_COUNT).forEach(c=>{
     slider.appendChild(c.cloneNode(true));
   });
 
-  const cardWidth = slider.children[CLONE_COUNT].offsetWidth;
-  let index = CLONE_COUNT;
-
-  slider.style.transition = "none";
-  slider.style.transform = `translateX(${-index * cardWidth}px)`;
+  const cardWidth = 346;
+  let index = 0;
 
   const move = ()=>{
     slider.style.transition = "transform 0.4s ease";
@@ -828,25 +820,26 @@ function initSlider(wrapperSelector, games){
     index++;
     move();
 
-    if(index >= realLen + CLONE_COUNT){
+    // 🔥 2. clone görünürken sessiz reset
+    if(index === realLen + 1){
       setTimeout(()=>{
         slider.style.transition = "none";
-        index = CLONE_COUNT;
-        slider.style.transform = `translateX(${-index * cardWidth}px)`;
+        index = 0;
+        slider.style.transform = `translateX(0px)`;
       }, 400);
     }
   };
 
   left.onclick = ()=>{
-    index--;
-    move();
-
-    if(index < CLONE_COUNT){
-      setTimeout(()=>{
-        slider.style.transition = "none";
-        index = realLen + CLONE_COUNT - 1;
-        slider.style.transform = `translateX(${-index * cardWidth}px)`;
-      }, 400);
+    if(index === 0){
+      // baştan sola basınca sona at (klasik davranış)
+      slider.style.transition = "none";
+      index = realLen - 1;
+      slider.style.transform = `translateX(${-index * cardWidth}px)`;
+      requestAnimationFrame(move);
+    } else {
+      index--;
+      move();
     }
   };
 }
