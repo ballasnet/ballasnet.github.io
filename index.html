@@ -802,14 +802,15 @@ function initSlider(wrapperSelector, games){
   if(realLen < 2) return;
 
   const CLONE_COUNT = 4;
-
-  // 🔁 SADECE SONA 4 KOPYA
-  realCards.slice(0, CLONE_COUNT).forEach(card=>{
-    slider.appendChild(card.cloneNode(true));
-  });
-
   const cardWidth = 346;
+
+  // 🔁 SONA 4 KOPYA
+  for(let i = 0; i < CLONE_COUNT; i++){
+    slider.appendChild(realCards[i].cloneNode(true));
+  }
+
   let index = 0;
+  let waitingReset = false;
 
   const move = ()=>{
     slider.style.transition = "transform 0.4s ease";
@@ -817,25 +818,38 @@ function initSlider(wrapperSelector, games){
   };
 
   right.onclick = ()=>{
+    if(waitingReset) return;
+
     index++;
     move();
 
-    // 🔥 4. KOPYA GÖRÜNDÜĞÜ ANDA RESET
-    if(index === realLen + 3){
-      setTimeout(()=>{
-        slider.style.transition = "none";
-        index = 0;
-        slider.style.transform = `translateX(0px)`;
-      }, 400);
+    // 👉 SADECE 4. KOPYADA RESET HAZIRLIĞI
+    if(index === realLen + CLONE_COUNT){
+      waitingReset = true;
     }
   };
+
+  slider.addEventListener("transitionend", ()=>{
+    if(!waitingReset) return;
+
+    slider.style.transition = "none";
+    index = 0;
+    slider.style.transform = "translateX(0px)";
+
+    // reflow trick (tarayıcıyı kandırıyoruz)
+    slider.offsetHeight;
+
+    waitingReset = false;
+  });
 
   left.onclick = ()=>{
     if(index === 0){
       slider.style.transition = "none";
       index = realLen - 1;
       slider.style.transform = `translateX(${-index * cardWidth}px)`;
-      requestAnimationFrame(move);
+
+      slider.offsetHeight;
+      move();
     } else {
       index--;
       move();
