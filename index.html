@@ -777,8 +777,11 @@ function fillSlider(slider, games){
 }
 
 function initSlider(wrapperSelector, games){
-  const wrapper = typeof wrapperSelector === "string" ? document.querySelector(wrapperSelector) : wrapperSelector;
+  const wrapper = typeof wrapperSelector === "string"
+    ? document.querySelector(wrapperSelector)
+    : wrapperSelector;
   if(!wrapper) return;
+
   const slider = wrapper.querySelector(".slider");
   const left = wrapper.querySelector(".slider-btn.left");
   const right = wrapper.querySelector(".slider-btn.right");
@@ -786,41 +789,48 @@ function initSlider(wrapperSelector, games){
 
   fillSlider(slider, games);
 
-  let index = 1; // Sonsuz loop için başlangıç 1
+  const cards = slider.children;
   const cardWidth = 346;
 
-  // --- İlk ve son öğeyi klonla ---
-  const cloneFirst = slider.children[0].cloneNode(true);
-  const cloneLast = slider.children[slider.children.length-1].cloneNode(true);
-  slider.appendChild(cloneFirst);
-  slider.insertBefore(cloneLast, slider.children[0]);
+  // 🔁 Clone (DOM BOZULMAZ)
+  const firstClone = cards[0].cloneNode(true);
+  const lastClone = cards[cards.length - 1].cloneNode(true);
 
-  const update = () => slider.style.transform = `translateX(${-index * cardWidth}px)`;
-  update();
+  slider.appendChild(firstClone);
+  slider.insertBefore(lastClone, cards[0]);
+
+  let index = 1;
+
+  slider.style.transform = `translateX(${-index * cardWidth}px)`;
+
+  const move = () => {
+    slider.style.transition = "transform 0.4s ease";
+    slider.style.transform = `translateX(${-index * cardWidth}px)`;
+  };
 
   right.onclick = () => {
     index++;
-    slider.style.transition = "transform 0.4s ease";
-    update();
-    if(index === slider.children.length-1){ // sona geldiğinde
-      setTimeout(()=>{
+    move();
+
+    if(index === slider.children.length - 1){
+      setTimeout(() => {
         slider.style.transition = "none";
-        index = 1; // gerçek ilk oyun
-        update();
-      }, 410); // transition süresi kadar bekle
+        index = 1;
+        slider.style.transform = `translateX(${-index * cardWidth}px)`;
+      }, 400);
     }
   };
 
   left.onclick = () => {
     index--;
-    slider.style.transition = "transform 0.4s ease";
-    update();
-    if(index === 0){ // başa geldiğinde
-      setTimeout(()=>{
+    move();
+
+    if(index === 0){
+      setTimeout(() => {
         slider.style.transition = "none";
-        index = slider.children.length-2; // gerçek son oyun
-        update();
-      }, 410);
+        index = slider.children.length - 2;
+        slider.style.transform = `translateX(${-index * cardWidth}px)`;
+      }, 400);
     }
   };
 }
