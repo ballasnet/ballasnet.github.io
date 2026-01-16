@@ -801,16 +801,16 @@ function initSlider(wrapperSelector, games){
   const realLen = realCards.length;
   if(realLen < 2) return;
 
-  const CLONE_COUNT = 4;
+  const FAKE_COUNT = 4;
   const cardWidth = 346;
 
-  // 🔁 SONA 4 KOPYA
-  for(let i = 0; i < CLONE_COUNT; i++){
+  // 🔁 sona 4 fake
+  for(let i = 0; i < FAKE_COUNT; i++){
     slider.appendChild(realCards[i].cloneNode(true));
   }
 
   let index = 0;
-  let waitingReset = false;
+  let resetPending = false;
 
   const move = ()=>{
     slider.style.transition = "transform 0.4s ease";
@@ -818,28 +818,26 @@ function initSlider(wrapperSelector, games){
   };
 
   right.onclick = ()=>{
-    if(waitingReset) return;
-
     index++;
     move();
 
-    // 👉 SADECE 4. KOPYADA RESET HAZIRLIĞI
-    if(index === realLen + CLONE_COUNT){
-      waitingReset = true;
+    // ✅ SADECE 4. FAKE GÖRÜNDÜĞÜNDE
+    if(index === realLen + 3){
+      resetPending = true;
     }
   };
 
   slider.addEventListener("transitionend", ()=>{
-    if(!waitingReset) return;
+    if(!resetPending) return;
 
     slider.style.transition = "none";
     index = 0;
     slider.style.transform = "translateX(0px)";
 
-    // reflow trick (tarayıcıyı kandırıyoruz)
+    // reflow (çok kritik)
     slider.offsetHeight;
 
-    waitingReset = false;
+    resetPending = false;
   });
 
   left.onclick = ()=>{
@@ -847,7 +845,6 @@ function initSlider(wrapperSelector, games){
       slider.style.transition = "none";
       index = realLen - 1;
       slider.style.transform = `translateX(${-index * cardWidth}px)`;
-
       slider.offsetHeight;
       move();
     } else {
