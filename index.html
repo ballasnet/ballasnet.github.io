@@ -385,28 +385,29 @@ a{color:#fff;text-decoration:none;}
 /* B logosu ortada üstte */
 .masa-logo {
   position: absolute;
-  top: 0;               /* en üst */
-  left: 50%;            /* yatay ortala */
-  transform: translateX(-50%); /* tam ortalanması için */
-  z-index: 5;           /* kar vs logonun altında/üstünde çakışmayı önlemek için */
-  width: 80px;          /* istediğin boyutu ver */
+  top: 0; /* Çerçevenin üst sınırı */
+  left: 50%;
+  transform: translate(-50%, -50%); /* -50% yukarı kaydır, tam üst ortaya otursun */
+  z-index: 5;
+  width: 80px;
   height: auto;
 }
 
 
 /* Kar efekti */
 .snow {
-  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* arka planda kalacak */
-  background-image: url('kar.png'); /* minik şeffaf kar taneleri PNG */
+  z-index: 2; /* logo 5, snow 2, diğer içerik 3+ */
+  pointer-events: none;
+  background-image: url('kar.png');
   background-repeat: repeat;
   animation: snow-fall 10s linear infinite;
 }
+
 
 /* Karın aşağı doğru hareketi */
 @keyframes snow-fall {
