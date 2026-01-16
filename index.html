@@ -789,18 +789,22 @@ function initSlider(wrapperSelector, games){
 
   fillSlider(slider, games);
 
-  const cards = slider.children;
   const cardWidth = 346;
 
-  // 🔁 Clone (DOM BOZULMAZ)
-  const firstClone = cards[0].cloneNode(true);
-  const lastClone = cards[cards.length - 1].cloneNode(true);
+  // 🔒 clone'dan önce gerçek kartları al
+  const originalCards = Array.from(slider.children);
+  if(originalCards.length < 2) return;
 
+  // 🔁 Clone (DOM BOZULMAZ)
+  const firstClone = originalCards[0].cloneNode(true);
+  const lastClone  = originalCards[originalCards.length - 1].cloneNode(true);
+
+  slider.insertBefore(lastClone, originalCards[0]);
   slider.appendChild(firstClone);
-  slider.insertBefore(lastClone, cards[0]);
 
   let index = 1;
 
+  slider.style.transition = "none";
   slider.style.transform = `translateX(${-index * cardWidth}px)`;
 
   const move = () => {
@@ -808,34 +812,34 @@ function initSlider(wrapperSelector, games){
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
   };
 
-right.onclick = () => {
-  index++;
-  move();
+  right.onclick = () => {
+    index++;
+    move();
 
-  // 🔥 SON GERÇEK KART GÖRÜNÜRKEN
-  if(index === slider.children.length - 2){
-    setTimeout(() => {
-      slider.style.transition = "none";
-      index = 1;
-      slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    }, 400);
-  }
-};
+    // 🔥 SAHTE SONA GELİNCE (gözden uzak anda)
+    if(index === slider.children.length - 1){
+      setTimeout(() => {
+        slider.style.transition = "none";
+        index = 1;
+        slider.style.transform = `translateX(${-index * cardWidth}px)`;
+      }, 400);
+    }
+  };
 
+  left.onclick = () => {
+    index--;
+    move();
 
-left.onclick = () => {
-  index--;
-  move();
-
-  // 🔥 İLK GERÇEK KART GÖRÜNÜRKEN
-  if(index === 1){
-    setTimeout(() => {
-      slider.style.transition = "none";
-      index = slider.children.length - 2;
-      slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    }, 400);
-  }
-};
+    // 🔥 SAHTE BAŞA GELİNCE
+    if(index === 0){
+      setTimeout(() => {
+        slider.style.transition = "none";
+        index = slider.children.length - 2;
+        slider.style.transform = `translateX(${-index * cardWidth}px)`;
+      }, 400);
+    }
+  };
+}
 
 
 
