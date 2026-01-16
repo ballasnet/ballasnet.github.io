@@ -467,42 +467,22 @@ body.dark .masa-panel {
   border-color: #222;
 }
 
-body.dark .game-title,
-body.dark .game-tag {
-  color: #fff;
+/* Gece modunda sadece arka plan ve panel */
+body.dark {
+  background-color: #111;
+}
+body.dark .masa-panel {
+  background: #111;
 }
 
-/* GÜNDÜZ MODU */
+/* Gündüz modu */
 body:not(.dark) {
-  background-color: #F5FEFD;  /* açık ama tam beyaz değil */
-  color: #111;                 /* yazılar */
+  background-color: #F5FEFD;
 }
-
 body:not(.dark) .masa-panel {
-  background: #F5FEFD;   /* masa paneli gündüz modu */
-  border-color: #ccc;
+  background: #F5FEFD;
 }
 
-body:not(.dark) .game-title,
-body:not(.dark) .game-tag {
-  color: #111;
-}
-
-
-body:not(.dark) .game-title,
-body:not(.dark) .game-tag {
-  color: #111 !important; /* mutlaka görünür */
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-
-/* Eğer hâlâ görünmüyorsa, opacity veya filter kontrol et */
-body:not(.dark) .game-title,
-body:not(.dark) .game-tag {
-  opacity: 1;
-  filter: none;
-}
 
 
 
@@ -945,30 +925,6 @@ toggleBtn.addEventListener('click',()=>{
   toggleBtn.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
   updateTagColors();
 });
-
-function updateTagColors(){
-  const isDark=document.body.classList.contains('dark');
-  document.querySelectorAll('.game-title, .game-tag').forEach(el=>{
-    el.style.color=isDark?'#fff':'#111';
-  });
-}
-
-
-function updateDayModeTags() {
-  const isDark = document.body.classList.contains('dark'); // gece modu mu
-  document.querySelectorAll('.game-title, .game-tag').forEach(el => {
-    el.style.color = isDark ? '#fff' : '#111'; // gündüz modunda #111
-    el.style.opacity = 1; // görünür yap
-    el.style.filter = 'none'; // herhangi bir filtreyi kaldır
-  });
-}
-
-
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark'); // gece/gündüz değiştir
-});
-
-
 
 
 </script>
