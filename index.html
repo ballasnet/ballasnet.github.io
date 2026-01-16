@@ -797,76 +797,37 @@ function initSlider(wrapperSelector, games){
 
   fillSlider(slider, games);
 
-  const realCards = Array.from(slider.children);
-  const realLen = realCards.length;
-  if(realLen < 2) return;
-
-  const FAKE_COUNT = 4;
-  const cardWidth = 346;
-
-  // 🔁 SADECE SONA fake
-  for(let i = 0; i < FAKE_COUNT; i++){
-    slider.appendChild(realCards[i].cloneNode(true));
-  }
-
-  const allCards = Array.from(slider.children);
-  const firstFake = allCards[realLen];                 // ilk fake
-  const lastFake  = allCards[realLen + FAKE_COUNT -1]; // son fake
-
   let index = 0;
-  let locked = false;
+  const cardWidth = 346;
+  const maxIndex = slider.children.length - 1;
 
-  const move = ()=>{
-    slider.style.transition = "transform 0.4s ease";
+  const update = (smooth = true) => {
+    slider.style.transition = smooth ? "transform 0.4s ease" : "none";
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
   };
 
-  const checkFakeFake = ()=>{
-    if(locked) return;
-
-    const matrix = new DOMMatrixReadOnly(
-      getComputedStyle(slider).transform
-    );
-    const sliderX = Math.abs(matrix.m41);
-
-    const viewStart = sliderX;
-    const viewEnd   = sliderX + wrapper.offsetWidth;
-
-    const ffStart = firstFake.offsetLeft;
-    const ffEnd   = ffStart + cardWidth;
-
-    const lfStart = lastFake.offsetLeft;
-
-    // 🔥 TEK VE DOĞRU ŞART
-    if(
-      ffEnd > viewStart &&   // ilk fake solda görünüyorsa
-      lfStart < viewEnd     // son fake sağda görünüyorsa
-    ){
-      locked = true;
-
-      slider.style.transition = "none";
-      index = 0;
-      slider.style.transform = "translateX(0px)";
-
-      slider.offsetHeight; // reflow
-      slider.style.transition = "transform 0.4s ease";
-
-      locked = false;
-    }
-  };
-
-  right.onclick = ()=>{
+  right.addEventListener("click", () => {
     index++;
-    move();
-    requestAnimationFrame(checkFakeFake);
-  };
+    update(true);
 
-  left.onclick = ()=>{
+    // 🔥 SONA YAKLAŞINCA HİSSETTİRMEDEN BAŞA SAR
+    if(index >= maxIndex - 1){
+      setTimeout(() => {
+        index = 0;
+        update(false); // anında
+      }, 420); // animasyon bitince
+    }
+  });
+
+  left.addEventListener("click", () => {
     if(index === 0) return;
     index--;
-    move();
-  };
+    update(true);
+  });
+
+  update(false);
 }
+
 
 
   slider.addEventListener("transitionend", ()=>{
