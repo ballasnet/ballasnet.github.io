@@ -918,12 +918,11 @@ setInterval(createSnowflake,75);
 // --- Toggle gece/gündüz ---
 const toggleBtn = document.getElementById('theme-toggle');
 document.body.classList.add('dark'); // başta gece modu
-toggleBtn.textContent='☀️';
+toggleBtn.textContent = '☀️'; // ikon başta
 
-toggleBtn.addEventListener('click',()=>{
+toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-  toggleBtn.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
-  updateTagColors();
+  toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
 
 
