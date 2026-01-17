@@ -266,6 +266,12 @@ a{color:#fff;text-decoration:none;}
   border-radius: 8px; /* isteğe bağlı */
 }
 
+.wheel {
+  z-index: 10;
+  position: relative;
+}
+
+
 .wheel img {
   width: 110%;     /* kutuyu tamamen kaplasın */
   height: 110%;    /* kutuyu tamamen kaplasın */
@@ -916,20 +922,31 @@ document.addEventListener("DOMContentLoaded",()=>{
   const dusukGames = allGames.filter(g=>g.tags && g.tags.includes("Düşük Sistem"));
   shuffle(dusukGames); initSlider(".dusuk-wrapper", dusukGames);
 
-  // --- Random linkler ---
-  document.querySelectorAll(".random-link").forEach(el=>{
-    el.addEventListener("click",()=>{
-      const links = [
-        "https://www.youtube.com/watch?v=YVkUvmDQ3HY",
-        "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"
-      ];
-      window.open(links[Math.floor(Math.random()*links.length)],"_blank");
-    });
-  });
+// --- Random linkler (tek sekme ve tek tık) ---
+document.querySelectorAll(".random-link").forEach(el => {
+  el.addEventListener("click", e => {
+    e.preventDefault(); // ekstra click önleme
+    const links = [
+      "https://www.youtube.com/watch?v=YVkUvmDQ3HY",
+      "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"
+    ];
+    const chosenLink = links[Math.floor(Math.random() * links.length)];
+    window.open(chosenLink, "_blank"); // tek sekmede aç
+  }, { once: true }); // sadece bir kere çalışacak, tekrar tıklamada yeni sekme açılır
+});
 
-  document.querySelectorAll(".single-link").forEach(el=>{
-    el.addEventListener("click",()=>window.open("https://www.discord.com","_blank"));
+// Eğer wheel sınıfını da kullanıyorsak:
+document.querySelectorAll(".wheel").forEach(el => {
+  el.addEventListener("click", e => {
+    e.preventDefault();
+    const links = [
+      "https://www.youtube.com/watch?v=YVkUvmDQ3HY",
+      "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"
+    ];
+    const chosenLink = links[Math.floor(Math.random() * links.length)];
+    window.open(chosenLink, "_blank"); // tek sekmede aç
   });
+});
 
   // --- Gündüz/gece renkleri ---
   updateTagColors();
