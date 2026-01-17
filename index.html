@@ -922,21 +922,9 @@ document.addEventListener("DOMContentLoaded",()=>{
   const dusukGames = allGames.filter(g=>g.tags && g.tags.includes("Düşük Sistem"));
   shuffle(dusukGames); initSlider(".dusuk-wrapper", dusukGames);
 
-// --- Random linkler (tek sekme ve tek tık) ---
-document.querySelectorAll(".random-link").forEach(el => {
-  el.addEventListener("click", e => {
-    e.preventDefault(); // ekstra click önleme
-    const links = [
-      "https://www.youtube.com/watch?v=YVkUvmDQ3HY",
-      "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"
-    ];
-    const chosenLink = links[Math.floor(Math.random() * links.length)];
-    window.open(chosenLink, "_blank"); // tek sekmede aç
-  }, { once: true }); // sadece bir kere çalışacak, tekrar tıklamada yeni sekme açılır
-});
-
-// Eğer wheel sınıfını da kullanıyorsak:
-document.querySelectorAll(".wheel").forEach(el => {
+// Random linkler (wheel dahil, cekilisi atla)
+document.querySelectorAll(".random-link, .wheel").forEach(el => {
+  if(el.classList.contains("cekilis")) return; // cekilisi atla
   el.addEventListener("click", e => {
     e.preventDefault();
     const links = [
@@ -944,13 +932,14 @@ document.querySelectorAll(".wheel").forEach(el => {
       "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"
     ];
     const chosenLink = links[Math.floor(Math.random() * links.length)];
-    window.open(chosenLink, "_blank"); // tek sekmede aç
-  });
+    window.open(chosenLink, "_blank"); // yeni sekmede aç
+  }, { once: true }); // sadece bir kez çalışır
 });
 
-document.querySelectorAll(".cekilis").forEach(el=>{
-  el.addEventListener("click", ()=>{
-    // Örnek doğru link:
+// Çekiliş linki
+document.querySelectorAll(".cekilis").forEach(el => {
+  el.addEventListener("click", e => {
+    e.preventDefault();
     const targetLink = "https://example.com/cekilis-sayfa";
     window.open(targetLink, "_blank"); // yeni sekmede aç
   });
