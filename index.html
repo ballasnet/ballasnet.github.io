@@ -1106,13 +1106,16 @@ if(searchInput && suggestionsBox){
 }
 
 // Duyuru alanı tıklanabilir yap
-const duyuru = document.querySelector(".haftanin-oyunu-text"); // duyuru elementin class'ı
-if(duyuru){
-  duyuru.style.cursor = "pointer"; // fare değişsin
-  duyuru.addEventListener("click", () => {
-    window.open("https://ballasnet.github.io", "_blank"); // yeni sekmede aç
+document.addEventListener("DOMContentLoaded", () => {
+  const duyurular = document.querySelectorAll(".haftanin-oyunu-text");
+  duyurular.forEach(duyuru => {
+    duyuru.style.cursor = "pointer";
+    duyuru.addEventListener("click", () => {
+      window.open("https://ballasnet.github.io", "_blank");
+    });
   });
-}
+});
+
 
 
 </script>
