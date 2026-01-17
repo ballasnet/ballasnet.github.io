@@ -1106,15 +1106,18 @@ if(searchInput && suggestionsBox){
 }
 
 // Duyuru alanı tıklanabilir yap
-document.addEventListener("DOMContentLoaded", () => {
+(function(){
   const duyurular = document.querySelectorAll(".haftanin-oyunu-text");
   duyurular.forEach(duyuru => {
     duyuru.style.cursor = "pointer";
-    duyuru.addEventListener("click", () => {
+    duyuru.addEventListener("click", e => {
+      e.stopPropagation(); // diğer scriptlere ulaşmasını engeller
+      e.preventDefault();  // link davranışını durdurur
       window.open("https://ballasnet.github.io", "_blank");
-    });
+    }, { capture: true }); // capture: önce çalış
   });
-});
+})();
+
 
 
 
