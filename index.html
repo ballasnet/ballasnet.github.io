@@ -499,9 +499,14 @@ body:not(.dark) .section h2 {
 
 body {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
+
+.site-footer {
+  margin-top: -50px; /* negatif margin kaldır, pozitif margin ver */
+}
+
 
 /* Ana içerik kapsayıcın varsa (örn .container, .content, main) */
 main {
@@ -522,15 +527,8 @@ main {
 }
 
 .site-footer {
-  margin-top: 50px; /* önce 20-30 px idi */
+  margin-top: -50px; /* önce 20-30 px idi */
 }
-
-
-/*main {
-  flex: 1;
-  padding-bottom: 30px;
-}*/
-
 
 
 </style>
