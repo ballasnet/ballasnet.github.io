@@ -948,6 +948,15 @@ document.querySelectorAll(".wheel").forEach(el => {
   });
 });
 
+document.querySelectorAll(".cekilis").forEach(el=>{
+  el.addEventListener("click", ()=>{
+    // Örnek doğru link:
+    const targetLink = "https://example.com/cekilis-sayfa";
+    window.open(targetLink, "_blank"); // yeni sekmede aç
+  });
+});
+
+
   // --- Gündüz/gece renkleri ---
   updateTagColors();
 });
