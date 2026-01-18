@@ -866,10 +866,12 @@ function initSlider(wrapperSelector, games){
   const cardWidth = 346;
   const maxIndex = slider.children.length - 1;
 
-  const update = () => {
-    slider.style.transition = "transform 0.4s ease";
-    slider.style.transform = `translateX(${-index * cardWidth}px)`;
-  };
+const update = () => {
+  slider.style.transition = "transform 0.4s ease";
+  slider.style.transform = `translateX(${-index * cardWidth}px)`;
+  observeLazyImages(); // <-- ÇOK ÖNEMLİ
+};
+
 
   right.onclick = () => {
     if(index < maxIndex){
@@ -917,17 +919,39 @@ function updateGameTags(slug,newTags){
 
 // --- Mozaik doldurma ---
 document.addEventListener("DOMContentLoaded",()=>{
+
+  // 🧱 Mozaikler
   document.querySelectorAll(".mozaik-card").forEach(card=>{
     const slug = card.dataset.slug;
     const img = card.querySelector("img");
     const titleBox = card.querySelector(".mozaik-title");
-    const game = smallGames.find(g=>g.slug===slug) || largeGames.find(g=>g.slug===slug);
-    if(!game) return;
-    img.src = game.image;
+    const game =
+      smallGames.find(g=>g.slug===slug) ||
+      largeGames.find(g=>g.slug===slug);
+
+    if(!game || !img) return;
+
+    img.dataset.src = game.image;
+    img.removeAttribute("src"); // ⬅️ KRİTİK
+    img.classList.add("lazy-img");
     img.alt = game.title;
+
     titleBox.textContent = game.title;
-    card.onclick = ()=>window.location.href = game.slug+'.html';
+    card.onclick = ()=>window.location.href = game.slug + ".html";
   });
+
+  // 🎞️ HTML'de olan slider img'leri lazy yap
+  document.querySelectorAll(".slider img").forEach(img=>{
+    if(!img.dataset.src){
+      img.dataset.src = img.src;
+      img.removeAttribute("src");
+      img.classList.add("lazy-img");
+    }
+  });
+
+  observeLazyImages(); // 🔥 EN SON
+});
+
 
   // --- Sliderlar ---
   const indieGames = [...allGames]; shuffle(indieGames); initSlider(".indie-wrapper", indieGames);
@@ -935,7 +959,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   const populerGamesFromHTML = Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g=>({
     title:g.querySelector(".game-title").textContent,
     slug:g.closest("a").getAttribute("href").replace(".html",""),
-    image:g.querySelector("img").getAttribute("src"),
     tags:Array.from(g.querySelectorAll(".game-tag")).map(t=>t.textContent)
   }));
   shuffle(populerGamesFromHTML);
@@ -984,57 +1007,71 @@ document.querySelectorAll(".cekilis").forEach(el => {
 
 
 // --- Snow ---
-const snowContainer = document.querySelector('.snow');
-let mouseX=-1000,mouseY=-1000;
 const panel = document.querySelector('.masa-panel');
-panel.addEventListener('mousemove', e=>{
-  const rect=panel.getBoundingClientRect();
-  mouseX=e.clientX-rect.left;
-  mouseY=e.clientY-rect.top;
-});
+const snowContainer = document.querySelector('.snow');
 
-function createSnowflake(){
-  const snowflake=document.createElement('div');
-  snowflake.classList.add('snowflake');
-  const containerWidth=snowContainer.offsetWidth;
-  const containerHeight=snowContainer.offsetHeight;
+if(snowContainer){
 
-  let x=Math.random()*containerWidth;
-  let y=-10;
-  const speed=2+Math.random()*2;
-  const tilt=0.5+Math.random()*0.5;
-  const size=6+Math.random()*6;
+  let mouseX = -1000, mouseY = -1000;
 
-  snowflake.style.width=size+'px';
-  snowflake.style.height=size+'px';
-  snowflake.style.opacity=0.6+Math.random()*0.4;
-
-  snowContainer.appendChild(snowflake);
-
-  function fall(){
-    y+=speed;
-    x+=tilt;
-
-    const dx=x-mouseX;
-    const dy=y-mouseY;
-    const distance=Math.sqrt(dx*dx+dy*dy);
-
-    if(distance<120){
-      x=lerp(x, x+(dx/distance)*20, 0.25);
-      y=lerp(y, y+(dy/distance)*10, 0.25);
-    }
-
-    snowflake.style.left=x+'px';
-    snowflake.style.top=y+'px';
-
-    if(y>containerHeight || x>containerWidth || y<-20){ snowflake.remove(); } 
-    else requestAnimationFrame(fall);
+  if(panel){
+    panel.addEventListener('mousemove', e=>{
+      const rect = panel.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
   }
 
-  fall();
+  function createSnowflake(){
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+
+    const containerWidth = snowContainer.offsetWidth;
+    const containerHeight = snowContainer.offsetHeight;
+
+    let x = Math.random() * containerWidth;
+    let y = -10;
+
+    const speed = 2 + Math.random() * 2;
+    const tilt  = 0.5 + Math.random() * 0.5;
+    const size  = 6 + Math.random() * 6;
+
+    snowflake.style.width  = size + 'px';
+    snowflake.style.height = size + 'px';
+    snowflake.style.opacity = 0.6 + Math.random() * 0.4;
+
+    snowContainer.appendChild(snowflake);
+
+    function fall(){
+      y += speed;
+      x += tilt;
+
+      const dx = x - mouseX;
+      const dy = y - mouseY;
+      const distance = Math.sqrt(dx*dx + dy*dy);
+
+      if(distance < 120){
+        x = lerp(x, x + (dx/distance)*20, 0.25);
+        y = lerp(y, y + (dy/distance)*10, 0.25);
+      }
+
+      snowflake.style.left = x + 'px';
+      snowflake.style.top  = y + 'px';
+
+      if(y > containerHeight || x > containerWidth || y < -20){
+        snowflake.remove();
+      } else {
+        requestAnimationFrame(fall);
+      }
+    }
+
+    fall();
+  }
+
+  setInterval(createSnowflake, 75);
 }
 
-setInterval(createSnowflake,75);
+  
 
 // --- Toggle gece/gündüz ---
 const toggleBtn = document.getElementById('theme-toggle');
@@ -1139,8 +1176,6 @@ if(searchInput && suggestionsBox){
 })();
 
 
-const lazyImages = document.querySelectorAll(".slider img.lazy-img");
-
 const lazyObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1151,7 +1186,9 @@ const lazyObserver = new IntersectionObserver((entries, observer) => {
     }
   });
 }, {
-  rootMargin: "200px"
+  root: null,
+  rootMargin: "800px", // SLIDER İÇİN KRİTİK
+  threshold: 0.01
 });
 
 lazyImages.forEach(img => lazyObserver.observe(img));
