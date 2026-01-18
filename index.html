@@ -778,22 +778,18 @@ const allGames = [
   { title: "Celeste", slug: "celeste", image: "celeste2.jpg", tags: ["Indie","Düşük Sistem"] },
   { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg", tags: ["Indie","Düşük Sistem"] }
 ];
+
 const smallGames = [
   { title: "Papers, Please", slug: "papers-please", image: "papersplease2.jpg" },
   { title: "Baba Is You", slug: "baba-is-you", image: "babaisyou.jpg" },
   { title: "Undertale", slug: "undertale", image: "undertale.jpg" },
   { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg" }
 ];
+
 const largeGames = [
   { title: "Celeste", slug: "celeste", image: "celeste2.jpg" },
   { title: "Hollow Knight", slug: "hollow-knight", image: "hollow-knight.jpg" }
 ];
-
-// --- Kaydedilmiş tagları uygula ---
-allGames.forEach(game => {
-  const saved = localStorage.getItem('gameTags-' + game.slug);
-  if(saved) game.tags = JSON.parse(saved);
-});
 
 // --- Yardımcı fonksiyonlar ---
 function shuffle(array) {
@@ -815,17 +811,13 @@ function fillSlider(slider, games){
     div.className = "game";
 
     const imgDiv = document.createElement("div");
-imgDiv.className = "game-image";
+    imgDiv.className = "game-image";
 
-const img = document.createElement("img");
-img.dataset.src = game.image;
-img.alt = game.title;
-img.classList.add("lazy-img");
+    const img = document.createElement("img");
+    img.src = game.image; // lazy load yok
+    img.alt = game.title;
 
-imgDiv.appendChild(img);
-
-
-
+    imgDiv.appendChild(img);
 
     const titleDiv = document.createElement("div");
     titleDiv.className = "game-title";
@@ -846,7 +838,6 @@ imgDiv.appendChild(img);
     a.appendChild(div);
     slider.appendChild(a);
   });
-  observeLazyImages();
 }
 
 function initSlider(wrapperSelector, games){
@@ -866,11 +857,10 @@ function initSlider(wrapperSelector, games){
   const cardWidth = 346;
   const maxIndex = slider.children.length - 1;
 
-const update = () => {
-  slider.style.transition = "transform 0.4s ease";
-  slider.style.transform = `translateX(${-index * cardWidth}px)`;
-};
-
+  const update = () => {
+    slider.style.transition = "transform 0.4s ease";
+    slider.style.transform = `translateX(${-index * cardWidth}px)`;
+  };
 
   right.onclick = () => {
     if(index < maxIndex){
@@ -889,36 +879,8 @@ const update = () => {
   update();
 }
 
-
-
-
-// --- Tag güncelleme ---
-function updateGameTags(slug,newTags){
-  const game = allGames.find(g=>g.slug===slug);
-  if(!game) return;
-  game.tags = newTags;
-  localStorage.setItem('gameTags-'+slug,JSON.stringify(newTags));
-
-  document.querySelectorAll('.game').forEach(div=>{
-    const a = div.closest('a');
-    if(a && a.getAttribute('href')===slug+'.html'){
-      const tagContainer = div.querySelector('.game-tags-container');
-      if(tagContainer){
-        tagContainer.innerHTML = '';
-        newTags.forEach(tag=>{
-          const t = document.createElement('div');
-          t.className='game-tag';
-          t.textContent=tag;
-          tagContainer.appendChild(t);
-        });
-      }
-    }
-  });
-}
-
 // --- Mozaik doldurma ---
 document.addEventListener("DOMContentLoaded",()=>{
-
   document.querySelectorAll(".mozaik-card").forEach(card=>{
     const slug = card.dataset.slug;
     const img = card.querySelector("img");
@@ -929,39 +891,14 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     if(!game || !img) return;
 
-    img.classList.add("lazy-img");
+    img.src = game.image; // lazy load yok
     img.alt = game.title;
 
     titleBox.textContent = game.title;
     card.onclick = ()=>window.location.href = game.slug + ".html";
   });
 
-  observeLazyImages();
-});
-
-
-  // 🧱 Mozaikler
-  document.querySelectorAll(".mozaik-card").forEach(card=>{
-    const slug = card.dataset.slug;
-    const img = card.querySelector("img");
-    const titleBox = card.querySelector(".mozaik-title");
-    const game =
-      smallGames.find(g=>g.slug===slug) ||
-      largeGames.find(g=>g.slug===slug);
-
-    if(!game || !img) return;
-
-    img.dataset.src = game.image;
-    img.removeAttribute("src"); // ⬅️ KRİTİK
-    img.classList.add("lazy-img");
-    img.alt = game.title;
-
-    titleBox.textContent = game.title;
-    card.onclick = ()=>window.location.href = game.slug + ".html";
-  });
-
-
-  // --- Sliderlar ---
+  // --- Sliderları başlat ---
   const indieGames = [...allGames]; shuffle(indieGames); initSlider(".indie-wrapper", indieGames);
 
   const populerGamesFromHTML = Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g=>({
@@ -974,239 +911,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   const dusukGames = allGames.filter(g=>g.tags && g.tags.includes("Düşük Sistem"));
   shuffle(dusukGames); initSlider(".dusuk-wrapper", dusukGames);
-
-// Random linkler (sadece .random-link)
-document.querySelectorAll(".random-link").forEach(el => {
-  if(el.classList.contains("cekilis")) return; // cekilisi atla
-  el.addEventListener("click", e => {
-    e.preventDefault();
-    const links = [
-      "https://www.youtube.com/watch?v=YVkUvmDQ3HY",
-      "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"
-    ];
-    const chosenLink = links[Math.floor(Math.random() * links.length)];
-    window.open(chosenLink, "_blank");
-  }, { once: true }); // sadece bir kez çalışır
 });
 
-// Wheel (her tıklamada random ve yeni sekme)
-document.querySelectorAll(".wheel").forEach(el => {
-  el.addEventListener("click", e => {
-    e.preventDefault();
-    const links = [
-      "https://www.youtube.com/watch?v=YVkUvmDQ3HY",
-      "https://www.youtube.com/watch?v=R3Z2rA0J0Zc"
-    ];
-    const chosenLink = links[Math.floor(Math.random() * links.length)];
-    window.open(chosenLink, "_blank"); // her clickte yeni link
-  });
-});
-
-// Çekiliş linki
-document.querySelectorAll(".cekilis").forEach(el => {
-  el.addEventListener("click", e => {
-    e.preventDefault();
-    const targetLink = "https://example.com/cekilis-sayfa";
-    window.open(targetLink, "_blank");
-  });
-});
-
-
-
-
-// --- Snow ---
-const panel = document.querySelector('.masa-panel');
-const snowContainer = document.querySelector('.snow');
-
-if(snowContainer){
-
-  let mouseX = -1000, mouseY = -1000;
-
-  if(panel){
-    panel.addEventListener('mousemove', e=>{
-      const rect = panel.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-    });
-  }
-
-  function createSnowflake(){
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-
-    const containerWidth = snowContainer.offsetWidth;
-    const containerHeight = snowContainer.offsetHeight;
-
-    let x = Math.random() * containerWidth;
-    let y = -10;
-
-    const speed = 2 + Math.random() * 2;
-    const tilt  = 0.5 + Math.random() * 0.5;
-    const size  = 6 + Math.random() * 6;
-
-    snowflake.style.width  = size + 'px';
-    snowflake.style.height = size + 'px';
-    snowflake.style.opacity = 0.6 + Math.random() * 0.4;
-
-    snowContainer.appendChild(snowflake);
-
-    function fall(){
-      y += speed;
-      x += tilt;
-
-      const dx = x - mouseX;
-      const dy = y - mouseY;
-      const distance = Math.sqrt(dx*dx + dy*dy);
-
-      if(distance < 120){
-        x = lerp(x, x + (dx/distance)*20, 0.25);
-        y = lerp(y, y + (dy/distance)*10, 0.25);
-      }
-
-      snowflake.style.left = x + 'px';
-      snowflake.style.top  = y + 'px';
-
-      if(y > containerHeight || x > containerWidth || y < -20){
-        snowflake.remove();
-      } else {
-        requestAnimationFrame(fall);
-      }
-    }
-
-    fall();
-  }
-
-  setInterval(createSnowflake, 75);
-}
-
-  
-
-// --- Toggle gece/gündüz ---
+// --- Gece/Gündüz toggle ---
 const toggleBtn = document.getElementById('theme-toggle');
 document.body.classList.add('dark'); // başta gece modu
-toggleBtn.textContent = '☀️'; // ikon başta
+toggleBtn.textContent = '☀️';
 
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark');
   toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
-
-function getAllGamesForSearch(){
-  const map = new Map();
-
-  // 1️⃣ JS oyunları
-  allGames.forEach(g=>{
-    map.set(g.slug, g);
-  });
-
-  // 2️⃣ HTML slider + mozaik oyunları
-  document.querySelectorAll(".game").forEach(gameEl=>{
-    const a = gameEl.closest("a");
-    if(!a) return;
-
-    const title = gameEl.querySelector(".game-title")?.textContent.trim();
-    const href = a.getAttribute("href");
-    if(!title || !href) return;
-
-    const slug = href.replace(".html","");
-    map.set(slug,{
-      title,
-      slug
-    });
-  });
-
-  return Array.from(map.values());
-}
-
-
-const searchInput = document.getElementById("searchInput");
-const suggestionsBox = document.querySelector(".search-suggestions");
-
-if(searchInput && suggestionsBox){
-
-  searchInput.addEventListener("input", () => {
-    const value = searchInput.value.trim().toLowerCase();
-    suggestionsBox.innerHTML = "";
-
-    if(value.length === 0){
-      suggestionsBox.style.display = "none";
-      return;
-    }
-
-    const results = getAllGamesForSearch().filter(game =>
-      game.title.toLowerCase().includes(value)
-    );
-
-    if(results.length === 0){
-      suggestionsBox.style.display = "none";
-      return;
-    }
-
-    results.slice(0, 6).forEach(game => {
-      const div = document.createElement("div");
-      div.textContent = game.title;
-      div.onclick = () => {
-        window.location.href = game.slug + ".html";
-      };
-      suggestionsBox.appendChild(div);
-    });
-
-    suggestionsBox.style.display = "block";
-  });
-
-  // dışarı tıklanınca kapansın
-  document.addEventListener("click", e => {
-    if(!e.target.closest(".search-box")){
-      suggestionsBox.style.display = "none";
-    }
-  });
-
-  // Enter = ilk sonucu aç
-  searchInput.addEventListener("keydown", e => {
-    if(e.key === "Enter"){
-      const first = suggestionsBox.querySelector("div");
-      if(first) first.click();
-    }
-  });
-}
-
-// Duyuru alanı tıklanabilir yap
-(function(){
-  const duyurular = document.querySelectorAll(".haftanin-oyunu-text");
-  duyurular.forEach(duyuru => {
-    duyuru.style.cursor = "pointer";
-    duyuru.addEventListener("click", e => {
-      e.stopPropagation(); // diğer scriptlere ulaşmasını engeller
-      e.preventDefault();  // link davranışını durdurur
-      window.open("https://ballasnet.github.io", "_blank");
-    }, { capture: true }); // capture: önce çalış
-  });
-})();
-
-
-const lazyObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      img.src = img.dataset.src;
-      img.removeAttribute("data-src");
-      observer.unobserve(img);
-    }
-  });
-}, {
-  root: null,
-  rootMargin: "800px", // SLIDER İÇİN KRİTİK
-  threshold: 0.01
-});
-
-
-function observeLazyImages() {
-  document.querySelectorAll(".lazy-img").forEach(img => {
-    lazyObserver.observe(img);
-  });
-}
-
-
 
 </script>
 
