@@ -803,7 +803,7 @@ const lerp = (a,b,t) => a + (b-a)*t;
 // --- Slider doldurma ---
 function fillSlider(slider, games){
   slider.innerHTML = "";
-  games.forEach(game => {
+  games.forEach((game, i) => {
     const a = document.createElement("a");
     a.href = game.slug + ".html";
 
@@ -813,13 +813,13 @@ function fillSlider(slider, games){
     const imgDiv = document.createElement("div");
     imgDiv.className = "game-image";
 
-const img = document.createElement("img");
-img.dataset.src = game.image; // lazy load için
-img.alt = game.title;
-img.classList.add("lazy-img");
+    const img = document.createElement("img");
+    img.dataset.src = game.image;
+    img.alt = game.title;
+    img.classList.add("lazy-img");
 
-// slider görünür olduğunda sadece bu:
-img.src = img.dataset.src;
+    // 🔥 İlk slider card’ı direkt yükle (görünür olsun)
+    if(i === 0) img.src = game.image;
 
     imgDiv.appendChild(img);
 
@@ -842,51 +842,6 @@ img.src = img.dataset.src;
     a.appendChild(div);
     slider.appendChild(a);
   });
-}
-
-function initSlider(wrapperSelector, games){
-  const wrapper = typeof wrapperSelector === "string"
-    ? document.querySelector(wrapperSelector)
-    : wrapperSelector;
-  if(!wrapper) return;
-
-  const slider = wrapper.querySelector(".slider");
-  const left = wrapper.querySelector(".slider-btn.left");
-  const right = wrapper.querySelector(".slider-btn.right");
-  if(!slider || !left || !right) return;
-
-  fillSlider(slider, games);
-
-  let index = 0;
-  const cardWidth = 346;
-  const maxIndex = slider.children.length - 1;
-
-  // 🔥 Tek update fonksiyonu lazy load fix ile
-  const update = () => {
-    slider.style.transition = "transform 0.4s ease";
-    slider.style.transform = `translateX(${-index * cardWidth}px)`;
-
-    // Lazy load fix: kaydırılan img'ler yüklenir
-    slider.querySelectorAll("img.lazy-img").forEach(img => {
-      if (!img.src) img.src = img.dataset.src;
-    });
-  };
-
-  right.onclick = () => {
-    if(index < maxIndex){
-      index++;
-      update();
-    }
-  };
-
-  left.onclick = () => {
-    if(index > 0){
-      index--;
-      update();
-    }
-  };
-
-  update();
 }
 
 
