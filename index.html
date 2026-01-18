@@ -813,9 +813,13 @@ function fillSlider(slider, games){
     const imgDiv = document.createElement("div");
     imgDiv.className = "game-image";
 
-    const img = document.createElement("img");
-    img.src = game.image; // lazy load yok
-    img.alt = game.title;
+const img = document.createElement("img");
+img.dataset.src = game.image; // lazy load için
+img.alt = game.title;
+img.classList.add("lazy-img");
+
+// slider görünür olduğunda sadece bu:
+img.src = img.dataset.src;
 
     imgDiv.appendChild(img);
 
@@ -921,6 +925,34 @@ toggleBtn.textContent = '☀️';
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark');
   toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
+// --- Slider Lazy Load ---
+const sliderLazyObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        img.removeAttribute("data-src");
+      }
+      observer.unobserve(img);
+    }
+  });
+}, {
+  root: null,
+  rootMargin: "800px", // slider için kritik
+  threshold: 0.01
+});
+
+function observeSliderImages() {
+  document.querySelectorAll(".slider img.lazy-img").forEach(img => {
+    sliderLazyObserver.observe(img);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  observeSliderImages();
 });
 
 </script>
