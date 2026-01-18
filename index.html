@@ -754,6 +754,12 @@ main {
 
 </section>
 
+<img 
+  class="lazy-img"
+  data-src="oyunlar/gta5.webp"
+  alt="GTA 5"
+>
+
 
 
   </div>
@@ -810,10 +816,13 @@ function fillSlider(slider, games){
 
     const imgDiv = document.createElement("div");
     imgDiv.className = "game-image";
-    const img = document.createElement("img");
-    img.src = game.image;
-    img.alt = game.title;
-    imgDiv.appendChild(img);
+const img = document.createElement("img");
+img.dataset.src = game.image;
+img.alt = game.title;
+img.classList.add("lazy-img");
+imgDiv.appendChild(img);
+
+
 
     const titleDiv = document.createElement("div");
     titleDiv.className = "game-title";
@@ -834,6 +843,7 @@ function fillSlider(slider, games){
     a.appendChild(div);
     slider.appendChild(a);
   });
+  observeLazyImages();
 }
 
 function initSlider(wrapperSelector, games){
@@ -968,9 +978,7 @@ document.querySelectorAll(".cekilis").forEach(el => {
 });
 
 
-  // --- Gündüz/gece renkleri ---
-  updateTagColors();
-});
+
 
 // --- Snow ---
 const snowContainer = document.querySelector('.snow');
@@ -1127,6 +1135,29 @@ if(searchInput && suggestionsBox){
   });
 })();
 
+
+const lazyImages = document.querySelectorAll(".lazy-img");
+
+const lazyObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.removeAttribute("data-src");
+      observer.unobserve(img);
+    }
+  });
+}, {
+  rootMargin: "200px"
+});
+
+lazyImages.forEach(img => lazyObserver.observe(img));
+
+function observeLazyImages() {
+  document.querySelectorAll(".lazy-img").forEach(img => {
+    lazyObserver.observe(img);
+  });
+}
 
 
 
