@@ -855,26 +855,21 @@ function initSlider(wrapperSelector, games){
   const right = wrapper.querySelector(".slider-btn.right");
   if(!slider || !left || !right) return;
 
-  const update = () => {
-  slider.style.transition = "transform 0.4s ease";
-  slider.style.transform = `translateX(${-index * cardWidth}px)`;
-
-  // 🔥 Lazy load fix: kaydırılan img'ler yüklenir
-  slider.querySelectorAll("img.lazy-img").forEach(img => {
-    if (!img.src) img.src = img.dataset.src;
-  });
-};
-
-
   fillSlider(slider, games);
 
   let index = 0;
   const cardWidth = 346;
   const maxIndex = slider.children.length - 1;
 
+  // 🔥 Tek update fonksiyonu lazy load fix ile
   const update = () => {
     slider.style.transition = "transform 0.4s ease";
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
+
+    // Lazy load fix: kaydırılan img'ler yüklenir
+    slider.querySelectorAll("img.lazy-img").forEach(img => {
+      if (!img.src) img.src = img.dataset.src;
+    });
   };
 
   right.onclick = () => {
@@ -893,6 +888,7 @@ function initSlider(wrapperSelector, games){
 
   update();
 }
+
 
 // --- Mozaik doldurma ---
 document.addEventListener("DOMContentLoaded",()=>{
