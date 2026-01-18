@@ -869,7 +869,6 @@ function initSlider(wrapperSelector, games){
 const update = () => {
   slider.style.transition = "transform 0.4s ease";
   slider.style.transform = `translateX(${-index * cardWidth}px)`;
-  observeLazyImages(); // <-- ÇOK ÖNEMLİ
 };
 
 
@@ -920,6 +919,27 @@ function updateGameTags(slug,newTags){
 // --- Mozaik doldurma ---
 document.addEventListener("DOMContentLoaded",()=>{
 
+  document.querySelectorAll(".mozaik-card").forEach(card=>{
+    const slug = card.dataset.slug;
+    const img = card.querySelector("img");
+    const titleBox = card.querySelector(".mozaik-title");
+    const game =
+      smallGames.find(g=>g.slug===slug) ||
+      largeGames.find(g=>g.slug===slug);
+
+    if(!game || !img) return;
+
+    img.classList.add("lazy-img");
+    img.alt = game.title;
+
+    titleBox.textContent = game.title;
+    card.onclick = ()=>window.location.href = game.slug + ".html";
+  });
+
+  observeLazyImages();
+});
+
+
   // 🧱 Mozaikler
   document.querySelectorAll(".mozaik-card").forEach(card=>{
     const slug = card.dataset.slug;
@@ -939,18 +959,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     titleBox.textContent = game.title;
     card.onclick = ()=>window.location.href = game.slug + ".html";
   });
-
-  // 🎞️ HTML'de olan slider img'leri lazy yap
-  document.querySelectorAll(".slider img").forEach(img=>{
-    if(!img.dataset.src){
-      img.dataset.src = img.src;
-      img.removeAttribute("src");
-      img.classList.add("lazy-img");
-    }
-  });
-
-  observeLazyImages(); // 🔥 EN SON
-});
 
 
   // --- Sliderlar ---
