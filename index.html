@@ -815,12 +815,15 @@ function fillSlider(slider, games){
     div.className = "game";
 
     const imgDiv = document.createElement("div");
-    imgDiv.className = "game-image";
+imgDiv.className = "game-image";
+
 const img = document.createElement("img");
 img.dataset.src = game.image;
 img.alt = game.title;
 img.classList.add("lazy-img");
+
 imgDiv.appendChild(img);
+
 
 
 
@@ -1136,7 +1139,7 @@ if(searchInput && suggestionsBox){
 })();
 
 
-const lazyImages = document.querySelectorAll(".lazy-img");
+const lazyImages = document.querySelectorAll(".slider img.lazy-img");
 
 const lazyObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
