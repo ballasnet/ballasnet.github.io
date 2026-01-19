@@ -1000,12 +1000,19 @@ if (toggleBtn) {
 }
 
 // =====================
-// Slider LazyLoad (sadece sliderlar)
+// Slider LazyLoad (sadece sliderlar, JS ile doldurulanlar)
 // =====================
 function lazyLoadSliderImages(slider) {
-  const images = slider.querySelectorAll("img");
-  const cardWidth = 346; // slider kart genişliği
+  const cardWidth = 346;
   let index = 0;
+
+  const images = slider.querySelectorAll("img");
+
+  // data-src atama ve başlangıçta src boş
+  images.forEach(img => {
+    if (!img.dataset.src) img.dataset.src = img.src;
+    img.src = ""; 
+  });
 
   function loadImage(i) {
     const img = images[i];
@@ -1014,10 +1021,9 @@ function lazyLoadSliderImages(slider) {
     }
   }
 
-  // Başlangıç: görünür olan resimleri yükle (ilk 3-4)
+  // Başlangıçta görünür olan ilk 3-4 resmi yükle
   for (let i = 0; i < Math.min(4, images.length); i++) loadImage(i);
 
-  // Slider kaydırma update fonksiyonunu override ediyoruz
   const wrapper = slider.closest(".slider-wrapper");
   if (!wrapper) return;
   const right = wrapper.querySelector(".slider-btn.right");
@@ -1046,24 +1052,20 @@ function lazyLoadSliderImages(slider) {
 }
 
 // =====================
-// LazyLoad Slider Başlat (fillSlider'dan sonra)
+// Slider LazyLoad Başlat (JS ile doldurulduktan sonra)
 // =====================
-function initLazyLoadForSliders() {
-  document.querySelectorAll(".slider").forEach(slider => {
-    // JS ile eklenen resimlere data-src ata
-    slider.querySelectorAll("img").forEach(img => {
-      if (!img.dataset.src) img.dataset.src = img.src || img.getAttribute('data-src');
-      img.src = ""; // başlangıçta boş
-    });
-    lazyLoadSliderImages(slider);
-  });
-}
-
-// Örnek: Slider doldurma ve lazyload sırası
 document.addEventListener("DOMContentLoaded", () => {
-  // Tüm sliderlar için fillSlider / initSlider zaten çağrılıyor
-  // LazyLoad'u sadece slider resimleri eklendikten sonra başlatıyoruz
-  initLazyLoadForSliders();
+  // Indie slider
+  const indieSlider = document.querySelector(".indie-wrapper .slider");
+  if (indieSlider) lazyLoadSliderImages(indieSlider);
+
+  // Popüler slider
+  const populerSlider = document.querySelector(".shuffle-populer");
+  if (populerSlider) lazyLoadSliderImages(populerSlider);
+
+  // Düşük Sistem slider
+  const dusukSlider = document.querySelector(".dusuk-wrapper .slider");
+  if (dusukSlider) lazyLoadSliderImages(dusukSlider);
 });
 
 
