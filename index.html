@@ -1139,40 +1139,61 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =====================
-// Tema Toggle Anti-Spam Koruma
+// GLOBAL ANTI-SPAM KİLİT (Tema + Sliderlar)
 // =====================
 (() => {
   const toggleBtn = document.getElementById("theme-toggle");
-  if (!toggleBtn) return;
+  const sliderBtns = document.querySelectorAll(".slider-btn");
 
   let clickTimes = [];
   let locked = false;
+  let warned = false;
 
-  toggleBtn.addEventListener("click", () => {
+  function blockEvent(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+
+  function lockAll() {
+    locked = true;
+
+    if (!warned) {
+      alert("Çok hızlı işlem algılandı. 1 dakika kilitlendi.");
+      warned = true; // 🔕 sadece 1 kere uyarı
+    }
+
+    setTimeout(() => {
+      locked = false;
+      clickTimes = [];
+    }, 60000);
+  }
+
+  function handleClick(e) {
     const now = Date.now();
 
     if (locked) {
-      alert("Çok fazla tıkladı, 1 dakika bekle. -BallasNet");
+      blockEvent(e);
       return;
     }
 
-    // Son 5 saniyedeki tıklamaları tut
     clickTimes = clickTimes.filter(t => now - t < 5000);
     clickTimes.push(now);
 
     if (clickTimes.length >= 10) {
-      locked = true;
-      alert("Çok fazla tıkladın, 1 dakika bekle. -BallasNet");
-
-      setTimeout(() => {
-        locked = false;
-        clickTimes = [];
-      }, 60000);
-
-      return;
+      blockEvent(e);
+      lockAll();
     }
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", handleClick, true);
+  }
+
+  sliderBtns.forEach(btn => {
+    btn.addEventListener("click", handleClick, true);
   });
 })();
+
 
 
 </script>
