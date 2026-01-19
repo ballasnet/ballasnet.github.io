@@ -1138,6 +1138,41 @@ document.addEventListener("DOMContentLoaded", () => {
   checkVisibility();
 });
 
+// =====================
+// Tema Toggle Anti-Spam Koruma
+// =====================
+(() => {
+  const toggleBtn = document.getElementById("theme-toggle");
+  if (!toggleBtn) return;
+
+  let clickTimes = [];
+  let locked = false;
+
+  toggleBtn.addEventListener("click", () => {
+    const now = Date.now();
+
+    if (locked) {
+      alert("Çok hızlı tıkladın. 1 dakika bekle.");
+      return;
+    }
+
+    // Son 5 saniyedeki tıklamaları tut
+    clickTimes = clickTimes.filter(t => now - t < 5000);
+    clickTimes.push(now);
+
+    if (clickTimes.length >= 10) {
+      locked = true;
+      alert("Çok fazla tema değiştirildi! 1 dakika kilitlendi.");
+
+      setTimeout(() => {
+        locked = false;
+        clickTimes = [];
+      }, 60000);
+
+      return;
+    }
+  });
+})();
 
 
 </script>
