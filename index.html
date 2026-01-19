@@ -1152,7 +1152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const now = Date.now();
 
     if (locked) {
-      alert("Çok fazla tıkladın. 1 dakika bekle. -BallasNet");
+      alert("Çok fazla tıkladı, 1 dakika bekle. -BallasNet");
       return;
     }
 
@@ -1162,7 +1162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (clickTimes.length >= 10) {
       locked = true;
-      alert("Çok fazla tema değiştirildi! 1 dakika kilitlendi.");
+      alert("Çok fazla tıkladın, 1 dakika bekle. -BallasNet");
 
       setTimeout(() => {
         locked = false;
