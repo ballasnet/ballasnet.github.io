@@ -885,45 +885,45 @@ function initSlider(wrapperSelector, games) {        //İNİT SLİDER
 
     div.appendChild(imgDiv);
     div.appendChild(titleDiv);
+
     // Tagları ekleme (minimal, DOM bozulmaz)
-if (game.tags && game.tags.length) {
-  const tagsContainer = document.createElement("div");
-  tagsContainer.className = "game-tags-container";
+    if (game.tags && game.tags.length) {
+      const tagsContainer = document.createElement("div");
+      tagsContainer.className = "game-tags-container";
 
-  game.tags.forEach(tagText => {
-    const tagDiv = document.createElement("div");
-    tagDiv.className = "game-tag";
-    tagDiv.textContent = tagText;
-    tagsContainer.appendChild(tagDiv);
-  });
+      game.tags.forEach(tagText => {
+        const tagDiv = document.createElement("div");
+        tagDiv.className = "game-tag";
+        tagDiv.textContent = tagText;
+        tagsContainer.appendChild(tagDiv);
+      });
 
-  div.appendChild(tagsContainer);
-}
+      div.appendChild(tagsContainer);
+    }
 
     a.appendChild(div);
     slider.appendChild(a);
   });
 
+  // Slider mantığı başlat
   let index = 0;
   const cardWidth = 346;
+
+  // Başta ilk 4 resmi yükle
+  for (let i = 0; i < 4; i++) {
+    const slide = slider.children[i];
+    if (slide) {
+      const img = slide.querySelector("img");
+      if (img && img.dataset.src && !img.src) {
+        img.src = img.dataset.src;
+      }
+    }
+  }
 
   function update() {
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
     lazyLoadVisible(); // sadece görünenleri yükle
   }
-
-function lazyLoadVisible() {
-    for (let i = index; i < index + 4; i++) {  // index dahil, sonraki 3 = toplam 4 resim
-        const slide = slider.children[i];
-        if (slide) {
-            const img = slide.querySelector("img");
-            if (img && img.dataset.src && !img.src) {
-                img.src = img.dataset.src;
-            }
-        }
-    }
-}
-
 
   right.onclick = () => {
     if (index < slider.children.length - 1) {
@@ -939,35 +939,10 @@ function lazyLoadVisible() {
     }
   };
 
-  // başta ilk resimleri yükle
+  // başta lazyload + 4 görsel için update çağrısı
   update();
 }
 
-
-// Tag değiştirme ve kaydetme fonksiyonu
-function updateGameTags(slug, newTags) {
-  const game = allGames.find(g => g.slug === slug);
-  if(!game) return;
-
-  game.tags = newTags;
-  localStorage.setItem('gameTags-' + slug, JSON.stringify(newTags));
-
-  document.querySelectorAll('.game').forEach(div => {
-    const a = div.closest('a');
-    if(a && a.getAttribute('href') === slug + '.html') {
-      const tagContainer = div.querySelector('.game-tags-container');
-      if(tagContainer){
-        tagContainer.innerHTML = '';
-        newTags.forEach(tag => {
-          const t = document.createElement('div');
-          t.className = 'game-tag';
-          t.textContent = tag;
-          tagContainer.appendChild(t);
-        });
-      }
-    }
-  });
-}
 
 document.addEventListener("DOMContentLoaded", () => {
 // Mozaik doldurma (slug bazlı – sağlam)
