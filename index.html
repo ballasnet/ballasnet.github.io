@@ -811,8 +811,6 @@ allGames.forEach(game => {
 // =====================
 // Yardımcı Fonksiyonlar
 // =====================
-
-// Rastgele sıralama (Fisher-Yates)
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -820,7 +818,7 @@ function shuffle(array) {
   }
 }
 
-// Slider'ı doldurma
+// Slider'ı doldurma (LazyLoad ile)
 function fillSlider(slider, games) {
   slider.innerHTML = "";
   games.forEach(game => {
@@ -833,7 +831,7 @@ function fillSlider(slider, games) {
     const imgDiv = document.createElement("div");
     imgDiv.className = "game-image";
     const img = document.createElement("img");
-    img.src = game.image;
+    img.dataset.src = game.image; // LazyLoad için
     img.alt = game.title;
     imgDiv.appendChild(img);
 
@@ -860,6 +858,25 @@ function fillSlider(slider, games) {
   });
 }
 
+// LazyLoad fonksiyonu: sadece slider içindeki görünür resimleri yükler
+function lazyLoadSlider(slider) {
+  const imgs = Array.from(slider.querySelectorAll("img"));
+  const transformX = parseInt(slider.style.transform.replace('translateX(','').replace('px)','')) || 0;
+  const sliderLeft = -transformX;
+  const sliderRight = sliderLeft + slider.parentElement.offsetWidth;
+
+  imgs.forEach((img, idx) => {
+    const cardWidth = 346; // slider kart genişliği
+    const cardStart = idx * cardWidth;
+    const cardEnd = cardStart + cardWidth;
+
+    if (cardEnd > sliderLeft && cardStart < sliderRight && img.dataset.src) {
+      img.src = img.dataset.src;
+      delete img.dataset.src;
+    }
+  });
+}
+
 // Slider başlatma
 function initSlider(wrapperSelector, games) {
   const wrapper = typeof wrapperSelector === "string" ? document.querySelector(wrapperSelector) : wrapperSelector;
@@ -871,12 +888,14 @@ function initSlider(wrapperSelector, games) {
   if (!slider || !left || !right) return;
 
   fillSlider(slider, games);
+  lazyLoadSlider(slider); // ilk görünür resimleri yükle
 
   let index = 0;
   const cardWidth = 346;
 
   function update() {
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
+    lazyLoadSlider(slider); // kaydırınca lazyload çalışsın
   }
 
   right.onclick = () => {
@@ -926,12 +945,11 @@ function updateGameTags(slug, newTags) {
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Mozaik kartları doldur
+  // Mozaik kartları doldur (LazyLoad yok, değişmedi)
   document.querySelectorAll(".mozaik-card").forEach(card => {
     const slug = card.dataset.slug;
     const img = card.querySelector("img");
     const titleBox = card.querySelector(".mozaik-title");
-
     const game = smallGames.find(g => g.slug === slug) || largeGames.find(g => g.slug === slug);
     if (!game) return;
 
@@ -939,9 +957,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.alt = game.title;
     titleBox.textContent = game.title;
 
-    card.onclick = () => {
-      window.location.href = game.slug + ".html";
-    };
+    card.onclick = () => window.location.href = game.slug + ".html";
   });
 
   // =====================
@@ -967,7 +983,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
   shuffle(dusukGames);
   initSlider(".dusuk-wrapper", dusukGames);
-
 });
 
 // =====================
@@ -983,7 +998,6 @@ if (toggleBtn) {
     toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
   });
 }
-
 
 </script>
 
