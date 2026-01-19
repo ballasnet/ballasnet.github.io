@@ -1242,6 +1242,52 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
+// ===========================
+// Arama Fonksiyonu
+// ===========================
+(() => {
+  const input = document.getElementById('searchInput');
+  const suggestions = document.querySelector('.search-suggestions');
+
+  if (!input || !suggestions) return;
+
+  input.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase();
+    suggestions.innerHTML = '';
+
+    if (!query) {
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    // Tüm oyun başlıklarını al
+    const allGames = Array.from(document.querySelectorAll('.game'));
+    const results = allGames.filter(g => 
+      g.querySelector('.game-title').textContent.toLowerCase().includes(query)
+    );
+
+    results.forEach(g => {
+      const title = g.querySelector('.game-title').textContent;
+      const slug = g.closest('a').getAttribute('href');
+      const div = document.createElement('div');
+      div.textContent = title;
+      div.addEventListener('click', () => {
+        window.location.href = slug; // Aynı sekmede açar
+      });
+      suggestions.appendChild(div);
+    });
+
+    suggestions.style.display = results.length ? 'block' : 'none';
+  });
+
+  // Input dışına tıklayınca gizle
+  document.addEventListener('click', e => {
+    if (!input.contains(e.target) && !suggestions.contains(e.target)) {
+      suggestions.style.display = 'none';
+    }
+  });
+})();
+
 
 </script>
 
