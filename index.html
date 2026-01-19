@@ -970,7 +970,7 @@ document.addEventListener("DOMContentLoaded", () => {
   shuffle(dusukGames);
   initSlider(".dusuk-wrapper", dusukGames);
 
-  // Mozaik doldurma
+  // Mozaik doldurma (slug bazlı)
   document.querySelectorAll(".mozaik-card").forEach(card => {
     const slug = card.dataset.slug;
     const img = card.querySelector("img");
@@ -990,7 +990,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 });
-
 
 
 // =====================
