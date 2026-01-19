@@ -1051,78 +1051,9 @@ function lazyLoadSliderImages(slider) {
   update();
 }
 
-// ===========================
-// Zararsız Kar Efekti (DOM Bozmadan)
-// ===========================
-document.addEventListener("DOMContentLoaded", () => {
-  const snowContainer = document.querySelector('.masa-panel .snow');
-  if (!snowContainer) return;
-
-  const snowCount = 40; // performans dostu
-  const snowflakes = [];
-
-  // Kar tanelerini oluştur
-  for (let i = 0; i < snowCount; i++) {
-    const flake = document.createElement('div');
-    flake.className = 'snowflake';
-    flake.style.width = flake.style.height = 4 + Math.random() * 6 + 'px';
-    flake.style.opacity = 0.3 + Math.random() * 0.7;
-    flake.x = Math.random() * snowContainer.offsetWidth;
-    flake.y = Math.random() * snowContainer.offsetHeight;
-    flake.vx = (Math.random() - 0.5) * 0.5; 
-    flake.vy = 1 + Math.random() * 1.5;     
-    snowContainer.appendChild(flake);
-    snowflakes.push(flake);
-  }
-
-  // Mouse pozisyonu
-  let mouseX = -1000, mouseY = -1000;
-  snowContainer.addEventListener('mousemove', e => {
-    const rect = snowContainer.getBoundingClientRect();
-    mouseX = e.clientX - rect.left;
-    mouseY = e.clientY - rect.top;
-  });
-  snowContainer.addEventListener('mouseleave', () => {
-    mouseX = -1000;
-    mouseY = -1000;
-  });
-
-  // Animasyon
-  function animateSnow() {
-    snowflakes.forEach(flake => {
-      // Mouse’a yaklaşınca kaçma
-      const dx = flake.x - mouseX;
-      const dy = flake.y - mouseY;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if (dist < 100) { 
-        const force = (100 - dist) / 100 * 2; 
-        flake.vx += dx/dist * force;
-        flake.vy += dy/dist * force * 0.3;
-      }
-
-      flake.x += flake.vx;
-      flake.y += flake.vy;
-
-      // Sınırdan çıkanları başa al
-      if (flake.y > snowContainer.offsetHeight) {
-        flake.y = -10;
-        flake.x = Math.random() * snowContainer.offsetWidth;
-        flake.vx = (Math.random() - 0.5) * 0.5;
-        flake.vy = 1 + Math.random() * 1.5;
-      }
-      if (flake.x < 0) flake.x = snowContainer.offsetWidth;
-      if (flake.x > snowContainer.offsetWidth) flake.x = 0;
-
-      flake.style.transform = `translate(${flake.x}px, ${flake.y}px)`;
-    });
-    requestAnimationFrame(animateSnow);
-  }
-
-  animateSnow();
-});
 
 // ===========================
-// Kar Efekti (DOM bozulmadan) ve Scroll ile Fade-in
+// Zararsız Kar Efekti (Scroll + Mouse)
 // ===========================
 document.addEventListener("DOMContentLoaded", () => {
   const snowContainer = document.querySelector('.masa-panel .snow');
@@ -1132,9 +1063,10 @@ document.addEventListener("DOMContentLoaded", () => {
   snowContainer.style.opacity = 0;
   snowContainer.style.transition = "opacity 1s ease";
 
-  // Kar tanelerini oluştur (performans dostu)
-  const snowCount = 40;
+  const snowCount = 40; // performans dostu
   const snowflakes = [];
+
+  // Kar tanelerini oluştur
   for (let i = 0; i < snowCount; i++) {
     const flake = document.createElement('div');
     flake.className = 'snowflake';
@@ -1166,6 +1098,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const dx = flake.x - mouseX;
       const dy = flake.y - mouseY;
       const dist = Math.sqrt(dx*dx + dy*dy);
+
+      // Mouse’a yaklaşınca kaçma
       if (dist < 100) { 
         const force = (100 - dist) / 100 * 2; 
         flake.vx += dx/dist * force;
@@ -1175,6 +1109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       flake.x += flake.vx;
       flake.y += flake.vy;
 
+      // Sınırdan çıkanları başa al
       if (flake.y > snowContainer.offsetHeight) {
         flake.y = -10;
         flake.x = Math.random() * snowContainer.offsetWidth;
@@ -1189,20 +1124,18 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(animateSnow);
   }
 
-  // Başlat animasyon
   animateSnow();
 
-  // Scroll ile görünür yap
+  // Scroll ile fade-in
   function checkVisibility() {
     const rect = snowContainer.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      snowContainer.style.opacity = 1; // görünür
+      snowContainer.style.opacity = 1;
       window.removeEventListener('scroll', checkVisibility);
     }
   }
-
   window.addEventListener('scroll', checkVisibility);
-  checkVisibility(); // sayfa yüklendiğinde de kontrol et
+  checkVisibility();
 });
 
 
