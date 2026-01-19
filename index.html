@@ -944,13 +944,18 @@ function initSlider(wrapperSelector, games) {        //İNİT SLİDER
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {     //OE DOM
+
+  // --------------------------
   // Indie Slider
+  // --------------------------
   const indieGames = [...allGames];
   shuffle(indieGames);
   initSlider(".indie-wrapper", indieGames);
 
+  // --------------------------
   // Popüler Slider (HTML hazır)
+  // --------------------------
   const populerGamesFromHTML = Array.from(
     document.querySelectorAll(".shuffle-populer .game")
   ).map(g => ({
@@ -965,12 +970,16 @@ document.addEventListener("DOMContentLoaded", () => {
     populerGamesFromHTML
   );
 
+  // --------------------------
   // Düşük Sistem Slider
+  // --------------------------
   const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
   shuffle(dusukGames);
   initSlider(".dusuk-wrapper", dusukGames);
 
+  // --------------------------
   // Mozaik doldurma (slug bazlı)
+  // --------------------------
   document.querySelectorAll(".mozaik-card").forEach(card => {
     const slug = card.dataset.slug;
     const img = card.querySelector("img");
@@ -985,12 +994,14 @@ document.addEventListener("DOMContentLoaded", () => {
     img.src = game.image;
     img.alt = game.title;
     titleBox.textContent = game.title;
-    card.onclick = () => {
-      window.location.href = game.slug + ".html";
-    };
-  });
-});
 
+    // Click sorunu fix: window.location
+    card.addEventListener("click", () => {
+      window.location.href = game.slug + ".html";
+    });
+  });
+
+});
 
 // =====================
 // GECE / GÜNDÜZ
