@@ -885,6 +885,21 @@ function initSlider(wrapperSelector, games) {        //İNİT SLİDER
 
     div.appendChild(imgDiv);
     div.appendChild(titleDiv);
+    // Tagları ekleme (minimal, DOM bozulmaz)
+if (game.tags && game.tags.length) {
+  const tagsContainer = document.createElement("div");
+  tagsContainer.className = "game-tags-container";
+
+  game.tags.forEach(tagText => {
+    const tagDiv = document.createElement("div");
+    tagDiv.className = "game-tag";
+    tagDiv.textContent = tagText;
+    tagsContainer.appendChild(tagDiv);
+  });
+
+  div.appendChild(tagsContainer);
+}
+
     a.appendChild(div);
     slider.appendChild(a);
   });
