@@ -923,16 +923,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   // --- Sliderları başlat ---
   const indieGames = [...allGames]; shuffle(indieGames); initSlider(".indie-wrapper", indieGames);
 
-const populerGamesFromHTML = Array.from(
-  document.querySelectorAll(".shuffle-populer .game")
-).map(g => ({
-  title: g.querySelector(".game-title")?.textContent?.trim() || "",
-  image: g.querySelector("img")?.getAttribute("data-src") 
-      || g.querySelector("img")?.src 
-      || "",
-  slug: g.closest("a")?.getAttribute("href")?.replace(".html", "") || "",
-  tags: ["Popüler"]
-}));
+const populerGamesFromHTML = true;
+
 
 
 
@@ -940,8 +932,6 @@ const populerGamesFromHTML = Array.from(
     slug:g.closest("a").getAttribute("href").replace(".html",""),
     tags:Array.from(g.querySelectorAll(".game-tag")).map(t=>t.textContent)
   }));
-  shuffle(populerGamesFromHTML);
-  initSlider(document.querySelector(".shuffle-populer").closest(".slider-wrapper"), populerGamesFromHTML);
 
   const dusukGames = allGames.filter(g=>g.tags && g.tags.includes("Düşük Sistem"));
   shuffle(dusukGames); initSlider(".dusuk-wrapper", dusukGames);
