@@ -1051,6 +1051,68 @@ function lazyLoadSliderImages(slider) {
   update();
 }
 
+const snowContainer = document.querySelector('.masa-panel .snow');
+const snowCount = 80; // Kar tanesi sayısı
+const snowflakes = [];
+
+// Kar tanelerini oluştur
+for (let i = 0; i < snowCount; i++) {
+  const flake = document.createElement('div');
+  flake.className = 'snowflake';
+  flake.style.width = flake.style.height = 4 + Math.random() * 6 + 'px'; // 4-10px arası
+  flake.style.opacity = 0.3 + Math.random() * 0.7; // hafif farklılık
+  flake.x = Math.random() * snowContainer.offsetWidth;
+  flake.y = Math.random() * snowContainer.offsetHeight;
+  flake.vx = (Math.random() - 0.5) * 1; // çapraz hareket
+  flake.vy = 1 + Math.random() * 2; // düşme hızı
+  snowContainer.appendChild(flake);
+  snowflakes.push(flake);
+}
+
+// Mouse pozisyonu
+let mouseX = -1000, mouseY = -1000;
+snowContainer.addEventListener('mousemove', e => {
+  const rect = snowContainer.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+});
+snowContainer.addEventListener('mouseleave', () => {
+  mouseX = -1000;
+  mouseY = -1000;
+});
+
+// Animasyon
+function animateSnow() {
+  snowflakes.forEach(flake => {
+    // Mouse’a uzaklaş
+    const dx = flake.x - mouseX;
+    const dy = flake.y - mouseY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist < 60) {
+      flake.vx += dx/dist * 0.5;
+      flake.vy += dy/dist * 0.5;
+    }
+
+    // Pozisyon güncelle
+    flake.x += flake.vx;
+    flake.y += flake.vy;
+
+    // Sınırdan çıkanları başa al
+    if (flake.y > snowContainer.offsetHeight) {
+      flake.y = -10;
+      flake.x = Math.random() * snowContainer.offsetWidth;
+      flake.vx = (Math.random() - 0.5) * 1;
+      flake.vy = 1 + Math.random() * 2;
+    }
+    if (flake.x < 0) flake.x = snowContainer.offsetWidth;
+    if (flake.x > snowContainer.offsetWidth) flake.x = 0;
+
+    flake.style.transform = `translate(${flake.x}px, ${flake.y}px)`;
+  });
+  requestAnimationFrame(animateSnow);
+}
+
+animateSnow();
 
 
 </script>
