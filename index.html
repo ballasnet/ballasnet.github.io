@@ -965,38 +965,33 @@ document.addEventListener("DOMContentLoaded", () => {
     populerGamesFromHTML
   );
 
+  // Düşük Sistem Slider
+  const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
+  shuffle(dusukGames);
+  initSlider(".dusuk-wrapper", dusukGames);
 
+  // Mozaik doldurma
+  document.querySelectorAll(".mozaik-card").forEach(card => {
+    const slug = card.dataset.slug;
+    const img = card.querySelector("img");
+    const titleBox = card.querySelector(".mozaik-title");
 
+    const game =
+      smallGames.find(g => g.slug === slug) ||
+      largeGames.find(g => g.slug === slug);
 
-// Mozaik doldurma (slug bazlı – sağlam)
-document.querySelectorAll(".mozaik-card").forEach(card => {
-  const slug = card.dataset.slug;
-  const img = card.querySelector("img");
-  const titleBox = card.querySelector(".mozaik-title");
+    if (!game) return;
 
-  const game =
-    smallGames.find(g => g.slug === slug) ||
-    largeGames.find(g => g.slug === slug);
-
-  if (!game) return;
-
-  img.src = game.image;
-  img.alt = game.title;
-  titleBox.textContent = game.title;
-  card.onclick = () => {
-    window.location.href = game.slug + ".html";
-  };
+    img.src = game.image;
+    img.alt = game.title;
+    titleBox.textContent = game.title;
+    card.onclick = () => {
+      window.location.href = game.slug + ".html";
+    };
+  });
 });
 
 
-
-// Düşük Sistem
-const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
-shuffle(dusukGames);
-initSlider(".dusuk-wrapper", dusukGames);
-
-
-});
 
 // =====================
 // GECE / GÜNDÜZ
