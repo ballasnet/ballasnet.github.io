@@ -926,10 +926,14 @@ document.addEventListener("DOMContentLoaded",()=>{
 const populerGamesFromHTML = Array.from(
   document.querySelectorAll(".shuffle-populer .game")
 ).map(g => ({
-  title: g.querySelector(".game-title").textContent,
-  slug: g.closest("a").getAttribute("href").replace(".html",""),
-  tags: Array.from(g.querySelectorAll(".game-tag")).map(t=>t.textContent)
+  title: g.querySelector(".game-title")?.textContent?.trim() || "",
+  image: g.querySelector("img")?.getAttribute("data-src") 
+      || g.querySelector("img")?.src 
+      || "",
+  slug: g.closest("a")?.getAttribute("href")?.replace(".html", "") || "",
+  tags: ["Popüler"]
 }));
+
 
 
     title:g.querySelector(".game-title").textContent,
