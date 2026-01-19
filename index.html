@@ -923,19 +923,17 @@ document.addEventListener("DOMContentLoaded",()=>{
   // --- Sliderları başlat ---
   const indieGames = [...allGames]; shuffle(indieGames); initSlider(".indie-wrapper", indieGames);
 
-const populerGamesFromHTML = true;
+const populerGamesFromHTML = Array.from(
+  document.querySelectorAll(".shuffle-populer .game")
+).map(g => ({
+  title: g.querySelector(".game-title")?.textContent?.trim() || "",
+  image: g.querySelector("img")?.getAttribute("data-src") 
+      || g.querySelector("img")?.src 
+      || "",
+  slug: g.closest("a")?.getAttribute("href")?.replace(".html", "") || "",
+  tags: ["Popüler"]
+}));
 
-
-
-
-    title:g.querySelector(".game-title").textContent,
-    slug:g.closest("a").getAttribute("href").replace(".html",""),
-    tags:Array.from(g.querySelectorAll(".game-tag")).map(t=>t.textContent)
-  }));
-
-  const dusukGames = allGames.filter(g=>g.tags && g.tags.includes("Düşük Sistem"));
-  shuffle(dusukGames); initSlider(".dusuk-wrapper", dusukGames);
-});
 
 // --- Gece/Gündüz toggle ---
 const toggleBtn = document.getElementById('theme-toggle');
