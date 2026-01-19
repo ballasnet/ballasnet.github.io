@@ -545,6 +545,12 @@ main {
   z-index: 1;
 }
 
+.slider {
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+
 
 </style>
 </head>
@@ -815,9 +821,10 @@ function fillSlider(slider, games){
 
     const img = document.createElement("img");
     img.alt = game.title;
+    img.dataset.src = game.image;
 
-    // 🔥 İlk kart hemen yüklensin
-    img.src = game.image;
+    // 🔥 ilk 2 kart direkt yüklensin
+    if (i < 2) img.src = game.image;
 
     imgDiv.appendChild(img);
 
@@ -825,26 +832,27 @@ function fillSlider(slider, games){
     titleDiv.className = "game-title";
     titleDiv.textContent = game.title;
 
-    const tagsContainer = document.createElement("div");
-    tagsContainer.className = "game-tags-container";
-
-    if(game.tags){
-      game.tags.forEach(tagText => {
-        const tagDiv = document.createElement("div");
-        tagDiv.className = "game-tag";
-        tagDiv.textContent = tagText;
-        tagsContainer.appendChild(tagDiv);
-      });
-    }
-
     div.appendChild(imgDiv);
     div.appendChild(titleDiv);
-    div.appendChild(tagsContainer);
-
     a.appendChild(div);
     slider.appendChild(a);
   });
 }
+
+function loadVisibleImages(slider, wrap) {
+  const imgs = slider.querySelectorAll("img[data-src]");
+
+  imgs.forEach(img => {
+    const rect = img.getBoundingClientRect();
+    const wrapRect = wrap.getBoundingClientRect();
+
+    if (rect.right > wrapRect.left && rect.left < wrapRect.right) {
+      img.src = img.dataset.src;
+      img.removeAttribute("data-src");
+    }
+  });
+}
+
 
 function initSlider(wrapper, games) {
   const wrap = typeof wrapper === "string"
@@ -863,6 +871,21 @@ function initSlider(wrapper, games) {
 
   let currentX = 0;
   const cardWidth = 346;
+  btnRight?.addEventListener("click", () => {
+  const maxScroll = slider.scrollWidth - wrap.clientWidth;
+  currentX = Math.min(currentX + cardWidth, maxScroll);
+  slider.style.transform = `translateX(-${currentX}px)`;
+
+  loadVisibleImages(slider, wrap);
+});
+
+btnLeft?.addEventListener("click", () => {
+  currentX = Math.max(currentX - cardWidth, 0);
+  slider.style.transform = `translateX(-${currentX}px)`;
+
+  loadVisibleImages(slider, wrap);
+});
+
 
   btnRight?.addEventListener("click", () => {
     const maxScroll = slider.scrollWidth - wrap.clientWidth;
