@@ -1052,22 +1052,22 @@ function lazyLoadSliderImages(slider) {
 }
 
 const snowContainer = document.querySelector('.masa-panel .snow');
-const snowCount = 80; // Kar tanesi sayısı
+const snowCount = 40; // 30-50 arası, performans için
 const snowflakes = [];
 
 // Kar tanelerini oluştur
 for (let i = 0; i < snowCount; i++) {
   const flake = document.createElement('div');
   flake.className = 'snowflake';
-  flake.style.width = flake.style.height = 4 + Math.random() * 6 + 'px'; // 4-10px arası
-  flake.style.opacity = 0.3 + Math.random() * 0.7; // hafif farklılık
+  flake.style.width = flake.style.height = 4 + Math.random() * 6 + 'px';
+  flake.style.opacity = 0.3 + Math.random() * 0.7;
   flake.x = Math.random() * snowContainer.offsetWidth;
   flake.y = Math.random() * snowContainer.offsetHeight;
-  flake.vx = (Math.random() - 0.5) * 1; // çapraz hareket
-  flake.vy = 1 + Math.random() * 2; // düşme hızı
+  flake.vx = (Math.random() - 0.5) * 0.5; // daha yumuşak çapraz
+  flake.vy = 1 + Math.random() * 1.5;     // düşme hızı
   snowContainer.appendChild(flake);
   snowflakes.push(flake);
-}
+});
 
 // Mouse pozisyonu
 let mouseX = -1000, mouseY = -1000;
@@ -1084,16 +1084,16 @@ snowContainer.addEventListener('mouseleave', () => {
 // Animasyon
 function animateSnow() {
   snowflakes.forEach(flake => {
-    // Mouse’a uzaklaş
+    // Mouse’a yaklaşınca kaçma
     const dx = flake.x - mouseX;
     const dy = flake.y - mouseY;
     const dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist < 60) {
-      flake.vx += dx/dist * 0.5;
-      flake.vy += dy/dist * 0.5;
+    if (dist < 100) { // daha geniş alan
+      const force = (100 - dist) / 100 * 2; // mesafeye göre güç
+      flake.vx += dx/dist * force;
+      flake.vy += dy/dist * force * 0.3;
     }
 
-    // Pozisyon güncelle
     flake.x += flake.vx;
     flake.y += flake.vy;
 
@@ -1101,8 +1101,8 @@ function animateSnow() {
     if (flake.y > snowContainer.offsetHeight) {
       flake.y = -10;
       flake.x = Math.random() * snowContainer.offsetWidth;
-      flake.vx = (Math.random() - 0.5) * 1;
-      flake.vy = 1 + Math.random() * 2;
+      flake.vx = (Math.random() - 0.5) * 0.5;
+      flake.vy = 1 + Math.random() * 1.5;
     }
     if (flake.x < 0) flake.x = snowContainer.offsetWidth;
     if (flake.x > snowContainer.offsetWidth) flake.x = 0;
