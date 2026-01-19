@@ -1179,7 +1179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clickTimes = clickTimes.filter(t => now - t < 5000);
     clickTimes.push(now);
 
-    if (clickTimes.length >= 10) {
+    if (clickTimes.length >= 12) {          //TIKLAMA SAYISI KONTROLCUSU KEU
       blockEvent(e);
       lockAll();
     }
