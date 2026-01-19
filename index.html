@@ -1046,17 +1046,24 @@ function lazyLoadSliderImages(slider) {
 }
 
 // =====================
-// LazyLoad Slider Başlat
+// LazyLoad Slider Başlat (fillSlider'dan sonra)
 // =====================
-document.addEventListener("DOMContentLoaded", () => {
+function initLazyLoadForSliders() {
   document.querySelectorAll(".slider").forEach(slider => {
-    // Mevcut img src'leri data-src olarak al
+    // JS ile eklenen resimlere data-src ata
     slider.querySelectorAll("img").forEach(img => {
-      if (!img.dataset.src) img.dataset.src = img.src;
+      if (!img.dataset.src) img.dataset.src = img.src || img.getAttribute('data-src');
       img.src = ""; // başlangıçta boş
     });
     lazyLoadSliderImages(slider);
   });
+}
+
+// Örnek: Slider doldurma ve lazyload sırası
+document.addEventListener("DOMContentLoaded", () => {
+  // Tüm sliderlar için fillSlider / initSlider zaten çağrılıyor
+  // LazyLoad'u sadece slider resimleri eklendikten sonra başlatıyoruz
+  initLazyLoadForSliders();
 });
 
 
