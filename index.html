@@ -1242,51 +1242,56 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-// ===========================
-// Arama Fonksiyonu
-// ===========================
-(() => {
-  const input = document.getElementById('searchInput');
-  const suggestions = document.querySelector('.search-suggestions');
+// =====================
+// Arama Önerileri (Tekrarları Önler)
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
+  const suggestions = document.querySelector(".search-suggestions");
+  if (!searchInput || !suggestions) return;
 
-  if (!input || !suggestions) return;
+  // Tüm oyunları al, slider ve mozaik dahil
+  const allGameElements = Array.from(document.querySelectorAll(".game"));
 
-  input.addEventListener('input', () => {
-    const query = input.value.trim().toLowerCase();
-    suggestions.innerHTML = '';
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    suggestions.innerHTML = "";
 
-    if (!query) {
-      suggestions.style.display = 'none';
-      return;
-    }
+    if (!query) return;
 
-    // Tüm oyun başlıklarını al
-    const allGames = Array.from(document.querySelectorAll('.game'));
-    const results = allGames.filter(g => 
-      g.querySelector('.game-title').textContent.toLowerCase().includes(query)
-    );
+    const resultsSet = new Set(); // tekrarları önlemek için
 
-    results.forEach(g => {
-      const title = g.querySelector('.game-title').textContent;
-      const slug = g.closest('a').getAttribute('href');
-      const div = document.createElement('div');
+    allGameElements.forEach(g => {
+      const title = g.querySelector(".game-title").textContent;
+      if (!title.toLowerCase().includes(query)) return; // filtreleme
+      if (resultsSet.has(title)) return; // tekrar varsa atla
+      resultsSet.add(title);
+
+      const slug = g.closest("a").getAttribute("href");
+      const div = document.createElement("div");
       div.textContent = title;
-      div.addEventListener('click', () => {
-        window.location.href = slug; // Aynı sekmede açar
+      div.addEventListener("click", () => {
+        window.location.href = slug; // linke yönlendir
       });
       suggestions.appendChild(div);
     });
 
-    suggestions.style.display = results.length ? 'block' : 'none';
-  });
-
-  // Input dışına tıklayınca gizle
-  document.addEventListener('click', e => {
-    if (!input.contains(e.target) && !suggestions.contains(e.target)) {
-      suggestions.style.display = 'none';
+    // önerileri göster
+    if (suggestions.children.length) {
+      suggestions.style.display = "block";
+    } else {
+      suggestions.style.display = "none";
     }
   });
-})();
+
+  // Input dışına tıklandığında gizle
+  document.addEventListener("click", (e) => {
+    if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+      suggestions.style.display = "none";
+    }
+  });
+});
+
 
 
 </script>
