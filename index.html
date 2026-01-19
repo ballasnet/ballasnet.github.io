@@ -800,9 +800,9 @@ function shuffle(array) {
 }
 const lerp = (a,b,t) => a + (b-a)*t;
 
-// --- Slider doldurma ---
 function fillSlider(slider, games){
   slider.innerHTML = "";
+
   games.forEach((game, i) => {
     const a = document.createElement("a");
     a.href = game.slug + ".html";
@@ -814,12 +814,10 @@ function fillSlider(slider, games){
     imgDiv.className = "game-image";
 
     const img = document.createElement("img");
-    img.dataset.src = game.image;
     img.alt = game.title;
-    img.classList.add("lazy-img");
 
-    // 🔥 İlk slider card’ı direkt yükle (görünür olsun)
-    if(i === 0) img.src = game.image;
+    // 🔥 İlk kart hemen yüklensin
+    img.src = game.image;
 
     imgDiv.appendChild(img);
 
@@ -829,18 +827,52 @@ function fillSlider(slider, games){
 
     const tagsContainer = document.createElement("div");
     tagsContainer.className = "game-tags-container";
-    if(game.tags) game.tags.forEach(tagText => {
-      const tagDiv = document.createElement("div");
-      tagDiv.className = "game-tag";
-      tagDiv.textContent = tagText;
-      tagsContainer.appendChild(tagDiv);
-    });
+
+    if(game.tags){
+      game.tags.forEach(tagText => {
+        const tagDiv = document.createElement("div");
+        tagDiv.className = "game-tag";
+        tagDiv.textContent = tagText;
+        tagsContainer.appendChild(tagDiv);
+      });
+    }
 
     div.appendChild(imgDiv);
     div.appendChild(titleDiv);
     div.appendChild(tagsContainer);
+
     a.appendChild(div);
     slider.appendChild(a);
+  });
+}
+
+function initSlider(wrapper, games) {
+  const wrap = typeof wrapper === "string"
+    ? document.querySelector(wrapper)
+    : wrapper;
+
+  if (!wrap) return;
+
+  const slider = wrap.querySelector(".slider");
+  const btnLeft = wrap.querySelector(".slider-btn.left");
+  const btnRight = wrap.querySelector(".slider-btn.right");
+
+  if (!slider) return;
+
+  fillSlider(slider, games);
+
+  let currentX = 0;
+  const cardWidth = 346;
+
+  btnRight?.addEventListener("click", () => {
+    const maxScroll = slider.scrollWidth - wrap.clientWidth;
+    currentX = Math.min(currentX + cardWidth, maxScroll);
+    slider.style.transform = `translateX(-${currentX}px)`;
+  });
+
+  btnLeft?.addEventListener("click", () => {
+    currentX = Math.max(currentX - cardWidth, 0);
+    slider.style.transform = `translateX(-${currentX}px)`;
   });
 }
 
