@@ -821,7 +821,8 @@ function fillSlider(slider, games){
 
     const img = document.createElement("img");
     img.alt = game.title;
-    img.dataset.src = game.image;
+    img.src = game.image;
+
 
     // 🔥 ilk 2 kart direkt yüklensin
     if (i < 2) img.src = game.image;
