@@ -888,19 +888,6 @@ btnLeft?.addEventListener("click", () => {
 });
 
 
-  btnRight?.addEventListener("click", () => {
-    const maxScroll = slider.scrollWidth - wrap.clientWidth;
-    currentX = Math.min(currentX + cardWidth, maxScroll);
-    slider.style.transform = `translateX(-${currentX}px)`;
-  });
-
-  btnLeft?.addEventListener("click", () => {
-    currentX = Math.max(currentX - cardWidth, 0);
-    slider.style.transform = `translateX(-${currentX}px)`;
-  });
-}
-
-
 // --- Mozaik doldurma ---
 document.addEventListener("DOMContentLoaded",()=>{
   document.querySelectorAll(".mozaik-card").forEach(card=>{
