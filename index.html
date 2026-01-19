@@ -923,7 +923,21 @@ document.addEventListener("DOMContentLoaded",()=>{
   // --- Sliderları başlat ---
   const indieGames = [...allGames]; shuffle(indieGames); initSlider(".indie-wrapper", indieGames);
 
-  const populerGamesFromHTML = Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g=>({
+const populerGamesFromHTML = Array.from(
+  document.querySelectorAll(".shuffle-populer .game")
+).map(g => {
+  const slug = g.closest("a").getAttribute("href").replace(".html","");
+
+  const originalGame = allGames.find(game => game.slug === slug);
+
+  return {
+    title: g.querySelector(".game-title").textContent,
+    slug,
+    image: originalGame?.image, // 🔥 OLAY BURASI
+    tags: Array.from(g.querySelectorAll(".game-tag")).map(t=>t.textContent)
+  };
+});
+
     title:g.querySelector(".game-title").textContent,
     slug:g.closest("a").getAttribute("href").replace(".html",""),
     tags:Array.from(g.querySelectorAll(".game-tag")).map(t=>t.textContent)
