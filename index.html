@@ -854,6 +854,34 @@ function loadVisibleImages(slider, wrap) {
   });
 }
 
+function initStaticSlider(wrapper) {
+  const wrap = typeof wrapper === "string"
+    ? document.querySelector(wrapper)
+    : wrapper;
+
+  if (!wrap) return;
+
+  const slider = wrap.querySelector(".slider");
+  const btnLeft = wrap.querySelector(".slider-btn.left");
+  const btnRight = wrap.querySelector(".slider-btn.right");
+
+  if (!slider) return;
+
+  let currentX = 0;
+  const cardWidth = 346;
+
+  btnRight?.addEventListener("click", () => {
+    const maxScroll = slider.scrollWidth - wrap.clientWidth;
+    currentX = Math.min(currentX + cardWidth, maxScroll);
+    slider.style.transform = `translateX(-${currentX}px)`;
+  });
+
+  btnLeft?.addEventListener("click", () => {
+    currentX = Math.max(currentX - cardWidth, 0);
+    slider.style.transform = `translateX(-${currentX}px)`;
+  });
+}
+
 
 function initSlider(wrapper, games) {
   const wrap = typeof wrapper === "string"
@@ -885,6 +913,35 @@ btnLeft?.addEventListener("click", () => {
   slider.style.transform = `translateX(-${currentX}px)`;
 
   loadVisibleImages(slider, wrap);
+
+  function initStaticSlider(wrapper) {
+  const wrap = typeof wrapper === "string"
+    ? document.querySelector(wrapper)
+    : wrapper;
+
+  if (!wrap) return;
+
+  const slider = wrap.querySelector(".slider");
+  const btnLeft = wrap.querySelector(".slider-btn.left");
+  const btnRight = wrap.querySelector(".slider-btn.right");
+
+  if (!slider) return;
+
+  let currentX = 0;
+  const cardWidth = 346;
+
+  btnRight?.addEventListener("click", () => {
+    const maxScroll = slider.scrollWidth - wrap.clientWidth;
+    currentX = Math.min(currentX + cardWidth, maxScroll);
+    slider.style.transform = `translateX(-${currentX}px)`;
+  });
+
+  btnLeft?.addEventListener("click", () => {
+    currentX = Math.max(currentX - cardWidth, 0);
+    slider.style.transform = `translateX(-${currentX}px)`;
+  });
+}
+
 });
 
 
