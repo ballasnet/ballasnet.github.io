@@ -1194,6 +1194,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
+// ===========================
+// Snow LazyHide / LazyShow
+// ===========================
+document.addEventListener("DOMContentLoaded", () => {
+  const snowContainer = document.querySelector('.masa-panel .snow');
+  if (!snowContainer) return;
+
+  function checkSnowVisibility() {
+    const rect = snowContainer.getBoundingClientRect();
+    // Eğer snow görünümden çıkmışsa gizle
+    if (rect.bottom < 0 || rect.top > window.innerHeight) {
+      snowContainer.style.opacity = 0;
+    } else {
+      // Görünüyorsa tekrar aç
+      snowContainer.style.opacity = 1;
+    }
+  }
+
+  window.addEventListener('scroll', checkSnowVisibility);
+  checkSnowVisibility(); // sayfa yüklendiğinde de kontrol et
+});
 
 
 </script>
