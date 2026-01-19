@@ -999,6 +999,67 @@ if (toggleBtn) {
   });
 }
 
+// =====================
+// Slider LazyLoad (sadece sliderlar)
+// =====================
+function lazyLoadSliderImages(slider) {
+  const images = slider.querySelectorAll("img");
+  const cardWidth = 346; // slider kart genişliği
+  let index = 0;
+
+  function loadImage(i) {
+    const img = images[i];
+    if (img && img.dataset.src && !img.src) {
+      img.src = img.dataset.src;
+    }
+  }
+
+  // Başlangıç: görünür olan resimleri yükle (ilk 3-4)
+  for (let i = 0; i < Math.min(4, images.length); i++) loadImage(i);
+
+  // Slider kaydırma update fonksiyonunu override ediyoruz
+  const wrapper = slider.closest(".slider-wrapper");
+  if (!wrapper) return;
+  const right = wrapper.querySelector(".slider-btn.right");
+  const left = wrapper.querySelector(".slider-btn.left");
+
+  function update() {
+    slider.style.transform = `translateX(${-index * cardWidth}px)`;
+    loadImage(index);
+    loadImage(index + 1); // sağdaki kart da yüklenir
+  }
+
+  right.onclick = () => {
+    if (index < slider.children.length - 1) {
+      index++;
+      update();
+    }
+  };
+  left.onclick = () => {
+    if (index > 0) {
+      index--;
+      update();
+    }
+  };
+
+  update();
+}
+
+// =====================
+// LazyLoad Slider Başlat
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".slider").forEach(slider => {
+    // Mevcut img src'leri data-src olarak al
+    slider.querySelectorAll("img").forEach(img => {
+      if (!img.dataset.src) img.dataset.src = img.src;
+      img.src = ""; // başlangıçta boş
+    });
+    lazyLoadSliderImages(slider);
+  });
+});
+
+
 </script>
 
 
