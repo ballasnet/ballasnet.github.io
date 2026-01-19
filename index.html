@@ -912,21 +912,18 @@ if (game.tags && game.tags.length) {
     lazyLoadVisible(); // sadece görünenleri yükle
   }
 
-  function lazyLoadVisible() {
-    const visible = slider.children[index];
-    if (visible) {
-      const img = visible.querySelector("img");
-      if (img && img.dataset.src && !img.src) {
-        img.src = img.dataset.src;
-      }
+function lazyLoadVisible() {
+    for (let i = index; i < index + 4; i++) {  // index dahil, sonraki 3 = toplam 4 resim
+        const slide = slider.children[i];
+        if (slide) {
+            const img = slide.querySelector("img");
+            if (img && img.dataset.src && !img.src) {
+                img.src = img.dataset.src;
+            }
+        }
     }
-    // istersen yanındaki bir resimi de önceden yükle
-    const next = slider.children[index + 1];
-    if (next) {
-      const img = next.querySelector("img");
-      if (img && img.dataset.src && !img.src) img.src = img.dataset.src;
-    }
-  }
+}
+
 
   right.onclick = () => {
     if (index < slider.children.length - 1) {
