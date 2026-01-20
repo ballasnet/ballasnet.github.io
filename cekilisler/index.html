@@ -4,43 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BallasNet Çekilişler</title>
-
-<!-- FAVICON -->
-<link rel="icon" type="image/png" href="favicon2.png">
-
+<link rel="icon" type="image/jpeg" href="favicon2.jpg">
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: #ffffff;
-  padding: 40px 20px;
-}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-.page-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-}
-
-
-  /* DİKEY GÖRSEL */
-.cekilis-image {
-  width: 100%;
-  max-height: 520px;      /* GÖRSEL KÜÇÜLDÜ */
-  aspect-ratio: 3 / 4;   /* hala dikey ama daha kısa */
-  background: #1c1c1c;
-  margin-bottom: 40px;
-  overflow: hidden;
-}
-
-
-  .cekilis-image img {
-    width: 100%;
-    height: 100%;
+  /* SOL VE SAĞ GÖRSELLER */
+  .side-image {
+    position: fixed;  /* sayfanın sabit kenarı */
+    top: 0;
+    bottom: 0;
+    width: 220px;      /* isteğe göre genişlik */
     object-fit: cover;
-    display: block;
+    z-index: 1;
+  }
+
+  .side-image.left {
+    left: 0;
+  }
+
+  .side-image.right {
+    right: 0;
+  }
+
+  /* ORTA İÇERİK */
+  .cekilis-container {
+    position: relative;
+    z-index: 2;  /* görsellerin üstünde */
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
   }
 
   h1 {
@@ -78,69 +79,43 @@ body {
     color: #00ffff;
   }
 
-
-.side-image {
-  width: 220px;
-  max-height: 520px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.side-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Mobilde gizle */
-@media (max-width: 900px) {
-  .side-image {
-    display: none;
+  /* Mobilde yan görselleri gizle */
+  @media (max-width: 900px) {
+    .side-image {
+      display: none;
+    }
   }
-}
-
-
-
-  
 </style>
 </head>
-
 <body>
 
-<div class="page-wrapper">
+<!-- Sol görsel -->
+<img src="cekilisler4.png" class="side-image left" alt="Sol Görsel">
 
-  <div class="side-image">
-    <img src="cekilisler31.png" alt="Çekiliş Sol Görsel">
+<!-- Sağ görsel -->
+<img src="cekilisler4.png" class="side-image right" alt="Sağ Görsel">
+
+<div class="cekilis-container">
+  <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
+
+  <div class="cekilis-list">
+    <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
+    <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
+    <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
+    <div>MINECRAFT — Bitiş: 27.02.2026</div>
+    <div>HYTALE — Bitiş: 28.02.2026</div>
   </div>
 
-  <div class="cekilis-container">
-    <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
-
-    <div class="cekilis-list">
-      <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
-      <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
-      <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
-      <div>MINECRAFT — Bitiş: 27.02.2026</div>
-      <div>HYTALE — Bitiş: 28.02.2026</div>
-    </div>
-
-    <div class="final-cekilis">
-      5600 TL ÖZEL ÇEKİLİŞ<br>
-      (Bitiş Tarihi: 10.03.2026)
-    </div>
-
-    <div class="discord-link">
-      Çekilişe katılmak için Discord ismimiz:<br>
-      <strong>BURAYA EKLE</strong>
-    </div>
+  <div class="final-cekilis">
+    5600 TL ÖZEL ÇEKİLİŞ<br>
+    (Bitiş Tarihi: 10.03.2026)
   </div>
 
-  <div class="side-image">
-    <img src="cekilisler31.png" alt="Çekiliş Sağ Görsel">
+  <div class="discord-link">
+    Çekilişe katılmak için Discord ismimiz:<br>
+    <strong>BURAYA EKLE</strong>
   </div>
-
 </div>
-
 
 </body>
 </html>
