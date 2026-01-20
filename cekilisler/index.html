@@ -4,83 +4,109 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BallasNet Çekilişler</title>
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="favicon.png">
+
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #0f0f0f;
-    color: #fff;
+    color: #ffffff;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    justify-content: center;
+    padding: 40px 20px;
   }
 
   .cekilis-container {
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     text-align: center;
   }
 
+  /* DİKEY GÖRSEL */
   .cekilis-image {
     width: 100%;
-    aspect-ratio: 2/1; /* dikdörtgen şeklinde */
-    background: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 48px;
-    font-weight: bold;
-    color: #0ff;
-    margin-bottom: 20px;
+    aspect-ratio: 3 / 5;
+    background: #1c1c1c;
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+
+  .cekilis-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
+    font-size: 36px;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
   }
 
   .cekilis-list {
     text-align: left;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
 
   .cekilis-list div {
-    padding: 8px 0;
-    font-size: 16px;
-    border-bottom: 1px solid #333;
+    padding: 20px 0;
+    font-size: 20px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .cekilis-list div:last-child {
+    border-bottom: none;
   }
 
   .final-cekilis {
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
-    color: #ff0;
-    margin-bottom: 16px;
+    color: #ffd700;
+    margin-bottom: 32px;
+    line-height: 1.3;
   }
 
   .discord-link {
-    font-size: 18px;
-    color: #0ff;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #00ffff;
   }
 </style>
 </head>
+
 <body>
 
 <div class="cekilis-container">
-  <div class="cekilis-image">|||</div>
+
+  <!-- ÇEKİLİŞ GÖRSELİ -->
+  <div class="cekilis-image">
+    <img src="cekilisler4.png" alt="Çekiliş Görseli">
+  </div>
 
   <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
 
   <div class="cekilis-list">
-    <div>VALORANT 3800VP (bitiş tarihi 24.02.2026)</div>
-    <div>WINDOWS 10 ANAHTARI (bitiş tarihi 25.02.2026)</div>
-    <div>LEAGUE OF LEGENDS 3800RP (bitiş tarihi 26.02.2026)</div>
-    <div>MINECRAFT (bitiş tarihi 27.02.2026)</div>
-    <div>HYTALE (bitiş tarihi 28.02.2026)</div>
+    <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
+    <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
+    <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
+    <div>MINECRAFT — Bitiş: 27.02.2026</div>
+    <div>HYTALE — Bitiş: 28.02.2026</div>
   </div>
 
-  <div class="final-cekilis">5600 TL ÖZEL ÇEKİLİŞ (bitiş tarihi 10.03.2026)</div>
-  <div class="discord-link">ÇEKİLİŞE KATILMAK İÇİN DİSCORD İSMİMİZ: <strong>BURAYA EKLE</strong></div>
+  <div class="final-cekilis">
+    5600 TL ÖZEL ÇEKİLİŞ<br>
+    (Bitiş Tarihi: 10.03.2026)
+  </div>
+
+  <div class="discord-link">
+    Çekilişe katılmak için Discord ismimiz:<br>
+    <strong>BURAYA EKLE</strong>
+  </div>
+
 </div>
 
 </body>
