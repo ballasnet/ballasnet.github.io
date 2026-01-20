@@ -12,35 +12,24 @@
     font-family: 'Montserrat', sans-serif;
     background-color: #0f0f0f;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-  }
-
-  h1 {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 40px;
-    color: #00ffff;
-    letter-spacing: 1px;
   }
 
   .container {
     display: flex;
-    justify-content: flex-start; /* Liste solda */
+    justify-content: center;
     align-items: flex-start;
+    max-width: 1200px;
+    margin: 40px auto;
     gap: 40px;
-    max-width: 800px;
-    width: 100%;
+    padding: 0 20px;
   }
 
-  /* Liste kutuları */
+  /* Liste bölümü */
   .cekilis-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    flex: 1;
   }
 
   .cekilis-list div {
@@ -55,21 +44,38 @@
     text-align: center;
   }
 
-  /* Alt dikdörtgen görsel */
-  .alt-gorsel {
-    width: 250px;   /* orta boy */
-    height: auto;
-    margin-top: 20px; /* liste ile arasına boşluk */
-    border-radius: 6px;
-    object-fit: cover;
-    align-self: center; /* liste ortasına hizala */
+  h1 {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #00ffff;
+    letter-spacing: 1px;
   }
 
-  /* Mobil uyumlu */
-  @media (max-width: 700px) {
+  /* Sağdaki görsel */
+  .side-image {
+    width: 300px;
+    flex-shrink: 0;
+  }
+
+  .side-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  /* Mobilde tek sütun yap */
+  @media (max-width: 900px) {
     .container {
       flex-direction: column;
       align-items: center;
+    }
+
+    .side-image {
+      width: 80%;
+      margin-top: 30px;
     }
 
     .cekilis-list div {
@@ -77,15 +83,22 @@
       padding: 12px 15px;
     }
 
-    .alt-gorsel {
-      width: 200px;
-    }
-
     h1 {
       font-size: 32px;
-      margin-bottom: 30px;
     }
   }
+
+/* Sol alt görsel */
+.sol-alt-gorsel {
+    width: 250px;   /* orta boy, büyük değil */
+    height: auto;
+    margin-top: 20px; /* liste kutularıyla arada boşluk */
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -94,17 +107,22 @@
 
 <div class="container">
   <div class="cekilis-list">
+<div class="cekilis-list">
     <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
     <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
     <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
     <div>MINECRAFT — Bitiş: 27.02.2026</div>
     <div>HYTALE — Bitiş: 28.02.2026</div>
 
-    <!-- Alt dikdörtgen görsel -->
-    <img class="alt-gorsel" src="cekilisler31.png" alt="Alt Görsel">
+    <!-- Sol alt görsel eklendi -->
+    <img class="sol-alt-gorsel" src="3131.jpg" alt="Sol Alt Görsel">
+</div>
+
+
+  <div class="side-image">
+    <img src="cekilisler31.png" alt="Sağ Görsel">
   </div>
 </div>
 
 </body>
 </html>
-
