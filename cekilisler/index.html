@@ -8,55 +8,59 @@
 <style>
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background: #0f0f0f;
     color: #fff;
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
   }
 
-  /* SOL VE SAĞ GÖRSELLER */
-  .side-image {
-    position: fixed;  /* sayfanın sabit kenarı */
-    top: 0;
-    bottom: 0;
-    width: 220px;      /* isteğe göre genişlik */
-    object-fit: cover;
-    z-index: 1;
-  }
-
-  .side-image.left {
-    left: 0;
-  }
-
-  .side-image.right {
-    right: 0;
-  }
-
-  /* ORTA İÇERİK */
-  .cekilis-container {
-    position: relative;
-    z-index: 2;  /* görsellerin üstünde */
-    max-width: 700px;
+  .page-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: stretch;    
+    gap: 20px;               
+    padding: 40px 0;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+  }
+
+  /* Yan görseller */
+  .side-image {
+    flex: 0 0 150px; 
+  }
+
+  .side-image img {
+    width: 100%;
+    height: 100%;         
+    object-fit: cover;     
+    display: block;
+  }
+
+  /* Ortadaki içerik */
+  .cekilis-container {
+    flex: 1;               
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* ortada hizala */
+    justify-content: center;
   }
 
   h1 {
     font-size: 36px;
     margin-bottom: 40px;
     letter-spacing: 1px;
+    font-weight: 600;
+    color: #00ffff;
+    text-shadow: 1px 1px 2px #000;
   }
 
   .cekilis-list {
-    text-align: left;
+    text-align: center;     /* sol yerine ortada */
     margin-bottom: 60px;
   }
 
   .cekilis-list div {
-    padding: 20px 0;
+    padding: 15px 0;
     font-size: 20px;
     border-bottom: 1px solid #2a2a2a;
   }
@@ -66,7 +70,7 @@
   }
 
   .final-cekilis {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
     color: #ffd700;
     margin-bottom: 32px;
@@ -74,7 +78,7 @@
   }
 
   .discord-link {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.6;
     color: #00ffff;
   }
@@ -89,32 +93,41 @@
 </head>
 <body>
 
-<!-- Sol görsel -->
-<img src="cekilisler31.png" class="side-image left" alt="Sol Görsel">
+<div class="page-wrapper">
 
-<!-- Sağ görsel -->
-<img src="cekilisler31.png" class="side-image right" alt="Sağ Görsel">
-
-<div class="cekilis-container">
-  <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
-
-  <div class="cekilis-list">
-    <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
-    <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
-    <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
-    <div>MINECRAFT — Bitiş: 27.02.2026</div>
-    <div>HYTALE — Bitiş: 28.02.2026</div>
+  <!-- Sol görsel -->
+  <div class="side-image">
+    <img src="cekilisler4.png" alt="Sol Görsel">
   </div>
 
-  <div class="final-cekilis">
-    5600 TL ÖZEL ÇEKİLİŞ<br>
-    (Bitiş Tarihi: 10.03.2026)
+  <!-- Ortadaki içerik -->
+  <div class="cekilis-container">
+    <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
+
+    <div class="cekilis-list">
+      <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
+      <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
+      <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
+      <div>MINECRAFT — Bitiş: 27.02.2026</div>
+      <div>HYTALE — Bitiş: 28.02.2026</div>
+    </div>
+
+    <div class="final-cekilis">
+      5600 TL ÖZEL ÇEKİLİŞ<br>
+      (Bitiş Tarihi: 10.03.2026)
+    </div>
+
+    <div class="discord-link">
+      Çekilişe katılmak için Discord ismimiz:<br>
+      <strong>BURAYA EKLE</strong>
+    </div>
   </div>
 
-  <div class="discord-link">
-    Çekilişe katılmak için Discord ismimiz:<br>
-    <strong>BURAYA EKLE</strong>
+  <!-- Sağ görsel -->
+  <div class="side-image">
+    <img src="cekilisler4.png" alt="Sağ Görsel">
   </div>
+
 </div>
 
 </body>
