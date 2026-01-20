@@ -14,18 +14,16 @@ body {
   font-family: Arial, sans-serif;
   background: #0f0f0f;
   color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   padding: 40px 20px;
 }
 
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+}
 
-  .cekilis-container {
-    max-width: 700px;
-    width: 100%;
-    text-align: center;
-  }
 
   /* DİKEY GÖRSEL */
 .cekilis-image {
@@ -81,10 +79,11 @@ body {
   }
 
 
-  .side-image {
+.side-image {
   width: 220px;
   max-height: 520px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .side-image img {
@@ -101,45 +100,47 @@ body {
 }
 
 
+
   
 </style>
 </head>
 
 <body>
 
-<div class="cekilis-container">
+<div class="page-wrapper">
 
-<div class="side-image">
-  <img src="cekilisler4.png" alt="Çekiliş Sol">
-</div>
-
-<div class="cekilis-container">
-
-  <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
-
-  <div class="cekilis-list">
-    <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
-    <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
-    <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
-    <div>MINECRAFT — Bitiş: 27.02.2026</div>
-    <div>HYTALE — Bitiş: 28.02.2026</div>
+  <div class="side-image">
+    <img src="cekilisler4.png" alt="Çekiliş Sol Görsel">
   </div>
 
-  <div class="final-cekilis">
-    5600 TL ÖZEL ÇEKİLİŞ<br>
-    (Bitiş Tarihi: 10.03.2026)
+  <div class="cekilis-container">
+    <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
+
+    <div class="cekilis-list">
+      <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
+      <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
+      <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
+      <div>MINECRAFT — Bitiş: 27.02.2026</div>
+      <div>HYTALE — Bitiş: 28.02.2026</div>
+    </div>
+
+    <div class="final-cekilis">
+      5600 TL ÖZEL ÇEKİLİŞ<br>
+      (Bitiş Tarihi: 10.03.2026)
+    </div>
+
+    <div class="discord-link">
+      Çekilişe katılmak için Discord ismimiz:<br>
+      <strong>BURAYA EKLE</strong>
+    </div>
   </div>
 
-  <div class="discord-link">
-    Çekilişe katılmak için Discord ismimiz:<br>
-    <strong>BURAYA EKLE</strong>
+  <div class="side-image">
+    <img src="cekilisler4.png" alt="Çekiliş Sağ Görsel">
   </div>
 
 </div>
 
-<div class="side-image">
-  <img src="cekilisler4.png" alt="Çekiliş Sağ">
-</div>
 
 </body>
 </html>
