@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BallasNet Çekilişler</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .cekilis-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .cekilis-image {
+    width: 100%;
+    aspect-ratio: 2/1; /* dikdörtgen şeklinde */
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #0ff;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .cekilis-list {
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .cekilis-list div {
+    padding: 8px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #333;
+  }
+
+  .final-cekilis {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ff0;
+    margin-bottom: 16px;
+  }
+
+  .discord-link {
+    font-size: 18px;
+    color: #0ff;
+  }
+</style>
+</head>
+<body>
+
+<div class="cekilis-container">
+  <div class="cekilis-image">|||</div>
+
+  <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
+
+  <div class="cekilis-list">
+    <div>VALORANT 3800VP (bitiş tarihi 24.02.2026)</div>
+    <div>WINDOWS 10 ANAHTARI (bitiş tarihi 25.02.2026)</div>
+    <div>LEAGUE OF LEGENDS 3800RP (bitiş tarihi 26.02.2026)</div>
+    <div>MINECRAFT (bitiş tarihi 27.02.2026)</div>
+    <div>HYTALE (bitiş tarihi 28.02.2026)</div>
+  </div>
+
+  <div class="final-cekilis">5600 TL ÖZEL ÇEKİLİŞ (bitiş tarihi 10.03.2026)</div>
+  <div class="discord-link">ÇEKİLİŞE KATILMAK İÇİN DİSCORD İSMİMİZ: <strong>BURAYA EKLE</strong></div>
+</div>
+
+</body>
+</html>
