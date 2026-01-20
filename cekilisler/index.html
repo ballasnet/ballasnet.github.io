@@ -3,120 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BallasNet Yılbaşı Çekilişleri</title>
+<title>BallasNet Çekilişler</title>
 <link rel="icon" type="image/jpeg" href="favicon2.jpg">
 <style>
-body {
+  body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
+    font-family: 'Arial', sans-serif;
+    background-color: #0f0f0f;
     color: #fff;
-}
-
-/* 3 sütunlu yapı: sol-görsel / ortadaki içerik / sağ-görsel */
-.page-wrapper {
-    display: flex;
-    justify-content: center; 
-    align-items: stretch;    
-    gap: 20px;               
-    padding: 40px 0;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Yan görseller */
-.side-image {
-    flex: 0 0 300px; /* genişlik */
-}
-
-/* Sadece image elementini ayarla, kırpma olmasın */
-.side-image img {
-    width: auto;        /* görselin gerçek genişliği */
-    height: 700px;      /* yüksekliği ayarla */
-    object-fit: none;   /* kırpma yok */
-    display: block;
-}
-
-/* Sol ve sağ image kaydırmaları */
-.side-image.left img {
-    transform: translateX(-50px); /* sol görsel sola kayacak */
-}
-
-.side-image.right img {
-    transform: translateX(50px);  /* sağ görsel sağa kayacak */
-}
-
-/* Ortadaki içerik */
-.cekilis-container {
-    flex: 1;               
     display: flex;
     flex-direction: column;
-    align-items: center;   /* ortada hizala */
-    justify-content: flex-start;
-    text-align: center;
-}
+    align-items: center;
+    padding: 40px 20px;
+  }
 
-h1 {
-    font-size: 36px;
+  h1 {
+    font-size: 40px;
     margin-bottom: 40px;
-    letter-spacing: 1px;
-    font-weight: 600;
+    font-weight: 700;
+    text-align: center;
     color: #00ffff;
-    text-shadow: 1px 1px 2px #000;
-}
+    letter-spacing: 1px;
+  }
 
 .cekilis-list {
-    text-align: center;     
-    margin-bottom: 40px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-bottom: 60px;
 }
+
 
 .cekilis-list div {
-    padding: 15px 0;
-    font-size: 20px;
-    border-bottom: 1px solid #2a2a2a;
+    padding: 12px 20px;
+    font-size: 22px;
+    border-left: 4px solid #00ffff;
+    border-radius: 6px;
+    background-color: #1a1a1a;
+    display: flex;          /* EKLENDİ */
+    justify-content: center; /* EKLENDİ: yatay ortala */
+    text-align: center;      /* EKLENDİ: metin ortada */
 }
 
-.cekilis-list div:last-child {
-    border-bottom: none;
-}
+  /* Alt görsel */
+  .alt-gorsel {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+  }
 
-/* Mobilde yan görselleri gizle */
-@media (max-width: 900px) {
-    .side-image {
-        display: none;
+  @media (max-width: 700px) {
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
     }
-}
-
+    .cekilis-list div {
+      font-size: 18px;
+      padding: 10px 15px;
+    }
+    .alt-gorsel {
+      width: 100%;
+    }
+  }
 </style>
 </head>
 <body>
 
-<div class="page-wrapper">
+<h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
 
-<div class="side-image left">
-    <img src="cekilisler31.png" alt="Sol Görsel">
+<div class="cekilis-list">
+  <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
+  <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
+  <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
+  <div>MINECRAFT — Bitiş: 27.02.2026</div>
+  <div>HYTALE — Bitiş: 28.02.2026</div>
 </div>
 
-
-  <!-- Ortadaki içerik -->
-  <div class="cekilis-container">
-    <h1>YILBAŞI İÇİN ÖZEL ÇEKİLİŞLER</h1>
-
-    <div class="cekilis-list">
-      <div>VALORANT 3800 VP — Bitiş: 24.02.2026</div>
-      <div>WINDOWS 10 ANAHTARI — Bitiş: 25.02.2026</div>
-      <div>LEAGUE OF LEGENDS 3800 RP — Bitiş: 26.02.2026</div>
-      <div>MINECRAFT — Bitiş: 27.02.2026</div>
-      <div>HYTALE — Bitiş: 28.02.2026</div>
-    </div>
-  </div>
-
-<div class="side-image right">
-    <img src="cekilisler31.png" alt="Sağ Görsel">
-</div>
-
-
-</div>
+<img class="alt-gorsel" src="cekilisler31.png" alt="Alt Görsel">
 
 </body>
 </html>
+
