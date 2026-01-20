@@ -8,11 +8,12 @@
 <style>
   body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     background: #0f0f0f;
     color: #fff;
   }
 
+  /* 3 sütunlu yapı: sol-görsel / ortadaki içerik / sağ-görsel */
   .page-wrapper {
     display: flex;
     justify-content: center; 
@@ -25,7 +26,7 @@
 
   /* Yan görseller */
   .side-image {
-    flex: 0 0 150px; 
+    flex: 0 0 150px; /* genişlik */
   }
 
   .side-image img {
@@ -38,11 +39,11 @@
   /* Ortadaki içerik */
   .cekilis-container {
     flex: 1;               
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;   /* ortada hizala */
-    justify-content: center;
+    justify-content: flex-start;
+    text-align: center;
   }
 
   h1 {
@@ -55,8 +56,8 @@
   }
 
   .cekilis-list {
-    text-align: center;     /* sol yerine ortada */
-    margin-bottom: 60px;
+    text-align: center;     
+    margin-bottom: 40px;
   }
 
   .cekilis-list div {
@@ -67,20 +68,6 @@
 
   .cekilis-list div:last-child {
     border-bottom: none;
-  }
-
-  .final-cekilis {
-    font-size: 36px;
-    font-weight: bold;
-    color: #ffd700;
-    margin-bottom: 32px;
-    line-height: 1.3;
-  }
-
-  .discord-link {
-    font-size: 20px;
-    line-height: 1.6;
-    color: #00ffff;
   }
 
   /* Mobilde yan görselleri gizle */
@@ -97,7 +84,7 @@
 
   <!-- Sol görsel -->
   <div class="side-image">
-    <img src="cekilisler4.png" alt="Sol Görsel">
+    <img src="cekilisler31.png" alt="Sol Görsel">
   </div>
 
   <!-- Ortadaki içerik -->
@@ -111,21 +98,11 @@
       <div>MINECRAFT — Bitiş: 27.02.2026</div>
       <div>HYTALE — Bitiş: 28.02.2026</div>
     </div>
-
-    <div class="final-cekilis">
-      5600 TL ÖZEL ÇEKİLİŞ<br>
-      (Bitiş Tarihi: 10.03.2026)
-    </div>
-
-    <div class="discord-link">
-      Çekilişe katılmak için Discord ismimiz:<br>
-      <strong>BURAYA EKLE</strong>
-    </div>
   </div>
 
   <!-- Sağ görsel -->
   <div class="side-image">
-    <img src="cekilisler4.png" alt="Sağ Görsel">
+    <img src="cekilisler31.png" alt="Sağ Görsel">
   </div>
 
 </div>
