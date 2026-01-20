@@ -29,20 +29,21 @@ body {
     flex: 0 0 300px; /* genişlik */
 }
 
+/* Sadece image elementini ayarla, kırpma olmasın */
 .side-image img {
-    width: auto;             /* gerçek genişlik */
-    height: 700px;           /* yükseklik */
-    object-fit: none;        /* kırpma yok */
+    width: auto;        /* görselin gerçek genişliği */
+    height: 700px;      /* yüksekliği ayarla */
+    object-fit: none;   /* kırpma yok */
     display: block;
 }
 
-/* Sol ve sağ için farklı kaydırmalar */
+/* Sol ve sağ image kaydırmaları */
 .side-image.left img {
-    transform: translateX(0);  /* sol görsel solda kalır */
+    transform: translateX(-50px); /* sol görsel sola kayacak */
 }
 
 .side-image.right img {
-    transform: translateX(-50px); /* sağ görseli sola kaydır, sadece görünür kısmı değişir */
+    transform: translateX(50px);  /* sağ görsel sağa kayacak */
 }
 
 /* Ortadaki içerik */
