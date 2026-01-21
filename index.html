@@ -553,17 +553,22 @@ main {
 .giveaway-cards {
   display: flex;
   gap: 18px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
+
 .giveaway-card {
-  width: 220px;
+  flex: 1 1 0;
+  max-width: 220px;
+  min-width: 220px;
   background: #141414;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   transition: transform .2s ease, box-shadow .2s ease;
 }
+
 
 .giveaway-card:hover {
   transform: translateY(-4px) scale(1.03);
@@ -613,6 +618,11 @@ main {
   max-height: 80%;
   border-radius: 16px;
 }
+
+.giveaway-section {
+  max-width: none;
+}
+
 
 
 
