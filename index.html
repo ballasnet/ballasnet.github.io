@@ -550,6 +550,70 @@ main {
   will-change: transform;
 }
 
+.giveaway-cards {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.giveaway-card {
+  width: 220px;
+  background: #141414;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.giveaway-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+
+.giveaway-image {
+  height: 130px;
+  background-size: cover;
+  background-position: center;
+}
+
+.giveaway-info {
+  padding: 12px;
+}
+
+.giveaway-info h3 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.giveaway-info p {
+  font-size: 13px;
+  opacity: .9;
+}
+
+.giveaway-info span {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: .6;
+}
+
+/* Overlay */
+.giveaway-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.giveaway-overlay video {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 16px;
+}
+
 
 
 </style>
@@ -723,6 +787,53 @@ main {
     </div>
   </div>
 </section>
+
+<section class="giveaway-section">
+  <h2 class="section-title">ÇEKİLİŞLER</h2>
+
+  <div class="giveaway-cards">
+    <div class="giveaway-card" data-video="cekilis.mp4">
+      <div class="giveaway-image" style="background-image:url('img/lol.jpg')"></div>
+      <div class="giveaway-info">
+        <h3>LEAGUE OF LEGENDS</h3>
+        <p>3800 RP</p>
+        <span>Bitiş: 26.02.2026</span>
+      </div>
+    </div>
+
+    <div class="giveaway-card" data-video="cekilis.mp4">
+      <div class="giveaway-image" style="background-image:url('img/valorant.jpg')"></div>
+      <div class="giveaway-info">
+        <h3>VALORANT</h3>
+        <p>2959 VP</p>
+        <span>Bitiş: 24.02.2026</span>
+      </div>
+    </div>
+
+    <div class="giveaway-card" data-video="cekilis.mp4">
+      <div class="giveaway-image" style="background-image:url('img/tl.jpg')"></div>
+      <div class="giveaway-info">
+        <h3>3500 TÜRK LİRASI</h3>
+        <p>Nakit Ödül</p>
+        <span>Bitiş: 25.02.2026</span>
+      </div>
+    </div>
+
+    <div class="giveaway-card" data-video="cekilis.mp4">
+      <div class="giveaway-image" style="background-image:url('img/fortnite.jpg')"></div>
+      <div class="giveaway-info">
+        <h3>FORTNITE</h3>
+        <p>1800 V-Bucks</p>
+        <span>Bitiş: 30.02.2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Overlay -->
+<div class="giveaway-overlay" id="giveawayOverlay">
+  <video id="giveawayVideo" src="" autoplay></video>
+</div>
 
 
 <section class="haftanin-oyunu-section">
@@ -1285,6 +1396,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+<script>
+  const giveawayCards = document.querySelectorAll('.giveaway-card');
+  const overlay = document.getElementById('giveawayOverlay');
+  const video = document.getElementById('giveawayVideo');
+
+  giveawayCards.forEach(card => {
+    card.addEventListener('click', () => {
+      video.src = card.dataset.video;
+      overlay.style.display = 'flex';
+      video.play();
+    });
+  });
+
+  function closeGiveaway() {
+    overlay.style.display = 'none';
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  video.addEventListener('ended', closeGiveaway);
+  overlay.addEventListener('click', closeGiveaway);
+</script>
 
 
 </script>
