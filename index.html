@@ -647,6 +647,31 @@ main {
   margin: 60px auto;
 }
 
+.alert-msg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(0,0,0,0.85);
+  color: #0ff;
+  padding: 18px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 9999;
+}
+.alert-msg.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.alert-msg.hide {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
 
 </style>
 </head>
