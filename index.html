@@ -1461,7 +1461,29 @@ document.addEventListener("DOMContentLoaded", () => {
   video.addEventListener('ended', closeGiveaway);
   overlay.addEventListener('click', closeGiveaway);
 
+(function () {
+  const cardsWrapper = document.querySelector('.giveaway-cards');
+  if (!cardsWrapper) return;
 
+  const cards = cardsWrapper.querySelectorAll('.giveaway-card');
+  if (!cards.length) return;
+
+  const gap = 18;
+  const maxWidth = cardsWrapper.clientWidth;
+  const cardCount = cards.length;
+
+  // toplam boşluk
+  const totalGap = gap * (cardCount - 1);
+
+  // kart başına düşen maksimum genişlik
+  const cardWidth = Math.floor((maxWidth - totalGap) / cardCount);
+
+  cards.forEach(card => {
+    card.style.flex = `0 0 ${cardWidth}px`;
+    card.style.maxWidth = `${cardWidth}px`;
+    card.style.minWidth = `${cardWidth}px`;
+  });
+})();
 
 </script>
 
