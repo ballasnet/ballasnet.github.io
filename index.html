@@ -1504,6 +1504,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
+function showAlert() {
+  const alertEl = document.getElementById('alert-msg');
+  alertEl.classList.add('show');
+  alertEl.classList.remove('hide');
+
+  // 4 saniye sonra gizle
+  const timeout = setTimeout(() => {
+    alertEl.classList.add('hide');
+    alertEl.classList.remove('show');
+  }, 4000);
+
+  // Eğer kullanıcı dokunursa hemen gizle
+  alertEl.onclick = () => {
+    clearTimeout(timeout);
+    alertEl.classList.add('hide');
+    alertEl.classList.remove('show');
+  };
+}
+
+// Örnek: tüm çekiliş kartları için
+document.querySelectorAll('.giveaway-card').forEach(card => {
+  card.addEventListener('click', () => {
+    showAlert();
+  });
+});
+
 </script>
 
 
