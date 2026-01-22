@@ -560,18 +560,20 @@ main {
   will-change: transform;
 }
 
+/* ===== ÇEKİLİŞ KARTLARI – ESKİ DÜZGÜN HAL ===== */
 .giveaway-cards {
   display: flex;
   gap: 18px;
   flex-wrap: nowrap;
   width: 100%;
+  justify-content: center; /* ortala */
 }
 
-
 .giveaway-card {
-  flex: 0 0 220px;
+  flex: 0 0 220px;      /* sabit genişlik */
   max-width: 220px;
   min-width: 220px;
+  height: 280px;        /* sabit yükseklik – dikdörtgen */
   background: #141414;
   border-radius: 16px;
   overflow: hidden;
@@ -579,19 +581,17 @@ main {
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
-
 .giveaway-card:hover {
   transform: translateY(-4px) scale(1.03);
   box-shadow: 0 10px 30px rgba(0,0,0,.6);
 }
 
 .giveaway-image {
-  width:100%;
-  height:220px;
-  background-size:cover;
-  background-position:center;
+  width: 100%;
+  height: 160px;        /* dikdörtgen görsel alanı */
+  background-size: cover;
+  background-position: center;
 }
-
 
 .giveaway-info {
   padding: 12px;
@@ -612,112 +612,6 @@ main {
   margin-top: 6px;
   font-size: 11px;
   opacity: .6;
-}
-
-/* Overlay */
-.giveaway-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.giveaway-overlay video {
-  max-width: 80%;
-  max-height: 80%;
-  border-radius: 16px;
-}
-
-.giveaway-section {
-  max-width: none;
-}
-
-
-.giveaway-section .slider-wrapper {
-  overflow: visible;
-}
-
-.section.giveaway-section {
-  max-width: 1300px;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.giveaway-section {
-  max-width: 1300px;
-  margin: 60px auto;
-}
-
-.alert-msg {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  background: rgba(0,0,0,0.85);
-  color: #0ff;
-  padding: 18px 28px;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 12px;
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  z-index: 9999;
-}
-.alert-msg.show {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-.alert-msg.hide {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.8);
-}
-
-.giveaway-card {
-  position: relative;
-  overflow: hidden;
-  width: 200px;      /* sabit genişlik */
-  height: 280px;     /* sabit yükseklik */
-  display: inline-block; /* yan yana sıralamak için */
-  margin: 8px;
-  vertical-align: top;
-}
-
-.giveaway-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.discord-info {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  right: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: #fff;
-  background: rgba(0,0,0,0.5);
-  padding: 2px 6px;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.giveaway-card:hover .discord-info {
-  opacity: 1;
-}
-
-.discord-info img {
-  width: 24px; /* ikon boyutu */
-  height: 24px;
-  
 }
 
 
