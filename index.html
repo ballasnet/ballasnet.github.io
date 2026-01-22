@@ -66,9 +66,11 @@ a{color:#fff;text-decoration:none;}
 .hero-image{
   width:100%;
   height:220px;
-  background:url("hero.jpg") center/cover no-repeat;
+  object-fit:cover;
+  display:block;
   margin-bottom:8px;
 }
+
 .hero-tags{
   display:flex;
   justify-content:center;
@@ -672,6 +674,11 @@ main {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.8);
 }
+
+  .game-image{
+  aspect-ratio:320/130;
+}
+
 
 </style>
 </head>
