@@ -919,10 +919,7 @@ main {
 </section>
 
 
-<!-- Overlay -->
-<div class="giveaway-overlay" id="giveawayOverlay">
-  <video id="giveawayVideo" src="" autoplay></video>
-</div>
+
 
 
 <section class="haftanin-oyunu-section">
@@ -960,8 +957,6 @@ main {
 
 </section>
 
-  <!-- Uyarı yazısı -->
-<div id="alert-msg" class="alert-msg">Eğer çekilişe katılmak istiyorsanız Discord Adresimiz: crineeko</div>
 
 
   </div>
@@ -1439,28 +1434,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
-  const giveawayCards = document.querySelectorAll('.giveaway-card');
-  const overlay = document.getElementById('giveawayOverlay');
-  const video = document.getElementById('giveawayVideo');
-
-  giveawayCards.forEach(card => {
-    card.addEventListener('click', () => {
-      video.src = card.dataset.video;
-      overlay.style.display = 'flex';
-      video.play();
-    });
-  });
-
-  function closeGiveaway() {
-    overlay.style.display = 'none';
-    video.pause();
-    video.currentTime = 0;
-  }
-
-  video.addEventListener('ended', closeGiveaway);
-  overlay.addEventListener('click', closeGiveaway);
 
 (function () {
   const cardsWrapper = document.querySelector('.giveaway-cards');
