@@ -1197,47 +1197,7 @@ if (toggleBtn) {
 // =====================
 // Slider LazyLoad (sadece sliderlar, JS ile doldurulanlar)
 // =====================
-
-
-
-
-// =====================
-// Slider LazyLoad (sadece sliderlar, JS ile doldurulanlar)
-// =====================
-
   
-  const wrapper = slider.closest(".slider-wrapper");
-  if (!wrapper) return;
-  const right = wrapper.querySelector(".slider-btn.right");
-  const left = wrapper.querySelector(".slider-btn.left");
-
-let raf;
-
-function update() {
-  cancelAnimationFrame(raf);
-  raf = requestAnimationFrame(() => {
-    slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    lazyLoadVisibleImages();
-  });
-}
-
-
-  right.onclick = () => {
-    if (index < slider.children.length - 1) {
-      index++;
-      update();
-    }
-  };
-  left.onclick = () => {
-    if (index > 0) {
-      index--;
-      update();
-    }
-  };
-
-  update();
-}
-
 
 // ===========================
 // Zararsız Kar Efekti (Scroll + Mouse)
