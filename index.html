@@ -586,10 +586,12 @@ main {
 }
 
 .giveaway-image {
-  height: 130px;
-  background-size: cover;
-  background-position: center;
+  width:100%;
+  height:220px;
+  background-size:cover;
+  background-position:center;
 }
+
 
 .giveaway-info {
   padding: 12px;
@@ -675,8 +677,14 @@ main {
   transform: translate(-50%, -50%) scale(0.8);
 }
 
-  .game-image{
-  aspect-ratio:320/130;
+.giveaway-card {
+  position: relative;
+  overflow: hidden;
+  width: 200px;      /* sabit genişlik */
+  height: 280px;     /* sabit yükseklik */
+  display: inline-block; /* yan yana sıralamak için */
+  margin: 8px;
+  vertical-align: top;
 }
 
 .giveaway-card {
@@ -699,6 +707,7 @@ main {
   border-radius: 4px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 2;
 }
 
 .giveaway-card:hover .discord-info {
@@ -708,6 +717,7 @@ main {
 .discord-info img {
   width: 24px; /* ikon boyutu */
   height: 24px;
+  
 }
 
 
