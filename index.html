@@ -1090,7 +1090,7 @@ function initSlider(wrapperSelector, games) {
 
 function update() {
   slider.style.transform = `translateX(${-index * cardWidth}px)`;
-  lazyLoadSliderImages(slider);   
+  lazyLoadSlider(slider);   
 }
 
   right.onclick = () => {
