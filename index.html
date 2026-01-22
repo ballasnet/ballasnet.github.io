@@ -679,6 +679,37 @@ main {
   aspect-ratio:320/130;
 }
 
+.giveaway-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.discord-info {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.giveaway-card:hover .discord-info {
+  opacity: 1;
+}
+
+.discord-info img {
+  width: 24px; /* ikon boyutu */
+  height: 24px;
+}
+
 
 </style>
 </head>
