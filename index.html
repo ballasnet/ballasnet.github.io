@@ -614,6 +614,26 @@ main {
   opacity: .6;
 }
 
+/* ===== DISCORD İKONU – SAĞ ALT + HOVER ===== */
+.giveaway-info {
+  position: relative;
+}
+
+.giveaway-info::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: url('discord-icon.png') center/cover no-repeat;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.giveaway-card:hover .giveaway-info::after {
+  opacity: 1;
+}
 
 </style>
 </head>
