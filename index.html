@@ -1084,15 +1084,14 @@ function initSlider(wrapperSelector, games) {
   if (!slider || !left || !right) return;
 
   fillSlider(slider, games);
-  lazyLoadSlider(slider); // ilk görünür resimleri yükle
-
+  lazyLoadSliderImages(slider); // lazyloadslider images 
   let index = 0;
   const cardWidth = 346;
 
-  function update() {
-    slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    lazyLoadSlider(slider); // kaydırınca lazyload çalışsın
-  }
+function update() {
+  slider.style.transform = `translateX(${-index * cardWidth}px)`;
+  lazyLoadSliderImages(slider);   
+}
 
   right.onclick = () => {
     if (index < slider.children.length - 1) {
@@ -1198,38 +1197,30 @@ if (toggleBtn) {
 // =====================
 // Slider LazyLoad (sadece sliderlar, JS ile doldurulanlar)
 // =====================
-function lazyLoadSliderImages(slider) {
-  const cardWidth = 346;
-  let index = 0;
 
-  const images = slider.querySelectorAll("img");
 
-  // data-src atama ve başlangıçta src boş
-  images.forEach(img => {
-    if (!img.dataset.src) img.dataset.src = img.src;
-    img.src = ""; 
-  });
 
-  function loadImage(i) {
-    const img = images[i];
-    if (img && img.dataset.src && !img.src) {
-      img.src = img.dataset.src;
-    }
-  }
 
-  // Başlangıçta görünür olan ilk 3-4 resmi yükle
-  for (let i = 0; i < Math.min(4, images.length); i++) loadImage(i);
+// =====================
+// Slider LazyLoad (sadece sliderlar, JS ile doldurulanlar)
+// =====================
 
+  
   const wrapper = slider.closest(".slider-wrapper");
   if (!wrapper) return;
   const right = wrapper.querySelector(".slider-btn.right");
   const left = wrapper.querySelector(".slider-btn.left");
 
-  function update() {
+let raf;
+
+function update() {
+  cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(() => {
     slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    loadImage(index);
-    loadImage(index + 1); // sağdaki kart da yüklenir
-  }
+    lazyLoadVisibleImages();
+  });
+}
+
 
   right.onclick = () => {
     if (index < slider.children.length - 1) {
