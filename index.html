@@ -1512,8 +1512,17 @@ document.querySelectorAll('.giveaway-card').forEach(card => {
   });
 });
 
-document.querySelectorAll('.game-image img').forEach((img, i) => {
-  console.log(i, img.src ? "YÜKLENDİ" : "BEKLİYOR");
+// Geçici test: 12 tane daha ekle
+const slider = document.querySelector('.shuffle-populer');
+for (let i = 0; i < 12; i++) {
+  const a = document.createElement('a');
+  a.href = '#';
+  a.innerHTML = `<div class="game"><div class="game-image"><img data-src="test${i}.jpg" alt="Test ${i}"></div><div class="game-title">Test ${i}</div></div>`;
+  slider.appendChild(a);
+}
+// Şimdi tekrar test et
+document.querySelectorAll('.game-image img').forEach((img, idx) => {
+  console.log(idx, img.src ? "YÜKLENDİ" : "BEKLİYOR");
 });
 
 </script>
