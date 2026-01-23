@@ -615,20 +615,24 @@ main {
 }
 
 /* ===== DISCORD İKONU – SAĞ ALT + HOVER ===== */
+.giveaway-info {
+  position: relative; /* parent olarak base */
+}
+
 .discord-info {
-  position: absolute;
+  position: absolute;  /* kartın sağ altına sabitlenir */
   bottom: 8px;
-  left: 8px;
   right: 8px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 12px;
-  color: #fff;
+  gap: 4px; /* yazı ve ikon arası boşluk */
   background: rgba(0,0,0,0.5);
+  color: #fff;
   padding: 2px 6px;
   border-radius: 4px;
+  font-size: 12px;
   opacity: 0;
+  pointer-events: none; /* tıklanmasını engelle */
   transition: opacity 0.3s ease;
 }
 
@@ -637,8 +641,8 @@ main {
 }
 
 .discord-info img {
-  width: 24px;
-  height: 24px;
+  width: 16px; /* ikon boyutu küçültüldü */
+  height: 16px;
 }
 
 
