@@ -55,12 +55,6 @@ a{color:#fff;text-decoration:none;}
   background:#222;
 }
 
-@media (max-width: 768px) {
-  body {
-    outline: 5px solid lime;
-  }
-}
-
 
 .hero{
   max-width:1000px;
@@ -620,83 +614,79 @@ main {
   opacity: .6;
 }
 
+/* ===== MOBİL KÜÇÜLTME – HER ŞEY SIRASIYLA ===== */
 @media (max-width: 768px) {
 
-  /* ===== GENEL ÖLÇEK KÜÇÜLTME ===== */
+  /* 0. Genel ölçek küçültme */
+  html {
+    font-size: 14px;               /* temel ölçek */
+  }
   body {
-    font-size: 14px;
+    overflow-x: hidden;            /* yatay kaydırma engelle */
   }
 
-  section {
-    padding: 12px 10px;
-  }
-
-  /* ===== HERO ===== */
+  /* 1. Hero – yüksekliği kes, içeriği sığdır */
   .hero {
-    min-height: 52vh;            /* taşmayı kes */
-    padding: 18px 12px;
+    min-height: 50vh;
+    padding: 16px 12px;
   }
-
-  .hero img,
   .hero-image {
-    max-height: 220px;
+    max-height: 180px;
     object-fit: cover;
   }
-
-  /* hero üstündeki "oyun ara" alanı */
-  .hero-search,
   .search-box {
     margin-top: 10px;
     padding: 8px;
     font-size: 13px;
   }
 
-  /* ===== POPÜLER OYUNLAR ===== */
-  .popular-games {
-    gap: 10px;
-  }
-
-  .popular-card {
-    transform: scale(0.96);      /* azıcık toparla */
-  }
-
-  /* ===== MOZAİKLER ===== */
-  .mosaic-grid {
+  /* 2. Mozaik – grid yoğunluğunu azalt */
+  .mozaik-grid {
     gap: 6px;
+    grid-template-columns: repeat(2, 1fr); /* 4 → 2 sütun */
+  }
+  .mozaik-card {
+    padding: 4px;
   }
 
-  .mosaic-card {
-    padding: 6px;                /* görsel DEĞİL kart küçülür */
-  }
-
-  /* ===== ÇEKİLİŞ KARTLARI ===== */
+  /* 3. Çekiliş – kartları küçült ama oranlı */
   .giveaway-cards {
     gap: 12px;
+    justify-content: flex-start; /* taşmayı engelle */
   }
-
   .giveaway-card {
-    flex: 0 0 180px;
-    min-width: 180px;
-    max-width: 180px;
-    height: 250px;
+    flex: 0 0 160px;
+    min-width: 160px;
+    max-width: 160px;
+    height: 240px;               /* dikdörtgen korunur */
   }
-
   .giveaway-image {
-    height: 135px;
+    height: 130px;
   }
 
-  /* ===== ALT KISIM (WHEEL + BÜYÜK GÖRSEL) ===== */
-  .wheel-big-image {
-    display: none;               /* O BÜYÜK GÖRSEL GİTTİ */
+  /* 4. Sliderlar – dokunma dostu */
+  .slider-btn {
+    padding: 4px 8px;
+    font-size: 20px;
   }
 
-  .wheel,
-  .wheel-container {
-    transform: scale(0.9);
+  /* 5. Section iç boşluklar */
+  .section {
+    padding: 12px 10px;
+  }
+
+  /* 6. Büyük görselleri küçült */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 7. Taşma önlemi */
+  * {
+    box-sizing: border-box;
   }
 
 }
-
 
 </style>
 </head>
