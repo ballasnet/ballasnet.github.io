@@ -1468,6 +1468,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===========================
+// Wheel Rastgele + 2s Cooldown (Yeni Sekme)
+// ===========================
+(() => {
+  const wheel = document.querySelector('.wheel.random-link');
+  if (!wheel) return;
+
+  const links = [
+    'https://www.youtube.com/watch?v=YVkUvmDQ3HY',
+    'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+  ];
+
+  let cooldown = false;
+
+  wheel.addEventListener('click', e => {
+    e.preventDefault();
+    if (cooldown) return;
+
+    const randomLink = links[Math.floor(Math.random() * links.length)];
+    window.open(randomLink, '_blank', 'noopener');
+
+    cooldown = true;
+    setTimeout(() => cooldown = false, 2000);
+  });
+})();
+
+// ===========================
 // Çekiliş Sallanma Efekti
 // ===========================
 (() => {
