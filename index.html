@@ -614,36 +614,6 @@ main {
   opacity: .6;
 }
 
-/* ===== DISCORD İKONU – SAĞ ALT + HOVER ===== */
-.giveaway-info {
-  position: relative; /* parent olarak base */
-}
-
-.discord-info {
-  position: absolute;  /* kartın sağ altına sabitlenir */
-  bottom: 8px;
-  right: 8px;
-  display: flex;
-  align-items: center;
-  gap: 4px; /* yazı ve ikon arası boşluk */
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 12px;
-  opacity: 0;
-  pointer-events: none; /* tıklanmasını engelle */
-  transition: opacity 0.3s ease;
-}
-
-.giveaway-card:hover .discord-info {
-  opacity: 1;
-}
-
-.discord-info img {
-  width: 16px; /* ikon boyutu küçültüldü */
-  height: 16px;
-}
 
 
 </style>
@@ -852,15 +822,8 @@ main {
       <h3>LEAGUE OF LEGENDS</h3>
       <p>3800 RP</p>
       <span>Bitiş: 26.02.2026</span>
-
-      <!-- Discord hover info -->
-      <div class="discord-info">
-        <span>Çekilişe katılmak için Discord sunucumuza katılın</span>
-        <img src="discord-icon.png" alt="Discord" />
       </div>
     </div>
-  </div>
-</div>
 
       
 
