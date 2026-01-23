@@ -614,80 +614,98 @@ main {
   opacity: .6;
 }
 
-/* ===== MOBİL KÜÇÜLTME – HER ŞEY SIRASIYLA ===== */
+/* ===== MOBİL TAM KÜÇÜLTME – TÜM İSTEKLER ===== */
 @media (max-width: 768px) {
 
-  /* 0. Genel ölçek küçültme */
+  /* 0. Temel ölçek */
   html {
-    font-size: 14px;               /* temel ölçek */
+    font-size: 13px;
   }
   body {
-    overflow-x: hidden;            /* yatay kaydırma engelle */
+    overflow-x: hidden;
   }
 
-  /* 1. Hero – yüksekliği kes, içeriği sığdır */
+  /* 1. Hero – DAHA KÜÇÜK */
   .hero {
-    min-height: 50vh;
-    padding: 16px 12px;
+    min-height: 40vh;
+    padding: 12px 10px;
   }
   .hero-image {
-    max-height: 180px;
+    max-height: 140px;           /* 180 → 140 */
     object-fit: cover;
   }
   .search-box {
-    margin-top: 10px;
-    padding: 8px;
-    font-size: 13px;
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 12px;
   }
 
-  /* 2. Mozaik – grid yoğunluğunu azalt */
+  /* 2. Mozaik – YAN YANA, ALT ALTA DEĞİL */
   .mozaik-grid {
-    gap: 6px;
-    grid-template-columns: repeat(2, 1fr); /* 4 → 2 sütun */
+    gap: 8px;
+    grid-template-columns: repeat(2, 1fr); /* 2 sütun sabit */
+    grid-auto-rows: 120px;       /* yükseklik sabit */
   }
-  .mozaik-card {
-    padding: 4px;
+  .mozaik-card.kare,
+  .mozaik-card.dikdortgen {
+    grid-column: span 1;         /* hepsi eşit genişlik */
+    grid-row: span 1;            /* hepsi eşit yükseklik */
   }
 
-  /* 3. Çekiliş – kartları küçült ama oranlı */
+  /* 3. Sliderlar – HEPSİ KÜÇÜK (abartma) */
+  .slider .game {
+    width: 260px;               
+    height: 170px;               
+  }
+  .game-image {
+    height: 110px;               
+  }
+  .slider-btn {
+    padding: 4px 10px;
+    font-size: 18px;
+  }
+
+  /* 4. Çekilişler – DAHA DA KÜÇÜK */
   .giveaway-cards {
-    gap: 12px;
-    justify-content: flex-start; /* taşmayı engelle */
+    gap: 10px;
+    justify-content: center;
   }
   .giveaway-card {
-    flex: 0 0 160px;
-    min-width: 160px;
-    max-width: 160px;
-    height: 240px;               /* dikdörtgen korunur */
+    flex: 0 0 130px;             
+    min-width: 130px;
+    max-width: 130px;
+    height: 200px;               
   }
   .giveaway-image {
-    height: 130px;
+    height: 110px;               
+  }
+  .giveaway-info h3 {
+    font-size: 12px;
+  }
+  .giveaway-info p,
+  .giveaway-info span {
+    font-size: 10px;
   }
 
-  /* 4. Sliderlar – dokunma dostu */
-  .slider-btn {
-    padding: 4px 8px;
-    font-size: 20px;
+  /* 5. Wheel + Haftanın Oyunu + Çekiliş – MOBİLDE YOK ET */
+  .haftanin-oyunu-section,
+  .masa-panel,
+  .wheel,
+  .haftanin-oyunu,
+  .cekilis {
+    display: none !important;
   }
 
-  /* 5. Section iç boşluklar */
-  .section {
-    padding: 12px 10px;
-  }
-
-  /* 6. Büyük görselleri küçült */
+  /* 6. Genel taşma önlemi */
   img {
     max-width: 100%;
     height: auto;
   }
-
-  /* 7. Taşma önlemi */
   * {
     box-sizing: border-box;
   }
 
 }
-
 </style>
 </head>
 
