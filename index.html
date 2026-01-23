@@ -125,6 +125,7 @@ a{color:#fff;text-decoration:none;}
 }
 
 
+
 .slider .game{
   flex-shrink:0;
   width:320px;
@@ -705,6 +706,20 @@ main {
   }
 
 }
+
+/* Sadece ekran okuyucu ve botlar görür, görsel olarak tamamen yok */
+.seo-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 </style>
 </head>
 
@@ -956,7 +971,23 @@ main {
     <div class="snow"></div>
   </div>
 
-
+<!-- Sadece Google botu görür, kullanıcı görmez (display:none değil, visually-hidden tekniği) -->
+<div class="seo-only" aria-hidden="true">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="/"><span itemprop="name">Ana Sayfa</span></a>
+      <meta itemprop="position" content="1" />
+    </li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="#indie"><span itemprop="name">Indie Oyunlar</span></a>
+      <meta itemprop="position" content="2" />
+    </li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name">Oyun Detayı</span>
+      <meta itemprop="position" content="3" />
+    </li>
+  </ol>
+</div>
   
 
     <!-- ÜSTÜNDEKİ ŞEYLER -->
