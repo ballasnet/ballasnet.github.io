@@ -1468,28 +1468,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===========================
-// Wheel Rastgele + 2s Cooldown (Yeni Sekme)
+// Çekiliş Sallanma Efekti
 // ===========================
 (() => {
-  const wheel = document.querySelector('.wheel.random-link');
-  if (!wheel) return;
+  const cekilis = document.querySelector('.cekilis');
+  if (!cekilis) return;
 
-  const links = [
-    'https://www.youtube.com/watch?v=YVkUvmDQ3HY',
-    'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-  ];
-
-  let cooldown = false;
-
-  wheel.addEventListener('click', e => {
+  cekilis.addEventListener('click', e => {
     e.preventDefault();
-    if (cooldown) return;
-
-    const randomLink = links[Math.floor(Math.random() * links.length)];
-    window.open(randomLink, '_blank', 'noopener');
-
-    cooldown = true;
-    setTimeout(() => cooldown = false, 2000);
+    if (cekilis.classList.contains('shaking')) return;
+    
+    cekilis.classList.add('shaking');
+    
+    cekilis.addEventListener('animationend', function handler() {
+      cekilis.classList.remove('shaking');
+      cekilis.removeEventListener('animationend', handler);
+    }, { once: true });
   });
 })();
 
