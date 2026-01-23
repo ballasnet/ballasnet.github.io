@@ -337,7 +337,7 @@ a{color:#fff;text-decoration:none;}
   letter-spacing: 1px;
 }
 
-/* Çekiliş Kutusu (wheel mantığı birebir) */
+/* Çekiliş Kutusu */
 .cekilis {
   width: 200px;
   height: 150px;
@@ -347,9 +347,41 @@ a{color:#fff;text-decoration:none;}
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
+  cursor: pointer;
 }
 
-/* Çekiliş Görseli */
+.cekilis.shaking {
+  animation: shake 0.25s ease-in-out 2;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.cekilis-text {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  background: rgba(0,0,0,0.7);
+  padding: 4px 12px;
+  pointer-events: none;
+}
+
+.cekilis.shaking .cekilis-text {
+  opacity: 1;
+}
+
 .cekilis img {
   width: 110%;
   height: 110%;
@@ -357,18 +389,13 @@ a{color:#fff;text-decoration:none;}
   transition: transform 0.2s ease;
 }
 
-/* Hover efekti (wheel ile birebir) */
-.cekilis:hover img {
+.cekilis.shaking img {
   transform: scale(0.95);
+  filter: brightness(0.7);
 }
 
-
-.random-link {
-  cursor: pointer;
-}
-
-.cekilis {
-  cursor: pointer;
+.cekilis:hover:not(.shaking) img {
+  transform: scale(0.95);
 }
 
 /* MASA / PANEL */
@@ -1030,10 +1057,10 @@ main {
       </a>
 
       <!-- Çekiliş -->
-      <a href="https://www.youtube.com/watch?v=YVkUvmDQ3HY" class="cekilis single-link">
-        <img src="cekilis2.jpg" alt="Çekiliş">
-      </a>
-
+<a class="cekilis single-link">
+  <img src="cekilis2.jpg" alt="Çekiliş">
+  <span class="cekilis-text">Yakında...</span>
+</a>
     </div>
   </div>
 
