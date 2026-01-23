@@ -720,7 +720,47 @@ main {
   border: 0;
 }
 
-</style>
+<!-- Statik Schema Markup'lar - Sadece botlar görür -->
+<script type="application/ld+json" class="seo-only">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "BallasNet",
+  "url": "https://ballasnet.com",
+  "description": "Ücretsiz PC oyun vitrini. Indie, düşük sistem ve popüler PC oyunları."
+}
+</script>
+
+<script type="application/ld+json" class="seo-only">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BallasNet",
+  "url": "https://ballasnet.com",
+  "logo": "https://ballasnet.com/favicon.png"
+}
+</script>
+
+<script type="application/ld+json" class="seo-only">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://ballasnet.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PC Oyunları",
+      "item": "https://ballasnet.com/"
+    }
+  ]
+}
+</script>
 </head>
 
 <!-- SEO -->
