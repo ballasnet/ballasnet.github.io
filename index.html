@@ -1542,7 +1542,56 @@ document.querySelectorAll('.giveaway-card').forEach(card => {
 });
 
 
+// Mevcut oyunları otomatik bul ve schema oluştur
+function autoGenerateGameSchemas() {
+  const games = [];
+  
+  // Slider'dan oyunları çek
+  document.querySelectorAll('.game').forEach(game => {
+    const title = game.querySelector('.game-title')?.textContent;
+    const tags = Array.from(game.querySelectorAll('.game-tag')).map(t => t.textContent);
+    const img = game.querySelector('img')?.getAttribute('src');
+    
+    if (title) {
+      games.push({ title, tags, img });
+    }
+  });
+  
+  // Mozaikten oyunları çek
+  document.querySelectorAll('.mozaik-card').forEach(card => {
+    const title = card.querySelector('.mozaik-title')?.textContent;
+    const img = card.querySelector('img')?.getAttribute('src');
+    
+    if (title && !games.find(g => g.title === title)) {
+      games.push({ title, tags: ['Indie'], img });
+    }
+  });
+  
+  // Her oyun için schema oluştur
+  games.forEach(game => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": game.title,
+      "genre": game.tags || ["PC Oyunu"],
+      "gamePlatform": "PC",
+      "operatingSystem": "Windows",
+      "image": game.img ? "https://ballasnet.com/" + game.img : undefined
+    };
 
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.className = 'seo-only';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  });
+  
+  console.log(games.length + " oyun için schema oluşturuldu");
+}
+
+// Sayfa yüklendiğinde çalıştır
+document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
+  
 </script>
 
 
