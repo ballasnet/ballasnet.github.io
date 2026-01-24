@@ -1664,6 +1664,20 @@ function autoGenerateGameSchemas() {
 
 // Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
+
+// ARA butonuna basınca çalışacak fonksiyon
+document.querySelector('.search-box button').addEventListener('click', function() {
+  // 1. Tüm bölümleri gizle (Mozaik, Düşük Sistem, Indie, Çekilişler, Masa paneli)
+  document.querySelector('.mozaik-grid').closest('.section').style.display = 'none';
+  document.querySelector('.dusuk-section').style.display = 'none';
+  document.querySelector('.indie-wrapper').closest('.section').style.display = 'none';
+  document.querySelector('.giveaway-section').style.display = 'none';
+  document.querySelector('.haftanin-oyunu-section').style.display = 'none';
+  
+  // 2. Popüler slider'ın başlığını değiştir
+  const populerBaslik = document.querySelector('.section h2');
+  populerBaslik.textContent = 'ARAMANIZIN SONUÇLARI';
+});
   
 </script>
 
