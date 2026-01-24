@@ -1553,7 +1553,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     allGameElements.forEach(g => {
       const title = g.querySelector(".game-title").textContent;
-      if (!title.toLowerCase().includes(query)) return; // filtreleme
+      if (!title.toLowerCase().startsWith(query)) return; // filtreleme
       if (resultsSet.has(title)) return; // tekrar varsa atla
       resultsSet.add(title);
 
