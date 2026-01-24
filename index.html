@@ -765,7 +765,7 @@ main {
 
 .geri-btn {
   display: none;
-  position: fixed;
+  position: absolute;  
   top: 20px;
   left: 20px;
   z-index: 1000;
@@ -775,6 +775,10 @@ main {
   border: 1px solid #444;
   cursor: pointer;
   border-radius: 4px;
+}
+
+body {
+  position: relative; 
 }
 
 .geri-btn:hover {
