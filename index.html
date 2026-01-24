@@ -746,6 +746,22 @@ main {
   white-space: nowrap;
   border: 0;
 }
+
+/* Glow animasyonu */
+@keyframes kartGlow {
+  0%, 100% { 
+    box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff;
+    border-color: #0ff;
+  }
+  50% { 
+    box-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+    border-color: #fff;
+  }
+}
+
+.glow-efekti {
+  animation: kartGlow 1s ease-in-out;
+}
 </style>
 
 <!-- Statik Schema Markup'lar - Sadece botlar görür -->
@@ -1677,6 +1693,17 @@ document.querySelector('.search-box button').addEventListener('click', function(
   // 2. Popüler slider'ın başlığını değiştir
   const populerBaslik = document.querySelector('.section h2');
   populerBaslik.textContent = 'ARAMANIZIN SONUÇLARI';
+});
+
+// ARA butonuna glow efekti ekle
+document.querySelector('.search-box button').addEventListener('click', function() {
+  const kartlar = document.querySelectorAll('.shuffle-populer .game');
+  kartlar.forEach(kart => {
+    kart.classList.add('glow-efekti');
+    setTimeout(() => {
+      kart.classList.remove('glow-efekti');
+    }, 1000);
+  });
 });
   
 </script>
