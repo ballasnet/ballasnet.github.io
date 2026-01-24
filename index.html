@@ -1646,6 +1646,9 @@ slider.querySelectorAll('img[data-src]').forEach((img, index) => {
       kart.classList.add('glow-efekti');
       setTimeout(() => kart.classList.remove('glow-efekti'), 600);
     });
+    
+    // Geri butonunu göster
+    document.getElementById('geri-btn').style.display = 'block';
   }
 
   // ARA butonu
@@ -1661,6 +1664,7 @@ slider.querySelectorAll('img[data-src]').forEach((img, index) => {
     if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
       suggestions.style.display = "none";
     }
+  });
 });
 
 (function () {
