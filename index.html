@@ -1565,8 +1565,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const originalSlider = document.querySelector('.shuffle-populer').innerHTML;
 
   // Tüm oyun elementlerini al
-  function getAllGames() {
-    return Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g => ({
+function getAllGames() {
+  return Array.from(document.querySelectorAll(".shuffle-populer .game, .shuffle-dusuk .game, .shuffle-indie .game")).map(g => ({
       title: g.querySelector(".game-title").textContent,
       slug: g.closest("a").getAttribute("href"),
       element: g.closest("a").cloneNode(true)
