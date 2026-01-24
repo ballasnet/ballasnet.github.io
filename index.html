@@ -1534,55 +1534,107 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 // =====================
-// Arama Önerileri (Tekrarları Önler)
+// Arama Önerileri + Filtreleme Modu
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const suggestions = document.querySelector(".search-suggestions");
   if (!searchInput || !suggestions) return;
 
-  // Tüm oyunları al, slider ve mozaik dahil
-  const allGameElements = Array.from(document.querySelectorAll(".game"));
+  // Tüm oyunları sakla (orijinal sırayla)
+  const originalSlider = document.querySelector('.shuffle-populer').innerHTML;
 
+  // Tüm oyun elementlerini al
+  function getAllGames() {
+    return Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g => ({
+      title: g.querySelector(".game-title").textContent,
+      slug: g.closest("a").getAttribute("href"),
+      element: g.closest("a").cloneNode(true)
+    }));
+  }
+
+  // Input yazınca önerileri göster
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
     suggestions.innerHTML = "";
 
-    if (!query) return;
+    if (!query) {
+      suggestions.style.display = "none";
+      return;
+    }
 
-    const resultsSet = new Set(); // tekrarları önlemek için
+    const allGames = getAllGames();
+    const resultsSet = new Set();
 
-    allGameElements.forEach(g => {
-      const title = g.querySelector(".game-title").textContent;
-      if (!title.toLowerCase().startsWith(query)) return; // filtreleme
-      if (resultsSet.has(title)) return; // tekrar varsa atla
-      resultsSet.add(title);
+    allGames.forEach(game => {
+      if (!game.title.toLowerCase().startsWith(query)) return;
+      if (resultsSet.has(game.title)) return;
+      resultsSet.add(game.title);
 
-      const slug = g.closest("a").getAttribute("href");
       const div = document.createElement("div");
-      div.textContent = title;
+      div.textContent = game.title;
       div.addEventListener("click", () => {
-        window.location.href = slug; // linke yönlendir
+        // Öneriye tıklayınca direkt git
+        window.location.href = game.slug;
       });
       suggestions.appendChild(div);
     });
 
-    // önerileri göster
-    if (suggestions.children.length) {
-      suggestions.style.display = "block";
-    } else {
-      suggestions.style.display = "none";
-    }
+    suggestions.style.display = suggestions.children.length ? "block" : "none";
   });
 
-  // Input dışına tıklandığında gizle
+  // ARA butonuna veya Enter'a basınca filtreleme modu
+  function aramaYap() {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) return;
+
+    // Önerileri kapat
+    suggestions.style.display = "none";
+
+    // Tüm bölümleri gizle
+    document.querySelector('.mozaik-grid').closest('.section').style.display = 'none';
+    document.querySelector('.dusuk-section').style.display = 'none';
+    document.querySelector('.indie-wrapper').closest('.section').style.display = 'none';
+    document.querySelector('.giveaway-section').style.display = 'none';
+    document.querySelector('.haftanin-oyunu-section').style.display = 'none';
+
+    // Başlığı değiştir
+    document.querySelector('.section h2').textContent = 'ARAMANIZIN SONUÇLARI';
+
+    // Slider'ı filtrele (DOM'u bozmadan)
+    const slider = document.querySelector('.shuffle-populer');
+    const allGames = getAllGames();
+    
+    // Sadece baş harfi query ile başlayanları göster
+    slider.innerHTML = '';
+    allGames.forEach(game => {
+      if (game.title.toLowerCase().startsWith(query)) {
+        slider.appendChild(game.element);
+      }
+    });
+
+    // Glow efekti
+    document.querySelectorAll('.shuffle-populer .game').forEach(kart => {
+      kart.classList.add('glow-efekti');
+      setTimeout(() => kart.classList.remove('glow-efekti'), 600);
+    });
+  }
+
+  // ARA butonu
+  document.querySelector('.search-box button').addEventListener('click', aramaYap);
+
+  // Enter tuşu
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') aramaYap();
+  });
+
+  // Dışarı tıklayınca önerileri kapat
   document.addEventListener("click", (e) => {
     if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
       suggestions.style.display = "none";
     }
   });
 });
-
 
 (function () {
   const cardsWrapper = document.querySelector('.giveaway-cards');
@@ -1685,50 +1737,7 @@ function autoGenerateGameSchemas() {
 // Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 
-// ARA butonuna ve Enter'a basınca çalışacak fonksiyon
-function aramaYap() {
-  const query = document.getElementById('searchInput').value.trim().toLowerCase();
-  if (!query) return;
-  
-  // Tüm bölümleri gizle
-  document.querySelector('.mozaik-grid').closest('.section').style.display = 'none';
-  document.querySelector('.dusuk-section').style.display = 'none';
-  document.querySelector('.indie-wrapper').closest('.section').style.display = 'none';
-  document.querySelector('.giveaway-section').style.display = 'none';
-  document.querySelector('.haftanin-oyunu-section').style.display = 'none';
-  
-  // Başlığı değiştir
-  const populerBaslik = document.querySelector('.section h2');
-  populerBaslik.textContent = 'ARAMANIZIN SONUÇLARI';
-  
-  // Sadece baş harfi query ile başlayan oyunları bul
-  const slider = document.querySelector('.shuffle-populer');
-  const tumOyunlar = Array.from(document.querySelectorAll('.shuffle-populer .game')).map(g => ({
-    element: g.closest('a'),
-    title: g.querySelector('.game-title').textContent
-  }));
-  
-  // Filtrele: sadece baş harfi query ile başlayanlar
-  const filtrelenmis = tumOyunlar.filter(o => o.title.toLowerCase().startsWith(query));
-  
-  // Slider'ı temizle ve filtrelenmiş oyunları ekle
-  slider.innerHTML = '';
-  filtrelenmis.forEach(o => slider.appendChild(o.element));
-  
-  // Glow efekti
-  const kartlar = document.querySelectorAll('.shuffle-populer .game');
-  kartlar.forEach(kart => {
-    kart.classList.add('glow-efekti');
-    setTimeout(() => kart.classList.remove('glow-efekti'), 600);
-  });
-  
-// ARA butonuna tıklayınca
-document.querySelector('.search-box button').addEventListener('click', aramaYap);
 
-// Enter'a basınca
-document.getElementById('searchInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') aramaYap();
-});
 
 
   
