@@ -1613,6 +1613,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // İlk 4 görünür kartın görsellerini hemen yükle, gerisi lazyload kalsın
+slider.querySelectorAll('img[data-src]').forEach((img, index) => {
+  if (index < 4) {
+    img.src = img.dataset.src;
+    delete img.dataset.src;
+  }
+});
+
     // Glow efekti
     document.querySelectorAll('.shuffle-populer .game').forEach(kart => {
       kart.classList.add('glow-efekti');
