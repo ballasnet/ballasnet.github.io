@@ -1664,7 +1664,9 @@ slider.querySelectorAll('img[data-src]').forEach((img, index) => {
     if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
       suggestions.style.display = "none";
     }
-    // Geri dön butonuna tıklayınca
+  });
+
+  // Geri dön butonuna tıklayınca
   document.getElementById('geri-btn').addEventListener('click', () => {
     // Tüm bölümleri geri göster
     document.querySelector('.mozaik-grid').closest('.section').style.display = '';
@@ -1687,6 +1689,7 @@ slider.querySelectorAll('img[data-src]').forEach((img, index) => {
   });
 });
 
+  
 (function () {
   const cardsWrapper = document.querySelector('.giveaway-cards');
   if (!cardsWrapper) return;
