@@ -1684,29 +1684,49 @@ function autoGenerateGameSchemas() {
 // Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 
-// ARA butonuna basınca çalışacak fonksiyon
-document.querySelector('.search-box button').addEventListener('click', function() {
-  // 1. Tüm bölümleri gizle (Mozaik, Düşük Sistem, Indie, Çekilişler, Masa paneli)
+// ARA butonuna ve Enter'a basınca çalışacak fonksiyon
+function aramaYap() {
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (!query) return;
+  
+  // Tüm bölümleri gizle
   document.querySelector('.mozaik-grid').closest('.section').style.display = 'none';
   document.querySelector('.dusuk-section').style.display = 'none';
   document.querySelector('.indie-wrapper').closest('.section').style.display = 'none';
   document.querySelector('.giveaway-section').style.display = 'none';
   document.querySelector('.haftanin-oyunu-section').style.display = 'none';
   
-  // 2. Popüler slider'ın başlığını değiştir
+  // Başlığı değiştir
   const populerBaslik = document.querySelector('.section h2');
   populerBaslik.textContent = 'ARAMANIZIN SONUÇLARI';
-});
-
-// ARA butonuna glow efekti ekle
-document.querySelector('.search-box button').addEventListener('click', function() {
+  
+  // Sadece baş harfi query ile başlayan oyunları bul
+  const slider = document.querySelector('.shuffle-populer');
+  const tumOyunlar = Array.from(document.querySelectorAll('.shuffle-populer .game')).map(g => ({
+    element: g.closest('a'),
+    title: g.querySelector('.game-title').textContent
+  }));
+  
+  // Filtrele: sadece baş harfi query ile başlayanlar
+  const filtrelenmis = tumOyunlar.filter(o => o.title.toLowerCase().startsWith(query));
+  
+  // Slider'ı temizle ve filtrelenmiş oyunları ekle
+  slider.innerHTML = '';
+  filtrelenmis.forEach(o => slider.appendChild(o.element));
+  
+  // Glow efekti
   const kartlar = document.querySelectorAll('.shuffle-populer .game');
   kartlar.forEach(kart => {
     kart.classList.add('glow-efekti');
-    setTimeout(() => {
-      kart.classList.remove('glow-efekti');
-    }, 1000);
+    setTimeout(() => kart.classList.remove('glow-efekti'), 600);
   });
+  
+// ARA butonuna tıklayınca
+document.querySelector('.search-box button').addEventListener('click', aramaYap);
+
+// Enter'a basınca
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') aramaYap();
 });
 
 
