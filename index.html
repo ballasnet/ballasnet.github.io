@@ -1664,6 +1664,26 @@ slider.querySelectorAll('img[data-src]').forEach((img, index) => {
     if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
       suggestions.style.display = "none";
     }
+    // Geri dön butonuna tıklayınca
+  document.getElementById('geri-btn').addEventListener('click', () => {
+    // Tüm bölümleri geri göster
+    document.querySelector('.mozaik-grid').closest('.section').style.display = '';
+    document.querySelector('.dusuk-section').style.display = '';
+    document.querySelector('.indie-wrapper').closest('.section').style.display = '';
+    document.querySelector('.giveaway-section').style.display = '';
+    document.querySelector('.haftanin-oyunu-section').style.display = '';
+    
+    // Slider'ı eski haline getir
+    document.querySelector('.shuffle-populer').innerHTML = originalSlider;
+    
+    // Başlığı eski haline getir
+    document.querySelector('.section h2').textContent = 'POPÜLER OYUNLAR';
+    
+    // Input'u temizle
+    document.getElementById('searchInput').value = '';
+    
+    // Butonu gizle
+    document.getElementById('geri-btn').style.display = 'none';
   });
 });
 
