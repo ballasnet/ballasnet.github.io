@@ -837,7 +837,11 @@ main {
   <input id="searchInput" type="text" placeholder="Oyun ara...">
   <button>ARA</button>
   <div class="search-suggestions"></div>
+<button id="geri-btn" class="geri-btn">← Geri Dön</button>
 </div>
+
+
+  
 
 <div id="theme-toggle">
   <!-- Başlangıç: gündüz modu ikonu -->
@@ -1641,6 +1645,9 @@ slider.querySelectorAll('img[data-src]').forEach((img, index) => {
     if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
       suggestions.style.display = "none";
     }
+
+    // Geri dön butonunu göster
+document.getElementById('geri-btn').style.display = 'block';
   });
 });
 
