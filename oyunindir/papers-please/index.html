@@ -244,12 +244,43 @@ a, a:hover, a:visited, a:active, a:focus{
   }
 }
 
+.breadcrumb {
+  max-width:1000px;
+  margin:20px auto;
+  padding:0 20px;
+  font-size:14px;
+  color:#ccc;
+}
+
+.breadcrumb a {
+  color:#fff;
+  text-decoration:none;
+  transition:color 0.3s;
+}
+
+.breadcrumb a:hover {
+  color:#1e90ff; /* hover rengi isteğe göre */
+}
+
+.breadcrumb span {
+  color:#888; /* aktif sayfa için */
+}
+
+
   
 </style>
 </head>
 <body>
 
 <h1>Papers Please - BallasNet</h1>
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb">
+  <a href="https://ballasnet.com">Ana Sayfa</a> &gt; 
+  <a href="https://ballasnet.com/oyunindir/">Oyunindir</a> &gt; 
+  <a href="https://ballasnet.com/oyunindir/papersplease">Papers Please</a>
+</nav>
+
 
 <div class="game-hero">
   <img src="papersplease2.jpg" alt="Papers Please oyun kapak görseli - BallasNet indie oyun vitrini" loading="eager" fetchpriority="high">
@@ -392,6 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
