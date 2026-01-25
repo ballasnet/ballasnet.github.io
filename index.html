@@ -1549,7 +1549,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =====================
-// GLOBAL ANTI-SPAM KİLİT (Tema + Sliderlar)
+// ANTI-SPAM KİLİT - THEME TOGGLE AĞRESİF = TÜM SİTE KİLİT
 // =====================
 (() => {
   const toggleBtn = document.getElementById("theme-toggle");
@@ -1569,7 +1569,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!warned) {
       alert("Çok hızlı işlem algılandı. 1 dakika kilitlendi.");
-      warned = true; // 🔕 sadece 1 kere uyarı
+      warned = true;
     }
 
     setTimeout(() => {
@@ -1578,7 +1578,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 60000);
   }
 
-  function handleClick(e) {
+  function handleToggleClick(e) {
     const now = Date.now();
 
     if (locked) {
@@ -1589,18 +1589,24 @@ document.addEventListener("DOMContentLoaded", () => {
     clickTimes = clickTimes.filter(t => now - t < 5000);
     clickTimes.push(now);
 
-    if (clickTimes.length >= 11) {          //TIKLAMA SAYISI KONTROLCUSU KEU
+    if (clickTimes.length >= 11) {
       blockEvent(e);
       lockAll();
     }
   }
 
+  function handleSliderClick(e) {
+    if (locked) {
+      blockEvent(e);
+    }
+  }
+
   if (toggleBtn) {
-    toggleBtn.addEventListener("click", handleClick, true);
+    toggleBtn.addEventListener("click", handleToggleClick, true);
   }
 
   sliderBtns.forEach(btn => {
-    btn.addEventListener("click", handleClick, true);
+    btn.addEventListener("click", handleSliderClick, true);
   });
 })();
 
