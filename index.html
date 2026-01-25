@@ -1138,6 +1138,8 @@ body {
   © BallasNet - Orjinal Sitemiz
 </footer>
 
+<div class="karartma-overlay" id="karartma"></div>
+  
 <script>
 
 // =====================
@@ -1821,7 +1823,18 @@ function autoGenerateGameSchemas() {
 // Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 
-
+// Çekiliş kartlarına tıklayınca karartma
+document.querySelectorAll('.giveaway-card').forEach(kart => {
+  kart.addEventListener('click', () => {
+    const overlay = document.getElementById('karartma');
+    overlay.classList.add('aktif');
+    
+    // 2 saniye sonra aç
+    setTimeout(() => {
+      overlay.classList.remove('aktif');
+    }, 2000);
+  });
+});
 
 
   
