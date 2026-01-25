@@ -822,8 +822,7 @@ body {
 }
 
 .discord-join-btn {
-  margin-top: 20px;
-  padding: 12px 20px;
+  padding: 12px 22px;
   background: #22c55e;
   color: #0f172a;
   font-weight: 600;
@@ -836,6 +835,7 @@ body {
 .discord-join-btn:hover {
   box-shadow: 0 6px 18px rgba(34,197,94,.45);
 }
+
 
   
 </style>
@@ -1175,7 +1175,12 @@ body {
 <div class="karartma-overlay" id="karartma">
   <div class="karartma-yazi">Çekilişe katılmak için discord sunucumuza katılmalısınız.</div>
 </div>
-  
+
+<div id="discord-btn-container" style="display:none; position:fixed; bottom:50px; left:50%; transform:translateX(-50%); z-index:9999;">
+  <button class="discord-join-btn">Discord sunucusuna git</button>
+</div>
+
+
 <script>
 
 // =====================
@@ -1885,6 +1890,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // 👇 YAZININ ALTINA EKLENİYOR
   yazi.appendChild(btn);
 });
+
+const overlay = document.getElementById("karartma");
+const discordBtnContainer = document.getElementById("discord-btn-container");
+const discordBtn = discordBtnContainer.querySelector(".discord-join-btn");
+
+discordBtn.addEventListener("click", () => {
+  window.open("https://www.discord.com", "_blank", "noopener");
+});
+
+// Overlay açıldığında butonu otomatik göster
+const observer = new MutationObserver(() => {
+  if (overlay.style.display !== "none") {
+    discordBtnContainer.style.display = "block";
+  } else {
+    discordBtnContainer.style.display = "none";
+  }
+});
+
+observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
 
   
 </script>
