@@ -218,6 +218,28 @@ a, a:hover, a:visited, a:active, a:focus{
   .game-hero img{height:250px;}
   .slider .game{width:260px;height:170px;}
 }
+
+/* YouTube videosu */
+.youtube-video{
+  max-width:1000px;
+  margin:50px auto;
+  padding:0 20px;
+}
+.youtube-video iframe{
+  width:100%;
+  height:500px;
+  border:2px solid #222;
+  border-radius:8px;
+}
+
+/* Mobil */
+@media(max-width:768px){
+  .youtube-video iframe{
+    height:250px;
+  }
+}
+
+  
 </style>
 </head>
 <body>
@@ -246,6 +268,20 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
   </div>
 </div>
 
+
+<!-- YouTube Videosu -->
+<div class="youtube-video">
+  <iframe 
+    width="100%" 
+    height="500" 
+    src="https://www.youtube.com/embed/HXsyFRPSR70" 
+    title="Papers Please Oyun Videosu" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+  
 <section class="benzer-oyunlar">
   <h2>BENZER OYUNLAR</h2>
   <div class="slider-wrapper">
@@ -351,5 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
