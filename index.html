@@ -821,22 +821,41 @@ body {
   opacity: 1;
 }
 
+/* Discord butonu container - ortada sabit */
+#discord-btn-container {
+  position: fixed;
+  bottom: 80px; /* biraz yukarıda */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000; /* karartmanın üstünde */
+  display: none; /* başlangıçta gizli */
+}
+
+/* Yeşil Discord butonu */
 .discord-join-btn {
-  padding: 12px 22px;
-  background: #22c55e;
-  color: #0f172a;
-  font-weight: 600;
-  border-radius: 8px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
   border: none;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 15px;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .discord-join-btn:hover {
-  box-shadow: 0 6px 18px rgba(34,197,94,.45);
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(34, 197, 94, 0.6);
+  background: linear-gradient(135deg, #16a34a, #15803d);
 }
 
-
+.discord-join-btn:active {
+  transform: scale(0.98);
+}
   
 </style>
 
@@ -1172,12 +1191,14 @@ body {
   © BallasNet - Orjinal Sitemiz
 </footer>
 
+<!-- Karartma overlay (mevcut) -->
 <div class="karartma-overlay" id="karartma">
   <div class="karartma-yazi">Çekilişe katılmak için discord sunucumuza katılmalısınız.</div>
 </div>
 
-<div id="discord-btn-container" style="display:none; position:fixed; bottom:50px; left:50%; transform:translateX(-50%); z-index:9999;">
-  <button class="discord-join-btn">Discord sunucusuna git</button>
+<!-- Discord butonu container (body'nin sonuna ekle) -->
+<div id="discord-btn-container">
+  <button class="discord-join-btn">Discord Sunucusuna Git</button>
 </div>
 
 
