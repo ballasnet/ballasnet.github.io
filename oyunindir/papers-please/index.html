@@ -246,33 +246,36 @@ a, a:hover, a:visited, a:active, a:focus{
 
 .breadcrumb {
   max-width:1000px;
-  margin:10px auto 15px auto;  /* üst ve alt boşluk çok az */
+  margin:10px auto 5px auto;  
   padding:0 20px;
   font-size:14px;
-  text-align:center;           /* ortala */
-  color:#aaa;                  /* grimsi renk */
+  text-align:center;           
+  color:#aaa;                  
+  user-select:none; /* tüm breadcrumb üzerinde yazı seçmeyi engelle */
 }
 
 .breadcrumb a {
-  color:#aaa;                  /* grimsi renk */
+  color:#aaa;                  
   text-decoration:none;
   transition:color 0.2s ease;
+  cursor:pointer;              
+  user-select:text; /* linkler seçilebilir kalır */
 }
 
 .breadcrumb a:hover {
-  color:#ccc;                  /* hover minimal beyazlaşma */
+  color:#ccc;                  
+}
+
+.breadcrumb span.separator {
+  color:#aaa;          
+  user-select:none;    /* > seçilemez */
+  cursor:default;      /* düz imleç */
 }
 
 .breadcrumb span {
   color:#888;                  /* aktif sayfa gri */
 }
 
-/* sadece > işaretleri için */
-.breadcrumb span.separator {
-  color:#aaa;          /* gri ton */
-  user-select:none;    /* seçilemez */
-  cursor:default;      /* düz imleç */
-}
 .breadcrumb span.current {
   color:#888;          /* aktif sayfa */
 }
@@ -289,7 +292,7 @@ a, a:hover, a:visited, a:active, a:focus{
   <span class="separator">&gt;</span>
   <a href="https://ballasnet.com/oyunindir/">Oyunindir</a>
   <span class="separator">&gt;</span>
-  <span class="current">Papers Please</span>
+  <a href="https://ballasnet.com/oyunindir/papersplease" class="current">Papers Please</a>
 </nav>
 
 
@@ -435,6 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
