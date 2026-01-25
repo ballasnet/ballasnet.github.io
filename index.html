@@ -855,20 +855,23 @@ body.scroll-kilit {
 
 .karartma-yazi .discord-iptal-btn {
   padding: 12px 24px;
-  background: transparent;
-  color: #888;
-  font-weight: 600;
+  background: linear-gradient(135deg, #ef4444, #dc2626); 
+  color: #fff;
+  font-weight: 700;
   font-size: 14px;
-  border: 1px solid #444;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); 
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .karartma-yazi .discord-iptal-btn:hover {
-  color: #fff;
-  border-color: #666;
-  background: rgba(255,255,255,0.05);
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(239, 68, 68, 0.6); 
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
 }
   
 </style>
@@ -1878,14 +1881,14 @@ document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById('karartma');
   
-// Çekiliş kartlarına tıklayınca karartmayı aç + scroll kilidi
-document.querySelectorAll('.giveaway-card').forEach(kart => {
-  kart.addEventListener('click', (e) => {
-    e.preventDefault();
-    overlay.classList.add('aktif');
-    document.body.classList.add('scroll-kilit'); // EKLENDİ
+  // Çekiliş kartlarına tıklayınca karartmayı aç + scroll kilidi
+  document.querySelectorAll('.giveaway-card').forEach(kart => {
+    kart.addEventListener('click', (e) => {
+      e.preventDefault();
+      overlay.classList.add('aktif');
+      document.body.classList.add('scroll-kilit');
+    });
   });
-});
 
   // Discord butonuna tıklayınca yönlendir
   const discordBtn = document.querySelector('.karartma-yazi .discord-join-btn');
@@ -1895,23 +1898,25 @@ document.querySelectorAll('.giveaway-card').forEach(kart => {
     });
   }
 
-// Karartmaya tıklayınca kapat + scroll aç
-overlay.addEventListener('click', (e) => {
-  if (e.target === overlay) {
-    overlay.classList.remove('aktif');
-    document.body.classList.remove('scroll-kilit'); 
-  }
-  });
-});
-
-// İptal butonu - kapat
-const iptalBtn = document.querySelector('.discord-iptal-btn');
-if (iptalBtn) {
-  iptalBtn.addEventListener('click', () => {
+  // KAPATMA FONKSİYONU - TÜM KARARTMAYI KAPAT (yazı + butonlar + siyah arka plan)
+  function kapatKarartma() {
     overlay.classList.remove('aktif');
     document.body.classList.remove('scroll-kilit');
+  }
+
+  // Siyaha tıklayınca kapat
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      kapatKarartma(); // Tüm karartma kapanır
+    }
   });
-}
+
+  // İptal butonuna tıklayınca da kapat (aynı işlev)
+  const iptalBtn = document.querySelector('.discord-iptal-btn');
+  if (iptalBtn) {
+    iptalBtn.addEventListener('click', kapatKarartma); // Tüm karartma kapanır
+  }
+});
 
 </script>
 
