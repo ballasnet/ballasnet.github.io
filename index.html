@@ -785,6 +785,24 @@ body {
 .geri-btn:hover {
   background: #333;
 }
+
+/* Ekran kararma overlay */
+.karartma-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  z-index: 9999;
+  transition: background 0.5s ease;
+}
+
+.karartma-overlay.aktif {
+  background: rgba(0, 0, 0, 0.8);
+}
+  
   
 </style>
 
