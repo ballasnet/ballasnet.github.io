@@ -1568,12 +1568,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tüm oyunları sakla (orijinal sırayla)
   const originalSlider = document.querySelector('.shuffle-populer').innerHTML;
 
-  // Tüm oyun elementlerini al
-function getAllGames() {
-  return Array.from(document.querySelectorAll(".shuffle-populer .game, .shuffle-dusuk .game, .shuffle-indie .game")).map(g => ({
-      title: g.querySelector(".game-title").textContent,
-      slug: g.closest("a").getAttribute("href"),
-      element: g.closest("a").cloneNode(true)
+  // Tüm oyunları BİR KERE sakla
+  const tumOyunlar = Array.from(document.querySelectorAll(".shuffle-populer .game, .shuffle-dusuk .game, .shuffle-indie .game")).map(g => ({
+    title: g.querySelector(".game-title").textContent,
+    slug: g.closest("a").getAttribute("href"),
+    element: g.closest("a").cloneNode(true)
+  }));
+
+  // Saklanan oyunları döndür
+  function getAllGames() {
+    return tumOyunlar.map(g => ({
+      ...g,
+      element: g.element.cloneNode(true)
     }));
   }
 
