@@ -803,6 +803,23 @@ body {
   background: rgba(0, 0, 0, 0.8);
 }
   
+.karartma-yazi {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.karartma-overlay.aktif .karartma-yazi {
+  opacity: 1;
+}
   
 </style>
 
@@ -1138,7 +1155,9 @@ body {
   © BallasNet - Orjinal Sitemiz
 </footer>
 
-<div class="karartma-overlay" id="karartma"></div>
+<div class="karartma-overlay" id="karartma">
+  <div class="karartma-yazi">Çekilişe katılmak için discord sunucumuza katılmalısınız.</div>
+</div>
   
 <script>
 
@@ -1828,14 +1847,8 @@ document.querySelectorAll('.giveaway-card').forEach(kart => {
   kart.addEventListener('click', () => {
     const overlay = document.getElementById('karartma');
     overlay.classList.add('aktif');
-    
-    // 2 saniye sonra aç
-    setTimeout(() => {
-      overlay.classList.remove('aktif');
-    }, 2000);
   });
 });
-
 
   
 </script>
