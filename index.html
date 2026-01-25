@@ -1867,6 +1867,25 @@ document.querySelectorAll('.giveaway-card').forEach(kart => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const yazi = document.querySelector(".karartma-yazi");
+  if (!yazi) return;
+
+  // Aynı buton tekrar eklenmesin
+  if (yazi.querySelector(".discord-join-btn")) return;
+
+  const btn = document.createElement("button");
+  btn.className = "discord-join-btn";
+  btn.textContent = "Discord sunucusuna git";
+
+  btn.addEventListener("click", () => {
+    window.open("https://www.discord.com", "_blank", "noopener");
+  });
+
+  // 👇 YAZININ ALTINA EKLENİYOR
+  yazi.appendChild(btn);
+});
+
   
 </script>
 
