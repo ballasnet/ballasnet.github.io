@@ -225,12 +225,16 @@ a, a:hover, a:visited, a:active, a:focus{
   margin:50px auto;
   padding:0 20px;
 }
+
 .youtube-video iframe{
-  width:75%;
-  height:250px;
+  width:75%;        /* eski %75 olarak ayarlandı */
+  max-width:800px;  /* büyük ekranlarda sınır */
+  height:450px;     /* yüksekliği aynı kaldı */
   border:2px solid #222;
   border-radius:8px;
+  display:inline-block; /* ortalamayı korur */
 }
+
 
 /* Mobil */
 @media(max-width:768px){
@@ -387,6 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
