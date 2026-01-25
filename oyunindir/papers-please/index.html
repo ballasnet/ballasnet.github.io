@@ -267,7 +267,15 @@ a, a:hover, a:visited, a:active, a:focus{
   color:#888;                  /* aktif sayfa gri */
 }
 
-
+/* sadece > işaretleri için */
+.breadcrumb span.separator {
+  color:#aaa;          /* gri ton */
+  user-select:none;    /* seçilemez */
+  cursor:default;      /* düz imleç */
+}
+.breadcrumb span.current {
+  color:#888;          /* aktif sayfa */
+}
   
 </style>
 </head>
@@ -277,10 +285,13 @@ a, a:hover, a:visited, a:active, a:focus{
 
 <!-- Breadcrumb -->
 <nav class="breadcrumb">
-  <a href="https://ballasnet.com">Ana Sayfa</a> &gt; 
-  <a href="https://ballasnet.com/oyunindir/">Oyunindir</a> &gt; 
-  <a href="https://ballasnet.com/oyunindir/papersplease">Papers Please</a>
+  <a href="https://ballasnet.com">Ana Sayfa</a>
+  <span class="separator">&gt;</span>
+  <a href="https://ballasnet.com/oyunindir/">Oyunindir</a>
+  <span class="separator">&gt;</span>
+  <span class="current">Papers Please</span>
 </nav>
+
 
 
 <div class="game-hero">
@@ -424,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
