@@ -1549,55 +1549,90 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =====================
-// ANTI-SPAM KİLİT - THEME TOGGLE AĞRESİF = TÜM SİTE KİLİT
+// ANTI-SPAM KİLİT - AYRI SAYAÇLAR
 // =====================
 (() => {
   const toggleBtn = document.getElementById("theme-toggle");
   const sliderBtns = document.querySelectorAll(".slider-btn");
 
-  let clickTimes = [];
-  let locked = false;
-  let warned = false;
+  // Theme toggle sayacı
+  let toggleClickTimes = [];
+  let toggleLocked = false;
+  let toggleWarned = false;
+
+  // Slider sayacı
+  let sliderClickTimes = [];
+  let sliderLocked = false;
+  let sliderWarned = false;
 
   function blockEvent(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
   }
 
-  function lockAll() {
-    locked = true;
+  // Theme toggle kilit (tüm site)
+  function lockToggle() {
+    toggleLocked = true;
 
-    if (!warned) {
+    if (!toggleWarned) {
       alert("Çok hızlı işlem algılandı. 1 dakika kilitlendi.");
-      warned = true;
+      toggleWarned = true;
     }
 
     setTimeout(() => {
-      locked = false;
-      clickTimes = [];
+      toggleLocked = false;
+      toggleClickTimes = [];
     }, 60000);
   }
 
+  // Slider kilit (sadece slider butonları)
+  function lockSlider() {
+    sliderLocked = true;
+
+    if (!sliderWarned) {
+      alert("Slider butonlarına çok hızlı basıldı. 1 dakika kilitlendi.");
+      sliderWarned = true;
+    }
+
+    setTimeout(() => {
+      sliderLocked = false;
+      sliderClickTimes = [];
+    }, 60000);
+  }
+
+  // Theme toggle click
   function handleToggleClick(e) {
     const now = Date.now();
 
-    if (locked) {
+    if (toggleLocked) {
       blockEvent(e);
       return;
     }
 
-    clickTimes = clickTimes.filter(t => now - t < 5000);
-    clickTimes.push(now);
+    toggleClickTimes = toggleClickTimes.filter(t => now - t < 5000);
+    toggleClickTimes.push(now);
 
-    if (clickTimes.length >= 11) {
+    if (toggleClickTimes.length >= 11) {
       blockEvent(e);
-      lockAll();
+      lockToggle();
     }
   }
 
+  // Slider click
   function handleSliderClick(e) {
-    if (locked) {
+    const now = Date.now();
+
+    if (sliderLocked || toggleLocked) {
       blockEvent(e);
+      return;
+    }
+
+    sliderClickTimes = sliderClickTimes.filter(t => now - t < 3000);
+    sliderClickTimes.push(now);
+
+    if (sliderClickTimes.length >= 30) {
+      blockEvent(e);
+      lockSlider();
     }
   }
 
@@ -1610,6 +1645,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
+  
 // ===========================
 // Snow LazyHide / LazyShow
 // ===========================
