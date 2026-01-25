@@ -1908,26 +1908,13 @@ document.addEventListener("DOMContentLoaded", () => {
     window.open("https://www.discord.com", "_blank", "noopener");
   });
 
-  // 👇 YAZININ ALTINA EKLENİYOR
-  yazi.appendChild(btn);
-});
-
 const overlay = document.getElementById("karartma");
 const discordBtnContainer = document.getElementById("discord-btn-container");
 const discordBtn = discordBtnContainer.querySelector(".discord-join-btn");
 
-discordBtn.addEventListener("click", () => {
-  window.open("https://www.discord.com", "_blank", "noopener");
-});
 
-// Overlay açıldığında butonu otomatik göster
-const observer = new MutationObserver(() => {
-  if (overlay.style.display !== "none") {
-    discordBtnContainer.style.display = "block";
-  } else {
-    discordBtnContainer.style.display = "none";
-  }
-});
+
+
 
 observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
 
