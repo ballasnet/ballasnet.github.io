@@ -846,6 +846,30 @@ body {
   box-shadow: 0 6px 25px rgba(34, 197, 94, 0.6);
   background: linear-gradient(135deg, #16a34a, #15803d);
 }
+
+/* Scroll kilidi */
+body.scroll-kilit {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.karartma-yazi .discord-iptal-btn {
+  padding: 12px 24px;
+  background: transparent;
+  color: #888;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.karartma-yazi .discord-iptal-btn:hover {
+  color: #fff;
+  border-color: #666;
+  background: rgba(255,255,255,0.05);
+}
   
 </style>
 
@@ -1185,7 +1209,8 @@ body {
 <div class="karartma-overlay" id="karartma">
   <div class="karartma-yazi">
     Çekilişe katılmak için discord sunucumuza katılmalısınız.
-    <button class="discord-join-btn">Discord Sunucusuna Git</button>  
+    <button class="discord-join-btn">Discord Sunucusuna Git</button>
+    <button class="discord-iptal-btn">Hayır, böyle iyiyim</button> 
   </div>
 </div>
 
@@ -1853,13 +1878,14 @@ document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById('karartma');
   
-  // Çekiliş kartlarına tıklayınca karartmayı aç
-  document.querySelectorAll('.giveaway-card').forEach(kart => {
-    kart.addEventListener('click', (e) => {
-      e.preventDefault();
-      overlay.classList.add('aktif');
-    });
+// Çekiliş kartlarına tıklayınca karartmayı aç + scroll kilidi
+document.querySelectorAll('.giveaway-card').forEach(kart => {
+  kart.addEventListener('click', (e) => {
+    e.preventDefault();
+    overlay.classList.add('aktif');
+    document.body.classList.add('scroll-kilit'); // EKLENDİ
   });
+});
 
   // Discord butonuna tıklayınca yönlendir
   const discordBtn = document.querySelector('.karartma-yazi .discord-join-btn');
@@ -1869,13 +1895,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Karartmaya tıklayınca kapat (isteğe bağlı)
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-      overlay.classList.remove('aktif');
-    }
+// Karartmaya tıklayınca kapat + scroll aç
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) {
+    overlay.classList.remove('aktif');
+    document.body.classList.remove('scroll-kilit'); 
+  }
   });
 });
+
+// İptal butonu - kapat
+const iptalBtn = document.querySelector('.discord-iptal-btn');
+if (iptalBtn) {
+  iptalBtn.addEventListener('click', () => {
+    overlay.classList.remove('aktif');
+    document.body.classList.remove('scroll-kilit');
+  });
+}
+
 </script>
 
 
