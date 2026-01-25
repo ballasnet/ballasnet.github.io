@@ -246,24 +246,25 @@ a, a:hover, a:visited, a:active, a:focus{
 
 .breadcrumb {
   max-width:1000px;
-  margin:20px auto;
+  margin:10px auto 15px auto;  /* üst ve alt boşluk çok az */
   padding:0 20px;
   font-size:14px;
-  color:#ccc;
+  text-align:center;           /* ortala */
+  color:#aaa;                  /* grimsi renk */
 }
 
 .breadcrumb a {
-  color:#fff;
+  color:#aaa;                  /* grimsi renk */
   text-decoration:none;
-  transition:color 0.3s;
+  transition:color 0.2s ease;
 }
 
 .breadcrumb a:hover {
-  color:#1e90ff; /* hover rengi isteğe göre */
+  color:#ccc;                  /* hover minimal beyazlaşma */
 }
 
 .breadcrumb span {
-  color:#888; /* aktif sayfa için */
+  color:#888;                  /* aktif sayfa gri */
 }
 
 
@@ -423,6 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
