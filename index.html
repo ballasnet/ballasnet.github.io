@@ -888,21 +888,6 @@ body.scroll-kilit {
 }
 
 
-.search-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  pointer-events: none; /* slider interactivity etkilenmez */
-  z-index: 10;
-}
 
 
 </style>
@@ -1743,54 +1728,7 @@ document.addEventListener("DOMContentLoaded", () => {
     suggestions.style.display = suggestions.children.length ? "block" : "none";
   });
 
-function aramaYap() {
-  const query = searchInput.value.trim().toLowerCase();
-  if (!query) return;
-
-  suggestions.style.display = "none";
-
-  // Tüm bölümleri gizle
-  document.querySelector('.mozaik-grid').closest('.section').style.display = 'none';
-  document.querySelector('.dusuk-section').style.display = 'none';
-  document.querySelector('.indie-wrapper').closest('.section').style.display = 'none';
-  document.querySelector('.giveaway-section').style.display = 'none';
-  document.querySelector('.haftanin-oyunu-section').style.display = 'none';
-
-  document.querySelector('.section h2').textContent = 'ARAMANIZIN SONUÇLARI';
-
-  const slider = document.querySelector('.shuffle-populer');
-  const allGames = getAllGames();
-
-  // Sonuç kontrolü
-  let sonucVar = allGames.some(game => game.title.toLowerCase().startsWith(query));
-
-  // Overlay mesaj div’i (sadece bir kez yarat)
-  let overlay = slider.querySelector('.search-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.className = 'search-overlay';
-    overlay.textContent = 'Maalesef aradığınız oyunu bulamadık.';
-    slider.appendChild(overlay);
-  }
-  overlay.style.display = sonucVar ? 'none' : 'flex'; // göster/gizle
-
-  // İlk 4 görünür kartın görsellerini yükle (lazyload hâlâ çalışıyor)
-  slider.querySelectorAll('img[data-src]').forEach((img, index) => {
-    if (index < 4) {
-      img.src = img.dataset.src;
-      delete img.dataset.src;
-    }
-  });
-
-  // Glow efekti
-  document.querySelectorAll('.shuffle-populer .game').forEach(kart => {
-    kart.classList.add('glow-efekti');
-    setTimeout(() => kart.classList.remove('glow-efekti'), 600);
-  });
-
-  document.getElementById('geri-btn').style.display = 'block';
-}
-
+a
 
   
 (function () {
