@@ -879,6 +879,14 @@ body.scroll-kilit {
   box-shadow: 0 6px 25px rgba(239, 68, 68, 0.6); 
   background: linear-gradient(135deg, #dc2626, #b91c1c);
 }
+
+.no-result {
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  padding: 50px 0; /* slider yüksekliğine göre ayarla */
+}
+
   
 </style>
 
@@ -1718,92 +1726,99 @@ document.addEventListener("DOMContentLoaded", () => {
     suggestions.style.display = suggestions.children.length ? "block" : "none";
   });
 
- // ARA butonuna veya Enter'a basınca filtreleme modu
-  function aramaYap() {
-    const query = searchInput.value.trim().toLowerCase();
-    if (!query) return;
+// ARA butonuna veya Enter'a basınca filtreleme modu
+function aramaYap() {
+  const query = searchInput.value.trim().toLowerCase();
+  if (!query) return;
 
-    // Önerileri kapat
-    suggestions.style.display = "none";
+  // Önerileri kapat
+  suggestions.style.display = "none";
 
-    // Tüm bölümleri gizle
-    document.querySelector('.mozaik-grid').closest('.section').style.display = 'none';
-    document.querySelector('.dusuk-section').style.display = 'none';
-    document.querySelector('.indie-wrapper').closest('.section').style.display = 'none';
-    document.querySelector('.giveaway-section').style.display = 'none';
-    document.querySelector('.haftanin-oyunu-section').style.display = 'none';
+  // Tüm bölümleri gizle
+  document.querySelector('.mozaik-grid').closest('.section').style.display = 'none';
+  document.querySelector('.dusuk-section').style.display = 'none';
+  document.querySelector('.indie-wrapper').closest('.section').style.display = 'none';
+  document.querySelector('.giveaway-section').style.display = 'none';
+  document.querySelector('.haftanin-oyunu-section').style.display = 'none';
 
-    // Başlığı değiştir
-    document.querySelector('.section h2').textContent = 'ARAMANIZIN SONUÇLARI';
+  // Başlığı değiştir
+  document.querySelector('.section h2').textContent = 'ARAMANIZIN SONUÇLARI';
 
-    // Slider'ı filtrele (DOM'u bozmadan)
-    const slider = document.querySelector('.shuffle-populer');
-    const allGames = getAllGames();
-    
-    // Sadece baş harfi query ile başlayanları göster 
-    slider.innerHTML = '';
-    const eklenenler = new Set();
-    allGames.forEach(game => {
-      if (game.title.toLowerCase().startsWith(query) && !eklenenler.has(game.title)) {
-        eklenenler.add(game.title);
-        slider.appendChild(game.element);
-      }
-    });
+  // Slider'ı filtrele (DOM'u bozmadan)
+  const slider = document.querySelector('.shuffle-populer');
+  const allGames = getAllGames();
 
-    // İlk 4 görünür kartın görsellerini hemen yükle, gerisi lazyload kalsın
-slider.querySelectorAll('img[data-src]').forEach((img, index) => {
-  if (index < 4) {
-    img.src = img.dataset.src;
-    delete img.dataset.src;
-  }
-});
+  // Sadece baş harfi query ile başlayanları göster 
+  slider.innerHTML = '';
+  const eklenenler = new Set();
+  let sonucVar = false;
 
-    // Glow efekti
-    document.querySelectorAll('.shuffle-populer .game').forEach(kart => {
-      kart.classList.add('glow-efekti');
-      setTimeout(() => kart.classList.remove('glow-efekti'), 600);
-    });
-    
-    // Geri butonunu göster
-    document.getElementById('geri-btn').style.display = 'block';
-  }
-
-  // ARA butonu
-  document.querySelector('.search-box button').addEventListener('click', aramaYap);
-
-  // Enter tuşu
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') aramaYap();
-  });
-
-  // Dışarı tıklayınca önerileri kapat
-  document.addEventListener("click", (e) => {
-    if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
-      suggestions.style.display = "none";
+  allGames.forEach(game => {
+    if (game.title.toLowerCase().startsWith(query) && !eklenenler.has(game.title)) {
+      eklenenler.add(game.title);
+      slider.appendChild(game.element);
+      sonucVar = true;
     }
   });
 
-  // Geri dön butonuna tıklayınca
-  document.getElementById('geri-btn').addEventListener('click', () => {
-    // Tüm bölümleri geri göster
-    document.querySelector('.mozaik-grid').closest('.section').style.display = '';
-    document.querySelector('.dusuk-section').style.display = '';
-    document.querySelector('.indie-wrapper').closest('.section').style.display = '';
-    document.querySelector('.giveaway-section').style.display = '';
-    document.querySelector('.haftanin-oyunu-section').style.display = '';
-    
-    // Slider'ı eski haline getir
-    document.querySelector('.shuffle-populer').innerHTML = originalSlider;
-    
-    // Başlığı eski haline getir
-    document.querySelector('.section h2').textContent = 'POPÜLER OYUNLAR';
-    
-    // Input'u temizle
-    document.getElementById('searchInput').value = '';
-    
-    // Butonu gizle
-    document.getElementById('geri-btn').style.display = 'none';
+  // Eğer hiç sonuç yoksa
+  if (!sonucVar) {
+    slider.innerHTML = '<div class="no-result">Maalesef aradığınız oyunu bulamadık.</div>';
+  }
+
+  // İlk 4 görünür kartın görsellerini hemen yükle, gerisi lazyload kalsın
+  slider.querySelectorAll('img[data-src]').forEach((img, index) => {
+    if (index < 4) {
+      img.src = img.dataset.src;
+      delete img.dataset.src;
+    }
   });
+
+  // Glow efekti
+  document.querySelectorAll('.shuffle-populer .game').forEach(kart => {
+    kart.classList.add('glow-efekti');
+    setTimeout(() => kart.classList.remove('glow-efekti'), 600);
+  });
+
+  // Geri butonunu göster
+  document.getElementById('geri-btn').style.display = 'block';
+}
+
+// ARA butonu
+document.querySelector('.search-box button').addEventListener('click', aramaYap);
+
+// Enter tuşu
+searchInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') aramaYap();
+});
+
+// Dışarı tıklayınca önerileri kapat
+document.addEventListener("click", (e) => {
+  if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+    suggestions.style.display = "none";
+  }
+});
+
+// Geri dön butonuna tıklayınca
+document.getElementById('geri-btn').addEventListener('click', () => {
+  // Tüm bölümleri geri göster
+  document.querySelector('.mozaik-grid').closest('.section').style.display = '';
+  document.querySelector('.dusuk-section').style.display = '';
+  document.querySelector('.indie-wrapper').closest('.section').style.display = '';
+  document.querySelector('.giveaway-section').style.display = '';
+  document.querySelector('.haftanin-oyunu-section').style.display = '';
+
+  // Slider'ı eski haline getir
+  document.querySelector('.shuffle-populer').innerHTML = originalSlider;
+
+  // Başlığı eski haline getir
+  document.querySelector('.section h2').textContent = 'POPÜLER OYUNLAR';
+
+  // Input'u temizle
+  document.getElementById('searchInput').value = '';
+
+  // Butonu gizle
+  document.getElementById('geri-btn').style.display = 'none';
 });
 
 
