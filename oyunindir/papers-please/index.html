@@ -323,15 +323,19 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
 <!-- YouTube Videosu -->
 <div class="youtube-video">
   <iframe 
-    width="100%" 
-    height="500" 
-    src="https://www.youtube.com/embed/HXsyFRPSR70" 
+    data-src="https://www.youtube.com/embed/HXsyFRPSR70" 
     title="Papers Please Oyun Videosu" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
+    allowfullscreen
+    width="75%" 
+    height="250px" 
+    border="2px solid #222" 
+    style="border-radius:8px;" 
+    loading="lazy">
   </iframe>
 </div>
+
   
 <section class="benzer-oyunlar">
   <h2>BENZER OYUNLAR</h2>
@@ -433,11 +437,34 @@ document.addEventListener('DOMContentLoaded', () => {
   fillSlider();
   initSlider();
 });
+
+// Lazy-load YouTube iframe
+document.addEventListener('DOMContentLoaded', () => {
+  const iframes = document.querySelectorAll('.youtube-video iframe[data-src]');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const iframe = entry.target;
+        iframe.src = iframe.dataset.src;
+        iframe.removeAttribute('data-src');
+        observer.unobserve(iframe);
+      }
+    });
+  }, {
+    rootMargin: '100px', // biraz erken yükleme
+  });
+
+  iframes.forEach(iframe => observer.observe(iframe));
+});
+
+  
 </script>
 
 </body>
 
 </html>
+
 
 
 
