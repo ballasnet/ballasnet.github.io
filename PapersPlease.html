@@ -73,11 +73,14 @@ h1{
   transition:all 0.3s ease;
   text-transform:uppercase;
 }
+.link-listesi a,
 .link-listesi a:hover,
 .link-listesi a:visited,
-.link-listesi a:active{
-  text-decoration:none; 
-  color:#fff;
+.link-listesi a:active,
+.link-listesi a:focus{
+  text-decoration:none !important;
+  color:#fff !important;
+  border-bottom:none !important;
 }
 .link-listesi a:hover{
   background:linear-gradient(135deg, #222, #1a1a1a);
@@ -202,6 +205,11 @@ img[data-src]{
 }
 img[src]{
   opacity:1;
+}
+
+a, a:hover, a:visited, a:active, a:focus{
+  text-decoration:none;
+  color:#fff;
 }
 
 /* Mobil */
