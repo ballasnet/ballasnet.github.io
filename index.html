@@ -1635,10 +1635,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector('.shuffle-populer');
     const allGames = getAllGames();
     
-    // Sadece baş harfi query ile başlayanları göster
+    // Sadece baş harfi query ile başlayanları göster 
     slider.innerHTML = '';
+    const eklenenler = new Set();
     allGames.forEach(game => {
-      if (game.title.toLowerCase().startsWith(query)) {
+      if (game.title.toLowerCase().startsWith(query) && !eklenenler.has(game.title)) {
+        eklenenler.add(game.title);
         slider.appendChild(game.element);
       }
     });
