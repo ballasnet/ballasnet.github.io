@@ -801,6 +801,7 @@ body {
 
 .karartma-overlay.aktif {
   background: rgba(0, 0, 0, 0.8);
+  pointer-events: auto; /* EKLENDİ - tıklamayı aktif et */
 }
   
 .karartma-yazi {
@@ -815,24 +816,17 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease;
   text-align: center;
+  display: flex;          /* EKLENDİ */
+  flex-direction: column; /* EKLENDİ */
+  align-items: center;    /* EKLENDİ */
+  gap: 20px;             /* EKLENDİ */
 }
 
 .karartma-overlay.aktif .karartma-yazi {
   opacity: 1;
 }
 
-/* Discord butonu container - ortada sabit */
-#discord-btn-container {
-  position: fixed;
-  bottom: 80px; /* biraz yukarıda */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10000; /* karartmanın üstünde */
-  display: none; /* başlangıçta gizli */
-}
-
-/* Yeşil Discord butonu */
-.discord-join-btn {
+.karartma-yazi .discord-join-btn {
   padding: 16px 32px;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #fff;
@@ -847,14 +841,10 @@ body {
   letter-spacing: 1px;
 }
 
-.discord-join-btn:hover {
+.karartma-yazi .discord-join-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 25px rgba(34, 197, 94, 0.6);
   background: linear-gradient(135deg, #16a34a, #15803d);
-}
-
-.discord-join-btn:active {
-  transform: scale(0.98);
 }
   
 </style>
@@ -1193,12 +1183,10 @@ body {
 
 <!-- Karartma overlay (mevcut) -->
 <div class="karartma-overlay" id="karartma">
-  <div class="karartma-yazi">Çekilişe katılmak için discord sunucumuza katılmalısınız.</div>
-</div>
-
-<!-- Discord butonu container (body'nin sonuna ekle) -->
-<div id="discord-btn-container">
-  <button class="discord-join-btn">Discord Sunucusuna Git</button>
+  <div class="karartma-yazi">
+    Çekilişe katılmak için discord sunucumuza katılmalısınız.
+    <button class="discord-join-btn">Discord Sunucusuna Git</button>  
+  </div>
 </div>
 
 
@@ -1808,32 +1796,6 @@ slider.querySelectorAll('img[data-src]').forEach((img, index) => {
   });
 })();
 
-function showAlert() {
-  const alertEl = document.getElementById('alert-msg');
-  alertEl.classList.add('show');
-  alertEl.classList.remove('hide');
-
-  // 4 saniye sonra gizle
-  const timeout = setTimeout(() => {
-    alertEl.classList.add('hide');
-    alertEl.classList.remove('show');
-  }, 4000);
-
-  // Eğer kullanıcı dokunursa hemen gizle
-  alertEl.onclick = () => {
-    clearTimeout(timeout);
-    alertEl.classList.add('hide');
-    alertEl.classList.remove('show');
-  };
-}
-
-// Örnek: tüm çekiliş kartları için
-document.querySelectorAll('.giveaway-card').forEach(card => {
-  card.addEventListener('click', () => {
-    showAlert();
-  });
-});
-
 
 // Mevcut oyunları otomatik bul ve schema oluştur
 function autoGenerateGameSchemas() {
@@ -1885,40 +1847,35 @@ function autoGenerateGameSchemas() {
 // Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 
-// Çekiliş kartlarına tıklayınca karartma
-document.querySelectorAll('.giveaway-card').forEach(kart => {
-  kart.addEventListener('click', () => {
-    const overlay = document.getElementById('karartma');
-    overlay.classList.add('aktif');
+// =====================
+// ÇEKİLİŞ KARTLARI - KARARTMA + DISCORD BUTONU
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById('karartma');
+  
+  // Çekiliş kartlarına tıklayınca karartmayı aç
+  document.querySelectorAll('.giveaway-card').forEach(kart => {
+    kart.addEventListener('click', (e) => {
+      e.preventDefault();
+      overlay.classList.add('aktif');
+    });
+  });
+
+  // Discord butonuna tıklayınca yönlendir
+  const discordBtn = document.querySelector('.karartma-yazi .discord-join-btn');
+  if (discordBtn) {
+    discordBtn.addEventListener('click', () => {
+      window.open("https://www.discord.com", "_blank", "noopener,noreferrer");
+    });
+  }
+
+  // Karartmaya tıklayınca kapat (isteğe bağlı)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('aktif');
+    }
   });
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  const yazi = document.querySelector(".karartma-yazi");
-  if (!yazi) return;
-
-  // Aynı buton tekrar eklenmesin
-  if (yazi.querySelector(".discord-join-btn")) return;
-
-  const btn = document.createElement("button");
-  btn.className = "discord-join-btn";
-  btn.textContent = "Discord sunucusuna git";
-
-  btn.addEventListener("click", () => {
-    window.open("https://www.discord.com", "_blank", "noopener");
-  });
-
-const overlay = document.getElementById("karartma");
-const discordBtnContainer = document.getElementById("discord-btn-container");
-const discordBtn = discordBtnContainer.querySelector(".discord-join-btn");
-
-
-
-
-
-observer.observe(overlay, { attributes: true, attributeFilter: ["style"] });
-
-  
 </script>
 
 
