@@ -1726,12 +1726,10 @@ document.addEventListener("DOMContentLoaded", () => {
     suggestions.style.display = suggestions.children.length ? "block" : "none";
   });
 
-// ARA butonuna veya Enter'a basınca filtreleme modu
 function aramaYap() {
   const query = searchInput.value.trim().toLowerCase();
   if (!query) return;
 
-  // Önerileri kapat
   suggestions.style.display = "none";
 
   // Tüm bölümleri gizle
@@ -1741,85 +1739,43 @@ function aramaYap() {
   document.querySelector('.giveaway-section').style.display = 'none';
   document.querySelector('.haftanin-oyunu-section').style.display = 'none';
 
-  // Başlığı değiştir
   document.querySelector('.section h2').textContent = 'ARAMANIZIN SONUÇLARI';
 
-  // Slider'ı filtrele (DOM'u bozmadan)
   const slider = document.querySelector('.shuffle-populer');
   const allGames = getAllGames();
 
-  // Sadece baş harfi query ile başlayanları göster 
-  slider.innerHTML = '';
-  const eklenenler = new Set();
   let sonucVar = false;
 
+  // Kartları tek tek kontrol et, eşleşmeyenleri gizle, eşleşenleri göster
   allGames.forEach(game => {
-    if (game.title.toLowerCase().startsWith(query) && !eklenenler.has(game.title)) {
-      eklenenler.add(game.title);
-      slider.appendChild(game.element);
+    if (game.title.toLowerCase().startsWith(query)) {
+      game.element.style.display = '';
       sonucVar = true;
+    } else {
+      game.element.style.display = 'none';
     }
   });
 
-  // Eğer hiç sonuç yoksa
-  if (!sonucVar) {
-    slider.innerHTML = '<div class="no-result">Maalesef aradığınız oyunu bulamadık.</div>';
+  // Sonuç yoksa mesajı göster
+  let noResultDiv = slider.querySelector('.no-result');
+  if (!noResultDiv) {
+    noResultDiv = document.createElement('div');
+    noResultDiv.className = 'no-result';
+    noResultDiv.textContent = 'Maalesef aradığınız oyunu bulamadık.';
+    slider.appendChild(noResultDiv);
   }
+  noResultDiv.style.display = sonucVar ? 'none' : 'block';
 
-  // İlk 4 görünür kartın görsellerini hemen yükle, gerisi lazyload kalsın
+  // İlk 4 görünür kartın görsellerini hemen yükle
   slider.querySelectorAll('img[data-src]').forEach((img, index) => {
-    if (index < 4) {
+    if (index < 4 && img.style.display !== 'none') {
       img.src = img.dataset.src;
       delete img.dataset.src;
     }
   });
 
-  // Glow efekti
-  document.querySelectorAll('.shuffle-populer .game').forEach(kart => {
-    kart.classList.add('glow-efekti');
-    setTimeout(() => kart.classList.remove('glow-efekti'), 600);
-  });
-
-  // Geri butonunu göster
   document.getElementById('geri-btn').style.display = 'block';
 }
-
-// ARA butonu
-document.querySelector('.search-box button').addEventListener('click', aramaYap);
-
-// Enter tuşu
-searchInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') aramaYap();
-});
-
-// Dışarı tıklayınca önerileri kapat
-document.addEventListener("click", (e) => {
-  if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
-    suggestions.style.display = "none";
-  }
-});
-
-// Geri dön butonuna tıklayınca
-document.getElementById('geri-btn').addEventListener('click', () => {
-  // Tüm bölümleri geri göster
-  document.querySelector('.mozaik-grid').closest('.section').style.display = '';
-  document.querySelector('.dusuk-section').style.display = '';
-  document.querySelector('.indie-wrapper').closest('.section').style.display = '';
-  document.querySelector('.giveaway-section').style.display = '';
-  document.querySelector('.haftanin-oyunu-section').style.display = '';
-
-  // Slider'ı eski haline getir
-  document.querySelector('.shuffle-populer').innerHTML = originalSlider;
-
-  // Başlığı eski haline getir
-  document.querySelector('.section h2').textContent = 'POPÜLER OYUNLAR';
-
-  // Input'u temizle
-  document.getElementById('searchInput').value = '';
-
-  // Butonu gizle
-  document.getElementById('geri-btn').style.display = 'none';
-});
 
 
   
