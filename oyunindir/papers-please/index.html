@@ -391,6 +391,7 @@ a, a:hover, a:visited, a:active, a:focus{
   background:#0f0f0f;
   border:1px solid #222;
   padding:20px;
+  user-select:none;
 }
 .sistem-ana-kutu h2{
   font-size:15px;
@@ -400,6 +401,8 @@ a, a:hover, a:visited, a:active, a:focus{
   padding-bottom:15px;
   color:#fff;
   text-align:center;
+  user-select:none;
+  cursor:default;
 }
 .sistem-grid{
   display:flex;
@@ -414,6 +417,14 @@ a, a:hover, a:visited, a:active, a:focus{
   background:#1a1a1a;
   border:1px solid #333;
   padding:15px;
+  user-select:none;
+  cursor:default;
+  transition:all 0.2s ease;  
+  will-change:transform;     
+}
+.sistem-kutu:hover{
+  border-color:#555;        
+  transform:scale(1.02);     
 }
 .sistem-kutu h3{
   font-size:13px;
@@ -424,6 +435,8 @@ a, a:hover, a:visited, a:active, a:focus{
   border-bottom:1px solid #333;
   padding-bottom:8px;
   text-align:center;
+  user-select:none;
+  cursor:default;
 }
 .sistem-kutu ul{
   list-style:none;
@@ -435,6 +448,8 @@ a, a:hover, a:visited, a:active, a:focus{
   color:#aaa;
   padding:3px 0;
   line-height:1.4;
+  user-select:none;
+  cursor:default;
 }
 .sistem-kutu li span{
   color:#ccc;
@@ -443,11 +458,17 @@ a, a:hover, a:visited, a:active, a:focus{
   min-width:90px;
 }
 
-/* Mobil */
+/* Mobil - Hover kapat (touch cihazlarda gereksiz) */
 @media(max-width:768px){
   .sistem-kutu{
     min-width:100%;
     max-width:100%;
+    transition:none;  
+    will-change:auto;
+  }
+  .sistem-kutu:hover{
+    transform:none;   
+    border-color:#333;
   }
 }
 
@@ -669,6 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
