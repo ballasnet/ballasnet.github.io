@@ -319,7 +319,7 @@ a, a:hover, a:visited, a:active, a:focus{
   color:#888;          /* aktif sayfa */
 }
 
-/* Sistem Gereksinimleri - Yan Yana Düz Metin */
+/* Sistem Gereksinimleri - Kompakt Kartlar */
 .sistem-gereksinimleri{
   max-width:800px;
   margin:0 auto 40px;
@@ -333,37 +333,49 @@ a, a:hover, a:visited, a:active, a:focus{
   padding-bottom:10px;
   color:#fff;
 }
-.sistem-yanyana{
+.sistem-grid{
   display:flex;
-  gap:40px;
+  gap:20px;
   flex-wrap:wrap;
 }
-.sistem-blok h3{
+.sistem-kutu{
+  flex:1;
+  min-width:280px;
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:15px;
+}
+.sistem-kutu h3{
   font-size:13px;
   letter-spacing:1px;
   margin-bottom:10px;
   color:#888;
   text-transform:uppercase;
+  border-bottom:1px solid #222;
+  padding-bottom:8px;
 }
-.sistem-blok ul{
+.sistem-kutu ul{
   list-style:none;
   padding:0;
   margin:0;
 }
-.sistem-blok li{
-  font-size:14px;
+.sistem-kutu li{
+  font-size:13px;
   color:#aaa;
-  padding:3px 0;
+  padding:2px 0;  /* Dikey boşluk az */
+  line-height:1.4; /* Satır yüksekliği az */
 }
-.sistem-blok li span{
+.sistem-kutu li span{
   color:#ccc;
   font-weight:bold;
+  display:inline-block;
+  min-width:100px;
 }
 
 /* Mobil */
 @media(max-width:768px){
-  .sistem-grid{
-    grid-template-columns:1fr;
+  .sistem-kutu{
+    min-width:100%;
   }
 }
 
@@ -559,6 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
