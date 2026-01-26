@@ -319,18 +319,68 @@ a, a:hover, a:visited, a:active, a:focus{
   color:#888;          /* aktif sayfa */
 }
 
-<!-- Open Graph -->
-<meta property="og:title" content="Papers Please - BallasNet">
-<meta property="og:description" content="Papers Please indie oyunu, inceleme ve indirme - BallasNet">
-<meta property="og:image" content="https://ballasnet.com/oyunindir/papersplease2.jpg">
-<meta property="og:url" content="https://ballasnet.com/oyunindir/papersplease"> /*zeyaaaööö*/
-<meta property="og:type" content="website">
+/* Sistem Gereksinimleri */
+.sistem-gereksinimleri{
+  max-width:800px;
+  margin:0 auto 50px;
+  padding:0 20px;
+}
+.sistem-gereksinimleri h2{
+  font-size:18px;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  border-bottom:1px solid #222;
+  padding-bottom:10px;
+  color:#fff;
+}
+.sistem-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.sistem-kutu{
+  background:linear-gradient(135deg, #1a1a1a, #0f0f0f);
+  border:2px solid #333;
+  padding:20px;
+  border-radius:4px;
+}
+.sistem-kutu h3{
+  font-size:14px;
+  letter-spacing:2px;
+  margin-bottom:15px;
+  color:#ccc;
+  border-bottom:1px solid #333;
+  padding-bottom:8px;
+}
+.sistem-kutu ul{
+  list-style:none;
+  padding:0;
+}
+.sistem-kutu li{
+  margin-bottom:12px;
+  font-size:14px;
+  color:#aaa;
+  line-height:1.6;
+}
+.sistem-kutu li span{
+  color:#fff;
+  font-weight:bold;
+  display:block;
+  margin-bottom:2px;
+}
+.sistem-kutu.minimum{
+  border-color:#444;
+}
+.sistem-kutu.oneri{
+  border-color:#555;
+}
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Papers Please - BallasNet">
-<meta name="twitter:description" content="Papers Please indie oyunu, inceleme ve indirme - BallasNet">
-<meta name="twitter:image" content="https://ballasnet.com/oyunindir/papersplease2.jpg">
+/* Mobil */
+@media(max-width:768px){
+  .sistem-grid{
+    grid-template-columns:1fr;
+  }
+}
 
 
 </style>
@@ -547,6 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
