@@ -381,6 +381,75 @@ a, a:hover, a:visited, a:active, a:focus{
   }
 }
 
+/* Sistem Gereksinimleri - Ana Kutu İçinde */
+.sistem-gereksinimleri{
+  max-width:800px;
+  margin:0 auto 40px;
+  padding:0 20px;
+}
+.sistem-ana-kutu{
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:20px;
+}
+.sistem-ana-kutu h2{
+  font-size:15px;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  border-bottom:1px solid #222;
+  padding-bottom:15px;
+  color:#fff;
+  text-align:center;
+}
+.sistem-grid{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.sistem-kutu{
+  flex:1;
+  min-width:250px;
+  max-width:350px;
+  background:#1a1a1a;
+  border:1px solid #333;
+  padding:15px;
+}
+.sistem-kutu h3{
+  font-size:13px;
+  letter-spacing:1px;
+  margin-bottom:10px;
+  color:#888;
+  text-transform:uppercase;
+  border-bottom:1px solid #333;
+  padding-bottom:8px;
+  text-align:center;
+}
+.sistem-kutu ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.sistem-kutu li{
+  font-size:13px;
+  color:#aaa;
+  padding:3px 0;
+  line-height:1.4;
+}
+.sistem-kutu li span{
+  color:#ccc;
+  font-weight:bold;
+  display:inline-block;
+  min-width:90px;
+}
+
+/* Mobil */
+@media(max-width:768px){
+  .sistem-kutu{
+    min-width:100%;
+    max-width:100%;
+  }
+}
 
 </style>
 </head>
@@ -414,27 +483,29 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
 
 <!-- Sistem Gereksinimleri -->
 <section class="sistem-gereksinimleri">
-  <h2>SİSTEM GEREKSİNİMLERİ</h2>
-  <div class="sistem-grid">
-    <div class="sistem-kutu minimum">
-      <h3>Minimum</h3>
-      <ul>
-        <li><span>OS:</span> Windows XP / 7 / 8 / 10</li>
-        <li><span>İşlemci:</span> 1.5 GHz</li>
-        <li><span>RAM:</span> 2 GB</li>
-        <li><span>Ekran Kartı:</span> Herhangi</li>
-        <li><span>Disk:</span> 100 MB</li>
-      </ul>
-    </div>
-    <div class="sistem-kutu oneri">
-      <h3>Önerilen</h3>
-      <ul>
-        <li><span>OS:</span> Windows 10 / 11</li>
-        <li><span>İşlemci:</span> 2.0 GHz+</li>
-        <li><span>RAM:</span> 4 GB</li>
-        <li><span>Ekran Kartı:</span> DirectX 9.0c</li>
-        <li><span>Disk:</span> 200 MB</li>
-      </ul>
+  <div class="sistem-ana-kutu">
+    <h2>SİSTEM GEREKSİNİMLERİ</h2>
+    <div class="sistem-grid">
+      <div class="sistem-kutu minimum">
+        <h3>Minimum</h3>
+        <ul>
+          <li><span>OS:</span> Windows XP / 7 / 8 / 10</li>
+          <li><span>İşlemci:</span> 1.5 GHz</li>
+          <li><span>RAM:</span> 2 GB</li>
+          <li><span>Ekran Kartı:</span> Herhangi</li>
+          <li><span>Disk:</span> 100 MB</li>
+        </ul>
+      </div>
+      <div class="sistem-kutu oneri">
+        <h3>Önerilen</h3>
+        <ul>
+          <li><span>OS:</span> Windows 10 / 11</li>
+          <li><span>İşlemci:</span> 2.0 GHz+</li>
+          <li><span>RAM:</span> 4 GB</li>
+          <li><span>Ekran Kartı:</span> DirectX 9.0c</li>
+          <li><span>Disk:</span> 200 MB</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -598,6 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
