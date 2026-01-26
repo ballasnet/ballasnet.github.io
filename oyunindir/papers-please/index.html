@@ -419,12 +419,17 @@ a, a:hover, a:visited, a:active, a:focus{
   padding:15px;
   user-select:none;
   cursor:default;
-  transition:all 0.2s ease;  
-  will-change:transform;     
+  transition:all 0.15s ease-out;  
+  will-change:transform;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transform:translateZ(0);  
+  backface-visibility:hidden;  
 }
 .sistem-kutu:hover{
-  border-color:#555;        
-  transform:scale(1.02);     
+  border-color:#444;
+  transform:scale(1.015);  
+  box-shadow:0 0 8px rgba(255,255,255,0.03);  
 }
 .sistem-kutu h3{
   font-size:13px;
@@ -437,6 +442,8 @@ a, a:hover, a:visited, a:active, a:focus{
   text-align:center;
   user-select:none;
   cursor:default;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 .sistem-kutu ul{
   list-style:none;
@@ -450,6 +457,8 @@ a, a:hover, a:visited, a:active, a:focus{
   line-height:1.4;
   user-select:none;
   cursor:default;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 .sistem-kutu li span{
   color:#ccc;
@@ -458,17 +467,19 @@ a, a:hover, a:visited, a:active, a:focus{
   min-width:90px;
 }
 
-/* Mobil - Hover kapat (touch cihazlarda gereksiz) */
+/* Mobil */
 @media(max-width:768px){
   .sistem-kutu{
     min-width:100%;
     max-width:100%;
-    transition:none;  
+    transition:none;
     will-change:auto;
+    transform:none;
   }
   .sistem-kutu:hover{
-    transform:none;   
+    transform:none;
     border-color:#333;
+    box-shadow:none;
   }
 }
 
@@ -690,6 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
