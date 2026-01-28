@@ -608,30 +608,28 @@ a, a:hover, a:visited, a:active, a:focus{
 .linkler.resmi{
   margin-top:40px;  
 }
-
-/* Alt banner - yumuşak oval */
+/*banner */
 .discord-soft-banner {
   display: block;
-  width: 90%;                    /* yanlardan boşluk */
-  max-width: 1000px;             /* çok büyümesin */
-  margin: 60px auto 40px auto;   /* üstte boşluk, altta da biraz */
-  border-radius: 16px;           /* hafif oval */
-  overflow: hidden;              /* köşeleri yuvarlak */
+  width: 90%;
+  max-width: 1000px;
+  aspect-ratio: 6 / 2.2;   
+  margin: 60px auto 40px;
+  border-radius: 16px;
+  overflow: hidden;
   box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  transition: none;              /* hover yok */
   cursor: pointer;
-  text-decoration: none;
-  background: transparent;       /* arka plan yok */
 }
 
-.discord-soft-banner img {
+
+  .discord-soft-banner img {
   width: 100%;
-  height: auto;
+  height: 100%;          
+  object-fit: cover;
   display: block;
-  border: none;
-  outline: none;
 }
 
+  
 .discord-soft-banner {
   aspect-ratio: 6 / 2.2;  
   max-width: 1000px;
@@ -872,6 +870,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
