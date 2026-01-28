@@ -609,38 +609,35 @@ a, a:hover, a:visited, a:active, a:focus{
   margin-top:40px;  
 }
 
-/* Sabit alt banner */
-.discord-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(135deg, #5865F2, #4752C4);
-  padding: 20px;
-  text-align: center;
-  z-index: 9999;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+/* Alt banner - yumuşak oval */
+.discord-soft-banner {
+  display: block;
+  width: 90%;                    /* yanlardan boşluk */
+  max-width: 1000px;             /* çok büyümesin */
+  margin: 60px auto 40px auto;   /* üstte boşluk, altta da biraz */
+  border-radius: 16px;           /* hafif oval */
+  overflow: hidden;              /* köşeleri yuvarlak */
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  transition: none;              /* hover yok */
   cursor: pointer;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  background: transparent;       /* arka plan yok */
 }
 
-.discord-banner:hover {
-  background: linear-gradient(135deg, #4752C4, #5865F2);
-  transform: translateY(-2px);
-}
-
-.discord-banner img {
-  max-width: 90%;
-  max-height: 120px;
-  width: auto;
+.discord-soft-banner img {
+  width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  display: block;
+  border: none;
+  outline: none;
 }
 
-/* İçerik için alt boşluk (banner'ın üst üste binmesini engeller) */
-body {
-  padding-bottom: 160px; 
+/* Mobil küçültme */
+@media (max-width: 600px) {
+  .discord-soft-banner {
+    width: 94%;
+    border-radius: 12px;
+  }
 }
 
 </style>
@@ -754,9 +751,9 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
   </div>
 </section>
 
-<!-- Banner HTML -->
-<a href="https://www.discord.com" target="_blank" rel="noopener noreferrer" class="discord-banner">
-  <img src="discordreklam.webp" alt="Discord Sunucumuza Katıl - Türkçe yama desteği ve oyun sohbeti">
+<!-- ===== Banner HTML ===== -->
+<a href="https://www.discord.com" target="_blank" rel="noopener noreferrer" class="discord-soft-banner">
+  <img src="discordreklam.webp" alt="Discord banner">
 </a>
 
 
@@ -876,6 +873,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
