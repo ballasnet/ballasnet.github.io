@@ -609,6 +609,40 @@ a, a:hover, a:visited, a:active, a:focus{
   margin-top:40px;  
 }
 
+/* Sabit alt banner */
+.discord-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #5865F2, #4752C4);
+  padding: 20px;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.discord-banner:hover {
+  background: linear-gradient(135deg, #4752C4, #5865F2);
+  transform: translateY(-2px);
+}
+
+.discord-banner img {
+  max-width: 90%;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* İçerik için alt boşluk (banner'ın üst üste binmesini engeller) */
+body {
+  padding-bottom: 160px; 
+}
+
 </style>
 </head>
 <body>
@@ -720,6 +754,10 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
   </div>
 </section>
 
+<!-- Banner HTML -->
+<a href="https://www.discord.com" target="_blank" rel="noopener noreferrer" class="discord-banner">
+  <img src="discordreklam.webp" alt="Discord Sunucumuza Katıl - Türkçe yama desteği ve oyun sohbeti">
+</a>
 
 
 <footer class="site-footer">
@@ -838,6 +876,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
