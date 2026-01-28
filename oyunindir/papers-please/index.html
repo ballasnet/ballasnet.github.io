@@ -632,13 +632,16 @@ a, a:hover, a:visited, a:active, a:focus{
   outline: none;
 }
 
-/* Mobil küçültme */
+.discord-soft-banner {
+  aspect-ratio: 5 / 2;
+}
+
 @media (max-width: 600px) {
   .discord-soft-banner {
-    width: 94%;
-    border-radius: 12px;
+    aspect-ratio: 4 / 2;
   }
 }
+
 
 </style>
 </head>
@@ -873,6 +876,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
