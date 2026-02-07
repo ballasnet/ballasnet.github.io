@@ -658,7 +658,7 @@ a, a:hover, a:visited, a:active, a:focus{
   <span class="separator">&gt;</span>
   <a href="https://ballasnet.com/oyunindir/">Oyun İndir</a>
   <span class="separator">&gt;</span>
-  <a href="https://ballasnet.com/oyunindir/Hotline Miami/" class="current">Hotline Miami</a>
+  <a href="https://ballasnet.com/oyunindir/hotline-miami/" class="current">Hotline Miami</a>
 </nav>
 
 
@@ -729,10 +729,10 @@ a, a:hover, a:visited, a:active, a:focus{
   </div>
 </div> 
   
-<!-- YouTube Videosu -->
+<!-- YouTube Videosu (Lazy Load Uyumlu) -->
 <div class="youtube-video">
   <iframe
-    src="https://www.youtube.com/embed/uYbC5qcfyqM"
+    data-src="https://www.youtube.com/embed/uYbC5qcfyqM"
     title="Hotline Miami Oyun Videosu"
     frameborder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -742,6 +742,19 @@ a, a:hover, a:visited, a:active, a:focus{
     style="border:2px solid #222; border-radius:8px"
     loading="lazy">
   </iframe>
+
+  <!-- No-JS fallback (SEO + erişilebilirlik) -->
+  <noscript>
+    <iframe
+      src="https://www.youtube.com/embed/uYbC5qcfyqM"
+      title="Hotline Miami Oyun Videosu"
+      frameborder="0"
+      allowfullscreen
+      width="75%"
+      height="250"
+      style="border:2px solid #222; border-radius:8px">
+    </iframe>
+  </noscript>
 </div>
 
 
@@ -919,6 +932,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
