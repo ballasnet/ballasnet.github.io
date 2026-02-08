@@ -709,19 +709,32 @@ h1{
   justify-content:center;
 }
 /*HEROMUZ */
-.game-hero{
-  max-width:600px;   /* 1000 → 560 */
-  margin:0 auto 40px;
-  padding:0;
+.game-hero {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #222;
+  background: #000;
 }
 
-.game-hero img{
-  width:100%;
-  height:270px;     
-  object-fit:cover;  
-  display:block;
-  border:2px solid #222;
-  background:#000;
+.game-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Mobil */
+@media (max-width: 768px) {
+  .game-hero {
+    height: 300px;
+    max-width: 100%;
+  }
 }
 /* Linkler - alt çizgi yok */
 .link-listesi a{
@@ -1446,6 +1459,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
