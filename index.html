@@ -1292,7 +1292,7 @@ document.addEventListener("DOMContentLoaded", () => {
 card.onclick = () => {
   window.open("/oyunindir/" + game.slug + "/", "_blank");
 };
-
+});
 
   // Mozaik LazyLoad Observer
   const mozaikObserver = new IntersectionObserver((entries) => {
@@ -1350,13 +1350,6 @@ function shuffle(array) {
 }
 
 // Slider'ı doldurma (LazyLoad ile)
-function fillSlider(slider, games) {
-  slider.innerHTML = "";
-
-  games.forEach(game => {
-    const a = document.createElement("a");
-    a.href = game.slug;
-    a.target = "_blank";
 
 function fillSlider(slider, games) {
   slider.innerHTML = "";
@@ -1506,7 +1499,7 @@ function updateGameTags(slug, newTags) {
 
   document.querySelectorAll('.game').forEach(div => {
     const a = div.closest('a');
-    if (a && a.getAttribute('href') === slug) {
+    if (a && a.getAttribute('href') === "/oyunindir/" + slug + "/") {
       const tagContainer = div.querySelector('.game-tags-container');
       if (tagContainer) {
         tagContainer.innerHTML = '';
