@@ -962,7 +962,28 @@ body.scroll-kilit {
   padding: 50px 0; /* slider yüksekliğine göre ayarla */
 }
 
+/* Mozaik lazy load placeholder */
+.mozaik-card img {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 
+.mozaik-card img[src]:not([src^="data:"]) {
+  opacity: 1;
+}
+
+/* Yüklenirken shimmer efekti (isteğe bağlı) */
+.mozaik-card img[data-src] {
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 
 
 </style>
@@ -1371,7 +1392,7 @@ function dagitOyunlari() {
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Mozaik kartları doldur (eski kod)
+  // Mozaik kartları doldur (LAZY LOAD)
   document.querySelectorAll(".mozaik-card").forEach(card => {
     const slug = card.dataset.slug;
     const img = card.querySelector("img");
@@ -1379,11 +1400,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const game = smallGames.find(g => g.slug === slug) || largeGames.find(g => g.slug === slug);
     if (!game) return;
 
-    img.src = game.image;
+    img.dataset.src = game.image;
     img.alt = game.title;
     titleBox.textContent = game.title;
-
     card.onclick = () => window.location.href = game.slug + ".html";
+  });
+
+  // Mozaik LazyLoad Observer
+  const mozaikObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          delete img.dataset.src;
+          mozaikObserver.unobserve(img);
+        }
+      }
+    });
+  }, { rootMargin: "100px" });
+
+  document.querySelectorAll('.mozaik-card img[data-src]').forEach(img => {
+    mozaikObserver.observe(img);
   });
 
   // YENİ: Otomatik dağıtım
