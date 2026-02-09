@@ -1040,11 +1040,7 @@ body.scroll-kilit {
 <button class="slider-btn left">&#10094;</button>
 <button class="slider-btn right">&#10095;</button>
 <div class="slider shuffle-populer">
-<a href="minecraft.html"><div class="game"><div class="game-image"><img src="minecraft.jpg" alt="Minecraft"></div><div class="game-title">Minecraft</div><div class="game-tags-container"><div class="game-tag">Popüler</div></div></div></a>
-<a href="halflife2.html"><div class="game"><div class="game-image"><img src="/oyunindir/half-life2/half-life2.webp" alt="Half-Life 2"></div><div class="game-title">Half-Life 2</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
-<a href="ballasnet.com/oyunindir/doom64"><div class="game"><div class="game-image"><img src="/oyunindir/doom64/doom64.webp" alt="Doom 64"></div><div class="game-title">Doom 64</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
-<a href="gta-sa.html"><div class="game"><div class="game-image"><img src="/oyunindir/gtasanandreas/gtasanandreas.webp" alt="GTA San Andreas"></div><div class="game-title">GTA San Andreas</div><div class="game-tags-container"><div class="game-tag">Popüler</div><div class="game-tag">Düşük Sistem</div></div></div></a>
-<a href="ddlc.html"><div class="game"><div class="game-image"><img src="/oyunindir/ddlc/dokidoki2.webp" alt="Doki Doki literature Club"></div><div class="game-title">Doki Doki Literature Club</div><div class="game-tags-container"><div class="game-tag">Indie</div><div class="game-tag">Düşük Sistem</div><div class="game-tag">Popüler</div></div></div></a>
+<!-- javascript dolduracak dee -->
 </div>
 </div>
 
@@ -1402,7 +1398,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.dataset.src = game.image;
     img.alt = game.title;
     titleBox.textContent = game.title;
-    card.onclick = () => window.location.href = "/oyunindir/" + game.slug + "/";
+    card.onclick = () => window.location.href = "/oyunindir/" + game.slug;
   });
 
   // Mozaik LazyLoad Observer
@@ -1465,7 +1461,7 @@ function fillSlider(slider, games) {
   slider.innerHTML = "";
   games.forEach(game => {
     const a = document.createElement("a");
-    a.href = game.slug + ".html";
+    a.href = game.slug;
 
     const div = document.createElement("div");
     div.className = "game";
@@ -1566,7 +1562,7 @@ function updateGameTags(slug, newTags) {
 
   document.querySelectorAll('.game').forEach(div => {
     const a = div.closest('a');
-    if (a && a.getAttribute('href') === slug + '.html') {
+    if (a && a.getAttribute('href') === slug) {
       const tagContainer = div.querySelector('.game-tags-container');
       if (tagContainer) {
         tagContainer.innerHTML = '';
@@ -1598,7 +1594,7 @@ function updateGameTags(slug, newTags) {
 //    img.alt = game.title;
 //    titleBox.textContent = game.title;
 
-//    card.onclick = () => window.location.href = "/oyunindir/" + game.slug + "/";
+//    card.onclick = () => window.location.href = "/oyunindir/" + game.slug;
 //  });
 
   // =====================
