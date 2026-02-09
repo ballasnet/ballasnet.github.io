@@ -1289,8 +1289,10 @@ document.addEventListener("DOMContentLoaded", () => {
     img.dataset.src = game.image;
     img.alt = game.title;
     titleBox.textContent = game.title;
-    card.onclick = () => window.location.href = "/oyunindir/" + game.slug;
-  });
+card.onclick = () => {
+  window.open("/oyunindir/" + game.slug + "/", "_blank");
+};
+
 
   // Mozaik LazyLoad Observer
   const mozaikObserver = new IntersectionObserver((entries) => {
@@ -1351,8 +1353,10 @@ function shuffle(array) {
 function fillSlider(slider, games) {
   slider.innerHTML = "";
   games.forEach(game => {
-    const a = document.createElement("a");
-    a.href = game.slug;
+const a = document.createElement("a");
+a.href = game.slug;
+a.target = "_blank";
+
 
     const div = document.createElement("div");
     div.className = "game";
