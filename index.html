@@ -1325,31 +1325,10 @@ body.scroll-kilit {
 <script>
 
 // =====================
-// Oyun Verileri
+// Oyun Verileri (TEK ARRAY)
 // =====================
-const indieGames = [
-  { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Celeste", slug: "celeste", image: "/oyunindir/celeste/celeste2.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "Baba Is You", slug: "baba-is-you", image: "/oyunindir/babaisyou/babaisyou.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Doki Doki Literature Club", slug: "ddlc", image: "/oyunindir/ddlc/dokidoki2.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "Hotline Miami", slug: "hotline-miami", image: "/oyunindir/hotline-miami/hotline-miami.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Undertale", slug: "undertale", image: "/oyunindir/undertale/undertale.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Papers, Please", slug: "papers-please", image: "/oyunindir/papers-please/papersplease2.jpg", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
-];
-
-const populerGames = [
-  { title: "Doki Doki Literature Club", slug: "ddlc", image: "/oyunindir/ddlc/dokidoki2.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "GTA San Andreas", slug: "gta-sa", image: "/oyunindir/gtasanandreas/gtasanandreas.webp", tags: ["Popüler", "Düşük Sistem"] },
-  { title: "Half-Life 2", slug: "halflife2", image: "/oyunindir/half-life2/half-life2.webp", tags: ["Popüler", "Düşük Sistem"] },
-  { title: "Doom 64", slug: "doom64", image: "/oyunindir/doom64/doom64.webp", tags: ["Popüler", "Düşük Sistem"] },
-  { title: "Celeste", slug: "celeste", image: "/oyunindir/celeste/celeste2.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
-];
-
-const dusuksistemGames = [
+const allGames = [
+  { title: "Minecraft", slug: "minecraft", image: "minecraft.jpg", tags: ["Popüler"] },
   { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Deltarune", slug: "deltarune", image: "/oyunindir/deltarune/deltarune.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Plants vs Zombies", slug: "plants-vs-zombies", image: "/oyunindir/plants-vs-zombies/plants-vs-zombies.webp", tags: ["Indie", "Düşük Sistem"] },
@@ -1366,6 +1345,49 @@ const dusuksistemGames = [
   { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
 ];
 
+// =====================
+// OTOMATİK DAĞITIM FONKSİYONU
+// =====================
+function dagitOyunlari() {
+  // Tag'lere göre filtrele
+  const indieGames = allGames.filter(g => g.tags.includes("Indie"));
+  const populerGames = allGames.filter(g => g.tags.includes("Popüler"));
+  const dusukGames = allGames.filter(g => g.tags.includes("Düşük Sistem"));
+  
+  // Shuffle (karıştır)
+  shuffle(indieGames);
+  shuffle(populerGames);
+  shuffle(dusukGames);
+  
+  // Slider'lara doldur
+  initSlider(".indie-wrapper", indieGames);
+  initSlider(".shuffle-populer", populerGames);
+  initSlider(".dusuk-wrapper", dusukGames);
+}
+
+// =====================
+// DOM Yüklendiğinde
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Mozaik kartları doldur (eski kod)
+  document.querySelectorAll(".mozaik-card").forEach(card => {
+    const slug = card.dataset.slug;
+    const img = card.querySelector("img");
+    const titleBox = card.querySelector(".mozaik-title");
+    const game = smallGames.find(g => g.slug === slug) || largeGames.find(g => g.slug === slug);
+    if (!game) return;
+
+    img.src = game.image;
+    img.alt = game.title;
+    titleBox.textContent = game.title;
+
+    card.onclick = () => window.location.href = game.slug + ".html";
+  });
+
+  // YENİ: Otomatik dağıtım
+  dagitOyunlari();
+});
 
 
 
@@ -1524,47 +1546,47 @@ function updateGameTags(slug, newTags) {
 // =====================
 // DOM Yüklendiğinde
 // =====================
-document.addEventListener("DOMContentLoaded", () => {
+//document.addEventListener("DOMContentLoaded", () => {
 
   // Mozaik kartları doldur (LazyLoad yok, değişmedi)
-  document.querySelectorAll(".mozaik-card").forEach(card => {
-    const slug = card.dataset.slug;
-    const img = card.querySelector("img");
-    const titleBox = card.querySelector(".mozaik-title");
-    const game = smallGames.find(g => g.slug === slug) || largeGames.find(g => g.slug === slug);
-    if (!game) return;
+//  document.querySelectorAll(".mozaik-card").forEach(card => {
+ //   const slug = card.dataset.slug;
+ //   const img = card.querySelector("img");
+  //  const titleBox = card.querySelector(".mozaik-title");
+  //  const game = smallGames.find(g => g.slug === slug) || largeGames.find(g => g.slug === slug);
+ //   if (!game) return;
 
-    img.src = game.image;
-    img.alt = game.title;
-    titleBox.textContent = game.title;
+//    img.src = game.image;
+//    img.alt = game.title;
+//    titleBox.textContent = game.title;
 
-    card.onclick = () => window.location.href = game.slug + ".html";
-  });
+//    card.onclick = () => window.location.href = game.slug + ".html";
+//  });
 
   // =====================
   // Sliderlar
   // =====================
 
   // Indie slider
-  const indieGames = [...allGames];
-  shuffle(indieGames);
-  initSlider(".indie-wrapper", indieGames);
+//  const indieGames = [...allGames];
+//  shuffle(indieGames);
+//  initSlider(".indie-wrapper", indieGames);
 
   // Popüler slider (HTML bazlı)
-  const populerGamesFromHTML = Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g => ({
-    title: g.querySelector(".game-title").textContent,
-    slug: g.closest("a").getAttribute("href").replace(".html", ""),
-    image: g.querySelector("img").getAttribute("src"),
-    tags: Array.from(g.querySelectorAll(".game-tag")).map(t => t.textContent)
-  }));
-  shuffle(populerGamesFromHTML);
-  initSlider(document.querySelector(".shuffle-populer").closest(".slider-wrapper"), populerGamesFromHTML);
+//  const populerGamesFromHTML = Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g => ({
+//    title: g.querySelector(".game-title").textContent,
+//    slug: g.closest("a").getAttribute("href").replace(".html", ""),
+ //   image: g.querySelector("img").getAttribute("src"),
+//    tags: Array.from(g.querySelectorAll(".game-tag")).map(t => t.textContent)
+//  }));
+//  shuffle(populerGamesFromHTML);
+//  initSlider(document.querySelector(".shuffle-populer").closest(".slider-wrapper"), populerGamesFromHTML);
 
   // Düşük Sistem slider
-  const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
-  shuffle(dusukGames);
-  initSlider(".dusuk-wrapper", dusukGames);
-});
+  //const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
+ // shuffle(dusukGames);
+//  initSlider(".dusuk-wrapper", dusukGames);
+//});
 
 // =====================
 // Gece / Gündüz Modu
