@@ -1349,7 +1349,6 @@ body.scroll-kilit {
 // Oyun Verileri (TEK ARRAY)
 // =====================
 const allGames = [
-  { title: "Minecraft", slug: "minecraft", image: "minecraft.jpg", tags: ["Popüler"] },
   { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Deltarune", slug: "deltarune", image: "/oyunindir/deltarune/deltarune.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Plants vs Zombies", slug: "plants-vs-zombies", image: "/oyunindir/plants-vs-zombies/plants-vs-zombies.webp", tags: ["Indie", "Düşük Sistem"] },
@@ -1403,7 +1402,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.dataset.src = game.image;
     img.alt = game.title;
     titleBox.textContent = game.title;
-    card.onclick = () => window.location.href = game.slug + ".html";
+    card.onclick = () => window.location.href = "/oyunindir/" + game.slug + "/";
   });
 
   // Mozaik LazyLoad Observer
@@ -1599,7 +1598,7 @@ function updateGameTags(slug, newTags) {
 //    img.alt = game.title;
 //    titleBox.textContent = game.title;
 
-//    card.onclick = () => window.location.href = game.slug + ".html";
+//    card.onclick = () => window.location.href = "/oyunindir/" + game.slug + "/";
 //  });
 
   // =====================
