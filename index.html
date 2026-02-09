@@ -1352,10 +1352,21 @@ function shuffle(array) {
 // Slider'ı doldurma (LazyLoad ile)
 function fillSlider(slider, games) {
   slider.innerHTML = "";
+
   games.forEach(game => {
-const a = document.createElement("a");
-a.href = game.slug;
-a.target = "_blank";
+    const a = document.createElement("a");
+    a.href = game.slug;
+    a.target = "_blank";
+
+    const div = document.createElement("div");
+    div.className = "game";
+    div.textContent = game.title;
+
+    a.appendChild(div);
+    slider.appendChild(a);
+  });
+}
+
 
 
     const div = document.createElement("div");
