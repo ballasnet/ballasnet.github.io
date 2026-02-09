@@ -1358,17 +1358,22 @@ function fillSlider(slider, games) {
     a.href = game.slug;
     a.target = "_blank";
 
+function fillSlider(slider, games) {
+  slider.innerHTML = "";
+
+  games.forEach(game => {
+    const a = document.createElement("a");
+    a.href = "/oyunindir/" + game.slug + "/";
+    a.target = "_blank";
+
     const div = document.createElement("div");
     div.className = "game";
 
     const imgDiv = document.createElement("div");
     imgDiv.className = "game-image";
-
     const img = document.createElement("img");
-    img.dataset.src = game.image; // LazyLoad
+    img.dataset.src = game.image;
     img.alt = game.title;
-    img.loading = "lazy";
-
     imgDiv.appendChild(img);
 
     const titleDiv = document.createElement("div");
@@ -1377,7 +1382,6 @@ function fillSlider(slider, games) {
 
     const tagsContainer = document.createElement("div");
     tagsContainer.className = "game-tags-container";
-
     if (game.tags) {
       game.tags.forEach(tagText => {
         const tagDiv = document.createElement("div");
@@ -1395,6 +1399,45 @@ function fillSlider(slider, games) {
     slider.appendChild(a);
   });
 }
+
+  
+  //  const div = document.createElement("div");
+  //  div.className = "game";
+
+   // const imgDiv = document.createElement("div");
+   // imgDiv.className = "game-image";
+
+  //  const img = document.createElement("img");
+   // img.dataset.src = game.image; // LazyLoad
+  //  img.alt = game.title;
+   // img.loading = "lazy";
+
+  //  imgDiv.appendChild(img);
+
+   // const titleDiv = document.createElement("div");
+   // titleDiv.className = "game-title";
+   // titleDiv.textContent = game.title;
+
+  //  const tagsContainer = document.createElement("div");//
+  //  tagsContainer.className = "game-tags-container";
+
+  //  if (game.tags) {
+    //  game.tags.forEach(tagText => {//
+       // const tagDiv = document.createElement("div");
+    //    tagDiv.className = "game-tag";
+      //  tagDiv.textContent = tagText;//
+     //   tagsContainer.appendChild(tagDiv);
+   //*   });
+   // }
+
+   // div.appendChild(imgDiv);
+  //  div.appendChild(titleDiv);
+  //  div.appendChild(tagsContainer);
+
+ //   a.appendChild(div);
+ //   slider.appendChild(a);
+//  });
+//}
 
 
 // LazyLoad fonksiyonu: sadece slider içindeki görünür resimleri yükler
