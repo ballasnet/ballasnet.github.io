@@ -441,17 +441,39 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 .youtube-video iframe{width:75%;height:250px;border:2px solid #222;border-radius:8px;display:inline-block}
 
 /* Breadcrumb */
-.breadcrumb{max-width:1000px;margin:10px auto;padding:0 20px;font-size:14px;text-align:center;color:#aaa}
-.breadcrumb a{color:#aaa;text-decoration:none;transition:color .2s ease}
-.breadcrumb a:hover{color:#ccc}
-.breadcrumb span.separator{color:#aaa;margin:0 8px}
-.breadcrumb span.current{color:#888}
+.breadcrumb{
+  max-width:1000px;
+  margin:10px auto;
+  padding:0 20px;
+  font-size:14px;
+  text-align:center;
+  color:#aaa;
+}
 
-.breadcrumb .separator,
-.breadcrumb .current{
+.breadcrumb a{
+  color:#aaa;
+  text-decoration:none;
+  transition:color 0.2s ease;
+}
+
+.breadcrumb a:hover{
+  color:#ccc;
+}
+
+.breadcrumb .separator{
+  color:#aaa;
+  margin:0 8px;
   pointer-events:none;
   cursor:default;
   user-select:none;
+}
+
+.breadcrumb .current{
+  color:#888;
+  pointer-events:none;
+  cursor:default;
+  user-select:none;
+  display:inline-block;
 }
 
 /* Footer */
@@ -491,11 +513,11 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
      BREADCRUMB NAVIGATION
      ============================================ -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
-<a href="https://ballasnet.com/">Ana Sayfa</a>
-<span class="separator">&gt;</span>
-<a href="https://ballasnet.com/oyunindir/">Oyun İndir</a>
-<span class="separator">&gt;</span>
-<span class="current" aria-current="page">Hollow Knight</span>
+  <a href="https://ballasnet.com/">Ana Sayfa</a>
+  <span class="separator">&gt;</span>
+  <a href="https://ballasnet.com/oyunindir/">Oyun İndir</a>
+  <span class="separator">&gt;</span>
+  <span class="current" aria-current="page">Hollow Knight</span>
 </nav>
 
 <!-- ============================================
