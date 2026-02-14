@@ -907,7 +907,7 @@ a, a:hover, a:visited, a:active, a:focus{
 </footer>
 
 <script>
-// Tüm oyunlar (ana sayfa ile aynı)
+// Tüm oyunlar
 const allGames = [
   { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Deltarune", slug: "deltarune", image: "/oyunindir/deltarune/deltarune.webp", tags: ["Indie", "Düşük Sistem"] },
@@ -926,31 +926,63 @@ const allGames = [
   { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
 ];
 
-// Mevcut oyun (URL'den otomatik veya manuel)
-const currentGameSlug = "hollow-knight"; // Bunu her sayfada değiştir
+// Mevcut oyun (her sayfada değiştir)
+const currentGameSlug = "hollow-knight";
 
-// Rastgele 3 oyun seç (24 saat cache'li)
+// Mevcut oyunun taglerini bul
+function getCurrentGameTags() {
+  const currentGame = allGames.find(g => g.slug === currentGameSlug);
+  return currentGame ? currentGame.tags : [];
+}
+
+// En az bir ortak tag'e sahip oyunları bul
+function getSimilarGames() {
+  const currentTags = getCurrentGameTags();
+  
+  // Mevcut oyunu hariç tut, en az bir ortak tag'i olanları bul
+  return allGames.filter(game => {
+    if (game.slug === currentGameSlug) return false;
+    
+    // En az bir ortak tag var mı?
+    return game.tags.some(tag => currentTags.includes(tag));
+  });
+}
+
+// Rastgele 3 oyun seç (24 saat cache'li, benzer tag'lere göre)
 function getDailyRandomGames() {
-  // Bugünün tarihi (gün/ay/yıl)
   const today = new Date().toDateString();
+  const cacheKey = 'dailySimilarGames_' + currentGameSlug;
+  const dateKey = 'dailySimilarGamesDate_' + currentGameSlug;
   
   // LocalStorage'dan kontrol et
-  const cached = localStorage.getItem('dailyGames_' + currentGameSlug);
-  const cachedDate = localStorage.getItem('dailyGamesDate_' + currentGameSlug);
+  const cached = localStorage.getItem(cacheKey);
+  const cachedDate = localStorage.getItem(dateKey);
   
-  // Eğer bugünün verisi varsa kullan
+  // Bugünün verisi varsa kullan
   if (cached && cachedDate === today) {
     return JSON.parse(cached);
   }
   
-  // Yeni seçim yap
-  const otherGames = allGames.filter(g => g.slug !== currentGameSlug);
-  const shuffled = otherGames.sort(() => 0.5 - Math.random());
+  // Benzer oyunları bul
+  const similarGames = getSimilarGames();
+  
+  // Karıştır ve ilk 3'ü al
+  const shuffled = similarGames.sort(() => 0.5 - Math.random());
   const selected = shuffled.slice(0, 3);
   
+  // Eğer 3'ten az benzer oyun varsa, rastgele tamamla
+  if (selected.length < 3) {
+    const otherGames = allGames.filter(g => 
+      g.slug !== currentGameSlug && 
+      !selected.find(s => s.slug === g.slug)
+    );
+    const extraShuffled = otherGames.sort(() => 0.5 - Math.random());
+    selected.push(...extraShuffled.slice(0, 3 - selected.length));
+  }
+  
   // Kaydet
-  localStorage.setItem('dailyGames_' + currentGameSlug, JSON.stringify(selected));
-  localStorage.setItem('dailyGamesDate_' + currentGameSlug, today);
+  localStorage.setItem(cacheKey, JSON.stringify(selected));
+  localStorage.setItem(dateKey, today);
   
   return selected;
 }
@@ -958,29 +990,37 @@ function getDailyRandomGames() {
 // Kartları oluştur
 function createGameCards() {
   const container = document.getElementById('benzer-kartlar');
+  if (!container) return;
+  
+  // Önceki kartları temizle
+  container.innerHTML = '';
+  
   const games = getDailyRandomGames();
   
   games.forEach(game => {
-    const imgPath = game.image;
-    
     const card = document.createElement('a');
     card.href = '/oyunindir/' + game.slug + '/';
     card.className = 'game-card';
     card.setAttribute('aria-label', game.title + ' oyununa git');
     
+    // Ortak tagleri bul (gösterim için)
+    const currentTags = getCurrentGameTags();
+    const commonTags = game.tags.filter(tag => currentTags.includes(tag));
+    
     card.innerHTML = `
       <div class="game-image">
-        <img src="${imgPath}" alt="${game.title} oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+        <img src="${game.image}" alt="${game.title} oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
       </div>
       <div class="game-title">${game.title}</div>
       <div class="game-tags-container">
-        ${game.tags.slice(0, 3).map(tag => `<div class="game-tag">${tag}</div>`).join('')}
+        ${commonTags.slice(0, 2).map(tag => `<div class="game-tag">${tag}</div>`).join('')}
       </div>
     `;
     
     container.appendChild(card);
   });
 }
+
 // Başlat
 document.addEventListener('DOMContentLoaded', createGameCards);
 
