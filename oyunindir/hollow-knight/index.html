@@ -290,9 +290,37 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 .sistem-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
 .sistem-kutu{flex:1;min-width:250px;max-width:350px;background:#1a1a1a;border:1px solid #333;padding:15px;transition:all .15s ease-out}
 .sistem-kutu:hover{border-color:#444;transform:scale(1.015);box-shadow:0 0 8px rgba(255,255,255,.03)}
-.sistem-kutu h3{font-size:13px;letter-spacing:1px;margin-bottom:10px;color:#888;text-transform:uppercase;border-bottom:1px solid #333;padding-bottom:8px;text-align:center}
-.sistem-kutu ul{list-style:none;padding:0;margin:0}
-.sistem-kutu li{font-size:13px;color:#aaa;padding:3px 0;line-height:1.4}
+.sistem-kutu h3{
+  font-size:13px;
+  letter-spacing:1px;
+  margin-bottom:10px;
+  color:#888;
+  text-transform:uppercase;
+  border-bottom:1px solid #333;
+  padding-bottom:8px;
+  text-align:center;
+  user-select:none;
+  cursor:default;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  pointer-events:none; /* İMLEÇ DEĞİŞMEZ */
+}
+.sistem-kutu ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  pointer-events:none; /* İMLEÇ DEĞİŞMEZ */
+}
+.sistem-kutu li{
+  font-size:13px;
+  color:#aaa;
+  padding:3px 0;
+  line-height:1.4;
+  user-select:none;
+  cursor:default;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
 .sistem-kutu li span{color:#ccc;font-weight:bold;display:inline-block;min-width:90px}
 
 /* Benzer Oyunlar Slider */
@@ -311,8 +339,23 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 .slider-btn.right{right:10px}
 
 /* Slider Not */
-.slider-not{max-width:1200px;margin:0 auto 15px;padding:0 20px;text-align:center}
-.slider-not p{font-size:11px;color:#666;font-weight:600;font-style:normal;letter-spacing:.8px;text-transform:uppercase}
+.slider-not{
+  max-width:1200px;
+  margin:0 auto 15px;
+  padding:0 20px;
+  text-align:center;
+  pointer-events:none; 
+}
+.slider-not p{
+  font-size:11px;
+  color:#666;
+  font-weight:600;
+  font-style:normal;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  user-select:none;
+  cursor:default;
+}
 
 /* YouTube Videosu */
 .youtube-video{max-width:1000px;margin:50px auto;padding:0 20px;text-align:center}
@@ -339,79 +382,6 @@ h1{font-size:20px}
 .aciklama{padding:20px}
 }
 
-/* TÜM YAZILAR MAVİ/LİNK GİBİ GÖRÜNMEZ - DÜZ METİN */
-body{
-  color:#fff;
-}
-
-body a{
-  color:#fff;
-  text-decoration:none;
-}
-
-body a:hover{
-  color:#fff;
-  text-decoration:none;
-}
-
-body a:visited{
-  color:#fff;
-  text-decoration:none;
-}
-
-body a:active{
-  color:#fff;
-  text-decoration:none;
-}
-
-/* TÜM METİN ELEMANLARI DÜZ METİN GİBİ */
-body p,
-body span,
-body li,
-body h1,
-body h2,
-body h3,
-body h4,
-body h5,
-body h6,
-body div{
-  cursor:default;
-}
-
-/* NOT KISMI ÖZEL - İMLEÇ DEĞİŞMEZ */
-.slider-not,
-.slider-not p,
-.slider-not span{
-  cursor:default;
-  pointer-events:none;
-  user-select:none;
-}
-
-/* SİSTEM GEREKSİNİMLERİ YAZILARI - İMLEÇ DEĞİŞMEZ */
-.sistem-kutu h3,
-.sistem-kutu li,
-.sistem-kutu span{
-  cursor:default;
-  pointer-events:none;
-  user-select:none;
-}
-
-/* BENZER OYUNLAR YAZILARI - LİNK AMA MAVİ DEĞİL */
-.benzer-oyunlar a{
-  color:#fff;
-  text-decoration:none;
-}
-
-.benzer-oyunlar a:hover{
-  color:#fff;
-  text-decoration:none;
-}
-
-.benzer-oyunlar .game-title{
-  color:#fff;
-  cursor:pointer; /* Tıklanabilir ama mavi değil */
-  pointer-events:auto; /* Tıklama çalışır */
-}
 
 /* Erişilebilirlik */
 a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
@@ -577,8 +547,8 @@ a.href=game.slug+'.html';
 a.setAttribute('aria-label',game.title+' oyununa git');
 a.style.textDecoration='none';
 a.style.color='#fff';
-a.innerHTML='<div class="game"><div class="game-image"><img data-src="'+game.image+'" alt="'+game.title+' - '+game.tags.join(', ')+' oyunu" loading="lazy" width="320" height="130"></div><div class="game-title" style="color:#fff;">'+game.title+'</div><div class="game-tags-container">'+game.tags.map(tag=>'<div class="game-tag">'+tag+'</div>').join('')+'</div></div>';
-
+a.style.display='block';
+a.innerHTML='<div class="game" style="color:#fff;"><div class="game-image"><img data-src="'+game.image+'" alt="'+game.title+' - '+game.tags.join(', ')+' oyunu" loading="lazy" width="320" height="130"></div><div class="game-title" style="color:#fff; text-decoration:none;">'+game.title+'</div><div class="game-tags-container">'+game.tags.map(tag=>'<div class="game-tag" style="color:#888;">'+tag+'</div>').join('')+'</div></div>';
 // Slider kontrolü
 function initSlider(){
 const slider=document.getElementById('benzer-slider');
