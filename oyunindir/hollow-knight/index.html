@@ -691,6 +691,27 @@ function createGameCards() {
 }
 // Başlat
 document.addEventListener('DOMContentLoaded', createGameCards);
+
+// Lazy-load YouTube iframe
+document.addEventListener('DOMContentLoaded', () => {
+  const iframes = document.querySelectorAll('.youtube-video iframe[data-src]');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const iframe = entry.target;
+        iframe.src = iframe.dataset.src;
+        iframe.removeAttribute('data-src');
+        observer.unobserve(iframe);
+      }
+    });
+  }, {
+    rootMargin: '100px', // biraz erken yükleme
+  });
+
+  iframes.forEach(iframe => observer.observe(iframe));
+});
+
 </script>
 
 </body>
