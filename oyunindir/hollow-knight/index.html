@@ -539,40 +539,96 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
      JAVASCRIPT - INLINE (Performans İçin)
      ============================================ -->
 <script>
-// Benzer oyunlar verisi
-const benzerOyunlar=[
-{title:"Undertale",slug:"undertale",image:"undertale.jpg",tags:["Indie","Düşük Sistem"]},
-{title:"Stardew Valley",slug:"stardew-valley",image:"stardewvalley.jpg",tags:["Indie","Düşük Sistem"]},
-{title:"Papers, Please",slug:"papers-please",image:"/oyunindir/papers-please/papersplease2.jpg",tags:["Indie","Düşük Sistem"]},
-{title:"Celeste",slug:"celeste",image:"celeste2.jpg",tags:["Indie","Düşük Sistem"]},
-{title:"Hollow Knight",slug:"hollow-knight",image:"hollow-knight.jpg",tags:["Indie","Düşük Sistem"]},
-{title:"Terraria",slug:"terraria",image:"terraria.jpg",tags:["Indie","Düşük Sistem"]}
+// Ana sayfadan çekilen tüm oyunlar
+const allGames = [
+  { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Deltarune", slug: "deltarune", image: "/oyunindir/deltarune/deltarune.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Plants vs Zombies", slug: "plants-vs-zombies", image: "/oyunindir/plants-vs-zombies/plants-vs-zombies.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Celeste", slug: "celeste", image: "/oyunindir/celeste/celeste2.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Baba Is You", slug: "babaisyou", image: "/oyunindir/babaisyou/babaisyou.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Doki Doki Literature Club", slug: "ddlc", image: "/oyunindir/ddlc/dokidoki2.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Hotline Miami", slug: "hotline-miami", image: "/oyunindir/hotline-miami/hotline-miami.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "GTA San Andreas", slug: "gtasanandreas", image: "/oyunindir/gtasanandreas/gtasanandreas.webp", tags: ["Popüler", "Düşük Sistem"] },
+  { title: "Half-Life 2", slug: "half-life2", image: "/oyunindir/half-life2/half-life2.webp", tags: ["Popüler", "Düşük Sistem"] },
+  { title: "Doom 64", slug: "doom64", image: "/oyunindir/doom64/doom64.webp", tags: ["Popüler", "Düşük Sistem"] },
+  { title: "Undertale", slug: "undertale", image: "/oyunindir/undertale/undertale.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Papers, Please", slug: "papers-please", image: "/oyunindir/papers-please/papersplease2.jpg", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Five Nights At Freddys", slug: "fnaf-1", image: "fnaf-1.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
 ];
 
-// Slider'ı doldur
-a.href=game.slug+'.html';
-a.setAttribute('aria-label',game.title+' oyununa git');
-a.style.textDecoration='none';
-a.style.color='#fff';
-a.style.display='block';
-a.innerHTML='<div class="game" style="color:#fff;"><div class="game-image"><img data-src="'+game.image+'" alt="'+game.title+' - '+game.tags.join(', ')+' oyunu" loading="lazy" width="320" height="130"></div><div class="game-title" style="color:#fff; text-decoration:none;">'+game.title+'</div><div class="game-tags-container">'+game.tags.map(tag=>'<div class="game-tag" style="color:#888;">'+tag+'</div>').join('')+'</div></div>';
-// Slider kontrolü
-function initSlider(){
-const slider=document.getElementById('benzer-slider');
-const leftBtn=document.querySelector('.benzer-oyunlar .slider-btn.left');
-const rightBtn=document.querySelector('.benzer-oyunlar .slider-btn.right');
-let index=0;
-const cardWidth=346;
-function update(){
-slider.style.transform='translateX('+(-index*cardWidth)+'px)';
-slider.querySelectorAll('img[data-src]').forEach((img,idx)=>{if(idx>=index&&idx<index+3&&img.dataset.src){img.src=img.dataset.src;delete img.dataset.src;}});
+// Mevcut oyunun slug'ı (sayfaya göre değiştir)
+const currentGameSlug = "hollow-knight"; // Bu sayfa hollow-knight için
+
+// Mevcut oyunu bul
+const currentGame = allGames.find(g => g.slug === currentGameSlug);
+
+// Benzer oyunları filtrele (aynı tag'lere sahip, kendisi hariç)
+function getSimilarGames() {
+  if (!currentGame) return [];
+  
+  return allGames
+    .filter(g => g.slug !== currentGameSlug) // Kendisi hariç
+    .map(g => {
+      // Ortak tag sayısını hesapla
+      const commonTags = g.tags.filter(tag => currentGame.tags.includes(tag));
+      return {
+        ...g,
+        matchScore: commonTags.length // Eşleşme skoru
+      };
+    })
+    .filter(g => g.matchScore > 0) // En az 1 ortak tag olmalı
+    .sort((a, b) => b.matchScore - a.matchScore) // En çok eşleşen önce
+    .slice(0, 6); // En fazla 6 oyun
 }
-rightBtn.onclick=()=>{if(index<slider.children.length-1){index++;update();}};
-leftBtn.onclick=()=>{if(index>0){index--;update();}};
+
+// Slider'ı otomatik doldur
+function fillSlider() {
+  const slider = document.getElementById('benzer-slider');
+  const similarGames = getSimilarGames();
+  
+  // Benzer oyun yoksa rastgele 6 oyun göster
+  const gamesToShow = similarGames.length > 0 ? similarGames : 
+    allGames.filter(g => g.slug !== currentGameSlug).slice(0, 6);
+  
+  gamesToShow.forEach(game => {
+    const a = document.createElement('a');
+    a.href = '/oyunindir/' + game.slug + '/';
+    a.setAttribute('aria-label', game.title + ' oyununa git');
+    a.style.textDecoration = 'none';
+    a.style.color = '#fff';
+    a.style.display = 'block';
+    
+    a.innerHTML = `
+      <div class="game" style="color:#fff;">
+        <div class="game-image">
+          <img data-src="${game.image}" alt="${game.title} - ${game.tags.join(', ')} oyunu" loading="lazy" width="320" height="130">
+        </div>
+        <div class="game-title" style="color:#fff; text-decoration:none;">${game.title}</div>
+        <div class="game-tags-container">
+          ${game.tags.map(tag => `<div class="game-tag" style="color:#888;">${tag}</div>`).join('')}
+        </div>
+      </div>
+    `;
+    
+    slider.appendChild(a);
+  });
+  
+  // İlk 3 görseli hemen yükle
+  slider.querySelectorAll('img[data-src]').forEach((img, index) => {
+    if (index < 3) {
+      img.src = img.dataset.src;
+      delete img.dataset.src;
+    }
+  });
 }
 
 // Başlat
-document.addEventListener('DOMContentLoaded',()=>{fillSlider();initSlider();});
+document.addEventListener('DOMContentLoaded', () => {
+  fillSlider();
+  initSlider();
+});
 </script>
 
 </body>
