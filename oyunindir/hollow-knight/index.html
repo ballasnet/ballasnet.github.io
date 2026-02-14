@@ -339,6 +339,80 @@ h1{font-size:20px}
 .aciklama{padding:20px}
 }
 
+/* TÜM YAZILAR MAVİ/LİNK GİBİ GÖRÜNMEZ - DÜZ METİN */
+body{
+  color:#fff;
+}
+
+body a{
+  color:#fff;
+  text-decoration:none;
+}
+
+body a:hover{
+  color:#fff;
+  text-decoration:none;
+}
+
+body a:visited{
+  color:#fff;
+  text-decoration:none;
+}
+
+body a:active{
+  color:#fff;
+  text-decoration:none;
+}
+
+/* TÜM METİN ELEMANLARI DÜZ METİN GİBİ */
+body p,
+body span,
+body li,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body div{
+  cursor:default;
+}
+
+/* NOT KISMI ÖZEL - İMLEÇ DEĞİŞMEZ */
+.slider-not,
+.slider-not p,
+.slider-not span{
+  cursor:default;
+  pointer-events:none;
+  user-select:none;
+}
+
+/* SİSTEM GEREKSİNİMLERİ YAZILARI - İMLEÇ DEĞİŞMEZ */
+.sistem-kutu h3,
+.sistem-kutu li,
+.sistem-kutu span{
+  cursor:default;
+  pointer-events:none;
+  user-select:none;
+}
+
+/* BENZER OYUNLAR YAZILARI - LİNK AMA MAVİ DEĞİL */
+.benzer-oyunlar a{
+  color:#fff;
+  text-decoration:none;
+}
+
+.benzer-oyunlar a:hover{
+  color:#fff;
+  text-decoration:none;
+}
+
+.benzer-oyunlar .game-title{
+  color:#fff;
+  cursor:pointer; /* Tıklanabilir ama mavi değil */
+  pointer-events:auto; /* Tıklama çalışır */
+}
+
 /* Erişilebilirlik */
 a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -499,17 +573,11 @@ const benzerOyunlar=[
 ];
 
 // Slider'ı doldur
-function fillSlider(){
-const slider=document.getElementById('benzer-slider');
-benzerOyunlar.forEach(game=>{
-const a=document.createElement('a');
 a.href=game.slug+'.html';
 a.setAttribute('aria-label',game.title+' oyununa git');
-a.innerHTML='<div class="game"><div class="game-image"><img data-src="'+game.image+'" alt="'+game.title+' - '+game.tags.join(', ')+' oyunu" loading="lazy" width="320" height="130"></div><div class="game-title">'+game.title+'</div><div class="game-tags-container">'+game.tags.map(tag=>'<div class="game-tag">'+tag+'</div>').join('')+'</div></div>';
-slider.appendChild(a);
-});
-slider.querySelectorAll('img[data-src]').forEach((img,index)=>{if(index<3){img.src=img.dataset.src;delete img.dataset.src;}});
-}
+a.style.textDecoration='none';
+a.style.color='#fff';
+a.innerHTML='<div class="game"><div class="game-image"><img data-src="'+game.image+'" alt="'+game.title+' - '+game.tags.join(', ')+' oyunu" loading="lazy" width="320" height="130"></div><div class="game-title" style="color:#fff;">'+game.title+'</div><div class="game-tags-container">'+game.tags.map(tag=>'<div class="game-tag">'+tag+'</div>').join('')+'</div></div>';
 
 // Slider kontrolü
 function initSlider(){
