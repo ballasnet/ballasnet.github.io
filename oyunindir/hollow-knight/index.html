@@ -338,20 +338,21 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 .slider-btn.left{left:10px}
 .slider-btn.right{right:10px}
 
-/* 3 Kart Grid Düzeni */
+/* 3 Kart - Tüm Genişlik */
 .uc-kart-container{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:26px;
-  max-width:1000px;
+  gap:20px;
+  max-width:1200px;
   margin:0 auto;
 }
 
 .uc-kart-container .game-card{
   background:#0f0f0f;
   border:1px solid #222;
-  padding:8px;
+  padding:10px;
   transition:all 0.15s ease-out;
+  width:100%;
 }
 
 .uc-kart-container .game-card:hover{
@@ -362,7 +363,7 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 
 .uc-kart-container .game-image{
   width:100%;
-  height:130px;
+  height:160px;
   background:#000;
   overflow:hidden;
 }
@@ -371,28 +372,31 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
   width:100%;
   height:100%;
   object-fit:cover;
+  display:block;
 }
 
 .uc-kart-container .game-title{
-  margin-top:6px;
-  font-size:15px;
+  margin-top:10px;
+  font-size:16px;
   color:#fff;
   text-align:center;
+  font-weight:bold;
 }
 
 .uc-kart-container .game-tags-container{
   display:flex;
-  gap:4px;
-  margin-top:4px;
+  gap:6px;
+  margin-top:8px;
   justify-content:center;
   flex-wrap:wrap;
 }
 
 .uc-kart-container .game-tag{
-  font-size:12px;
+  font-size:11px;
   color:#888;
-  background:#111;
-  padding:4px 8px;
+  background:#1a1a1a;
+  padding:4px 10px;
+  border-radius:2px;
 }
 
 .uc-kart-container a{
@@ -405,10 +409,14 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 @media(max-width:768px){
   .uc-kart-container{
     grid-template-columns:1fr;
-    max-width:320px;
+    max-width:400px;
+    gap:15px;
+  }
+  
+  .uc-kart-container .game-image{
+    height:200px;
   }
 }
-
 /* Slider Not */
 .slider-not{
   max-width:1200px;
@@ -661,8 +669,6 @@ function createGameCards() {
   const games = getDailyRandomGames();
   
   games.forEach(game => {
-    // Resim uzantısını kontrol et (webp/jpg/png)
-    const imgExt = game.image.split('.').pop();
     const imgPath = game.image;
     
     const card = document.createElement('a');
@@ -672,18 +678,17 @@ function createGameCards() {
     
     card.innerHTML = `
       <div class="game-image">
-        <img src="${imgPath}" alt="${game.title} oyunu" loading="lazy" width="320" height="130" onerror="this.src='/images/fallback.jpg'">
+        <img src="${imgPath}" alt="${game.title} oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
       </div>
       <div class="game-title">${game.title}</div>
       <div class="game-tags-container">
-        ${game.tags.slice(0, 2).map(tag => `<div class="game-tag">${tag}</div>`).join('')}
+        ${game.tags.slice(0, 3).map(tag => `<div class="game-tag">${tag}</div>`).join('')}
       </div>
     `;
     
     container.appendChild(card);
   });
 }
-
 // Başlat
 document.addEventListener('DOMContentLoaded', createGameCards);
 </script>
