@@ -338,6 +338,77 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 .slider-btn.left{left:10px}
 .slider-btn.right{right:10px}
 
+/* 3 Kart Grid Düzeni */
+.uc-kart-container{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:26px;
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.uc-kart-container .game-card{
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:8px;
+  transition:all 0.15s ease-out;
+}
+
+.uc-kart-container .game-card:hover{
+  border-color:#444;
+  transform:scale(1.015);
+  box-shadow:0 0 8px rgba(255,255,255,0.03);
+}
+
+.uc-kart-container .game-image{
+  width:100%;
+  height:130px;
+  background:#000;
+  overflow:hidden;
+}
+
+.uc-kart-container .game-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.uc-kart-container .game-title{
+  margin-top:6px;
+  font-size:15px;
+  color:#fff;
+  text-align:center;
+}
+
+.uc-kart-container .game-tags-container{
+  display:flex;
+  gap:4px;
+  margin-top:4px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.uc-kart-container .game-tag{
+  font-size:12px;
+  color:#888;
+  background:#111;
+  padding:4px 8px;
+}
+
+.uc-kart-container a{
+  text-decoration:none;
+  color:#fff;
+  display:block;
+}
+
+/* Mobil: Dikey sırala */
+@media(max-width:768px){
+  .uc-kart-container{
+    grid-template-columns:1fr;
+    max-width:320px;
+  }
+}
+
 /* Slider Not */
 .slider-not{
   max-width:1200px;
@@ -492,14 +563,11 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 <iframe src="https://www.youtube.com/embed/G1atkq4C1KU" title="Hollow Knight Oyun Videosu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="75%" height="250" loading="lazy"></iframe>
 </section>
 
-<!-- Benzer Oyunlar -->
 <section class="benzer-oyunlar" aria-labelledby="benzer-oyunlar-baslik">
-<h2 id="benzer-oyunlar-baslik">BENZER OYUNLAR</h2>
-<div class="slider-wrapper">
-<button class="slider-btn left" aria-label="Önceki oyun">&#10094;</button>
-<button class="slider-btn right" aria-label="Sonraki oyun">&#10095;</button>
-<div class="slider" id="benzer-slider"></div>
-</div>
+  <h2 id="benzer-oyunlar-baslik">BENZER OYUNLAR</h2>
+  <div class="uc-kart-container" id="benzer-kartlar">
+    <!-- 3 kart buraya gelecek -->
+  </div>
 </section>
 
 <!-- Detaylı Açıklama -->
@@ -539,7 +607,7 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
      JAVASCRIPT - INLINE (Performans İçin)
      ============================================ -->
 <script>
-// Ana sayfadan çekilen tüm oyunlar
+// Tüm oyunlar (ana sayfa ile aynı)
 const allGames = [
   { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Deltarune", slug: "deltarune", image: "/oyunindir/deltarune/deltarune.webp", tags: ["Indie", "Düşük Sistem"] },
@@ -553,82 +621,71 @@ const allGames = [
   { title: "Doom 64", slug: "doom64", image: "/oyunindir/doom64/doom64.webp", tags: ["Popüler", "Düşük Sistem"] },
   { title: "Undertale", slug: "undertale", image: "/oyunindir/undertale/undertale.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Papers, Please", slug: "papers-please", image: "/oyunindir/papers-please/papersplease2.jpg", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Stardew Valley", slug: "stardew-valley", image: "stardewvalley.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "Five Nights At Freddys", slug: "fnaf-1", image: "fnaf-1.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Stardew Valley", slug: "stardew-valley", image: "/oyunindir/stardew-valley/stardewvalley.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Five Nights At Freddys", slug: "fnaf-1", image: "/oyunindir/fnaf-1/fnaf-1.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
   { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
 ];
 
-// Mevcut oyunun slug'ı (sayfaya göre değiştir)
-const currentGameSlug = "hollow-knight"; // Bu sayfa hollow-knight için
+// Mevcut oyun (URL'den otomatik veya manuel)
+const currentGameSlug = "hollow-knight"; // Bunu her sayfada değiştir
 
-// Mevcut oyunu bul
-const currentGame = allGames.find(g => g.slug === currentGameSlug);
-
-// Benzer oyunları filtrele (aynı tag'lere sahip, kendisi hariç)
-function getSimilarGames() {
-  if (!currentGame) return [];
+// Rastgele 3 oyun seç (24 saat cache'li)
+function getDailyRandomGames() {
+  // Bugünün tarihi (gün/ay/yıl)
+  const today = new Date().toDateString();
   
-  return allGames
-    .filter(g => g.slug !== currentGameSlug) // Kendisi hariç
-    .map(g => {
-      // Ortak tag sayısını hesapla
-      const commonTags = g.tags.filter(tag => currentGame.tags.includes(tag));
-      return {
-        ...g,
-        matchScore: commonTags.length // Eşleşme skoru
-      };
-    })
-    .filter(g => g.matchScore > 0) // En az 1 ortak tag olmalı
-    .sort((a, b) => b.matchScore - a.matchScore) // En çok eşleşen önce
-    .slice(0, 6); // En fazla 6 oyun
+  // LocalStorage'dan kontrol et
+  const cached = localStorage.getItem('dailyGames_' + currentGameSlug);
+  const cachedDate = localStorage.getItem('dailyGamesDate_' + currentGameSlug);
+  
+  // Eğer bugünün verisi varsa kullan
+  if (cached && cachedDate === today) {
+    return JSON.parse(cached);
+  }
+  
+  // Yeni seçim yap
+  const otherGames = allGames.filter(g => g.slug !== currentGameSlug);
+  const shuffled = otherGames.sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 3);
+  
+  // Kaydet
+  localStorage.setItem('dailyGames_' + currentGameSlug, JSON.stringify(selected));
+  localStorage.setItem('dailyGamesDate_' + currentGameSlug, today);
+  
+  return selected;
 }
 
-// Slider'ı otomatik doldur
-function fillSlider() {
-  const slider = document.getElementById('benzer-slider');
-  const similarGames = getSimilarGames();
+// Kartları oluştur
+function createGameCards() {
+  const container = document.getElementById('benzer-kartlar');
+  const games = getDailyRandomGames();
   
-  // Benzer oyun yoksa rastgele 6 oyun göster
-  const gamesToShow = similarGames.length > 0 ? similarGames : 
-    allGames.filter(g => g.slug !== currentGameSlug).slice(0, 6);
-  
-  gamesToShow.forEach(game => {
-    const a = document.createElement('a');
-    a.href = '/oyunindir/' + game.slug + '/';
-    a.setAttribute('aria-label', game.title + ' oyununa git');
-    a.style.textDecoration = 'none';
-    a.style.color = '#fff';
-    a.style.display = 'block';
+  games.forEach(game => {
+    // Resim uzantısını kontrol et (webp/jpg/png)
+    const imgExt = game.image.split('.').pop();
+    const imgPath = game.image;
     
-    a.innerHTML = `
-      <div class="game" style="color:#fff;">
-        <div class="game-image">
-          <img data-src="${game.image}" alt="${game.title} - ${game.tags.join(', ')} oyunu" loading="lazy" width="320" height="130">
-        </div>
-        <div class="game-title" style="color:#fff; text-decoration:none;">${game.title}</div>
-        <div class="game-tags-container">
-          ${game.tags.map(tag => `<div class="game-tag" style="color:#888;">${tag}</div>`).join('')}
-        </div>
+    const card = document.createElement('a');
+    card.href = '/oyunindir/' + game.slug + '/';
+    card.className = 'game-card';
+    card.setAttribute('aria-label', game.title + ' oyununa git');
+    
+    card.innerHTML = `
+      <div class="game-image">
+        <img src="${imgPath}" alt="${game.title} oyunu" loading="lazy" width="320" height="130" onerror="this.src='/images/fallback.jpg'">
+      </div>
+      <div class="game-title">${game.title}</div>
+      <div class="game-tags-container">
+        ${game.tags.slice(0, 2).map(tag => `<div class="game-tag">${tag}</div>`).join('')}
       </div>
     `;
     
-    slider.appendChild(a);
-  });
-  
-  // İlk 3 görseli hemen yükle
-  slider.querySelectorAll('img[data-src]').forEach((img, index) => {
-    if (index < 3) {
-      img.src = img.dataset.src;
-      delete img.dataset.src;
-    }
+    container.appendChild(card);
   });
 }
 
 // Başlat
-document.addEventListener('DOMContentLoaded', () => {
-  fillSlider();
-  initSlider();
-});
+document.addEventListener('DOMContentLoaded', createGameCards);
 </script>
 
 </body>
