@@ -264,6 +264,20 @@ h1{
   background:#222;
 }
 
+/* Benzer Oyunlar Slider */
+.benzer-oyunlar{max-width:1200px;margin:0 auto 60px;padding:0 20px}
+.benzer-oyunlar h2{font-size:15px;letter-spacing:3px;margin-bottom:22px;border-bottom:1px solid #222;padding-bottom:10px}
+.slider-wrapper{position:relative;overflow:hidden}
+.slider{display:flex;gap:26px;transition:transform .5s ease;will-change:transform}
+.slider .game{flex-shrink:0;width:320px;height:200px;display:flex;flex-direction:column;padding:8px;background:#0f0f0f;border:1px solid #222}
+.game-image{width:100%;height:130px;background:#000}
+.game-image img{width:100%;height:100%;object-fit:cover}
+.game-title{margin-top:6px;font-size:15px}
+.game-tags-container{display:flex;gap:4px;margin-top:2px}
+.game-tag{font-size:12px;color:#888;background:#111;padding:4px 8px}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:#000;color:#fff;border:1px solid #222;font-size:24px;padding:6px 12px;cursor:pointer;z-index:10}
+.slider-btn.left{left:10px}
+.slider-btn.right{right:10px}
 
 /* 3 Kart - Tüm Genişlik */
 .uc-kart-container{
@@ -910,6 +924,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
