@@ -656,6 +656,86 @@ a, a:hover, a:visited, a:active, a:focus{
   margin: 0 auto;
 }
 
+/* 3 Kart - Tüm Genişlik */
+.uc-kart-container{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.uc-kart-container .game-card{
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:10px;
+  transition:all 0.15s ease-out;
+  width:100%;
+}
+
+.uc-kart-container .game-card:hover{
+  border-color:#444;
+  transform:scale(1.015);
+  box-shadow:0 0 8px rgba(255,255,255,0.03);
+}
+
+.uc-kart-container .game-image{
+  width:100%;
+  height:160px;
+  background:#000;
+  overflow:hidden;
+}
+
+.uc-kart-container .game-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.uc-kart-container .game-title{
+  margin-top:10px;
+  font-size:16px;
+  color:#fff;
+  text-align:center;
+  font-weight:bold;
+}
+
+.uc-kart-container .game-tags-container{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.uc-kart-container .game-tag{
+  font-size:11px;
+  color:#888;
+  background:#1a1a1a;
+  padding:4px 10px;
+  border-radius:2px;
+}
+
+.uc-kart-container a{
+  text-decoration:none;
+  color:#fff;
+  display:block;
+}
+
+/* Mobil: Dikey sırala */
+@media(max-width:768px){
+  .uc-kart-container{
+    grid-template-columns:1fr;
+    max-width:400px;
+    gap:15px;
+  }
+  
+  .uc-kart-container .game-image{
+    height:200px;
+  }
+}
+
 
 </style>
 </head>
@@ -763,14 +843,11 @@ a, a:hover, a:visited, a:active, a:focus{
 
 
   
-<section class="benzer-oyunlar">
-  <h2>BENZER OYUNLAR</h2>
-  <div class="slider-wrapper">
-    <button class="slider-btn left">&#10094;</button>
-    <button class="slider-btn right">&#10095;</button>
-    <div class="slider" id="benzer-slider">
-      <!-- JS ile doldurulacak -->
-    </div>
+
+<section class="benzer-oyunlar" aria-labelledby="benzer-oyunlar-baslik">
+  <h2 id="benzer-oyunlar-baslik">BENZER OYUNLAR</h2>
+  <div class="uc-kart-container" id="benzer-kartlar">
+    <!-- 3 kart buraya gelecek -->
   </div>
 </section>
 
@@ -812,94 +889,102 @@ a, a:hover, a:visited, a:active, a:focus{
 </footer>
 
 <script>
-// Benzer oyunlar - sadece Indie ve Düşük Sistem taglı oyunlar
-const benzerOyunlar = [
-  {title:"Undertale", slug:"undertale", image:"undertale.jpg", tags:["Indie","Düşük Sistem"]},
-  {title:"Stardew Valley", slug:"stardew-valley", image:"stardewvalley.jpg", tags:["Indie","Düşük Sistem"]},
-  {title: "Papers, Please", slug: "papers-please", image: "/oyunindir/papers-please/papersplease2.jpg", tags: ["Indie", "Düşük Sistem"]},
-  {title:"Celeste", slug:"celeste", image:"celeste2.jpg", tags:["Indie","Düşük Sistem"]},
-  {title:"Hollow Knight", slug:"hollow-knight", image:"hollow-knight.jpg", tags:["Indie","Düşük Sistem"]},
-  {title:"Terraria", slug:"terraria", image:"terraria.jpg", tags:["Indie","Düşük Sistem"]}
+// Tüm oyunlar (ana sayfa ile aynı)
+const allGames = [
+  { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Deltarune", slug: "deltarune", image: "/oyunindir/deltarune/deltarune.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Plants vs Zombies", slug: "plants-vs-zombies", image: "/oyunindir/plants-vs-zombies/plants-vs-zombies.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Celeste", slug: "celeste", image: "/oyunindir/celeste/celeste2.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Baba Is You", slug: "babaisyou", image: "/oyunindir/babaisyou/babaisyou.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Doki Doki Literature Club", slug: "ddlc", image: "/oyunindir/ddlc/dokidoki2.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Hotline Miami", slug: "hotline-miami", image: "/oyunindir/hotline-miami/hotline-miami.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "GTA San Andreas", slug: "gtasanandreas", image: "/oyunindir/gtasanandreas/gtasanandreas.webp", tags: ["Popüler", "Düşük Sistem"] },
+  { title: "Half-Life 2", slug: "half-life2", image: "/oyunindir/half-life2/half-life2.webp", tags: ["Popüler", "Düşük Sistem"] },
+  { title: "Doom 64", slug: "doom64", image: "/oyunindir/doom64/doom64.webp", tags: ["Popüler", "Düşük Sistem"] },
+  { title: "Undertale", slug: "undertale", image: "/oyunindir/undertale/undertale.webp", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Papers, Please", slug: "papers-please", image: "/oyunindir/papers-please/papersplease2.jpg", tags: ["Indie", "Düşük Sistem"] },
+  { title: "Stardew Valley", slug: "stardew-valley", image: "/oyunindir/stardew-valley/stardewvalley.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Five Nights At Freddys", slug: "fnaf-1", image: "/oyunindir/fnaf-1/fnaf-1.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
 ];
 
-// Slider'ı doldur (LazyLoad ile)
-function fillSlider() {
-  const slider = document.getElementById('benzer-slider');
+// Mevcut oyun (URL'den otomatik veya manuel)
+const currentGameSlug = "deltarune"; // HER SAYFADA BUNU DEĞİŞTİR
+
+// Rastgele 3 oyun seç (24 saat cache'li)
+function getDailyRandomGames() {
+  const today = new Date().toDateString();
+  const cached = localStorage.getItem('dailyGames_' + currentGameSlug);
+  const cachedDate = localStorage.getItem('dailyGamesDate_' + currentGameSlug);
   
-  benzerOyunlar.forEach(game => {
-    const a = document.createElement('a');
-    a.href = game.slug + '.html';
+  if (cached && cachedDate === today) {
+    return JSON.parse(cached);
+  }
+  
+  const otherGames = allGames.filter(g => g.slug !== currentGameSlug);
+  const shuffled = otherGames.sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 3);
+  
+  localStorage.setItem('dailyGames_' + currentGameSlug, JSON.stringify(selected));
+  localStorage.setItem('dailyGamesDate_' + currentGameSlug, today);
+  
+  return selected;
+}
+
+// Kartları oluştur - LAZY LOAD'LU
+function createGameCards() {
+  const container = document.getElementById('benzer-kartlar');
+  const games = getDailyRandomGames();
+  
+  games.forEach(game => {
+    const card = document.createElement('a');
+    card.href = '/oyunindir/' + game.slug + '/';
+    card.className = 'game-card';
+    card.setAttribute('aria-label', game.title + ' oyununa git');
     
-    a.innerHTML = `
-      <div class="game">
-        <div class="game-image">
-          <img data-src="${game.image}" alt="${game.title} - ${game.tags.join(', ')} oyunu" loading="lazy">
-        </div>
-        <div class="game-title">${game.title}</div>
-        <div class="game-tags-container">
-          ${game.tags.map(tag => `<div class="game-tag">${tag}</div>`).join('')}
-        </div>
+    // data-src ile lazy load
+    card.innerHTML = `
+      <div class="game-image">
+        <img data-src="${game.image}" alt="${game.title} oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+      </div>
+      <div class="game-title">${game.title}</div>
+      <div class="game-tags-container">
+        ${game.tags.slice(0, 3).map(tag => `<div class="game-tag">${tag}</div>`).join('')}
       </div>
     `;
     
-    slider.appendChild(a);
-  });
-  
-  // İlk 3 görseli hemen yükle
-  slider.querySelectorAll('img[data-src]').forEach((img, index) => {
-    if(index < 3) {
-      img.src = img.dataset.src;
-      delete img.dataset.src;
-    }
+    container.appendChild(card);
   });
 }
 
-// Slider kontrolü
-function initSlider() {
-  const slider = document.getElementById('benzer-slider');
-  const leftBtn = document.querySelector('.benzer-oyunlar .slider-btn.left');
-  const rightBtn = document.querySelector('.benzer-oyunlar .slider-btn.right');
+// Lazy Load Observer - Benzer Oyunlar
+function initLazyLoad() {
+  const images = document.querySelectorAll('#benzer-kartlar img[data-src]');
   
-  let index = 0;
-  const cardWidth = 346;
+  if (images.length === 0) return;
   
-  function update() {
-    slider.style.transform = `translateX(${-index * cardWidth}px)`;
-    
-    // Görünür görselleri yükle
-    const imgs = slider.querySelectorAll('img[data-src]');
-    imgs.forEach((img, idx) => {
-      if(idx >= index && idx < index + 3 && img.dataset.src) {
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
         img.src = img.dataset.src;
-        delete img.dataset.src;
+        img.removeAttribute('data-src');
+        observer.unobserve(img);
       }
     });
-  }
-  
-  rightBtn.onclick = () => {
-    if(index < slider.children.length - 1) {
-      index++;
-      update();
-    }
-  };
-  
-  leftBtn.onclick = () => {
-    if(index > 0) {
-      index--;
-      update();
-    }
-  };
+  }, {
+    rootMargin: '100px',
+    threshold: 0.1
+  });
+
+  images.forEach(img => imageObserver.observe(img));
 }
 
-// Başlat
-document.addEventListener('DOMContentLoaded', () => {
-  fillSlider();
-  initSlider();
-});
-
-// Lazy-load YouTube iframe
-document.addEventListener('DOMContentLoaded', () => {
+// Lazy Load - YouTube iframe
+function initYouTubeLazyLoad() {
   const iframes = document.querySelectorAll('.youtube-video iframe[data-src]');
+  
+  if (iframes.length === 0) return;
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -911,18 +996,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    rootMargin: '100px', // biraz erken yükleme
+    rootMargin: '100px'
   });
 
   iframes.forEach(iframe => observer.observe(iframe));
+}
+
+// BAŞLAT
+document.addEventListener('DOMContentLoaded', () => {
+  createGameCards();
+  initLazyLoad();        // Benzer Oyunlar lazy load
+  initYouTubeLazyLoad(); // YouTube lazy load
 });
 
-  
 </script>
 
 </body>
 
 </html>
+
 
 
 
