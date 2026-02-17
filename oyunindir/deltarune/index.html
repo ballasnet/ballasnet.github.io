@@ -891,7 +891,6 @@ a, a:hover, a:visited, a:active, a:focus{
 <footer class="site-footer">
   © BallasNet - Deltarune İndir
 </footer>
-
 <script>
 // Tüm oyunlar (ana sayfa ile aynı)
 const allGames = [
@@ -913,50 +912,43 @@ const allGames = [
 ];
 
 // Mevcut oyun (URL'den otomatik veya manuel)
-const currentGameSlug = "hollow-knight"; // Bunu her sayfada değiştir
+const currentGameSlug = "deltarune"; // HER SAYFADA BUNU DEĞİŞTİR
 
 // Rastgele 3 oyun seç (24 saat cache'li)
 function getDailyRandomGames() {
-  // Bugünün tarihi (gün/ay/yıl)
   const today = new Date().toDateString();
-  
-  // LocalStorage'dan kontrol et
   const cached = localStorage.getItem('dailyGames_' + currentGameSlug);
   const cachedDate = localStorage.getItem('dailyGamesDate_' + currentGameSlug);
   
-  // Eğer bugünün verisi varsa kullan
   if (cached && cachedDate === today) {
     return JSON.parse(cached);
   }
   
-  // Yeni seçim yap
   const otherGames = allGames.filter(g => g.slug !== currentGameSlug);
   const shuffled = otherGames.sort(() => 0.5 - Math.random());
   const selected = shuffled.slice(0, 3);
   
-  // Kaydet
   localStorage.setItem('dailyGames_' + currentGameSlug, JSON.stringify(selected));
   localStorage.setItem('dailyGamesDate_' + currentGameSlug, today);
   
   return selected;
 }
 
-// Kartları oluştur
+// Kartları oluştur - LAZY LOAD'LU
 function createGameCards() {
   const container = document.getElementById('benzer-kartlar');
   const games = getDailyRandomGames();
   
   games.forEach(game => {
-    const imgPath = game.image;
-    
     const card = document.createElement('a');
     card.href = '/oyunindir/' + game.slug + '/';
     card.className = 'game-card';
     card.setAttribute('aria-label', game.title + ' oyununa git');
     
+    // data-src ile lazy load
     card.innerHTML = `
       <div class="game-image">
-        <img src="${imgPath}" alt="${game.title} oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+        <img data-src="${game.image}" alt="${game.title} oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
       </div>
       <div class="game-title">${game.title}</div>
       <div class="game-tags-container">
@@ -967,12 +959,35 @@ function createGameCards() {
     container.appendChild(card);
   });
 }
-// Başlat
-document.addEventListener('DOMContentLoaded', createGameCards);
 
-// Lazy-load YouTube iframe
-document.addEventListener('DOMContentLoaded', () => {
+// Lazy Load Observer - Benzer Oyunlar
+function initLazyLoad() {
+  const images = document.querySelectorAll('#benzer-kartlar img[data-src]');
+  
+  if (images.length === 0) return;
+  
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        observer.unobserve(img);
+      }
+    });
+  }, {
+    rootMargin: '100px',
+    threshold: 0.1
+  });
+
+  images.forEach(img => imageObserver.observe(img));
+}
+
+// Lazy Load - YouTube iframe
+function initYouTubeLazyLoad() {
   const iframes = document.querySelectorAll('.youtube-video iframe[data-src]');
+  
+  if (iframes.length === 0) return;
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -984,10 +999,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    rootMargin: '100px', // biraz erken yükleme
+    rootMargin: '100px'
   });
 
   iframes.forEach(iframe => observer.observe(iframe));
+}
+
+// BAŞLAT
+document.addEventListener('DOMContentLoaded', () => {
+  createGameCards();
+  initLazyLoad();        // Benzer Oyunlar lazy load
+  initYouTubeLazyLoad(); // YouTube lazy load
 });
 
 </script>
@@ -995,6 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
