@@ -197,18 +197,6 @@
     </image:image>
   </url>
 
-  <!-- STARDEW VALLEY -->
-  <url>
-    <loc>https://ballasnet.com/oyunindir/stardew-valley/</loc>
-    <lastmod>17.02.2026</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://ballasnet.com/oyunindir/stardew-valley/stardewvalley.jpg</image:loc>
-      <image:title>Stardew Valley PC İndir</image:title>
-      <image:caption>Çiftlik simülasyonu Stardew Valley</image:caption>
-    </image:image>
-  </url>
 
   <!-- FIVE NIGHTS AT FREDDY'S -->
   <url>
@@ -235,5 +223,6 @@
       <image:caption>Metroidvania oyunu Hollow Knight</image:caption>
     </image:image>
   </url>
+
 
 </urlset>
