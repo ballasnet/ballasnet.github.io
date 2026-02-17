@@ -86,7 +86,86 @@ h1{
   text-transform:uppercase;
 }
 
-/* Hero görsel */
+/* 3 Kart - Tüm Genişlik */
+.uc-kart-container{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.uc-kart-container .game-card{
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:10px;
+  transition:all 0.15s ease-out;
+  width:100%;
+}
+
+.uc-kart-container .game-card:hover{
+  border-color:#444;
+  transform:scale(1.015);
+  box-shadow:0 0 8px rgba(255,255,255,0.03);
+}
+
+.uc-kart-container .game-image{
+  width:100%;
+  height:160px;
+  background:#000;
+  overflow:hidden;
+}
+
+.uc-kart-container .game-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.uc-kart-container .game-title{
+  margin-top:10px;
+  font-size:16px;
+  color:#fff;
+  text-align:center;
+  font-weight:bold;
+}
+
+.uc-kart-container .game-tags-container{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.uc-kart-container .game-tag{
+  font-size:11px;
+  color:#888;
+  background:#1a1a1a;
+  padding:4px 10px;
+  border-radius:2px;
+}
+
+.uc-kart-container a{
+  text-decoration:none;
+  color:#fff;
+  display:block;
+}
+
+/* Mobil: Dikey sırala */
+@media(max-width:768px){
+  .uc-kart-container{
+    grid-template-columns:1fr;
+    max-width:400px;
+    gap:15px;
+  }
+  
+  .uc-kart-container .game-image{
+    height:200px;
+  }
+}
+  
 /* Hero görsel  */
 .game-hero{
   max-width:1000px;
@@ -849,6 +928,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
