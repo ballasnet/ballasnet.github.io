@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- ANA SAYFA -->
+  <url>
+    <loc>https://ballasnet.com/</loc>
+    <lastmod>2025-02-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/hero.jpg</image:loc>
+      <image:title>BallasNet PC Oyun Vitrini</image:title>
+    </image:image>
+  </url>
+
+  <!-- POPÜLER OYUNLAR SAYFASI (Ana sayfada filtrelenmiş görünüm) -->
+  <url>
+    <loc>https://ballasnet.com/#populer</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- INDIE OYUNLAR -->
+  <url>
+    <loc>https://ballasnet.com/#indie</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- DÜŞÜK SİSTEM OYUNLARI -->
+  <url>
+    <loc>https://ballasnet.com/#dusuk-sistem</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- TERRARIA -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/terraria/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/terraria/terraria.webp</image:loc>
+      <image:title>Terraria PC İndir</image:title>
+      <image:caption>2D sandbox macera oyunu Terraria</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DELTARUNE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/deltarune/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/deltarune/deltarune.webp</image:loc>
+      <image:title>Deltarune PC İndir</image:title>
+      <image:caption>Toby Fox'un RPG oyunu Deltarune</image:caption>
+    </image:image>
+  </url>
+
+  <!-- PLANTS VS ZOMBIES -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/plants-vs-zombies/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/plants-vs-zombies/plants-vs-zombies.webp</image:loc>
+      <image:title>Plants vs Zombies PC İndir</image:title>
+      <image:caption>Kule savunma oyunu Plants vs Zombies</image:caption>
+    </image:image>
+  </url>
+
+  <!-- CELESTE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/celeste/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/celeste/celeste2.jpg</image:loc>
+      <image:title>Celeste PC İndir</image:title>
+      <image:caption>Zorlu platform oyunu Celeste</image:caption>
+    </image:image>
+  </url>
+
+  <!-- BABA IS YOU -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/babaisyou/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/babaisyou/babaisyou.webp</image:loc>
+      <image:title>Baba Is You PC İndir</image:title>
+      <image:caption>Bulmaca oyunu Baba Is You</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DOKI DOKI LITERATURE CLUB -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/ddlc/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/ddlc/dokidoki2.webp</image:loc>
+      <image:title>Doki Doki Literature Club PC İndir</image:title>
+      <image:caption>Görsel roman oyunu Doki Doki Literature Club</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HOTLINE MIAMI -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/hotline-miami/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/hotline-miami/hotline-miami.webp</image:loc>
+      <image:title>Hotline Miami PC İndir</image:title>
+      <image:caption>Aksiyon oyunu Hotline Miami</image:caption>
+    </image:image>
+  </url>
+
+  <!-- GTA SAN ANDREAS -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/gtasanandreas/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/gtasanandreas/gtasanandreas.webp</image:loc>
+      <image:title>GTA San Andreas PC İndir</image:title>
+      <image:caption>Açık dünya oyunu GTA San Andreas</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HALF-LIFE 2 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/half-life2/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/half-life2/half-life2.webp</image:loc>
+      <image:title>Half-Life 2 PC İndir</image:title>
+      <image:caption>FPS oyunu Half-Life 2</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DOOM 64 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/doom64/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/doom64/doom64.webp</image:loc>
+      <image:title>Doom 64 PC İndir</image:title>
+      <image:caption>Klasik FPS oyunu Doom 64</image:caption>
+    </image:image>
+  </url>
+
+  <!-- UNDERTALE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/undertale/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/undertale/undertale.webp</image:loc>
+      <image:title>Undertale PC İndir</image:title>
+      <image:caption>RPG oyunu Undertale</image:caption>
+    </image:image>
+  </url>
+
+  <!-- PAPERS, PLEASE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/papers-please/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/papers-please/papersplease2.jpg</image:loc>
+      <image:title>Papers, Please PC İndir</image:title>
+      <image:caption>Sınır kontrol simülasyonu Papers, Please</image:caption>
+    </image:image>
+  </url>
+
+  <!-- STARDEW VALLEY -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/stardew-valley/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/stardew-valley/stardewvalley.jpg</image:loc>
+      <image:title>Stardew Valley PC İndir</image:title>
+      <image:caption>Çiftlik simülasyonu Stardew Valley</image:caption>
+    </image:image>
+  </url>
+
+  <!-- FIVE NIGHTS AT FREDDY'S -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/fnaf-1/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/fnaf-1/fnaf-1.webp</image:loc>
+      <image:title>Five Nights at Freddy's PC İndir</image:title>
+      <image:caption>Korku oyunu Five Nights at Freddy's</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HOLLOW KNIGHT -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/hollow-knight/</loc>
+    <lastmod>17.02.2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/hollow-knight/hollow-knight.jpg</image:loc>
+      <image:title>Hollow Knight PC İndir</image:title>
+      <image:caption>Metroidvania oyunu Hollow Knight</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
