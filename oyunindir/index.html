@@ -43,21 +43,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
+            gap: 25px;
+            max-height: 100vh;
         }
 
         h1 {
             color: #fff;
-            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-size: clamp(1.2rem, 3vw, 2rem);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-shadow: 0 4px 20px rgba(0,0,0,0.8);
             line-height: 1.2;
         }
 
         .cover-image {
-            width: 600px;
+            width: 700px;
             height: 400px;
             object-fit: cover;
             border-radius: 12px;
@@ -67,23 +68,25 @@
 
         .link-listesi {
             display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
 
         .link-listesi a {
-            padding: 20px 50px;
+            padding: 15px 40px;
             background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
             border: 2px solid #333;
             color: #fff;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             letter-spacing: 2px;
             transition: all 0.3s ease;
             text-transform: uppercase;
             border-radius: 8px;
+            min-width: 280px;
+            text-align: center;
         }
 
         .link-listesi a:hover {
@@ -95,17 +98,22 @@
 
         @media (max-width: 768px) {
             .cover-image {
-                width: 200px;
-                height: 280px;
+                width: 90vw;
+                height: 250px;
             }
             
             .link-listesi a {
-                padding: 15px 30px;
-                font-size: 16px;
+                padding: 12px 30px;
+                font-size: 14px;
+                min-width: 240px;
             }
             
             h1 {
-                font-size: clamp(1.2rem, 5vw, 2rem);
+                font-size: clamp(1rem, 4vw, 1.5rem);
+            }
+            
+            .content {
+                gap: 20px;
             }
         }
     </style>
