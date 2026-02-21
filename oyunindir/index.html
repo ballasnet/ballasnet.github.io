@@ -66,6 +66,23 @@
             border: 3px solid rgba(255,255,255,0.1);
         }
 
+        .cover-image {
+    width: 700px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    border: 3px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cover-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+    border-color: rgba(255,255,255,0.3);
+}
+
         .link-listesi {
             display: flex;
             flex-direction: column;
@@ -116,6 +133,7 @@
                 gap: 20px;
             }
         }
+        
     </style>
 </head>
 <body>
@@ -125,6 +143,9 @@
         <h1>BALLASNET OYUNİNDİR SAYFASINA HOŞGELDİNİZ</h1>
         
         <img src="oyunindir.webp" alt="Oyun İndir" class="cover-image">
+        <a href="https://ballasnet.com/">
+    <img src="oyunindir.webp" alt="Oyun İndir" class="cover-image">
+</a>
         
         <div class="link-listesi">
             <a href="https://ballasnet.com/">BALLASNETE GİT</a>
