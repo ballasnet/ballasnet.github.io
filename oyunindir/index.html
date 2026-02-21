@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BALLASNET İNDİRME SAYFASI</title>
+    <title>BALLASNET OYUNİNDİR</title>
     <style>
         * {
             margin: 0;
@@ -32,7 +32,7 @@
             background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1920&q=80');
             background-size: cover;
             background-position: center;
-            filter: brightness(0.4);
+            filter: brightness(0.3);
             z-index: -1;
         }
 
@@ -40,43 +40,73 @@
             text-align: center;
             z-index: 1;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
         }
 
         h1 {
             color: #fff;
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-size: clamp(1.5rem, 4vw, 3rem);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 40px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            line-height: 1.2;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .cover-image {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .link-listesi {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .link-listesi a {
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+            border: 2px solid #333;
             color: #fff;
             text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: bold;
             letter-spacing: 2px;
-            border-radius: 50px;
-            border: 2px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+            border-radius: 8px;
         }
 
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            border-color: rgba(255,255,255,0.3);
+        .link-listesi a:hover {
+            background: linear-gradient(135deg, #222, #1a1a1a);
+            border-color: #555;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .btn:active {
-            transform: translateY(-2px) scale(1.02);
+        @media (max-width: 768px) {
+            .cover-image {
+                width: 200px;
+                height: 280px;
+            }
+            
+            .link-listesi a {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+            
+            h1 {
+                font-size: clamp(1.2rem, 5vw, 2rem);
+            }
         }
     </style>
 </head>
@@ -84,8 +114,13 @@
     <div class="background-image"></div>
     
     <div class="content">
-        <h1>BALLASNET İNDİRME SAYFASINA HOŞGELDİNİZ</h1>
-        <a href="https://ballasnet.com/" class="btn">BALLASNETE GİT</a>
+        <h1>BALLASNET OYUNİNDİR SAYFASINA HOŞGELDİNİZ</h1>
+        
+        <img src="oyunindir.webp" alt="Oyun İndir" class="cover-image">
+        
+        <div class="link-listesi">
+            <a href="https://ballasnet.com/">BALLASNETE GİT</a>
+        </div>
     </div>
 </body>
 </html>
