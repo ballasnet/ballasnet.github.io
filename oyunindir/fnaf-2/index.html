@@ -493,22 +493,22 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 
 /* Linkler ve Yan Kartlar Container */
 .linkler-with-cards {
-  max-width: 1200px;
+  max-width: 1400px; /* Daha geniş */
   margin: 0 auto 50px;
-  padding: 0 20px;
+  padding: 0 40px; /* Yanlardan daha fazla boşluk */
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 30px;
+  justify-content: space-between; /* Uçlara yasla */
+  gap: 60px; /* Arada daha fazla mesafe */
 }
 
-/* Yan Kartlar */
+/* Yan Kartlar - DAHA BÜYÜK */
 .side-card {
   flex-shrink: 0;
-  width: 200px;
+  width: 280px; /* 200'den 280'e çıkardım */
   background: #0f0f0f;
   border: 1px solid #222;
-  padding: 10px;
+  padding: 15px; /* 10'dan 15'e */
   transition: all 0.15s ease-out;
   text-decoration: none;
   display: block;
@@ -522,7 +522,7 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 
 .side-card .game-image {
   width: 100%;
-  height: 120px;
+  height: 180px; /* 120'den 180'e çıkardım */
   background: #000;
   overflow: hidden;
 }
@@ -535,16 +535,16 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 }
 
 .side-card .game-title {
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 12px;
+  font-size: 16px; /* 14'ten 16'ya */
   color: #fff;
   text-align: center;
   font-weight: bold;
 }
 
-/* Linkler Bölümü Ortada */
+/* Linkler Bölümü Ortada - SABİT GENİŞLİK */
 .linkler-center {
-  flex: 1;
+  flex: 0 0 400px; /* Esnek değil, sabit 400px */
   max-width: 400px;
 }
 
@@ -568,18 +568,28 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
   background: #222;
 }
 
+/* Link listesi dikey mi yatay mı? Mevcut haliyle kalabilir */
+.link-listesi {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 /* Mobil: Kartları gizle, linkler altta kalsın */
-@media(max-width: 768px) {
+@media(max-width: 900px) { /* 768 yerine 900 */
   .linkler-with-cards {
     flex-direction: column;
     gap: 20px;
+    padding: 0 20px;
   }
   
   .side-card {
-    display: none; /* Mobilde gizle */
+    display: none;
   }
   
   .linkler-center {
+    flex: 1;
     max-width: 100%;
     width: 100%;
   }
