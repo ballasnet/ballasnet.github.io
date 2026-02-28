@@ -263,20 +263,87 @@ body{background:#0b0b0b;color:#fff;line-height:1.6}
 /* H1 - SEO Başlık */
 h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase}
 
-/* Hero Görsel */
-.game-hero{
-  max-width:600px;
-  margin:0 auto 40px;
-  padding:0;
+/* Hero ve Yan Kartlar Container */
+.hero-with-cards {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
-.game-hero img{
-  width:100%;
-  height:270px;
-  object-fit:cover;
-  display:block;
-  border:2px solid #222;
-  background:#000;
+/* Yan Kartlar - Hero boyutuna uygun */
+.side-card {
+  flex-shrink: 0;
+  width: 200px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 10px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
+}
+
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+
+.side-card .game-image {
+  width: 100%;
+  height: 140px;
+  background: #000;
+  overflow: hidden;
+}
+
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.side-card .game-title {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Hero ortada sabit */
+.hero-center {
+  flex-shrink: 0;
+  width: 600px; /* Mevcut hero genişliği */
+}
+
+.hero-center img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #222;
+  background: #000;
+}
+
+/* Mobil: Kartları gizle */
+@media(max-width: 900px) {
+  .hero-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .side-card {
+    display: none;
+  }
+  
+  .hero-center {
+    width: 100%;
+    max-width: 600px;
+  }
 }
 
 /* Linkler */
