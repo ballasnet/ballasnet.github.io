@@ -743,9 +743,23 @@ h1{font-size:20px}
 }
 
 
+
 /* Erişilebilirlik */
 a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Sadece açıklama bölümündeki linkler */
+section.aciklama[aria-label="Detaylı Bilgi"] a {
+  color: #007bff;      /* İstediğin mavi renk */
+  text-decoration: none; /* Alt çizgiyi kaldırır */
+}
+
+/* Hover durumunda (fare üzerine gelince) */
+section.aciklama[aria-label="Detaylı Bilgi"] a:hover {
+  color: #0056b3;       /* İstersen biraz koyu mavi */
+  text-decoration: underline; /* Alt çizgi sadece hover'da olabilir */
+}
+
 </style>
 </head>
 
@@ -913,9 +927,9 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 <p>Oyun, klasik 2D retro grafiklerle korku atmosferini güçlendirir. Her gece artan zorluklar ve değişen Springtrap davranışları, oyunu tekrar oynanabilir kılar. Five Nights at Freddy's 3, hem yeni başlayanlar hem de korku oyunu deneyimi arayan oyuncular için unutulmaz bir deneyim sunar. <a href="/oyunindir/fnaf-2/">FNAF 2</a>'yide keşfedin!</p>
 
 <h3>Sıkça Sorulan Sorular</h3>
-<p>FNAF 3 ne zaman çıktı? Five Nights at Freddy's 3, 2 Mart 2015 tarihinde Scott Cawthon tarafından yayınlandı.</p>
-<p>FNAF 3'te kaç animatronik var? FNAF 3'te tek fiziksel animatronik Springtrap bulunur. Ancak eski hayalet animatronikler (Phantom Freddy, Phantom Chica, Phantom Foxy vb.) de oyunda yer alır.</p>
-<p>FNAF 3'ün sonu nedir? FNAF 3'ün iyi sonunda, Fazbear's Fright yanar ve Springtrap hayatta kalır. Kötü sonunda ise işletme kapatılır.</p>
+<p><strong>FNAF 3 ne zaman çıktı?</strong> Five Nights at Freddy's 3, 2 Mart 2015 tarihinde Scott Cawthon tarafından yayınlandı.</p>
+<p><strong>FNAF 3'te kaç animatronik var?</strong> FNAF 3'te tek fiziksel animatronik Springtrap bulunur. Ancak eski hayalet animatronikler (Phantom Freddy, Phantom Chica, Phantom Foxy vb.) de oyunda yer alır.</p>
+<p><strong>FNAF 3'ün sonu nedir?</strong> FNAF 3'ün iyi sonunda, Fazbear's Fright yanar ve Springtrap hayatta kalır. Kötü sonunda ise işletme kapatılır.</p>
 </section>
 
 </main>
