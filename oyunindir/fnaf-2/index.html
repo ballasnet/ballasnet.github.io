@@ -491,6 +491,100 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
   display:inline-block;
 }
 
+/* Linkler ve Yan Kartlar Container */
+.linkler-with-cards {
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Yan Kartlar */
+.side-card {
+  flex-shrink: 0;
+  width: 200px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 10px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
+}
+
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+
+.side-card .game-image {
+  width: 100%;
+  height: 120px;
+  background: #000;
+  overflow: hidden;
+}
+
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.side-card .game-title {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Linkler Bölümü Ortada */
+.linkler-center {
+  flex: 1;
+  max-width: 400px;
+}
+
+.linkler-center h2 {
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.linkler-center h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -12.5%;
+  right: -12.5%;
+  height: 1px;
+  background: #222;
+}
+
+/* Mobil: Kartları gizle, linkler altta kalsın */
+@media(max-width: 768px) {
+  .linkler-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .side-card {
+    display: none; /* Mobilde gizle */
+  }
+  
+  .linkler-center {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+     
 /* Footer */
 .site-footer{text-align:center;padding:20px;font-size:13px;color:#777;border-top:1px solid #222}
 
@@ -511,6 +605,8 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
+
+
 
 <body>
 
@@ -579,16 +675,36 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 </div>
 </section>
 
-<!-- İndirme Linkleri -->
-<section class="linkler" aria-labelledby="linkler-baslik">
-<h2 id="linkler-baslik">LİNKLER</h2>
-<div class="link-listesi">
-<a href="https://drive.google.com/file/d/FNAF2_LINK_1/view" rel="nofollow noopener noreferrer" target="_blank">LİNK 1</a>
-<a href="https://mega.nz/file/FNAF2_LINK_2" rel="nofollow noopener noreferrer" target="_blank">LİNK 2</a>
-<a href="https://www.dropbox.com/scl/fi/FNAF2_LINK_3" rel="nofollow noopener noreferrer" target="_blank">LİNK 3</a>
-</div>
-</section>
+<!-- İndirme Linkleri ve Yan Kartlar -->
+<section class="linkler-with-cards" aria-labelledby="linkler-baslik">
+  
+  <!-- SOL KART - FNAF 1 -->
+  <a href="/oyunindir/fnaf-1/" class="side-card" aria-label="Five Nights at Freddy's 1 oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/fnaf-1/fnaf-1.webp" alt="Five Nights at Freddy's 1" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Five Nights At Freddy's</div>
+  </a>
 
+  <!-- ORTA - LİNKLER -->
+  <div class="linkler-center">
+    <h2 id="linkler-baslik">LİNKLER</h2>
+    <div class="link-listesi">
+      <a href="https://drive.google.com/file/d/FNAF2_LINK_1/view" rel="nofollow noopener noreferrer" target="_blank">LİNK 1</a>
+      <a href="https://mega.nz/file/FNAF2_LINK_2" rel="nofollow noopener noreferrer" target="_blank">LİNK 2</a>
+      <a href="https://mega.nz/file/FNAF2_LINK_3" rel="nofollow noopener noreferrer" target="_blank">LİNK 3</a>
+    </div>
+  </div>
+
+  <!-- SAĞ KART - FNAF 3 -->
+  <a href="/oyunindir/fnaf-3/" class="side-card" aria-label="Five Nights at Freddy's 3 oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/fnaf-3/fnaf-3.webp" alt="Five Nights at Freddy's 3" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Five Nights At Freddy's 3</div>
+  </a>
+
+</section>
 <!-- Slider Notu -->
 <div class="slider-not">
 <p>NOT: TÜM LİNKLER VİRÜS TARAMALARINDAN GEÇMİŞTİR.</p>
