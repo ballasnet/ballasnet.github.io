@@ -259,22 +259,88 @@ body{background:#0b0b0b;color:#fff;line-height:1.6}
 /* H1 - SEO Başlık */
 h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase}
 
-/* Hero Görsel */
-.game-hero{
-  max-width:600px;   /* 1000 → 560 */
-  margin:0 auto 40px;
-  padding:0;
+/* Hero ve Yan Kartlar Container */
+.hero-with-cards {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
-.game-hero img{
-  width:100%;
-  height:270px;     
-  object-fit:cover;  
-  display:block;
-  border:2px solid #222;
-  background:#000;
+/* Yan Kartlar - Hero boyutuna uygun */
+.side-card {
+  flex-shrink: 0;
+  width: 200px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 10px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
 }
 
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+
+.side-card .game-image {
+  width: 100%;
+  height: 140px;
+  background: #000;
+  overflow: hidden;
+}
+
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.side-card .game-title {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Hero ortada sabit */
+.hero-center {
+  flex-shrink: 0;
+  width: 600px; /* Mevcut hero genişliği */
+}
+
+.hero-center img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #222;
+  background: #000;
+}
+
+/* Mobil: Kartları gizle */
+@media(max-width: 900px) {
+  .hero-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .side-card {
+    display: none;
+  }
+  
+  .hero-center {
+    width: 100%;
+    max-width: 600px;
+  }
+}
 /* Linkler */
 .link-listesi{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
 .link-listesi a{padding:20px 50px;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);border:2px solid #333;color:#fff;text-decoration:none;font-size:18px;font-weight:bold;letter-spacing:2px;transition:all .3s ease;text-transform:uppercase}
@@ -536,9 +602,30 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
      ============================================ -->
 <main id="main-content">
 
-<!-- Hero Görsel -->
-<section class="game-hero" aria-label="Oyun Kapak Görseli">
-<img src="fnaf-1.webp" alt="Five Nights at Freddy’s oyun kapak görseli - BallasNet indie oyun vitrini" loading="eager" fetchpriority="high" width="750" height="270">
+<!-- Hero ve Yan Kartlar -->
+<section class="hero-with-cards" aria-label="Oyun Kapak Görseli ve Benzer Oyunlar">
+  
+  <!-- SOL KART - FNAF 2 -->
+  <a href="/oyunindir/fnaf-2/" class="side-card" aria-label="Five Nights at Freddy's 2 oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/fnaf-2/fnaf-2.webp" alt="Five Nights at Freddy's 2" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Five Nights At Freddy's</div>
+  </a>
+
+  <!-- ORTA - HERO GÖRSEL -->
+  <div class="hero-center">
+    <img src="fnaf-1.webp" alt="Five Nights at Freddy's oyun kapak görseli - BallasNet indie oyun vitrini" loading="eager" fetchpriority="high" width="750" height="270">
+  </div>
+
+  <!-- SAĞ KART - FNAF 3 -->
+  <a href="/oyunindir/fnaf-3/" class="side-card" aria-label="Five Nights at Freddy's 3 oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/fnaf-3/fnaf-3.webp" alt="Five Nights at Freddy's 3" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Five Nights At Freddy's 3</div>
+  </a>
+
 </section>
 
 <!-- Açıklama -->
