@@ -601,9 +601,17 @@ h1{font-size:20px}
 .aciklama{padding:20px}
 }
 
-/* OYUN BİLGİLERİ - Cursor değişmesin, hover efektleri kalsın */
+/* SADECE OYUN BİLGİLERİ - Cursor default ve yazılar seçilemez */
 .oyun-bilgileri .bilgi-kutu {
   cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.oyun-bilgileri .bilgi-kutu * {
+  pointer-events: none;
 }
 
 
