@@ -1253,6 +1253,7 @@ const allGames = [
   { title: "Celeste", slug: "celeste", image: "/oyunindir/celeste/celeste2.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
   { title: "Baba Is You", slug: "babaisyou", image: "/oyunindir/babaisyou/babaisyou.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Doki Doki Literature Club", slug: "ddlc", image: "/oyunindir/ddlc/dokidoki2.webp", tags: ["Indie", "Düşük Sistem", "Popüler"] },
+  { title: "Postal 2", slug: "postal-2", image: "/oyunindir/postal-2/postal-2.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "Hotline Miami", slug: "hotline-miami", image: "/oyunindir/hotline-miami/hotline-miami.webp", tags: ["Indie", "Düşük Sistem"] },
   { title: "GTA San Andreas", slug: "gtasanandreas", image: "/oyunindir/gtasanandreas/gtasanandreas.webp", tags: ["Popüler", "Düşük Sistem"] },
   { title: "Half-Life 2", slug: "half-life2", image: "/oyunindir/half-life2/half-life2.webp", tags: ["Popüler", "Düşük Sistem"] },
@@ -1408,43 +1409,7 @@ function fillSlider(slider, games) {
 }
 
   
-  //  const div = document.createElement("div");
-  //  div.className = "game";
 
-   // const imgDiv = document.createElement("div");
-   // imgDiv.className = "game-image";
-
-  //  const img = document.createElement("img");
-   // img.dataset.src = game.image; // LazyLoad
-  //  img.alt = game.title;
-   // img.loading = "lazy";
-
-  //  imgDiv.appendChild(img);
-
-   // const titleDiv = document.createElement("div");
-   // titleDiv.className = "game-title";
-   // titleDiv.textContent = game.title;
-
-  //  const tagsContainer = document.createElement("div");//
-  //  tagsContainer.className = "game-tags-container";
-
-  //  if (game.tags) {
-    //  game.tags.forEach(tagText => {//
-       // const tagDiv = document.createElement("div");
-    //    tagDiv.className = "game-tag";
-      //  tagDiv.textContent = tagText;//
-     //   tagsContainer.appendChild(tagDiv);
-   //*   });
-   // }
-
-   // div.appendChild(imgDiv);
-  //  div.appendChild(titleDiv);
-  //  div.appendChild(tagsContainer);
-
- //   a.appendChild(div);
- //   slider.appendChild(a);
-//  });
-//}
 
 
 // LazyLoad fonksiyonu: sadece slider içindeki görünür resimleri yükler
@@ -1528,50 +1493,7 @@ function updateGameTags(slug, newTags) {
   });
 }
 
-// =====================
-// DOM Yüklendiğinde
-// =====================
-//document.addEventListener("DOMContentLoaded", () => {
 
-  // Mozaik kartları doldur (LazyLoad yok, değişmedi)
-//  document.querySelectorAll(".mozaik-card").forEach(card => {
- //   const slug = card.dataset.slug;
- //   const img = card.querySelector("img");
-  //  const titleBox = card.querySelector(".mozaik-title");
-  //  const game = smallGames.find(g => g.slug === slug) || largeGames.find(g => g.slug === slug);
- //   if (!game) return;
-
-//    img.src = game.image;
-//    img.alt = game.title;
-//    titleBox.textContent = game.title;
-
-//    card.onclick = () => window.location.href = "/oyunindir/" + game.slug;
-//  });
-
-  // =====================
-  // Sliderlar
-  // =====================
-
-  // Indie slider
-//  const indieGames = [...allGames];
-//  shuffle(indieGames);
-//  initSlider(".indie-wrapper", indieGames);
-
-  // Popüler slider (HTML bazlı)
-//  const populerGamesFromHTML = Array.from(document.querySelectorAll(".shuffle-populer .game")).map(g => ({
-//    title: g.querySelector(".game-title").textContent,
-//    slug: g.closest("a").getAttribute("href").replace(".html", ""),
- //   image: g.querySelector("img").getAttribute("src"),
-//    tags: Array.from(g.querySelectorAll(".game-tag")).map(t => t.textContent)
-//  }));
-//  shuffle(populerGamesFromHTML);
-//  initSlider(document.querySelector(".shuffle-populer").closest(".slider-wrapper"), populerGamesFromHTML);
-
-  // Düşük Sistem slider
-  //const dusukGames = allGames.filter(g => g.tags && g.tags.includes("Düşük Sistem"));
- // shuffle(dusukGames);
-//  initSlider(".dusuk-wrapper", dusukGames);
-//});
 
 // =====================
 // Gece / Gündüz Modu
