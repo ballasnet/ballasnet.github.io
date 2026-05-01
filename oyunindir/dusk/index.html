@@ -287,8 +287,346 @@
 }
 </script>
 </head>
+<style> 
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#0b0b0b;color:#fff;line-height:1.6}
 
-<!-- ============================================ CSS ============================================ --> <style> *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif} body{background:#0b0b0b;color:#fff;line-height:1.6} /* H1 - SEO Başlık */ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase} /* Hero Görsel */ .game-hero{ max-width:600px; margin:0 auto 40px; padding:0; } .game-hero img{ width:100%; height:270px; object-fit:cover; display:block; border:2px solid #222; background:#000; } /* Linkler - */ .link-listesi{display:flex;gap:30px;flex-wrap:wrap;justify-content:center} .link-listesi a{ padding:20px 50px; background:linear-gradient(135deg,#1a1a1a,#0f0f0f); border:2px solid #333; color:#fff; text-decoration:none; font-size:18px; font-weight:bold; letter-spacing:2px; transition:all .3s ease; text-transform:uppercase } .link-listesi a:hover{ background:linear-gradient(135deg,#222,#1a1a1a); border-color:#555; transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,.5) } /* Açıklama Bölümü (Index 21 ile aynı) */ .aciklama{ max-width:800px; margin:0 auto 50px; padding:0 20px; line-height:1.8; color:#ccc; font-size:15px; background:#0f0f0f; border:1px solid #222; padding:30px 40px; text-align:center } .aciklama h2{text-align:center;margin-bottom:20px} .aciklama h3{text-align:center;margin-top:30px;margin-bottom:10px} .aciklama p{margin-bottom:20px} .aciklama ul{list-style-position:inside;text-align:left;display:inline-block;margin:0 auto} .aciklama li{margin-bottom:8px} /* Linkler Bölümü (Index 21 ile aynı) */ .linkler{ max-width:800px; margin:0 auto 50px; padding:0 20px; position:relative } .linkler h2{ font-size:18px; letter-spacing:2px; margin-bottom:20px; color:#fff; text-align:center; position:relative; padding-bottom:15px } .linkler h2::after{ content:''; position:absolute; bottom:0; left:-12.5%; right:-12.5%; height:1px; background:#222 } .linkler.resmi{margin-top:40px} /* Sistem Gereksinimleri (Index 21 ile aynı) */ .sistem-gereksinimleri{ max-width:800px; margin:0 auto 40px; padding:0 20px } .sistem-ana-kutu{ background:#0f0f0f; border:1px solid #222; padding:20px } .sistem-ana-kutu h2{ font-size:15px; letter-spacing:2px; margin-bottom:20px; border-bottom:1px solid #222; padding-bottom:15px; color:#fff; text-align:center } .sistem-grid{ display:flex; gap:20px; justify-content:center; flex-wrap:wrap } .sistem-kutu{ flex:1; min-width:250px; max-width:350px; background:#1a1a1a; border:1px solid #333; padding:15px; transition:all .15s ease-out } .sistem-kutu:hover{ border-color:#444; transform:scale(1.015); box-shadow:0 0 8px rgba(255,255,255,.03) } .sistem-kutu h3{ font-size:13px; letter-spacing:1px; margin-bottom:10px; color:#888; text-transform:uppercase; border-bottom:1px solid #333; padding-bottom:8px; text-align:center; user-select:none; cursor:default; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; pointer-events:none; } .sistem-kutu ul{ list-style:none; padding:0; margin:0; pointer-events:none; } .sistem-kutu li{ font-size:13px; color:#aaa; padding:3px 0; line-height:1.4; user-select:none; cursor:default; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; } .sistem-kutu li span{ color:#ccc; font-weight:bold; display:inline-block; min-width:90px } /* 3 Kart - Tüm Genişlik (Index 21 ile aynı) */ .uc-kart-container{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; max-width:1200px; margin:0 auto; } .uc-kart-container .game-card{ background:#0f0f0f; border:1px solid #222; padding:10px; transition:all 0.15s ease-out; width:100%; } .uc-kart-container .game-card:hover{ border-color:#444; transform:scale(1.015); box-shadow:0 0 8px rgba(255,255,255,0.03); } .uc-kart-container .game-image{ width:100%; height:160px; background:#000; overflow:hidden; } .uc-kart-container .game-image img{ width:100%; height:100%; object-fit:cover; display:block; } .uc-kart-container .game-title{ margin-top:10px; font-size:16px; color:#fff; text-align:center; font-weight:bold; } .uc-kart-container .game-tags-container{ display:flex; gap:6px; margin-top:8px; justify-content:center; flex-wrap:wrap; } .uc-kart-container .game-tag{ font-size:11px; color:#888; background:#1a1a1a; padding:4px 10px; border-radius:2px; } .uc-kart-container a{ text-decoration:none; color:#fff; display:block; } /* Slider Not (Index 21 ile aynı) */ .slider-not{ max-width:1200px; margin:0 auto 15px; padding:0 20px; text-align:center; pointer-events:none; } .slider-not p{ font-size:11px; color:#666; font-weight:600; font-style:normal; letter-spacing:.8px; text-transform:uppercase; user-select:none; cursor:default; } /* YouTube Videosu (Index 21 ile aynı) */ .youtube-video{ max-width:1000px; margin:50px auto; padding:0 20px; text-align:center } .youtube-video iframe{ width:75%; height:250px; border:2px solid #222; border-radius:8px; display:inline-block } /* Breadcrumb (Index 21 ile aynı) */ .breadcrumb{ max-width:1000px; margin:10px auto; padding:0 20px; font-size:14px; text-align:center; color:#aaa; } .breadcrumb a{ color:#aaa; text-decoration:none; transition:color 0.2s ease; } .breadcrumb a:hover{ color:#ccc; } .breadcrumb .separator{ color:#aaa; margin:0 8px; pointer-events:none; cursor:default; user-select:none; } .breadcrumb .current{ color:#888; pointer-events:none; cursor:default; user-select:none; display:inline-block; } /* Footer (Index 21 ile aynı) */ .site-footer{ text-align:center; padding:20px; font-size:13px; color:#777; border-top:1px solid #222 } /* Benzer Oyunlar (Index 21 ile aynı) */ .benzer-oyunlar{ max-width:1200px; margin:0 auto 60px; padding:0 20px } .benzer-oyunlar h2{ font-size:15px; letter-spacing:3px; margin-bottom:22px; border-bottom:1px solid #222; padding-bottom:10px } /* Mobil (Index 21 ile aynı) */ @media(max-width:768px){ h1{font-size:20px} .game-hero img{height:200px} .link-listesi a{padding:15px 30px;font-size:16px} .uc-kart-container{ grid-template-columns:1fr; max-width:400px; gap:15px; } .uc-kart-container .game-image{height:200px} .youtube-video iframe{width:100%;height:200px} .sistem-kutu{min-width:100%;max-width:100%} .aciklama{padding:20px} } /* Erişilebilirlik (Index 21 ile aynı) */ a:focus,button:focus{outline:2px solid #555;outline-offset:2px} .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+/* H1 - SEO Başlık */
+h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase}
+
+/* Hero ve Yan Kartlar Container */
+.hero-with-cards {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Yan Kartlar - Index ile AYNI boyut */
+.side-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 15px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
+}
+
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+
+.side-card .game-image {
+  width: 100%;
+  height: 180px;
+  background: #000;
+  overflow: hidden;
+}
+
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.side-card .game-title {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Hero ortada sabit */
+.hero-center {
+  flex-shrink: 0;
+  width: 600px;
+}
+
+.hero-center img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #222;
+  background: #000;
+}
+
+/* Mobil: Kartları gizle */
+@media(max-width: 1100px) {
+  .hero-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .side-card {
+    display: none;
+  }
+  
+  .hero-center {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+/* Linkler */
+.link-listesi{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
+.link-listesi a{padding:20px 50px;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);border:2px solid #333;color:#fff;text-decoration:none;font-size:18px;font-weight:bold;letter-spacing:2px;transition:all .3s ease;text-transform:uppercase}
+.link-listesi a:hover{background:linear-gradient(135deg,#222,#1a1a1a);border-color:#555;transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+
+/* Açıklama Bölümü */
+.aciklama{max-width:800px;margin:0 auto 50px;padding:0 20px;line-height:1.8;color:#ccc;font-size:15px;background:#0f0f0f;border:1px solid #222;padding:30px 40px;text-align:center}
+.aciklama h2{text-align:center;margin-bottom:20px}
+.aciklama h3{text-align:center;margin-top:30px;margin-bottom:10px}
+.aciklama p{margin-bottom:20px}
+.aciklama ul{list-style-position:inside;text-align:left;display:inline-block;margin:0 auto}
+.aciklama li{margin-bottom:8px}
+
+/* Linkler Bölümü */
+.linkler{max-width:800px;margin:0 auto 50px;padding:0 20px;position:relative}
+.linkler h2{font-size:18px;letter-spacing:2px;margin-bottom:20px;color:#fff;text-align:center;position:relative;padding-bottom:15px}
+.linkler h2::after{content:'';position:absolute;bottom:0;left:-12.5%;right:-12.5%;height:1px;background:#222}
+.linkler.resmi{margin-top:40px}
+
+/* Sistem Gereksinimleri */
+.sistem-gereksinimleri{max-width:800px;margin:0 auto 40px;padding:0 20px}
+.sistem-ana-kutu{background:#0f0f0f;border:1px solid #222;padding:20px}
+.sistem-ana-kutu h2{font-size:15px;letter-spacing:2px;margin-bottom:20px;border-bottom:1px solid #222;padding-bottom:15px;color:#fff;text-align:center}
+.sistem-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.sistem-kutu{flex:1;min-width:250px;max-width:350px;background:#1a1a1a;border:1px solid #333;padding:15px;transition:all .15s ease-out}
+.sistem-kutu:hover{border-color:#444;transform:scale(1.015);box-shadow:0 0 8px rgba(255,255,255,.03)}
+.sistem-kutu h3{
+  font-size:13px;
+  letter-spacing:1px;
+  margin-bottom:10px;
+  color:#888;
+  text-transform:uppercase;
+  border-bottom:1px solid #333;
+  padding-bottom:8px;
+  text-align:center;
+  user-select:none;
+  cursor:default;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  pointer-events:none;
+}
+.sistem-kutu ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  pointer-events:none;
+}
+.sistem-kutu li{
+  font-size:13px;
+  color:#aaa;
+  padding:3px 0;
+  line-height:1.4;
+  user-select:none;
+  cursor:default;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.sistem-kutu li span{color:#ccc;font-weight:bold;display:inline-block;min-width:90px}
+
+/* Oyun Bilgileri - Dosya Boyutu ve Süre */
+.oyun-bilgileri{max-width:800px;margin:0 auto 40px;padding:0 20px}
+.bilgi-ana-kutu{background:#0f0f0f;border:1px solid #222;padding:20px}
+.bilgi-ana-kutu h2{font-size:15px;letter-spacing:2px;margin-bottom:20px;border-bottom:1px solid #222;padding-bottom:15px;color:#fff;text-align:center}
+.bilgi-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.bilgi-kutu{flex:1;min-width:200px;max-width:250px;background:#1a1a1a;border:1px solid #333;padding:20px;transition:all .15s ease-out;text-align:center}
+.bilgi-kutu:hover{border-color:#444;transform:scale(1.015);box-shadow:0 0 8px rgba(255,255,255,.03)}
+.bilgi-kutu .bilgi-icon{font-size:32px;margin-bottom:10px}
+.bilgi-kutu h3{font-size:14px;letter-spacing:1px;margin-bottom:8px;color:#888;text-transform:uppercase}
+.bilgi-kutu p{font-size:18px;color:#fff;font-weight:bold}
+
+/* Benzer Oyunlar Slider */
+.benzer-oyunlar{max-width:1200px;margin:0 auto 60px;padding:0 20px}
+.benzer-oyunlar h2{font-size:15px;letter-spacing:3px;margin-bottom:22px;border-bottom:1px solid #222;padding-bottom:10px}
+.slider-wrapper{position:relative;overflow:hidden}
+.slider{display:flex;gap:26px;transition:transform .5s ease;will-change:transform}
+.slider .game{flex-shrink:0;width:320px;height:200px;display:flex;flex-direction:column;padding:8px;background:#0f0f0f;border:1px solid #222}
+.game-image{width:100%;height:130px;background:#000}
+.game-image img{width:100%;height:100%;object-fit:cover}
+.game-title{margin-top:6px;font-size:15px}
+.game-tags-container{display:flex;gap:4px;margin-top:2px}
+.game-tag{font-size:12px;color:#888;background:#111;padding:4px 8px}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:#000;color:#fff;border:1px solid #222;font-size:24px;padding:6px 12px;cursor:pointer;z-index:10}
+.slider-btn.left{left:10px}
+.slider-btn.right{right:10px}
+
+/* 3 Kart - Tüm Genişlik */
+.uc-kart-container{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.uc-kart-container .game-card{
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:10px;
+  transition:all 0.15s ease-out;
+  width:100%;
+}
+
+.uc-kart-container .game-card:hover{
+  border-color:#444;
+  transform:scale(1.015);
+  box-shadow:0 0 8px rgba(255,255,255,0.03);
+}
+
+.uc-kart-container .game-image{
+  width:100%;
+  height:160px;
+  background:#000;
+  overflow:hidden;
+}
+
+.uc-kart-container .game-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.uc-kart-container .game-title{
+  margin-top:10px;
+  font-size:16px;
+  color:#fff;
+  text-align:center;
+  font-weight:bold;
+}
+
+.uc-kart-container .game-tags-container{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.uc-kart-container .game-tag{
+  font-size:11px;
+  color:#888;
+  background:#1a1a1a;
+  padding:4px 10px;
+  border-radius:2px;
+}
+
+.uc-kart-container a{
+  text-decoration:none;
+  color:#fff;
+  display:block;
+}
+
+
+/* Mobil: Dikey sırala */
+@media(max-width:768px){
+  .uc-kart-container{
+    grid-template-columns:1fr;
+    max-width:400px;
+    gap:15px;
+  }
+  
+  .uc-kart-container .game-image{
+    height:200px;
+  }
+  
+  .bilgi-grid{
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bilgi-kutu{
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+
+
+/* Slider Not */
+.slider-not{
+  max-width:1200px;
+  margin:0 auto 15px;
+  padding:0 20px;
+  text-align:center;
+  pointer-events:none; 
+}
+.slider-not p{
+  font-size:11px;
+  color:#666;
+  font-weight:600;
+  font-style:normal;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  user-select:none;
+  cursor:default;
+}
+
+/* YouTube Videosu */
+.youtube-video{max-width:1000px;margin:50px auto;padding:0 20px;text-align:center}
+.youtube-video iframe{width:75%;height:250px;border:2px solid #222;border-radius:8px;display:inline-block}
+
+/* Breadcrumb */
+.breadcrumb{
+  max-width:1000px;
+  margin:10px auto;
+  padding:0 20px;
+  font-size:14px;
+  text-align:center;
+  color:#aaa;
+}
+
+.breadcrumb a{
+  color:#aaa;
+  text-decoration:none;
+  transition:color 0.2s ease;
+}
+
+.breadcrumb a:hover{
+  color:#ccc;
+}
+
+.breadcrumb .separator{
+  color:#aaa;
+  margin:0 8px;
+  pointer-events:none;
+  cursor:default;
+  user-select:none;
+}
+
+.breadcrumb .current{
+  color:#888;
+  pointer-events:none;
+  cursor:default;
+  user-select:none;
+  display:inline-block;
+}
+
+/* Footer */
+.site-footer{text-align:center;padding:20px;font-size:13px;color:#777;border-top:1px solid #222}
+
+/* Mobil */
+@media(max-width:768px){
+h1{font-size:20px}
+.game-hero img{height:200px}
+.link-listesi a{padding:15px 30px;font-size:16px}
+.slider .game{width:260px;height:170px}
+.youtube-video iframe{width:100%;height:200px}
+.sistem-kutu{min-width:100%;max-width:100%}
+.aciklama{padding:20px}
+}
 </style>
 <base target="_blank">
 
