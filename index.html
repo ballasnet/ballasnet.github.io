@@ -39,7 +39,7 @@
 <meta name="theme-color" content="#0b0b0b">
 <meta name="msapplication-TileColor" content="#0b0b0b">
 
-<!-- Schema JSON-LD'ler (style içinden BURAYA taşındı) -->
+<!-- Schema JSON-LD'ler-->
 <script type="application/ld+json" class="seo-only">
 {
   "@context": "https://schema.org",
@@ -243,7 +243,7 @@ a{color:#fff;text-decoration:none;}
 .slider-btn.right{right:10px;}
 
 .dusuk-section {
-  margin-top: 60px; /* Mozaiklerden aşağı kaydırmak için başlık ve slider birlikte */
+  margin-top: 60px; 
 }
 
 
@@ -296,7 +296,7 @@ a{color:#fff;text-decoration:none;}
 .mozaik-card.kare{grid-column:span 1;grid-row:span 1;}
 .mozaik-card.dikdortgen{grid-column:span 2;grid-row:span 1;}
 
-/* FIX: Indie slider daralma bug'u */
+/* indie slider daralma bugu */
 .slider-wrapper {
   width: 100%;
 }
@@ -311,7 +311,7 @@ a{color:#fff;text-decoration:none;}
   scale: 1;
 }
 
-/* SLIDER ALANI GERÇEK GENİŞLİK */
+/* SLIDER ALANI GENİŞLİK */
 .section .slider-wrapper {
   padding-left: 0;
   padding-right: 0;
@@ -326,14 +326,10 @@ a{color:#fff;text-decoration:none;}
 .haftanin-oyunu-container {
   display: flex;
   align-items: center;
-  gap: 20px; /* öğeler arasındaki boşluk */
+  gap: 20px; 
 }
 
-/* Haftanın Oyunu Görseli */
-/* Haftanın Oyunu Kutusu */
-
-
-/* Görsel */
+/* görsel */
 .haftanin-oyunu img {
   width: 100%;
   height: 100%;
@@ -343,12 +339,12 @@ a{color:#fff;text-decoration:none;}
 }
 
 
-/* Dışa doğru hover */
+/* dışa doğru hover */
 .haftanin-oyunu:hover img {
   transform: scale(1.004);
 }
 
-/* Çark */
+/* çark */
 .wheel {
   width: 150px;
   height: 150px;
@@ -358,7 +354,7 @@ a{color:#fff;text-decoration:none;}
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 8px; /* isteğe bağlı */
+  border-radius: 8px; 
 }
 
 .wheel {
@@ -368,14 +364,14 @@ a{color:#fff;text-decoration:none;}
 
 
 .wheel img {
-  width: 110%;     /* kutuyu tamamen kaplasın */
-  height: 110%;    /* kutuyu tamamen kaplasın */
-  object-fit: cover;  /* görsel kesilmeden kutuya sığar */
+  width: 110%; 
+  height: 110%;  
+  object-fit: cover;  
   transition: transform 0.2s ease;
 }
 
 .wheel:hover img {
-  transform: scale(0.95);  /* içe doğru basılma efekti */
+  transform: scale(0.95);  
 }
 
 
@@ -387,7 +383,7 @@ a{color:#fff;text-decoration:none;}
 }
 
 
-/* Ortadaki yatay dikdörtgen */
+/* ortadaki yatay dikdörtgen */
 .haftanin-oyunu {
   flex: 1;
   height: 150px;
@@ -407,22 +403,22 @@ a{color:#fff;text-decoration:none;}
   text-align: center;
 }
 
-/* Sağdaki çekiliş/placeholder */
+/* sağdaki çekiliş/placeholder */
 
 
 .haftanin-oyunu-text {
   position: absolute;
-  bottom: -24px; /* kutunun altına yazı taşsın */
+  bottom: -24px; 
   left: 50%;
   transform: translateX(-50%);
   font-size: 18px;
   font-weight: bold;
-  color: #0ff; /* neon mavi, havalı bir renk */
+  color: #0ff;
   text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
   letter-spacing: 1px;
 }
 
-/* Çekiliş Kutusu */
+/* çekiliş Kutusu */
 .cekilis {
   width: 200px;
   height: 150px;
@@ -506,7 +502,7 @@ a{color:#fff;text-decoration:none;}
 }
 
 
-/* B logosu ortada üstte */
+
 /* MASA / PANEL */
 .masa-panel {
   position: relative;
@@ -519,18 +515,18 @@ a{color:#fff;text-decoration:none;}
   box-shadow: inset 0 0 0 2px #000, 0 30px 80px rgba(0,0,0,.75);
 }
 
-/* Overlay: logo + kar efekti */
+/* logo  kar efekti */
 .masa-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* kutulara dokunulabilir */
+  pointer-events: none; 
   z-index: 4; 
 }
 
-/* Logo */
+/* logo */
 .masa-logo {
   position: absolute;
   top: 0;
@@ -541,7 +537,7 @@ a{color:#fff;text-decoration:none;}
   z-index: 5;
 }
 
-/* Kar efekti */
+/* kar efekti */
 .snow {
   position: absolute;
   top:0;
@@ -550,7 +546,7 @@ a{color:#fff;text-decoration:none;}
   height:100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: 5; /* diğer interaktif kutuların üstünde görünmesi için */
+  z-index: 5; 
 }
 
 
@@ -567,9 +563,9 @@ a{color:#fff;text-decoration:none;}
 
 /* gece güldür*/
 #theme-toggle {
-  position: absolute;  /* scroll ile takip etmez */
-  top: -3px;           /* biraz yukarıda, hafif göz hizası */
-  right: 45px;         /* sol için arttır kanki */
+  position: absolute;  
+  top: -3px;           
+  right: 45px;        
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -591,11 +587,11 @@ a{color:#fff;text-decoration:none;}
 }
 
 
-/* GECE MODU (default) */
-/* GECE MODU (default) */
+
+/* GECE MODU */
 body.dark {
-  background-color: #111;  /* site arka planı */
-  color: #fff;             /* yazılar */
+  background-color: #111;  
+  color: #fff;             
 }
 
 body.dark .masa-panel {
@@ -603,7 +599,7 @@ body.dark .masa-panel {
   border-color: #222;
 }
 
-/* Gece modunda sadece arka plan ve panel */
+/* gece modunda arka plan ve panel */
 body.dark {
   background-color: #111;
 }
@@ -611,7 +607,7 @@ body.dark .masa-panel {
   background: #111;
 }
 
-/* Gündüz modu */
+/* gündüz modu */
 body:not(.dark) {
   background-color: #F5FEFD;
 }
@@ -620,30 +616,28 @@ body:not(.dark) .masa-panel {
 }
 
 
-/* Gündüz modu: section başlıkları */
+/* gündüz modu  section başlıkları*/
 body:not(.dark) .section h2 {
-  color: #111; /* tam siyah değil, koyu gri de olabilir #111, #222 vs */
+  color: #111; 
 }
 
 body {
   min-height: 100vh;
-  /* display: flex; */
-  /* flex-direction: column; */
 }
 
 .site-footer {
-  margin-top: -50px; /* negatif margin kaldır, pozitif margin ver */
+  margin-top: -50px; 
 }
 
 
-/* Ana içerik kapsayıcın varsa (örn .container, .content, main) */
+/*ana içerik kapsayıcın varsa falan felan*/
 main {
-  padding-bottom: 30px; /* footer'a nefes */
+  padding-bottom: 30px; 
 }
 
-/* Footer */
+/* footer */
 .site-footer {
-  margin-top: 30px; /* auto YOK */
+  margin-top: 30px; 
   padding: 14px 10px;
 
   text-align: center;
@@ -655,7 +649,7 @@ main {
 }
 
 .site-footer {
-  margin-top: -50px; /* önce 20-30 px idi */
+  margin-top: -50px;
 }
 
 .snow {
@@ -672,13 +666,13 @@ main {
   will-change: transform;
 }
 
-/* ===== ÇEKİLİŞ KARTLARI – ESKİ DÜZGÜN HAL ===== */
+/* çekiliş kartları*/
 .giveaway-cards {
   display: flex;
   gap: 18px;
   flex-wrap: nowrap;
   width: 100%;
-  justify-content: center; /* ortala */
+  justify-content: center; 
 }
 
 .giveaway-card {
@@ -701,7 +695,7 @@ main {
 
 .giveaway-image {
   width: 100%;
-  height: 160px;        /* dikdörtgen görsel alanı */
+  height: 160px;      
   background-size: cover;
   background-position: center;
 }
@@ -727,10 +721,10 @@ main {
   opacity: .6;
 }
 
-/* ===== MOBİL TAM KÜÇÜLTME – TÜM İSTEKLER ===== */
+/*MOBİL*/
 @media (max-width: 768px) {
 
-  /* 0. Temel ölçek */
+  /* 0. temel ölçek */
   html {
     font-size: 13px;
   }
@@ -738,13 +732,13 @@ main {
     overflow-x: hidden;
   }
 
-  /* 1. Hero – DAHA KÜÇÜK */
+  /* 1. hero */
   .hero {
     min-height: 40vh;
     padding: 12px 10px;
   }
   .hero-image {
-    max-height: 140px;           /* 180 → 140 */
+    max-height: 140px;           
     object-fit: cover;
   }
   .search-box {
@@ -753,44 +747,44 @@ main {
     font-size: 12px;
   }
 
-  /* 2. Mozaik – YAN YANA, ALT ALTA DEĞİL */
+  /* 2. mozaik */
   .mozaik-grid {
     gap: 8px;
-    grid-template-columns: repeat(2, 1fr); /* 2 sütun sabit */
-    grid-auto-rows: 120px;       /* yükseklik sabit */
+    grid-template-columns: repeat(2, 1fr); 
+    grid-auto-rows: 120px;      
   }
   .mozaik-card.kare,
   .mozaik-card.dikdortgen {
-    grid-column: span 1;         /* hepsi eşit genişlik */
-    grid-row: span 1;            /* hepsi eşit yükseklik */
+    grid-column: span 1;       
+    grid-row: span 1;           
   }
 
-  /* 3. Sliderlar – HEPSİ KÜÇÜK (abartma) */
+  /* 3. sliderlar */
   .slider .game {
-    width: 260px;                /* 320 → 260 */
-    height: 170px;               /* 200 → 170 */
+    width: 260px;               
+    height: 170px;           
   }
   .game-image {
-    height: 110px;               /* 130 → 110 */
+    height: 110px;          
   }
   .slider-btn {
     padding: 4px 10px;
     font-size: 18px;
   }
 
-  /* 4. Çekilişler – DAHA DA KÜÇÜK */
+  /* 4. çekilişler */
   .giveaway-cards {
     gap: 10px;
     justify-content: center;
   }
   .giveaway-card {
-    flex: 0 0 130px;             /* 160 → 130 */
+    flex: 0 0 130px;            
     min-width: 130px;
     max-width: 130px;
-    height: 200px;               /* 240 → 200 */
+    height: 200px;              
   }
   .giveaway-image {
-    height: 110px;               /* 130 → 110 */
+    height: 110px;             
   }
   .giveaway-info h3 {
     font-size: 12px;
@@ -800,7 +794,7 @@ main {
     font-size: 10px;
   }
 
-  /* 5. Wheel + Haftanın Oyunu + Çekiliş – MOBİLDE YOK ET */
+  /* 5. alt bölge */
   .haftanin-oyunu-section,
   .masa-panel,
   .wheel,
@@ -809,7 +803,7 @@ main {
     display: none !important;
   }
 
-  /* 6. Genel taşma önlemi */
+  /* 6. genel taşma önlemi */
   img {
     max-width: 100%;
     height: auto;
@@ -820,7 +814,7 @@ main {
 
 }
 
-/* Sadece ekran okuyucu ve botlar görür, görsel olarak tamamen yok */
+/* bot */
 .seo-only {
   position: absolute;
   width: 1px;
@@ -833,7 +827,7 @@ main {
   border: 0;
 }
 
-/* Glow animasyonu */
+/* glow animasyonu */
 @keyframes kartGlow {
   0%, 100% { 
     box-shadow: 0 0 3px #fff, 0 0 6px #fff;
@@ -871,7 +865,7 @@ body {
   background: #333;
 }
 
-/* Ekran kararma overlay */
+/* ekran kararma overlay */
 .karartma-overlay {
   position: fixed;
   top: 0;
@@ -886,7 +880,7 @@ body {
 
 .karartma-overlay.aktif {
   background: rgba(0, 0, 0, 0.8);
-  pointer-events: auto; /* EKLENDİ - tıklamayı aktif et */
+  pointer-events: auto;
 }
   
 .karartma-yazi {
@@ -904,12 +898,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* Butonlar arası boşluk aynı kaldı */
+  gap: 20px; 
 }
 
-/* Yazıdan sonraki ilk butona extra boşluk */
+/* discord boşluk*/
 .karartma-yazi .discord-join-btn {
-  margin-top: 25px; /* Yazı ile Discord butonu arası 20px extra */
+  margin-top: 25px; 
 }
 
   
@@ -938,7 +932,7 @@ body {
   background: linear-gradient(135deg, #16a34a, #15803d);
 }
 
-/* Scroll kilidi */
+/* scroll kilidi */
 body.scroll-kilit {
   overflow: hidden;
   height: 100vh;
@@ -969,10 +963,10 @@ body.scroll-kilit {
   text-align: center;
   font-size: 18px;
   color: #fff;
-  padding: 50px 0; /* slider yüksekliğine göre ayarla */
+  padding: 50px 0; 
 }
 
-/* Mozaik lazy load placeholder */
+/* mozaik lazy load placeholder */
 .mozaik-card img {
   background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
   opacity: 0;
@@ -983,7 +977,7 @@ body.scroll-kilit {
   opacity: 1;
 }
 
-/* Yüklenirken shimmer efekti (isteğe bağlı) */
+/* Yüklenirken shimmer efekti*/
 .mozaik-card img[data-src] {
   animation: shimmer 1.5s infinite;
   background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
