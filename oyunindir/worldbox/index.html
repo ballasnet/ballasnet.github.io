@@ -923,12 +923,9 @@ formStartTime = Date.now();
     const toggleBtn = document.getElementById('yorum-toggle-btn');
     const content = document.getElementById('yorumlar-content');
 
-    const isCollapsed = localStorage.getItem('yorumlar_collapsed') === 'true';
-    if (isCollapsed) {
-        content.classList.add('collapsed');
-        toggleBtn.textContent = 'Göster';
-        toggleBtn.setAttribute('aria-label', 'Yorumları göster');
-    }
+    content.classList.add('collapsed');
+    toggleBtn.textContent = 'Göster';
+    toggleBtn.setAttribute('aria-label', 'Yorumları göster');
 
     toggleBtn.addEventListener('click', function() {
         const collapsed = content.classList.toggle('collapsed');
