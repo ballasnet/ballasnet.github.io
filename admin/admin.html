@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+
+<style>
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:#fff;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* container */
+.wrapper{
+  max-width:900px;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+/* header */
+h1{
+  font-size:14px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  border-bottom:1px solid #222;
+  padding-bottom:15px;
+  margin-bottom:30px;
+  color:#fff;
+}
+
+/* login box */
+#login{
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:25px;
+  text-align:center;
+}
+
+button{
+  background:#111;
+  border:1px solid #333;
+  color:#fff;
+  padding:10px 15px;
+  cursor:pointer;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:12px;
+  transition:.2s;
+}
+
+button:hover{
+  border-color:#555;
+  background:#1a1a1a;
+}
+
+/* comment card */
+.card{
+  background:#0f0f0f;
+  border:1px solid #222;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.card:hover{
+  border-color:#333;
+}
+
+.name{
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.comment{
+  color:#ccc;
+  font-size:14px;
+  margin:10px 0;
+  line-height:1.6;
+}
+
+.stars{
+  color:#fff;
+  letter-spacing:2px;
+}
+
+.actions{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+}
+
+.approve{
+  border-color:#224422;
+}
+
+.reject{
+  border-color:#442222;
+}
+
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<h1>Admin Panel</h1>
+
+<div id="login">
+  <button onclick="login()">Google ile Giriş</button>
+</div>
+
+<div id="panel" class="hidden">
+  <h1>Bekleyen Yorumlar</h1>
+  <div id="list"></div>
+</div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA-RWDPv06t_4TXvzU06DzPhsQXKZ1Bkec",
+  authDomain: "ballasnet-100c0.firebaseapp.com",
+  projectId: "ballasnet-100c0",
+  storageBucket: "ballasnet-100c0.firebasestorage.app",
+  messagingSenderId: "31456745285",
+  appId: "1:31456745285:web:2db93eed879bb42b81102c"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+const ADMIN_EMAIL = "pepebenimsev@gmail.com";
+
+/* LOGIN */
+window.login = async function () {
+  const res = await signInWithPopup(auth, provider);
+
+  if (res.user.email !== ADMIN_EMAIL) {
+    alert("Yetkisiz giriş");
+    return;
+  }
+
+  document.getElementById("login").style.display = "none";
+  document.getElementById("panel").classList.remove("hidden");
+
+  loadComments();
+};
+
+/* LOAD */
+async function loadComments(){
+  const q = query(collection(db,"comments"),where("status","==","pending"));
+  const snap = await getDocs(q);
+
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  snap.forEach(d=>{
+    const c = d.data();
+
+    list.innerHTML += `
+      <div class="card">
+        <div class="name">${c.name}</div>
+        <div class="stars">${"★".repeat(c.rating)}</div>
+        <div class="comment">${c.comment}</div>
+
+        <div class="actions">
+          <button class="approve" onclick="approve('${d.id}')">ONAYLA</button>
+          <button class="reject" onclick="reject('${d.id}')">REDDET</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+window.approve = async function(id){
+  await updateDoc(doc(db,"comments",id),{status:"approved"});
+  loadComments();
+};
+
+window.reject = async function(id){
+  await updateDoc(doc(db,"comments",id),{status:"rejected"});
+  loadComments();
+};
+</script>
+
+</body>
+</html>
