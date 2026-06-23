@@ -731,6 +731,22 @@ function getClientId() {
     return id;
 }
 
+function getPendingKey() {
+    return `pending_${PAGE_ID}_${getClientId()}`;
+}
+
+function hasPendingComment() {
+    return localStorage.getItem(getPendingKey()) === 'true';
+}
+
+function setPendingComment(val) {
+    if (val) {
+        localStorage.setItem(getPendingKey(), 'true');
+    } else {
+        localStorage.removeItem(getPendingKey());
+    }
+}
+
 function checkRateLimit() {
     const now = Date.now();
     const clientId = getClientId();
@@ -799,10 +815,28 @@ function guncelleOrtalama(yorumlar) {
     }
 }
 
+function updateFormState() {
+    const form = document.getElementById('comment-form');
+    const pendingMsg = document.getElementById('pending-message');
+    if (hasPendingComment()) {
+        form.style.display = 'none';
+        if (pendingMsg) pendingMsg.style.display = 'block';
+    } else {
+        form.style.display = '';
+        if (pendingMsg) pendingMsg.style.display = 'none';
+    }
+}
+
 document.getElementById('comment-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
+
+    if (hasPendingComment()) {
+        showMsg('Önceki yorumunuz onaylanmadan yeni yorum yazamazsınız.', 'error');
+        btn.disabled = false;
+        return;
+    }
 
     if (document.getElementById('website').value) {
         showMsg('Bot algılandı.', 'error');
@@ -850,10 +884,12 @@ document.getElementById('comment-form').addEventListener('submit', async (e) => 
             pageId: PAGE_ID
         });
 
+        setPendingComment(true);
         recordComment(rl);
         document.getElementById('comment-form').reset();
         formStartTime = Date.now();
         generateCaptcha();
+        updateFormState();
         showMsg('Yorumunuz gönderildi! Onay bekliyor.', 'success');
     } catch (err) {
         console.error(err);
@@ -863,6 +899,7 @@ document.getElementById('comment-form').addEventListener('submit', async (e) => 
 });
 
 function loadComments() {
+    const clientId = getClientId();
     const q = query(
         collection(db, 'comments'),
         where('pageId', '==', PAGE_ID),
@@ -875,7 +912,24 @@ function loadComments() {
         container.innerHTML = '';
 
         const tumYorumlar = [];
-        snap.forEach(doc => tumYorumlar.push(doc.data()));
+        let userHasPending = false;
+
+        snap.forEach(doc => {
+            const data = doc.data();
+            tumYorumlar.push(data);
+            if (data.ip === clientId && data.status === 'pending') {
+                userHasPending = true;
+            }
+        });
+
+        // Eğer kullanıcının pending yorumu artık yoksa (onaylandı veya silindi), kilidi kaldır
+        if (!userHasPending && hasPendingComment()) {
+            setPendingComment(false);
+            updateFormState();
+        } else if (userHasPending && !hasPendingComment()) {
+            setPendingComment(true);
+            updateFormState();
+        }
 
         // Ortalama yıldız güncelle
         guncelleOrtalama(tumYorumlar);
@@ -912,6 +966,7 @@ function loadComments() {
 
 generateCaptcha();
 loadComments();
+updateFormState();
 formStartTime = Date.now();
 </script>
 
@@ -923,9 +978,10 @@ formStartTime = Date.now();
     const toggleBtn = document.getElementById('yorum-toggle-btn');
     const content = document.getElementById('yorumlar-content');
 
-    content.classList.add('collapsed');
-    toggleBtn.textContent = 'Göster';
-    toggleBtn.setAttribute('aria-label', 'Yorumları göster');
+    // Yorumlar açık gelsin (collapsed yok)
+    content.classList.remove('collapsed');
+    toggleBtn.textContent = 'Gizle';
+    toggleBtn.setAttribute('aria-label', 'Yorumları gizle');
 
     toggleBtn.addEventListener('click', function() {
         const collapsed = content.classList.toggle('collapsed');
