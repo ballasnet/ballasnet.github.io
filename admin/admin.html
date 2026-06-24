@@ -192,6 +192,49 @@ button:hover{border-color:#555;background:#1a1a1a}
 }
 
 .hidden{display:none}
+
+/* ----- ROLE SELECTOR ----- */
+.role-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0 0;
+  padding-top:12px;
+  border-top:1px solid #181818;
+  align-items:center;
+}
+.role-label-pre{
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:#2a2a2a;
+  text-transform:uppercase;
+  margin-right:2px;
+}
+.role-opt{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+  padding:5px 11px;
+  border:1px solid #1a1a1a;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#333;
+  transition:.15s;
+  user-select:none;
+  border-radius:3px;
+}
+.role-opt:hover{border-color:#2a2a2a;color:#666;background:#0e0e0e}
+.role-opt.active{border-color:#303030;color:#bbb;background:#141414}
+.ro-dot{
+  width:8px;height:8px;
+  border:1px solid #333;
+  border-radius:1px;
+  flex-shrink:0;
+  transition:.15s;
+}
+.role-opt.active .ro-dot{background:#888;border-color:#888}
 </style>
 </head>
 
@@ -251,6 +294,17 @@ function fmtDate(ts) {
   try { return new Date(ts.toDate()).toLocaleString('tr-TR'); }
   catch { return 'Belirsiz'; }
 }
+
+/* ── ROLE TRACKING ───────────────────────────────────────── */
+const selectedRoles = {};
+
+window.setRole = function(id, role) {
+  selectedRoles[id] = role;
+  ['user','kurucu','admin1','admin2'].forEach(r => {
+    const el = document.getElementById(`role-${r}-${id}`);
+    if (el) el.classList.toggle('active', r === role);
+  });
+};
 
 /* ── LOGIN ───────────────────────────────────────────────── */
 window.login = async function () {
@@ -313,6 +367,13 @@ async function loadComments() {
       <div class="name">${escapeHtml(c.name)}</div>
       <div class="stars">${stars}</div>
       <div class="comment">${escapeHtml(c.comment)}</div>
+      <div class="role-row">
+        <span class="role-label-pre">Rol</span>
+        <span class="role-opt active" id="role-user-${d.id}" onclick="setRole('${d.id}','user')"><span class="ro-dot"></span>KULLANICI</span>
+        <span class="role-opt" id="role-kurucu-${d.id}" onclick="setRole('${d.id}','kurucu')"><span class="ro-dot"></span>KURUCU</span>
+        <span class="role-opt" id="role-admin1-${d.id}" onclick="setRole('${d.id}','admin1')"><span class="ro-dot"></span>ADMİN1</span>
+        <span class="role-opt" id="role-admin2-${d.id}" onclick="setRole('${d.id}','admin2')"><span class="ro-dot"></span>ADMİN2</span>
+      </div>
       <div class="actions">
         <button class="approve" onclick="approve('${d.id}')">ONAYLA</button>
         <button class="reject"  onclick="reject('${d.id}')">REDDET</button>
@@ -322,13 +383,15 @@ async function loadComments() {
         <div class="details-msg">Yükleniyor…</div>
       </div>
     `;
+    selectedRoles[d.id] = 'user';
     list.appendChild(div);
   });
 }
 
 /* ── APPROVE / REJECT ────────────────────────────────────── */
 window.approve = async function (id) {
-  await updateDoc(doc(db, 'comments', id), { status: 'approved' });
+  const role = selectedRoles[id] || 'user';
+  await updateDoc(doc(db, 'comments', id), { status: 'approved', role: role });
   loadComments();
 };
 window.reject = async function (id) {
