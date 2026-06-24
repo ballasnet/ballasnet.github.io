@@ -235,6 +235,47 @@ button:hover{border-color:#555;background:#1a1a1a}
   transition:.15s;
 }
 .role-opt.active .ro-dot{background:#888;border-color:#888}
+
+/* ----- TABS ----- */
+.tabs{
+  display:flex;
+  gap:0;
+  margin-bottom:28px;
+  border-bottom:1px solid #1a1a1a;
+}
+.tab{
+  background:transparent;
+  border:none;
+  border-bottom:2px solid transparent;
+  color:#333;
+  padding:10px 22px;
+  cursor:pointer;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:11px;
+  transition:.2s;
+  margin-bottom:-1px;
+}
+.tab:hover{color:#666;background:transparent}
+.tab.active{color:#ccc;border-bottom-color:#444;background:transparent}
+
+/* ----- ALL COMMENTS ----- */
+.status-tag{
+  display:inline-block;
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:2px 8px;
+  border-radius:2px;
+}
+.s-approved{color:#5a9a5a;border:1px solid #1e3c1e;background:#030a03}
+.s-pending {color:#9a855a;border:1px solid #3c301e;background:#0a0803}
+.s-rejected{color:#9a5a5a;border:1px solid #3c1e1e;background:#0a0303}
+
+.delete-btn{border-color:#3a1515;color:#7a3a3a;font-size:11px;letter-spacing:1.5px}
+.delete-btn:hover{border-color:#6a2020;background:#140404;color:#cc4444}
+
+.all-loading{color:#333;text-align:center;padding:40px;letter-spacing:1px;font-size:13px}
 </style>
 </head>
 
@@ -248,9 +289,19 @@ button:hover{border-color:#555;background:#1a1a1a}
   </div>
 
   <div id="panel" class="hidden">
-    <h1>Bekleyen Yorumlar</h1>
-    <div id="stats-bar" class="stats-bar"></div>
-    <div id="list"></div>
+    <div class="tabs">
+      <button class="tab active" id="tab-pending" onclick="switchTab('pending')">Bekleyen Yorumlar</button>
+      <button class="tab" id="tab-all" onclick="switchTab('all')">Yorumlar</button>
+    </div>
+
+    <div id="view-pending">
+      <div id="stats-bar" class="stats-bar"></div>
+      <div id="list"></div>
+    </div>
+
+    <div id="view-all" class="hidden">
+      <div id="all-list"></div>
+    </div>
   </div>
 
 </div>
@@ -259,7 +310,7 @@ button:hover{border-color:#555;background:#1a1a1a}
 import { initializeApp }   from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import {
   getFirestore, collection, query, where,
-  getDocs, doc, updateDoc
+  getDocs, doc, updateDoc, deleteDoc, orderBy
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 import {
   getAuth, signInWithPopup, GoogleAuthProvider
@@ -315,6 +366,16 @@ window.login = async function () {
     document.getElementById('panel').classList.remove('hidden');
     loadComments();
   } catch (e) { alert('Giriş hatası: ' + e.message); }
+};
+
+/* ── TAB SWITCH ──────────────────────────────────────────── */
+window.switchTab = function(tab) {
+  const isPending = tab === 'pending';
+  document.getElementById('view-pending').classList.toggle('hidden', !isPending);
+  document.getElementById('view-all').classList.toggle('hidden', isPending);
+  document.getElementById('tab-pending').classList.toggle('active', isPending);
+  document.getElementById('tab-all').classList.toggle('active', !isPending);
+  if (!isPending) loadAllComments();
 };
 
 /* ── LOAD PENDING ────────────────────────────────────────── */
@@ -397,6 +458,71 @@ window.approve = async function (id) {
 window.reject = async function (id) {
   await updateDoc(doc(db, 'comments', id), { status: 'rejected' });
   loadComments();
+};
+
+/* ── ALL COMMENTS ────────────────────────────────────────── */
+async function loadAllComments() {
+  const allList = document.getElementById('all-list');
+  allList.innerHTML = '<p class="all-loading">Yükleniyor…</p>';
+
+  try {
+    const snap = await getDocs(
+      query(collection(db, 'comments'), orderBy('createdAt', 'desc'))
+    );
+
+    allList.innerHTML = '';
+
+    if (snap.size === 0) {
+      allList.innerHTML = '<p class="all-loading">Hiç yorum yok.</p>';
+      return;
+    }
+
+    snap.forEach(d => {
+      const c      = d.data();
+      const status = c.status || 'pending';
+      const page   = escapeHtml(c.pageId || '—');
+      const date   = c.createdAt ? new Date(c.createdAt.toDate()).toLocaleString('tr-TR') : 'Belirsiz';
+      const stars  = '★'.repeat(Math.min(c.rating || 0, 5));
+
+      const statusLabel = status === 'approved' ? 'Onaylı' : status === 'rejected' ? 'Reddedildi' : 'Bekliyor';
+      const statusClass = status === 'approved' ? 's-approved' : status === 'rejected' ? 's-rejected' : 's-pending';
+
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `acard-${d.id}`;
+      div.innerHTML = `
+        <div class="card-meta">
+          <span>📄 ${page}</span>
+          <span>📅 ${date}</span>
+          <span class="status-tag ${statusClass}">${statusLabel}</span>
+        </div>
+        <div class="name">${escapeHtml(c.name)}</div>
+        <div class="stars">${stars}</div>
+        <div class="comment">${escapeHtml(c.comment)}</div>
+        <div class="actions">
+          <button class="delete-btn" onclick="deleteComment('${d.id}')">SİL</button>
+        </div>
+      `;
+      allList.appendChild(div);
+    });
+
+  } catch (e) {
+    console.error(e);
+    allList.innerHTML = '<p class="all-loading">Hata: Yorumlar yüklenemedi.</p>';
+  }
+}
+
+/* ── DELETE ──────────────────────────────────────────────── */
+window.deleteComment = async function(id) {
+  if (!confirm('Bu yorumu silmek istediğine emin misin?')) return;
+  try {
+    await deleteDoc(doc(db, 'comments', id));
+    const card = document.getElementById(`acard-${id}`);
+    if (card) card.remove();
+  } catch (e) {
+    console.error(e);
+    alert('Silme hatası: ' + e.message);
+  }
 };
 
 /* ── DETAILS TOGGLE ──────────────────────────────────────── */
