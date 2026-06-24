@@ -642,17 +642,44 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 }
 .reply-btn:hover{color:#888;border-color:#333}
 
-/* GERİ ÇEK */
-.withdraw-btn{
-  margin-left:auto;
-  color:#553333;
-  border-color:#221111;
-  font-size:10px;
-}
-.withdraw-btn:hover{color:#cc5555;border-color:#442222}
-.withdraw-btn:disabled{opacity:.4;cursor:not-allowed}
 
 .no-comments{text-align:center;color:#666;padding:40px;font-size:14px;letter-spacing:1px;cursor:default;user-select:none}
+
+/* KULLANICI AVATAR */
+.comment-avatar{
+  width:34px;
+  height:34px;
+  object-fit:cover;
+  border-radius:3px;
+  flex-shrink:0;
+  display:block;
+}
+
+/* ROL ROZET */
+.role-badge{
+  display:inline-flex;
+  align-items:center;
+  padding:2px 8px;
+  border-radius:3px;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:normal;
+  user-select:none;
+  cursor:default;
+  flex-shrink:0;
+  line-height:1.6;
+}
+.badge-kurucu{
+  background:#111;
+  color:#e0e0e0;
+  border:1px solid #2a2a2a;
+}
+.badge-admin{
+  background:#1c0707;
+  color:#cc5555;
+  border:1px solid #4a1515;
+}
 
 @media(max-width:900px){
   .comments-list{
@@ -909,7 +936,7 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
      ============================================ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-RWDPv06t_4TXvzU06DzPhsQXKZ1Bkec",
@@ -1056,11 +1083,8 @@ function guncelleOrtalama(yorumlar) {
 }
 
 function updateFormState() {
-    const form = document.getElementById('comment-form');
-    const pendingMsg = document.getElementById('pending-message');
-    // Form her zaman görünür - pending olsa bile yorum yazılabilir
-    form.style.display = '';
-    if (pendingMsg) pendingMsg.style.display = 'none';
+    // Form her zaman görünür
+    document.getElementById('comment-form').style.display = '';
 }
 
 document.getElementById('comment-form').addEventListener('submit', async (e) => {
@@ -1121,8 +1145,7 @@ document.getElementById('comment-form').addEventListener('submit', async (e) => 
             dislikes: []
         });
 
-        setPendingComment(true);
-        recordComment(rl);
+        setPendingComment(true);        recordComment(rl);
         document.getElementById('comment-form').reset();
         document.getElementById('parent-id').value = '';
         document.getElementById('reply-to-name').value = '';
@@ -1190,13 +1213,30 @@ function loadComments() {
             const userLiked = (d.likes || []).includes(clientId);
             const userDisliked = (d.dislikes || []).includes(clientId);
 
+            // Rol → avatar & rozet
+            const role = d.role || 'user';
+            let avatarHtml = '';
+            let badgeHtml  = '';
+            if (role === 'kurucu') {
+                avatarHtml = `<img src="avatar/kurucu.webp" class="comment-avatar" alt="">`;
+                badgeHtml  = `<span class="role-badge badge-kurucu">KURUCU</span>`;
+            } else if (role === 'admin1') {
+                avatarHtml = `<img src="avatar/admin1.webp" class="comment-avatar" alt="">`;
+                badgeHtml  = `<span class="role-badge badge-admin">ADMİN</span>`;
+            } else if (role === 'admin2') {
+                avatarHtml = `<img src="avatar/admin2.webp" class="comment-avatar" alt="">`;
+                badgeHtml  = `<span class="role-badge badge-admin">ADMİN</span>`;
+            }
+
             const div = document.createElement('div');
             div.className = `comment-item ${pending ? 'pending' : ''} ${isReply ? 'comment-reply' : ''}`;
             div.dataset.id = d.id;
 
             div.innerHTML = `
                 <div class="comment-header">
+                    ${avatarHtml}
                     <span class="comment-name">${isReply ? '<span class="reply-arrow">↳</span> ' : ''}${escapeHtml(d.name)}</span>
+                    ${badgeHtml}
                     ${stars ? `<span class="comment-stars">${stars}</span>` : ''}
                     <span class="comment-date">${date}</span>
                     ${pending ? '<span class="pending-badge">Onaylanması Bekleniyor...</span>' : ''}
@@ -1211,7 +1251,6 @@ function loadComments() {
                         <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg><span class="action-count">${dislikes > 0 ? dislikes : ''}</span>
                     </button>
                     ${!pending ? `<button class="action-btn reply-btn" data-id="${d.id}" data-name="${escapeHtml(d.name)}">↩ Cevapla</button>` : ''}
-                    ${pending && d.ip === clientId ? `<button class="action-btn withdraw-btn" data-id="${d.id}">✕ Geri Çek</button>` : ''}
                 </div>
             `;
             return div;
@@ -1317,25 +1356,6 @@ function loadComments() {
                 document.getElementById('rating-field').style.display = 'none';
                 document.getElementById('comment-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 document.getElementById('comment').focus();
-            });
-        });
-
-        // Geri çek butonları (kullanıcı kendi bekleyen yorumunu geri çeker)
-        container.querySelectorAll('.withdraw-btn').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                if (!confirm('Bekleyen yorumunuzu geri çekmek istiyor musunuz?')) return;
-                const id = btn.dataset.id;
-                btn.disabled = true;
-                btn.textContent = '...';
-                try {
-                    await deleteDoc(doc(db, 'comments', id));
-                    setPendingComment(false);
-                } catch(e) {
-                    console.error(e);
-                    showMsg('Yorum geri çekilemedi.', 'error');
-                    btn.disabled = false;
-                    btn.textContent = '✕ Geri Çek';
-                }
             });
         });
 
