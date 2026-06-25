@@ -1157,11 +1157,10 @@ document.getElementById('comment-form').addEventListener('submit', async (e) => 
         updateFormState();
         // Forma scroll
         document.getElementById('comment-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-catch (err) {
-    console.error(err);
-    showMsg('Bir hata oluştu. Tekrar deneyin.', 'error');
-}
+    } catch (err) {
+        console.error(err);
+        showMsg('Bir hata oluştu. Tekrar deneyin.', 'error');
+    }
     btn.disabled = false;
 });
 
