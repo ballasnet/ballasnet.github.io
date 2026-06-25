@@ -1157,10 +1157,18 @@ document.getElementById('comment-form').addEventListener('submit', async (e) => 
         updateFormState();
         // Forma scroll
         document.getElementById('comment-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {
-        console.error(err);
-        showMsg('Bir hata oluştu. Tekrar deneyin.', 'error');
-    }
+catch (err) {
+    console.error("ERROR CODE:", err.code);
+    console.error("ERROR MESSAGE:", err.message);
+    console.error("FULL ERROR:", err);
+
+    alert(
+      "CODE: " + err.code +
+      "\nMESSAGE: " + err.message
+    );
+
+    showMsg(err.message, 'error');
+}
     btn.disabled = false;
 });
 
