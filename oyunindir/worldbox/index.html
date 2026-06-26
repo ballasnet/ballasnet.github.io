@@ -642,6 +642,39 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 
 .no-comments{text-align:center;color:#666;padding:40px;font-size:14px;letter-spacing:1px;cursor:default;user-select:none}
 
+/* LAZY LOAD */
+.lazy-item{
+  opacity:0;
+  transform:translateY(5px);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.lazy-item.lazy-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* REPLY COLLAPSE */
+.replies-hidden{display:none}
+.replies-hidden.open{display:block}
+.replies-toggle-btn{
+  background:transparent;
+  border:none;
+  color:#444;
+  font-size:12px;
+  letter-spacing:.4px;
+  cursor:pointer;
+  padding:5px 0 5px 18px;
+  display:block;
+  transition:color .15s;
+  text-align:left;
+  width:auto;
+}
+.replies-toggle-btn:hover{color:#777;background:transparent}
+.replies-collapse-btn{
+  margin:8px 0 4px 18px;
+  padding-left:0;
+}
+
 /* KULLANICI AVATAR */
 .comment-avatar{
   width:44px;
@@ -1248,20 +1281,87 @@ function loadComments() {
             return div;
         }
 
-        anaYorumlar.forEach(ana => {
-            container.appendChild(renderComment(ana, false));
+        // Cevap sıralama: kurucu > admin > user, aynı gruptaysa en yeni üstte
+        function replySortFn(a, b) {
+            const rp = r => r === 'kurucu' ? 0 : (r === 'admin1' || r === 'admin2') ? 1 : 2;
+            const diff = rp(a.role || 'user') - rp(b.role || 'user');
+            if (diff !== 0) return diff;
+            const ta = a.createdAt ? a.createdAt.toMillis() : 0;
+            const tb = b.createdAt ? b.createdAt.toMillis() : 0;
+            return tb - ta;
+        }
 
-            // Bu yorumun cevapları
+        const LAZY_START = 15;
+
+        anaYorumlar.forEach((ana, idx) => {
+            const isLazy = idx >= LAZY_START;
+
+            // Ana yorum
+            const mainEl = renderComment(ana, false);
+            if (isLazy) mainEl.classList.add('lazy-item');
+            container.appendChild(mainEl);
+
+            // Cevapları sırala
             const buCevaplar = cevaplar.filter(c => c.parentId === ana.id);
-            buCevaplar.sort((a, b) => {
-                const ta = a.createdAt ? a.createdAt.toMillis() : Infinity;
-                const tb = b.createdAt ? b.createdAt.toMillis() : Infinity;
-                return ta - tb;
-            });
-            buCevaplar.forEach(cevap => {
-                container.appendChild(renderComment(cevap, true));
-            });
+            buCevaplar.sort(replySortFn);
+
+            if (buCevaplar.length === 0) return;
+
+            if (buCevaplar.length < 3) {
+                // 1-2 cevap: hepsini göster
+                buCevaplar.forEach(cevap => {
+                    const el = renderComment(cevap, true);
+                    if (isLazy) el.classList.add('lazy-item');
+                    container.appendChild(el);
+                });
+            } else {
+                // 3+ cevap: sadece ilkini göster, geri kalanı collapse
+                const firstEl = renderComment(buCevaplar[0], true);
+                if (isLazy) firstEl.classList.add('lazy-item');
+                container.appendChild(firstEl);
+
+                const showBtn = document.createElement('button');
+                showBtn.className = 'replies-toggle-btn';
+                if (isLazy) showBtn.classList.add('lazy-item');
+                showBtn.textContent = `↓ Diğer ${buCevaplar.length - 1} cevabı gör`;
+                container.appendChild(showBtn);
+
+                const hiddenWrap = document.createElement('div');
+                hiddenWrap.className = 'replies-hidden';
+                buCevaplar.slice(1).forEach(cevap => {
+                    hiddenWrap.appendChild(renderComment(cevap, true));
+                });
+
+                const collapseBtn = document.createElement('button');
+                collapseBtn.className = 'replies-toggle-btn replies-collapse-btn';
+                collapseBtn.textContent = '↑ Cevapları kapat';
+                hiddenWrap.appendChild(collapseBtn);
+
+                container.appendChild(hiddenWrap);
+
+                showBtn.addEventListener('click', () => {
+                    hiddenWrap.classList.add('open');
+                    showBtn.style.display = 'none';
+                });
+                collapseBtn.addEventListener('click', () => {
+                    hiddenWrap.classList.remove('open');
+                    showBtn.style.display = '';
+                });
+            }
         });
+
+        // Lazy loading — 15. yorumdan sonrakiler yumuşak fade-in
+        if (anaYorumlar.length > LAZY_START) {
+            const lazyObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('lazy-visible');
+                        lazyObs.unobserve(e.target);
+                    }
+                });
+            }, { rootMargin: '200px' });
+            container.querySelectorAll('.lazy-item').forEach(el => lazyObs.observe(el));
+        }
 
         // Like ve Disslike eventleri
         container.querySelectorAll('.like-btn, .dislike-btn').forEach(btn => {
