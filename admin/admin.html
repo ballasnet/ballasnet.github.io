@@ -165,6 +165,57 @@ button:hover{border-color:#555;background:#1a1a1a}
   font-weight:normal;
 }
 
+/* detail section labels */
+.detail-section-label{
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#334;
+  margin:16px 0 7px;
+  padding-bottom:5px;
+  border-bottom:1px solid #0d1820;
+}
+/* son yorum preview */
+.detail-last-comment{
+  background:#040810;
+  border:1px solid #0d1820;
+  border-left:2px solid #1a3050;
+  padding:10px 12px;
+  margin-bottom:4px;
+}
+.detail-last-meta{
+  font-size:10px;
+  color:#335;
+  letter-spacing:.5px;
+  margin-bottom:6px;
+}
+.detail-last-text{
+  font-size:12px;
+  color:#778;
+  line-height:1.65;
+}
+/* tarihlerin listesi */
+.detail-dates-list{
+  max-height:220px;
+  overflow-y:auto;
+  border:1px solid #0d1820;
+  background:#030608;
+}
+.detail-date-row{
+  display:grid;
+  grid-template-columns:145px 70px 65px 36px 1fr;
+  gap:8px;
+  align-items:center;
+  padding:7px 10px;
+  border-bottom:1px solid #060b0f;
+  font-size:11px;
+}
+.detail-date-row:last-child{border-bottom:none}
+.ddr-date{color:#446;letter-spacing:.3px}
+.ddr-page{color:#335;font-size:10px;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ddr-stars{color:#775;font-size:11px;letter-spacing:1px}
+.ddr-text{color:#556;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
 .detail-pages-label{
   font-size:10px;
   letter-spacing:1.5px;
@@ -531,7 +582,6 @@ window.toggleDetails = async function (id) {
   const btn   = document.getElementById(`dbtn-${id}`);
 
   const isOpen = panel.classList.contains('open');
-
   if (isOpen) {
     panel.classList.remove('open');
     btn.classList.remove('open');
@@ -543,7 +593,6 @@ window.toggleDetails = async function (id) {
   btn.classList.add('open');
   btn.textContent = '▾ DETAYLAR';
 
-  /* Already loaded? */
   if (panel.dataset.loaded === '1') return;
 
   const card = document.getElementById(`card-${id}`);
@@ -577,22 +626,63 @@ window.toggleDetails = async function (id) {
       .filter(y => y.createdAt)
       .sort((a, b) => a.createdAt.toMillis() - b.createdAt.toMillis());
 
-    const ilk = withTs.length > 0 ? fmtDate(withTs[0].createdAt)                : 'Belirsiz';
-    const son = withTs.length > 0 ? fmtDate(withTs[withTs.length - 1].createdAt) : 'Belirsiz';
+    // İstatistikler
+    const onaylanan  = yorumlar.filter(y => y.status === 'approved').length;
+    const reddedilen = yorumlar.filter(y => y.status === 'rejected').length;
+    const bekleyen   = yorumlar.filter(y => y.status === 'pending').length;
+    const ratings    = yorumlar.filter(y => y.rating > 0).map(y => y.rating);
+    const ortPuan    = ratings.length
+      ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
+      : '—';
 
+    // Son yorum (en yeni)
+    const sonYorum = withTs.length > 0 ? withTs[withTs.length - 1] : null;
+
+    // Sayfalar
     const pages = [...new Set(yorumlar.map(y => y.pageId).filter(Boolean))];
-    const chips = pages.map(p => `<span class="page-chip">${escapeHtml(p)}</span>`).join('');
+    const chips = pages.map(p => `<span class="page-chip">${escapeHtml(p)}</span>`).join('')
+                  || '<span class="page-chip">Bilinmiyor</span>';
+
+    // Tüm yorum tarihleri — en yeniden eskiye
+    const tarihRows = [...withTs].reverse().map(y => {
+      const sc = y.status === 'approved' ? 's-approved' : y.status === 'rejected' ? 's-rejected' : 's-pending';
+      const sl = y.status === 'approved' ? 'Onaylı' : y.status === 'rejected' ? 'Reddedildi' : 'Bekliyor';
+      const st = y.rating ? '★'.repeat(y.rating) : '—';
+      const snippet = (y.comment || '').slice(0, 55) + ((y.comment || '').length > 55 ? '…' : '');
+      return `<div class="detail-date-row">
+        <span class="ddr-date">${fmtDate(y.createdAt)}</span>
+        <span class="ddr-page">${escapeHtml(y.pageId || '—')}</span>
+        <span class="status-tag ${sc}" style="font-size:8px;padding:1px 5px">${sl}</span>
+        <span class="ddr-stars">${st}</span>
+        <span class="ddr-text">${escapeHtml(snippet)}</span>
+      </div>`;
+    }).join('');
 
     panel.innerHTML = `
       <h4>Kullanıcı Detayları</h4>
       <div class="details-grid">
         <div class="detail-item">Son 48 Saatte<strong>${son48h}</strong></div>
-        <div class="detail-item">Toplam Yorum<strong>${yorumlar.length}</strong></div>
-        <div class="detail-item">İlk Yorum<strong>${ilk}</strong></div>
-        <div class="detail-item">Son Yorum<strong>${son}</strong></div>
+        <div class="detail-item">Toplam<strong>${yorumlar.length}</strong></div>
+        <div class="detail-item">Onaylı<strong style="color:#5a9a5a">${onaylanan}</strong></div>
+        <div class="detail-item">Reddedildi<strong style="color:#9a5a5a">${reddedilen}</strong></div>
+        <div class="detail-item">Bekleyen<strong style="color:#9a855a">${bekleyen}</strong></div>
+        <div class="detail-item">Ort. Puan<strong>${ortPuan}</strong></div>
       </div>
-      <div class="detail-pages-label">Yorum Yapılan Sayfalar</div>
-      <div>${chips || '<span class="page-chip">Bilinmiyor</span>'}</div>
+
+      ${sonYorum ? `
+      <div class="detail-section-label">Son Yorum</div>
+      <div class="detail-last-comment">
+        <div class="detail-last-meta">${escapeHtml(sonYorum.pageId || '—')} &nbsp;·&nbsp; ${fmtDate(sonYorum.createdAt)}</div>
+        <div class="detail-last-text">${escapeHtml(sonYorum.comment || '')}</div>
+      </div>` : ''}
+
+      <div class="detail-section-label">Yorum Yapılan Sayfalar</div>
+      <div style="margin-bottom:4px">${chips}</div>
+
+      <div class="detail-section-label">Tüm Yorum Geçmişi &nbsp;<span style="color:#223;font-size:10px">(${withTs.length} tarihli)</span></div>
+      <div class="detail-dates-list">
+        ${tarihRows || '<div class="details-msg">Tarihli yorum bulunamadı.</div>'}
+      </div>
     `;
     panel.dataset.loaded = '1';
 
