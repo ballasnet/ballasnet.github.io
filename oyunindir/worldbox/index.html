@@ -400,7 +400,7 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 .yorumlar-content{
   overflow:visible;
   transition:max-height .4s ease-out, opacity .3s ease, margin .3s ease;
-  max-height:5000px;
+  max-height:none; /* yorum sayısı ne kadar artarsa artsın altındaki bölümle çakışmasın diye sabit bir tavan yok */
   opacity:1;
 }
 
@@ -409,6 +409,7 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
   opacity:0;
   margin-top:0;
   margin-bottom:0;
+  overflow:hidden;
 }
 
 .comment-form{background:#0f0f0f;border:1px solid #222;padding:25px;margin-bottom:40px}
@@ -1481,15 +1482,42 @@ formStartTime = Date.now();
     const toggleBtn = document.getElementById('yorum-toggle-btn');
     const content = document.getElementById('yorumlar-content');
 
-    // Yorumlar her zaman açık başlar
+    // Yorumlar her zaman açık başlar; sabit bir yükseklik sınırı olmadığı için
+    // yorum sayısı ne kadar artarsa artsın alttaki bölümle asla çakışmaz.
     content.classList.remove('collapsed');
+    content.style.maxHeight = 'none';
     toggleBtn.textContent = 'Gizle';
     toggleBtn.setAttribute('aria-label', 'Yorumları gizle');
 
     toggleBtn.addEventListener('click', function() {
-        const collapsed = content.classList.toggle('collapsed');
-        toggleBtn.textContent = collapsed ? 'Göster' : 'Gizle';
-        toggleBtn.setAttribute('aria-label', collapsed ? 'Yorumları göster' : 'Yorumları gizle');
+        const willCollapse = !content.classList.contains('collapsed');
+
+        if (willCollapse) {
+            // Kapatmadan önce gerçek yüksekliği piksel olarak sabitle,
+            // sonra 0'a indir ki animasyon (yorum sayısından bağımsız) düzgün çalışsın.
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.offsetHeight; // reflow'u zorla
+            requestAnimationFrame(() => {
+                content.classList.add('collapsed');
+                content.style.maxHeight = '0px';
+            });
+        } else {
+            // Açarken gerçek içerik yüksekliğine kadar animasyonla büyüt.
+            content.classList.remove('collapsed');
+            content.style.maxHeight = content.scrollHeight + 'px';
+        }
+
+        toggleBtn.textContent = willCollapse ? 'Göster' : 'Gizle';
+        toggleBtn.setAttribute('aria-label', willCollapse ? 'Yorumları göster' : 'Yorumları gizle');
+    });
+
+    // Açılma animasyonu bittiğinde sınırı tamamen kaldır: yorumlar canlı olarak
+    // (Firestore listener ile) artmaya devam etse bile hiçbir zaman kesilip
+    // alttaki bölümle çakışmasın.
+    content.addEventListener('transitionend', function(e) {
+        if (e.propertyName === 'max-height' && !content.classList.contains('collapsed')) {
+            content.style.maxHeight = 'none';
+        }
     });
 })();
 </script>
