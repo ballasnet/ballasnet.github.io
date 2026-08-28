@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- ANA SAYFA -->
+  <url>
+    <loc>https://ballasnet.com/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/hero.jpg</image:loc>
+      <image:title>BallasNet PC Oyun Vitrini</image:title>
+    </image:image>
+  </url>
+
+  <!-- POPÜLER OYUNLAR SAYFASI (Ana sayfada filtrelenmiş görünüm) -->
+  <url>
+    <loc>https://ballasnet.com/#populer</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- INDIE OYUNLAR -->
+  <url>
+    <loc>https://ballasnet.com/#indie</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- DÜŞÜK SİSTEM OYUNLARI -->
+  <url>
+    <loc>https://ballasnet.com/#dusuk-sistem</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- BABA IS YOU -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/babaisyou/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/babaisyou/babaisyou.webp</image:loc>
+      <image:title>Baba Is You PC İndir</image:title>
+      <image:caption>Bulmaca oyunu Baba Is You</image:caption>
+    </image:image>
+  </url>
+
+  <!-- CELESTE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/celeste/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/celeste/celeste2.jpg</image:loc>
+      <image:title>Celeste PC İndir</image:title>
+      <image:caption>Zorlu platform oyunu Celeste</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DOKI DOKI LITERATURE CLUB -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/ddlc/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/ddlc/dokidoki2.webp</image:loc>
+      <image:title>Doki Doki Literature Club PC İndir</image:title>
+      <image:caption>Görsel roman oyunu Doki Doki Literature Club</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DEAD AS DISCO -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/dead-as-disco/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/dead-as-disco/dead-as-disco.webp</image:loc>
+      <image:title>Dead as Disco PC İndir</image:title>
+      <image:caption>Disko temalı aksiyon oyunu Dead as Disco</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DELTARUNE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/deltarune/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/deltarune/deltarune.webp</image:loc>
+      <image:title>Deltarune PC İndir</image:title>
+      <image:caption>Toby Fox'un RPG oyunu Deltarune</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DOOM 64 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/doom64/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/doom64/doom64.webp</image:loc>
+      <image:title>Doom 64 PC İndir</image:title>
+      <image:caption>Klasik FPS oyunu Doom 64</image:caption>
+    </image:image>
+  </url>
+
+  <!-- DUSK -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/dusk/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/dusk/dusk.webp</image:loc>
+      <image:title>Dusk PC İndir</image:title>
+      <image:caption>Retro tarzı FPS oyunu Dusk</image:caption>
+    </image:image>
+  </url>
+
+  <!-- FIVE NIGHTS AT FREDDY'S -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/fnaf-1/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/fnaf-1/fnaf-1.webp</image:loc>
+      <image:title>Five Nights at Freddy's PC İndir</image:title>
+      <image:caption>Korku oyunu Five Nights at Freddy's</image:caption>
+    </image:image>
+  </url>
+
+  <!-- FIVE NIGHTS AT FREDDY'S 2 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/fnaf-2/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/fnaf-2/fnaf-2.webp</image:loc>
+      <image:title>Five Nights at Freddy's 2 PC İndir</image:title>
+      <image:caption>Korku oyunu Five Nights at Freddy's 2</image:caption>
+    </image:image>
+  </url>
+
+  <!-- FIVE NIGHTS AT FREDDY'S 3 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/fnaf-3/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/fnaf-3/fnaf-3.webp</image:loc>
+      <image:title>Five Nights at Freddy's 3 PC İndir</image:title>
+      <image:caption>Korku oyunu Five Nights at Freddy's 3</image:caption>
+    </image:image>
+  </url>
+
+  <!-- FIVE NIGHTS AT FREDDY'S 4 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/fnaf-4/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/fnaf-4/fivenightsatfreddys4.webp</image:loc>
+      <image:title>Five Nights at Freddy's 4 PC İndir</image:title>
+      <image:caption>Korku oyunu Five Nights at Freddy's 4</image:caption>
+    </image:image>
+  </url>
+
+  <!-- GEOMETRY DASH -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/geometry-dash/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/geometry-dash/geometry-dash.webp</image:loc>
+      <image:title>Geometry Dash PC İndir</image:title>
+      <image:caption>Ritim tabanlı platform oyunu Geometry Dash</image:caption>
+    </image:image>
+  </url>
+
+  <!-- GOREBOX -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/gorebox/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/gorebox/gorebox.webp</image:loc>
+      <image:title>Gorebox PC İndir</image:title>
+      <image:caption>Sandbox aksiyon oyunu Gorebox</image:caption>
+    </image:image>
+  </url>
+
+  <!-- GTA 3 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/gta-3/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/gta-3/gta3.webp</image:loc>
+      <image:title>GTA 3 PC İndir</image:title>
+      <image:caption>Açık dünya oyunu GTA 3</image:caption>
+    </image:image>
+  </url>
+
+  <!-- GTA VICE CITY -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/gta-vice-city/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/gta-vice-city/gtavicecity.webp</image:loc>
+      <image:title>GTA Vice City PC İndir</image:title>
+      <image:caption>Açık dünya oyunu GTA Vice City</image:caption>
+    </image:image>
+  </url>
+
+  <!-- GTA SAN ANDREAS -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/gtasanandreas/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/gtasanandreas/gtasanandreas.webp</image:loc>
+      <image:title>GTA San Andreas PC İndir</image:title>
+      <image:caption>Açık dünya oyunu GTA San Andreas</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HALF-LIFE 2 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/half-life2/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/half-life2/half-life2.webp</image:loc>
+      <image:title>Half-Life 2 PC İndir</image:title>
+      <image:caption>FPS oyunu Half-Life 2</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HAPPY'S HUMBLE BURGER FARM -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/happys-humble-burger-farm/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/happys-humble-burger-farm/happys-humble-burger-farm.webp</image:loc>
+      <image:title>Happy's Humble Burger Farm PC İndir</image:title>
+      <image:caption>Simülasyon-korku oyunu Happy's Humble Burger Farm</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HELLO NEIGHBOR -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/hello-neighbor/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/hello-neighbor/hello-neighbor.webp</image:loc>
+      <image:title>Hello Neighbor PC İndir</image:title>
+      <image:caption>Gizlilik-korku oyunu Hello Neighbor</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HOLLOW KNIGHT -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/hollow-knight/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/hollow-knight/hollow-knight.jpg</image:loc>
+      <image:title>Hollow Knight PC İndir</image:title>
+      <image:caption>Metroidvania oyunu Hollow Knight</image:caption>
+    </image:image>
+  </url>
+
+  <!-- HOTLINE MIAMI -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/hotline-miami/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/hotline-miami/hotline-miami.webp</image:loc>
+      <image:title>Hotline Miami PC İndir</image:title>
+      <image:caption>Aksiyon oyunu Hotline Miami</image:caption>
+    </image:image>
+  </url>
+
+  <!-- KATANA ZERO -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/katana-zero/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/katana-zero/katanazero.webp</image:loc>
+      <image:title>Katana Zero PC İndir</image:title>
+      <image:caption>Aksiyon platform oyunu Katana Zero</image:caption>
+    </image:image>
+  </url>
+
+  <!-- LIMBO -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/limbo/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/limbo/limbo.webp</image:loc>
+      <image:title>Limbo PC İndir</image:title>
+      <image:caption>Atmosferik bulmaca-platform oyunu Limbo</image:caption>
+    </image:image>
+  </url>
+
+  <!-- MUSE DASH -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/muse-dash/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/muse-dash/muse-dash.webp</image:loc>
+      <image:title>Muse Dash PC İndir</image:title>
+      <image:caption>Ritim oyunu Muse Dash</image:caption>
+    </image:image>
+  </url>
+
+  <!-- OMORI -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/omori/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/omori/omori.webp</image:loc>
+      <image:title>Omori PC İndir</image:title>
+      <image:caption>Psikolojik RPG oyunu Omori</image:caption>
+    </image:image>
+  </url>
+
+  <!-- PAPERS, PLEASE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/papers-please/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/papers-please/papersplease2.jpg</image:loc>
+      <image:title>Papers, Please PC İndir</image:title>
+      <image:caption>Sınır kontrol simülasyonu Papers, Please</image:caption>
+    </image:image>
+  </url>
+
+  <!-- PLANTS VS ZOMBIES -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/plants-vs-zombies/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/plants-vs-zombies/plants-vs-zombies.webp</image:loc>
+      <image:title>Plants vs Zombies PC İndir</image:title>
+      <image:caption>Kule savunma oyunu Plants vs Zombies</image:caption>
+    </image:image>
+  </url>
+
+  <!-- POSTAL -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/postal-1/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/postal-1/postal-1.webp</image:loc>
+      <image:title>Postal PC İndir</image:title>
+      <image:caption>Aksiyon oyunu Postal</image:caption>
+    </image:image>
+  </url>
+
+  <!-- POSTAL 2 -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/postal-2/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/postal-2/postal-2.webp</image:loc>
+      <image:title>Postal 2 PC İndir</image:title>
+      <image:caption>Aksiyon oyunu Postal 2</image:caption>
+    </image:image>
+  </url>
+
+  <!-- PROJECT ZOMBOID -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/project-zomboid/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/project-zomboid/project-zomboid.webp</image:loc>
+      <image:title>Project Zomboid PC İndir</image:title>
+      <image:caption>Zombi hayatta kalma simülasyonu Project Zomboid</image:caption>
+    </image:image>
+  </url>
+
+  <!-- RIMWORLD -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/rimworld/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/rimworld/rimworld.webp</image:loc>
+      <image:title>RimWorld PC İndir</image:title>
+      <image:caption>Koloni simülasyon oyunu RimWorld</image:caption>
+    </image:image>
+  </url>
+
+  <!-- SCHEDULE I -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/schedule-i/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/schedule-i/schedule1.webp</image:loc>
+      <image:title>Schedule I PC İndir</image:title>
+      <image:caption>Simülasyon oyunu Schedule I</image:caption>
+    </image:image>
+  </url>
+
+  <!-- STARDEW VALLEY -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/stardew-valley/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/stardew-valley/stardewvalley.jpg</image:loc>
+      <image:title>Stardew Valley PC İndir</image:title>
+      <image:caption>Çiftlik simülasyon oyunu Stardew Valley</image:caption>
+    </image:image>
+  </url>
+
+  <!-- SUICIDE GUY -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/suicide-guy/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/suicide-guy/suicide-guy.webp</image:loc>
+      <image:title>Suicide Guy PC İndir</image:title>
+      <image:caption>Bulmaca-platform oyunu Suicide Guy</image:caption>
+    </image:image>
+  </url>
+
+  <!-- TERRARIA -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/terraria/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/terraria/terraria.webp</image:loc>
+      <image:title>Terraria PC İndir</image:title>
+      <image:caption>2D sandbox macera oyunu Terraria</image:caption>
+    </image:image>
+  </url>
+
+  <!-- UNDERTALE -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/undertale/</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/undertale/undertale.webp</image:loc>
+      <image:title>Undertale PC İndir</image:title>
+      <image:caption>RPG oyunu Undertale</image:caption>
+    </image:image>
+  </url>
+
+  <!-- WORLDBOX -->
+  <url>
+    <loc>https://ballasnet.com/oyunindir/worldbox/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ballasnet.com/oyunindir/worldbox/worldbox.webp</image:loc>
+      <image:title>WorldBox PC İndir</image:title>
+      <image:caption>Tanrı simülasyon oyunu WorldBox</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
