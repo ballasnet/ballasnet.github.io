@@ -259,11 +259,87 @@ body{background:#0b0b0b;color:#fff;line-height:1.6}
 /* H1 - SEO Başlık */
 h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase}
 
-/* Hero Görsel */
-.game-hero{
-  max-width:600px;
-  margin:0 auto 40px;
-  padding:0;
+/* Hero ve Yan Kartlar Container */
+.hero-with-cards {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Yan Kartlar - Index ile AYNI boyut */
+.side-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 15px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
+}
+
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+
+.side-card .game-image {
+  width: 100%;
+  height: 180px;
+  background: #000;
+  overflow: hidden;
+}
+
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.side-card .game-title {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Hero ortada sabit */
+.hero-center {
+  flex-shrink: 0;
+  width: 600px;
+}
+
+.hero-center img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #222;
+  background: #000;
+}
+
+/* Mobil: Kartları gizle */
+@media(max-width: 1100px) {
+  .hero-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .side-card {
+    display: none;
+  }
+  
+  .hero-center {
+    width: 100%;
+    max-width: 600px;
+  }
 }
 
 .game-hero img{
@@ -536,9 +612,30 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
      ============================================ -->
 <main id="main-content">
 
-<!-- Hero Görsel -->
-<section class="game-hero" aria-label="Oyun Kapak Görseli">
-<img src="gtasanandreas.webp" alt="GTA San Andreas oyun kapak görseli - BallasNet açık dünya aksiyon vitrini" loading="eager" fetchpriority="high" width="750" height="270">
+<!-- Hero ve Yan Kartlar -->
+<section class="hero-with-cards" aria-label="Oyun Kapak Görseli ve Benzer Oyunlar">
+
+  <!-- SOL KART - Gta Vice City -->
+  <a href="/oyunindir/gtavicecity/" class="side-card" aria-label="Gta Vice City oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/gtavicecity/gtavicecity.webp" alt="Gta Vice City" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Gta Vice City</div>
+  </a>
+
+  <!-- ORTA - HERO GÖRSEL -->
+  <div class="hero-center">
+    <img src="gtasanandreas.webp" alt="GTA San Andreas oyun kapak görseli - BallasNet açık dünya aksiyon vitrini" loading="eager" fetchpriority="high" width="750" height="270">
+  </div>
+
+  <!-- SAĞ KART - GTA 3 -->
+  <a href="/oyunindir/gta-3/" class="side-card" aria-label="Gta 3 oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/gta-3/gta3.webp" alt="gta-3" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Gta 3</div>
+  </a>
+
 </section>
 
 <!-- Açıklama -->
