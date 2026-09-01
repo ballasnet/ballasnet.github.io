@@ -8,8 +8,8 @@
 <!-- TITLE - -->
 <title>Undertale İndir - Full PC Türkçe + Güncel Sürüm 2026</title>
 
-<!-- META DESCRIPTION - Optimized (150-160 karakter) -->
-<meta name="description" content="Undertale Ücretsiz indir - Full PC Türkçe sürümü. Toby Fox'un efsane indie RPG oyunu. Düşük sistem gereksinimleri, otomatik Türkçe yama. Windows 7/10/11.">
+<!-- META DESCRIPTION - -->
+<meta name="description" content="Undertale Ücretsiz İndir - Full PC Türkçe sürümü. Toby Fox'un efsane indie RPG oyunu. Düşük sistem gereksinimleri, otomatik Türkçe yama. Full Sürüm.">
 
 <!-- ROBOTS - Tam Erişim -->
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -312,6 +312,79 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
   background:#000;
 }
 
+/* Hero ve Yan Kartlar */
+.hero-with-cards {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.side-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 15px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
+}
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+.side-card .game-image {
+  width: 100%;
+  height: 180px;
+  background: #000;
+  overflow: hidden;
+}
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.side-card .game-title {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+.hero-center {
+  flex-shrink: 0;
+  width: 600px;
+}
+.hero-center img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #222;
+  background: #000;
+}
+@media(max-width: 1320px) {
+  .hero-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .side-card {
+    display: none;
+  }
+  .hero-center {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
 /* Linkler - Index 21 buton görünümü (KORUNDU) */
 .link-listesi{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
 .link-listesi a{
@@ -603,6 +676,119 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
   border-top:1px solid #222
 }
 
+/* SSS Kutusu */
+.sss-kutu{
+  max-width:900px;
+  margin:0 auto 50px;
+  padding:30px 40px;
+  background:#0f0f0f;
+  border:1px solid #222;
+}
+.sss-kutu h2{
+  text-align:center;
+  margin-bottom:20px;
+  font-size:18px;
+  letter-spacing:2px;
+}
+.sss-item{
+  border-bottom:1px solid #1c1c1c;
+  padding:18px 0;
+}
+.sss-item:last-child{
+  border-bottom:none;
+}
+.sss-item h3{
+  font-size:15px;
+  color:#fff;
+  margin-bottom:0;
+  cursor:pointer;
+  user-select:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding-right:4px;
+  transition:color 0.2s ease;
+}
+.sss-item h3:hover{
+  color:#ccc;
+}
+.sss-item h3::after{
+  content:'+';
+  font-size:18px;
+  color:#666;
+  font-weight:normal;
+  flex-shrink:0;
+}
+.sss-item.active h3::after{
+  content:'−';
+  color:#888;
+}
+.sss-item p{
+  font-size:14px;
+  color:#aaa;
+  line-height:1.6;
+  margin:0;
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:max-height 0.25s ease, opacity 0.2s ease, margin 0.2s ease;
+}
+.sss-item.active p{
+  max-height:200px;
+  opacity:1;
+  margin-top:8px;
+}
+
+/* SSS Floating Button */
+.sss-float-btn{
+  position:fixed;
+  bottom:24px;
+  left:24px;
+  z-index:100;
+  background:linear-gradient(180deg, #1e1e1e 0%, #141414 100%);
+  border:1px solid #3a3a3a;
+  color:#d0d0d0;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.4px;
+  padding:11px 18px;
+  cursor:pointer;
+  border-radius:6px;
+  user-select:none;
+  box-shadow:0 3px 12px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+.sss-float-btn.visible{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.sss-float-btn:hover{
+  background:linear-gradient(180deg, #252525 0%, #1a1a1a 100%);
+  border-color:#4a4a4a;
+  color:#fff;
+  box-shadow:0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.sss-float-btn.glow{
+  box-shadow:0 0 14px rgba(255,255,255,0.18), 0 0 28px rgba(255,255,255,0.08), 0 3px 12px rgba(0,0,0,0.45);
+  border-color:#555;
+  color:#fff;
+}
+@media(max-width:768px){
+  .sss-float-btn{
+    bottom:16px;
+    left:16px;
+    font-size:12px;
+    padding:9px 14px;
+  }
+}
+
 /* Benzer Oyunlar (Index 21 ile aynı) */
 .benzer-oyunlar{
   max-width:1200px;
@@ -620,7 +806,7 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 /* Mobil (Index 21 ile aynı) */
 @media(max-width:768px){
   h1{font-size:20px}
-  .game-hero img{height:200px}
+  .game-hero img,.hero-center img{height:200px}
   .link-listesi a{padding:15px 30px;font-size:16px}
   .uc-kart-container{
     grid-template-columns:1fr;
@@ -678,9 +864,23 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
      ============================================ -->
 <main id="main-content">
 
-<!-- Hero Görsel -->
-<section class="game-hero" aria-label="Oyun Kapak Görseli">
-<img src="undertale.webp" alt="Undertale oyun kapak görseli - BallasNet indie RPG vitrini" loading="eager" fetchpriority="high" width="600" height="270">
+<!-- Hero Görsel + yan kartlar -->
+<section class="hero-with-cards" aria-label="Oyun Kapak Görseli ve Benzer Oyunlar">
+  <a href="/oyunindir/deltarune/" class="side-card" aria-label="Deltarune oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/deltarune/deltarune.webp" alt="Deltarune" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Deltarune</div>
+  </a>
+  <div class="hero-center">
+    <img src="undertale.webp" alt="Undertale oyun kapak görseli - BallasNet indie RPG vitrini" loading="eager" fetchpriority="high" width="600" height="270">
+  </div>
+  <a href="/oyunindir/omori/" class="side-card" aria-label="OMORI oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/omori/omori.webp" alt="OMORI" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">OMORI</div>
+  </a>
 </section>
 
 <!-- Açıklama -->
@@ -785,24 +985,47 @@ Undertale'in retro 2D grafikleri, eşsiz müzikleri ve kendine has bulmaca mekan
 <li>Hem strateji geliştirin hem de hızlı düşünme yeteneklerinizi test edin.</li>
 </ul>
 
-<h3>VİRÜS TARAMASI SONUÇLARI</h3>
-<p>Undertale adlı oyunu kapsamlı bir virüs taramasından geçirdik:
-Taranan dosyalar: 224
-Bulunan virüs/zararlı yazılım sayısı: 0
-Bu oyunu gönül rahatlığıyla oynayabilirsiniz.</p>
-
   <h3>Undertale İpuçları ve Tavsiyeler</h3>
   <p>Undertale’de farklı karakterlerle etkileşim kurmak, oyunun gizli sonlarını keşfetmek için önemlidir. Bulmacaları dikkatlice çözmek, oyunun ilerleyişini kolaylaştırır ve oyuncuya avantaj sağlar. Her seçim oyunun hikayesini etkileyebilir, bu nedenle kararlarınızı düşünerek vermeniz önerilir. Ayrıca müzik ve atmosferi takip etmek, oyunun retro havasını daha iyi hissetmenize yardımcı olur. Oyuncular, strateji ve hızlı düşünme yeteneklerini bu oyun sayesinde geliştirebilirler.</p>
 </section>
-</section>
 
 </main>
+
+<div class="sss-kutu">
+  <h2>SSS (Sık Sorulan Sorular)</h2>
+  <div class="sss-item">
+    <h3>Undertale kaç GB?</h3>
+    <p>Temel oyun yaklaşık 122 MB disk alanı ister. Kurulum sonrası ~200 MB yeterlidir. Düşük depolama için ideal bir boyuttur.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Undertale hangi Windows sürümlerinde çalışır?</h3>
+    <p>Windows 7, 8, 10 ve 11 ile tam uyumludur. Düşük sistemli PC’lerde de sorunsuz açılır.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Kaç link var, hangisini seçmeliyim?</h3>
+    <p>Sayfada 3 alternatif link bulunur. Bunlardan herhangi birine tıklayıp indirebilirsiniz. </p>
+  </div>
+  <div class="sss-item">
+    <h3>Oyun ücretsiz mi?</h3>
+    <p>Evet, BallasNet üzerinden tüm oyunlar tamamen ücretsiz indirilebilir.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Virüs veya zararlı yazılım var mı?</h3>
+    <p>Hayır. Tüm dosyalar düzenli olarak kontrol edilmektedir.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Undertale türkçe mi?</h3>
+    <p>Evet, oyun türkçe olarak gelmektedir. Herhangi ek birşey kurmanız gerekmez.</p>
+  </div>
+</div>
+
+<button class="sss-float-btn" id="sssFloatBtn" aria-label="Sık Sorulan Sorulara git">Sık Sorulan Sorular</button>
 
 <!-- ============================================
      FOOTER
      ============================================ -->
 <footer class="site-footer">
-<p>&copy; BallasNet - Undertale İndir</p>
+<p>&copy; BallasNet - Undertale Ücretsiz & Türkçe İndir</p>
 </footer>
 
 <!-- ============================================
@@ -885,6 +1108,60 @@ function createGameCards() {
 
 // Başlat
 document.addEventListener('DOMContentLoaded', createGameCards);
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.sss-item h3').forEach(h3 => {
+    h3.addEventListener('click', () => {
+      h3.parentElement.classList.toggle('active');
+    });
+  });
+
+  const floatBtn = document.getElementById('sssFloatBtn');
+  if (floatBtn) {
+    const sistemSection = document.querySelector('.sistem-gereksinimleri');
+    const sssSection = document.querySelector('.sss-kutu');
+    let reachedSistem = false;
+    let sssInView = false;
+
+    const updateBtnVisibility = () => {
+      if (reachedSistem && !sssInView) {
+        floatBtn.classList.add('visible');
+      } else {
+        floatBtn.classList.remove('visible');
+      }
+    };
+
+    if (sistemSection) {
+      const sistemObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const top = entry.boundingClientRect.top;
+          reachedSistem = entry.isIntersecting || top < 0;
+          updateBtnVisibility();
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
+      sistemObserver.observe(sistemSection);
+    }
+
+    if (sssSection) {
+      const sssObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          sssInView = entry.isIntersecting;
+          updateBtnVisibility();
+        });
+      }, { threshold: 0.15, rootMargin: '40px 0px 40px 0px' });
+      sssObserver.observe(sssSection);
+    }
+
+    floatBtn.addEventListener('click', () => {
+      floatBtn.classList.add('glow');
+      setTimeout(() => floatBtn.classList.remove('glow'), 450);
+      if (sssSection) {
+        sssSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+});
+
 
 // Lazy-load YouTube iframe
 document.addEventListener('DOMContentLoaded', () => {
