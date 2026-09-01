@@ -99,6 +99,22 @@
 }
 </script>
 
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Papers Please kaç GB?","acceptedAnswer":{"@type":"Answer","text":"İndirme dosyası (ZIP) yaklaşık 56 MB, kurulduktan sonra oyun boyutu ~100 MB civarındadır."}},
+    {"@type":"Question","name":"Papers Please hangi Windows sürümlerinde çalışır?","acceptedAnswer":{"@type":"Answer","text":"Windows 7, 8, 10 ve 11 ile tam uyumludur."}},
+    {"@type":"Question","name":"Kaç link var, hangisini seçmeliyim?","acceptedAnswer":{"@type":"Answer","text":"Sayfada 3 alternatif indirme linki bulunur, hepsi aynı dosyayı verir; herhangi birini seçebilirsiniz."}},
+    {"@type":"Question","name":"Oyun ücretsiz mi?","acceptedAnswer":{"@type":"Answer","text":"Evet, BallasNet üzerinden tüm oyunlar tamamen ücretsiz indirilebilir."}},
+    {"@type":"Question","name":"Virüs veya zararlı yazılım var mı?","acceptedAnswer":{"@type":"Answer","text":"Hayır, dosyalar güvenlidir ve düzenli olarak kontrol edilmektedir."}},
+    {"@type":"Question","name":"Papers Please'in Türkçe yaması var mı?","acceptedAnswer":{"@type":"Answer","text":"Hayır, ekstra yamaya gerek yoktur çünkü oyun zaten Türkçe dil desteğiyle gelir."}}
+  ]
+}
+</script>
+
 <!-- Breadcrumb Schema -->
 <script type="application/ld+json">
 {
@@ -129,6 +145,39 @@
 
 <style>
 /* ... mevcut stiller ... */
+
+/* SSS Kutusu - açıklamadan ayrı, kart görünümü */
+.sss-kutu{
+  max-width:800px;
+  margin:0 auto 50px;
+  padding:30px 40px;
+  background:#0f0f0f;
+  border:1px solid #222;
+}
+.sss-kutu h2{
+  text-align:center;
+  margin-bottom:20px;
+  font-size:18px;
+  letter-spacing:2px;
+}
+.sss-item{
+  border-bottom:1px solid #1c1c1c;
+  padding:14px 0;
+}
+.sss-item:last-child{
+  border-bottom:none;
+}
+.sss-item h3{
+  font-size:15px;
+  color:#fff;
+  margin-bottom:6px;
+}
+.sss-item p{
+  font-size:14px;
+  color:#aaa;
+  line-height:1.6;
+  margin:0;
+}
 </style>
 </head>
 <body>
@@ -151,44 +200,87 @@ h1{
   text-transform:uppercase;
 }
 
-/* Hero görsel */
-/* Hero görsel  */
-.game-hero{
-  max-width:1000px;
-  margin:0 auto 40px;
-  padding:0;
-}
-/* Hero görsel - uzunluk %25 kısa */
-.game-hero img{
-  width:100%;
-  height:300px;
-  object-fit:contain; 
-  display:block;
-  border:2px solid #222;
-  background:#000; 
+/* Hero ve Yan Kartlar Container */
+.hero-with-cards {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
 }
 
-/* Linkler - daha büyük ve görsel */
-.link-listesi{
-  display:flex;
-  gap:30px;
-  flex-wrap:wrap;
-  justify-content:center;
+/* Yan Kartlar */
+.side-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 15px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
 }
-/* Hero görsel - tamamını kapsasın, kesilmesin */
-.game-hero{
-  max-width:1000px;
-  margin:0 auto 40px;
-  padding:0;
+
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
 }
-.game-hero img{
-  width:100%;
-  height:300px;
-  object-fit:contain; /* cover yerine contain - tamamını göster */
-  display:block;
-  border:2px solid #222;
-  background:#000; /* boş alan varsa siyah olsun */
+
+.side-card .game-image {
+  width: 100%;
+  height: 180px;
+  background: #000;
+  overflow: hidden;
 }
+
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.side-card .game-title {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Hero ortada sabit */
+.hero-center {
+  flex-shrink: 0;
+  width: 600px;
+}
+
+.hero-center img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #222;
+  background: #000;
+}
+
+/* Mobil: Kartları gizle */
+@media(max-width: 1100px) {
+  .hero-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .side-card {
+    display: none;
+  }
+  .hero-center {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
 
 /* Linkler - alt çizgi yok */
 .link-listesi a{
@@ -738,9 +830,30 @@ a, a:hover, a:visited, a:active, a:focus{
 
 
 
-<div class="game-hero">
-  <img src="papersplease2.jpg" alt="Papers Please oyun kapak görseli - BallasNet indie oyun vitrini" loading="eager" fetchpriority="high">
-</div>
+<section class="hero-with-cards" aria-label="Oyun Kapak Görseli ve Benzer Oyunlar">
+
+  <!-- SOL KART - UNDERTALE -->
+  <a href="/oyunindir/undertale/" class="side-card" aria-label="Undertale oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/undertale/undertale.webp" alt="Undertale" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Undertale</div>
+  </a>
+
+  <!-- ORTA - HERO GÖRSEL -->
+  <div class="hero-center">
+    <img src="papersplease2.jpg" alt="Papers Please oyun kapak görseli - BallasNet indie oyun vitrini" loading="eager" fetchpriority="high" width="600" height="270">
+  </div>
+
+  <!-- SAĞ KART - RIMWORLD -->
+  <a href="/oyunindir/rimworld/" class="side-card" aria-label="RimWorld oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/rimworld/rimworld.webp" alt="RimWorld" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">RimWorld</div>
+  </a>
+
+</section>
 
 <div class="aciklama">
   <!-- Açıklama yeri -->
@@ -849,13 +962,34 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
 
   <h3>Papers Please Türkçe mi?</h3>
   <p>Oyun zaten türkçe gelmektedir, ekstra birşey yapmanıza gerek yoktur.</p>
+</div>
 
-<h3>SSS (Sık Sorulan Sorular)</h3>
-<li><strong>Papers Please kaç GB?</strong> İndirme dosyası (ZIP) yaklaşık 56 MB, kurulduktan sonra oyun boyutu ~100 MB civarındadır. Düşük depolama alanı olanlar için ideal bir boyuttur.</li><li><strong>Papers Please hangi Windows sürümlerinde çalışır?</strong> Windows 7, 8, 10 ve 11 ile tam uyumludur.</li>
-<li><strong>Kaç link var, hangisini seçmeliyim?</strong> Sayfada 3 alternatif indirme linki bulunur, hepsi aynı dosyayı verir; herhangi birini seçebilirsiniz.</li>
-<li><strong>Oyun ücretsiz mi?</strong> Evet, BallasNet üzerinden tüm oyunlar tamamen ücretsiz indirilebilir.</li>
-<li><strong>Virüs veya zararlı yazılım var mı?</strong> Hayır, dosyalar güvenlidir ve düzenli olarak kontrol edilmektedir.</li>
-<li><strong>Papers Please'in Türkçe yaması var mı?</strong> Hayır, ekstra yamaya gerek yoktur çünkü oyun zaten Türkçe dil desteğiyle gelir.</li>
+<div class="sss-kutu">
+  <h2>SSS (Sık Sorulan Sorular)</h2>
+  <div class="sss-item">
+    <h3>Papers Please kaç GB?</h3>
+    <p>İndirme dosyası (ZIP) yaklaşık 56 MB, kurulduktan sonra oyun boyutu ~100 MB civarındadır. Düşük depolama alanı olanlar için ideal bir boyuttur.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Papers Please hangi Windows sürümlerinde çalışır?</h3>
+    <p>Windows 7, 8, 10 ve 11 ile tam uyumludur.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Kaç link var, hangisini seçmeliyim?</h3>
+    <p>Sayfada 3 alternatif indirme linki bulunur, hepsi aynı dosyayı verir; herhangi birini seçebilirsiniz.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Oyun ücretsiz mi?</h3>
+    <p>Evet, BallasNet üzerinden tüm oyunlar tamamen ücretsiz indirilebilir.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Virüs veya zararlı yazılım var mı?</h3>
+    <p>Hayır, dosyalar güvenlidir ve düzenli olarak kontrol edilmektedir.</p>
+  </div>
+  <div class="sss-item">
+    <h3>Papers Please'in Türkçe yaması var mı?</h3>
+    <p>Hayır, ekstra yamaya gerek yoktur çünkü oyun zaten Türkçe dil desteğiyle gelir.</p>
+  </div>
 </div>
 
 
