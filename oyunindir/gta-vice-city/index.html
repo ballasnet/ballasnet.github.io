@@ -1086,13 +1086,40 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 
 <!-- İndirme Linkleri -->
 <section class="linkler" aria-labelledby="linkler-baslik">
-<h2 id="linkler-baslik">LİNKLER</h2>
-<div class="link-listesi">
-<a href="https://drive.google.com/file/d/1E01ZiL46xsI_ToHB6IrH-Sr3_Nj6H1mr/view?usp=drive_link" rel="nofollow noopener noreferrer" target="_blank">LİNK 1</a>
-<a href="https://mega.nz/file/axQETS7b#LOCC6EpDzGj2nebA5roJwJbLGd5x7Cn6DRLrsgI4L3k" rel="nofollow noopener noreferrer" target="_blank">LİNK 2</a>
-<a href="https://pixeldrain.com/u/aCPAkbZz" rel="nofollow noopener noreferrer" target="_blank">LİNK 3</a>
-</div>
+  <h2 id="linkler-baslik">LİNKLER</h2>
+
+  <div class="link-listesi">
+
+    <a href="https://drive.google.com/file/d/1E01ZiL46xsI_ToHB6IrH-Sr3_Nj6H1mr/view?usp=drive_link"
+       rel="nofollow noopener noreferrer"
+       target="_blank"
+       onclick="gtag('event', 'download_link_click', {
+         'link_name': 'Link 1'
+       });">
+       LİNK 1
+    </a>
+
+    <a href="https://mega.nz/file/axQETS7b#LOCC6EpDzGj2nebA5roJwJbLGd5x7Cn6DRLrsgI4L3k"
+       rel="nofollow noopener noreferrer"
+       target="_blank"
+       onclick="gtag('event', 'download_link_click', {
+         'link_name': 'Link 2'
+       });">
+       LİNK 2
+    </a>
+
+    <a href="https://pixeldrain.com/u/aCPAkbZz"
+       rel="nofollow noopener noreferrer"
+       target="_blank"
+       onclick="gtag('event', 'download_link_click', {
+         'link_name': 'Link 3'
+       });">
+       LİNK 3
+    </a>
+
+  </div>
 </section>
+
 
 <!-- Slider Notu -->
 <div class="slider-not">
