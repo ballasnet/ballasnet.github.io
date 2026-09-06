@@ -1885,7 +1885,13 @@ document.querySelectorAll('.hero-tag-link').forEach(link => {
     const targetId = this.getAttribute('href').slice(1);
     const target = document.getElementById(targetId);
     if (!target) return;
-    const top = target.getBoundingClientRect().top + window.pageYOffset - 20;
+
+    // Slider'ı ekranın tam ortasına getir
+    const rect = target.getBoundingClientRect();
+    const elementHeight = rect.height;
+    const viewportHeight = window.innerHeight;
+    const top = rect.top + window.pageYOffset - (viewportHeight / 2) + (elementHeight / 2);
+
     fastScrollTo(top, 250);
   });
 });
