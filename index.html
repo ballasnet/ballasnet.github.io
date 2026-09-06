@@ -165,6 +165,8 @@ a{color:#fff;text-decoration:none;}
   margin-bottom:10px;
 }
 .hero-tags a{color:#aaa;}
+.hero-tag-link{cursor:pointer;transition:color 0.15s ease;}
+.hero-tag-link:hover{color:#fff;}
 
 .section{
   max-width:1200px;
@@ -609,16 +611,81 @@ body.dark .masa-panel {
 
 /* gündüz modu */
 body:not(.dark) {
-  background-color: #F5FEFD;
+  background-color: #d6d6d6;
 }
 body:not(.dark) .masa-panel {
-  background: #F5FEFD;
+  background: #c8c8c8;
+  border-color: #999;
+}
+body:not(.dark) .section h2 {
+  color: #111;
+  border-bottom-color: #aaa;
+}
+body:not(.dark) .hero {
+  background: #c4c4c4;
+  border-color: #999;
+}
+body:not(.dark) .search-box {
+  background: #b8b8b8;
+  border-color: #999;
+}
+body:not(.dark) .search-box input {
+  background: #b8b8b8;
+  color: #111;
+}
+body:not(.dark) .search-box input::placeholder {
+  color: #555;
+}
+body:not(.dark) .search-box button {
+  background: #aaa;
+  color: #222;
+  border-left-color: #999;
+}
+body:not(.dark) .search-suggestions {
+  background: #c4c4c4;
+  border-color: #999;
+  color: #111;
+}
+body:not(.dark) .search-suggestions div:hover {
+  background: #aaa;
+}
+body:not(.dark) .slider .game {
+  background: #c4c4c4;
+  border-color: #999;
+}
+body:not(.dark) .game-image {
+  background: #aaa;
+}
+body:not(.dark) .game-title {
+  color: #111;
+}
+body:not(.dark) .game-tag {
+  background: #b0b0b0;
+  color: #333;
+}
+body:not(.dark) .mozaik-card {
+  background: #c4c4c4;
+  border-color: #999;
+}
+body:not(.dark) .slider-btn {
+  background: #b8b8b8;
+  color: #111;
+  border-color: #999;
+}
+body:not(.dark) .site-footer {
+  border-top-color: rgba(0,0,0,0.12);
+  color: #444;
+}
+body:not(.dark) #theme-toggle {
+  background: #aaa;
+  color: #111;
 }
 
-
-/* gündüz modu  section başlıkları*/
-body:not(.dark) .section h2 {
-  color: #111; 
+/* scroll-margin for anchor jump */
+.populer-wrapper,
+.dusuk-wrapper,
+.indie-wrapper {
+  scroll-margin-top: 20px;
 }
 
 body {
@@ -1011,9 +1078,9 @@ body.scroll-kilit {
 
 
   <div class="hero-tags">
-    <a href="#">POPÜLER</a>
-    <a href="#">DÜŞÜK SİSTEM</a>
-    <a href="#">İNDİE</a>
+    <a href="#anchor-populer" class="hero-tag-link">POPÜLER</a>
+    <a href="#anchor-dusuk" class="hero-tag-link">DÜŞÜK SİSTEM</a>
+    <a href="#anchor-indie" class="hero-tag-link">İNDİE</a>
   </div>
 
 
@@ -1040,7 +1107,7 @@ body.scroll-kilit {
 
 <section class="section">
 <h2>POPÜLER OYUNLAR</h2>
-<div class="slider-wrapper populer-wrapper">
+<div class="slider-wrapper populer-wrapper" id="anchor-populer">
 <button class="slider-btn left">&#10094;</button>
 <button class="slider-btn right">&#10095;</button>
 <div class="slider shuffle-populer">
@@ -1095,7 +1162,7 @@ body.scroll-kilit {
 <div class="dusuk-section">
   <h2>DÜŞÜK SİSTEM GEREKTİREN OYUNLAR</h2>
 
-  <div class="slider-wrapper dusuk-wrapper">
+  <div class="slider-wrapper dusuk-wrapper" id="anchor-dusuk">
     <button class="slider-btn left">&#10094;</button>
     <button class="slider-btn right">&#10095;</button>
 
@@ -1108,7 +1175,7 @@ body.scroll-kilit {
 <section class="section dusuk-section">
   <h2>INDIE OYUNLAR</h2>
 
-  <div class="slider-wrapper indie-wrapper">
+  <div class="slider-wrapper indie-wrapper" id="anchor-indie">
 
     <button class="slider-btn left">&#10094;</button>
     <button class="slider-btn right">&#10095;</button>
@@ -1794,6 +1861,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { once: true });
   });
 })();
+
+// =====================
+// Hero Tag Smooth Scroll (0.25s)
+// =====================
+function fastScrollTo(targetY, duration) {
+  const startY = window.pageYOffset;
+  const diff = targetY - startY;
+  const start = performance.now();
+  function step(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+    window.scrollTo(0, startY + diff * ease);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+document.querySelectorAll('.hero-tag-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.pageYOffset - 20;
+    fastScrollTo(top, 250);
+  });
+});
 
 // =====================
 // Arama Önerileri + Filtreleme Modu
