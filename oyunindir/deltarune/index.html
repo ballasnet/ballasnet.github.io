@@ -162,20 +162,91 @@ h1{
 }
 
 /* Hero görsel */
-/* Hero görsel  */
 .game-hero{
-  max-width:1000px;
+  max-width:705px;
   margin:0 auto 40px;
   padding:0;
 }
-/* Hero görsel - uzunluk %25 kısa */
 .game-hero img{
   width:100%;
-  height:300px;
-  object-fit:contain; 
+  height:240px;
+  object-fit:cover;
   display:block;
   border:2px solid #222;
-  background:#000; 
+  background:#000;
+}
+
+/* Hero ve Yan Kartlar */
+.hero-with-cards {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.side-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  padding: 15px;
+  transition: all 0.15s ease-out;
+  text-decoration: none;
+  display: block;
+}
+.side-card:hover {
+  border-color: #444;
+  transform: scale(1.015);
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+.side-card .game-image {
+  width: 100%;
+  height: 180px;
+  background: #000;
+  overflow: hidden;
+}
+.side-card .game-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.side-card .game-title {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+.hero-center {
+  flex-shrink: 0;
+  width: 600px;
+}
+.hero-center img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #222;
+  background: #000;
+}
+@media(max-width: 1320px) {
+  .hero-with-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .side-card {
+    display: none;
+  }
+  .hero-center {
+    width: 100%;
+    max-width: 600px;
+  }
 }
 
 /* Linkler - daha büyük ve görsel */
@@ -184,16 +255,6 @@ h1{
   gap:30px;
   flex-wrap:wrap;
   justify-content:center;
-}
-
-.game-hero{
-  max-width:705px;
-}
-
-.game-hero img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
 }
 /* Linkler - alt çizgi yok */
 .link-listesi a{
@@ -362,7 +423,7 @@ a, a:hover, a:visited, a:active, a:focus{
 /* Mobil */
 @media(max-width:768px){
   h1{font-size:20px;}
-  .game-hero img{height:250px;}
+  .game-hero img,.hero-center img{height:200px;}
   .slider .game{width:260px;height:170px;}
 }
 
@@ -755,21 +816,31 @@ a, a:hover, a:visited, a:active, a:focus{
 </nav>
 
 
-<div class="game-hero">
-  <img src="deltarune.webp" alt="Deltarune oyun kapak görseli - BallasNet indie oyun vitrini" loading="eager" fetchpriority="high">
-</div>
+<!-- Hero Görsel + yan kartlar -->
+<section class="hero-with-cards" aria-label="Oyun Kapak Görseli ve Benzer Oyunlar">
+  <a href="/oyunindir/omori/" class="side-card" aria-label="OMORI oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/omori/omori.webp" alt="OMORI" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">OMORI</div>
+  </a>
+  <div class="hero-center">
+    <img src="deltarune.webp" alt="Deltarune oyun kapak görseli - BallasNet indie RPG vitrini" loading="eager" fetchpriority="high" width="600" height="270">
+  </div>
+  <a href="/oyunindir/undertale/" class="side-card" aria-label="Undertale oyununa git">
+    <div class="game-image">
+      <img src="/oyunindir/undertale/undertale.webp" alt="Undertale" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+    </div>
+    <div class="game-title">Undertale</div>
+  </a>
+</section>
 
 <div class="aciklama">
   <!-- Açıklama yeri -->
-  <p>Deltarune, Toby Fox tarafından geliştirilen ve indie oyun dünyasında kendine özgü bir yer edinen rol yapma ve bulmaca oyunudur. 
-  Oyuncular oyunda karakterlerle etkileşim kurabilir, savaşabilir veya barışçıl yollarla ilerleyebilir. 
-  Deltarune'in 2D retro grafikleri ve eşsiz müzikleri, klasik RPG deneyimini yepyeni bir bakış açısıyla sunar. 
-  Oyun, farklı seçimlerinizin sonucu olarak çeşitli sonlara ulaşmanıza olanak tanır ve her oynayışta farklı bir hikaye deneyimi sağlar. 
-  Basit görünen mekaniklerin altında derin bir strateji ve yaratıcılık gerektiren Deltarune, hem bulmaca çözmeyi hem de RPG öğelerini seven oyuncular için ideal bir seçenektir. 
-  Eğer sıra dışı, özgün ve bağımsız bir oyun deneyimi arıyorsanız, Deltarune'i denemek kaçırılmayacak bir fırsattır. 
-  BallasNet üzerinden oyunun detaylarını inceleyebilir ve benzer indie oyunları keşfedebilirsiniz.</p>
+  <p>Deltarune, Toby Fox tarafından geliştirilen bağımsız bir RPG ve bulmaca oyunudur. 
+  Karakterlerle savaşabilir ya da barışçıl yollarla ilerleyebilirsiniz; tercihleriniz hikayeyi ve sonucu doğrudan etkiler. 
+  Retro grafikleri, özgün müzikleri ve derin stratejisiyle kendine has bir deneyim sunan Deltarune, indie RPG severler için kaçırılmaması gereken bir oyundur.</p>
 </div>
-
 
 <!-- Sistem Gereksinimleri -->
 <section class="sistem-gereksinimleri">
@@ -803,15 +874,15 @@ a, a:hover, a:visited, a:active, a:focus{
 <div class="linkler">     
   <h2>LİNKLER</h2>
   <div class="link-listesi">
-    <a href="https://drive.google.com/file/d/1Wh4ig3vCnQV1DWHqkMzYxJDmnOf5OJ2k/view?usp=drive_link" id="link1">LİNK 1</a>
-    <a href="https://mega.nz/file/zhoXSTZL#ukh4VBY4FdBVg6rUYBg_IT-_DR_i9uSRqkdAstLWXKc" id="link2">LİNK 2</a>
-    <a href="https://www.dropbox.com/scl/fi/fyws5g0vp5xdy776h6s27/DELTARUNE-BallasNet.zip?rlkey=rpzavwxdv9jabjvjlnmnswu5z&st=x21fxj8c&dl=0">LİNK 3</a>
+    <a href="https://drive.google.com/file/d/1fwkirsZl1hTFsZ5dNRY2nUEmcKk1tqrT/view?usp=drive_link" id="link1">LİNK 1</a>
+    <a href="https://mega.nz/file/rqgWGSYb#GCUSi33bjJwKOkxjZIHBPVIOfxlvCIUNH582DFfWMIw" id="link2">LİNK 2</a>
+    <a href="https://www.dropbox.com/scl/fi/1y6ihat5t0y647k5c039u/DELTARUNE-BallasNet.zip?rlkey=qwzboyolr540vllmg6604obk3&st=pig4kfe6&dl=0">LİNK 3</a>
   </div>
 </div> 
 
 <!-- Slider Notu -->
 <div class="slider-not">
-  <p>NOT: OYUN OTOMATİK OLARAK TÜRKÇE GELİYOR. İyi oyunlar dileriz. </p>
+  <p>NOT: OYUN OTOMATİK OLARAK TÜRKÇE gelmektedir İyi oyunlar dileriz. </p>
 </div>
 
 <div class="linkler resmi">
@@ -898,7 +969,7 @@ a, a:hover, a:visited, a:active, a:focus{
 
 
 <footer class="site-footer">
-  © BallasNet - Deltarune İndir
+  © BallasNet - Deltarune İndir Full PC Türkçe
 </footer>
 <script>
 // Tüm oyunlar (ana sayfa ile aynı)
