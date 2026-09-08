@@ -96,17 +96,27 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 }
 .hikaye-blok{
   background:#0d0d0d;border:1px solid #1a1a1a;padding:28px 30px;
+  transition:border-color .2s,background .2s;
+}
+.hikaye-blok:hover{
+  border-color:#2a2a2a;background:#101010;
 }
 .hikaye-blok h3{
   font-size:13px;font-weight:600;letter-spacing:1px;
   color:#888;margin-bottom:12px;text-transform:uppercase;
+  transition:color .2s;
 }
+.hikaye-blok:hover h3{color:#aaa}
 .hikaye-blok p{
   font-size:14px;color:#666;line-height:1.8;
 }
 .hikaye-full{
   background:#0d0d0d;border:1px solid #1a1a1a;
   padding:28px 30px;margin-top:2px;
+  transition:border-color .2s,background .2s;
+}
+.hikaye-full:hover{
+  border-color:#2a2a2a;background:#101010;
 }
 .hikaye-full p{
   font-size:14px;color:#666;line-height:1.85;
@@ -158,7 +168,15 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
   font-size:11px;font-weight:700;letter-spacing:2px;
   padding:4px 9px;border:1px solid #2a2a2a;background:#0a0a0a;
   color:#444;
+  transition:color .18s,border-color .18s;
 }
+/* varsayılan (hover olmadan) hafif renk tonu */
+.chapter-card[data-ch="1"] .chapter-num-badge{color:#5b8dd9b3;border-color:#5b8dd94a}
+.chapter-card[data-ch="2"] .chapter-num-badge{color:#c46db0b3;border-color:#c46db04a}
+.chapter-card[data-ch="3"] .chapter-num-badge{color:#7b62c4b3;border-color:#7b62c44a}
+.chapter-card[data-ch="4"] .chapter-num-badge{color:#4ea882b3;border-color:#4ea8824a}
+.chapter-card[data-ch="5"] .chapter-num-badge{color:#c47b4eb3;border-color:#c47b4e4a}
+
 .chapter-card[data-ch="1"]:hover .chapter-num-badge{color:#5b8dd9;border-color:#5b8dd940}
 .chapter-card[data-ch="2"]:hover .chapter-num-badge{color:#c46db0;border-color:#c46db040}
 .chapter-card[data-ch="3"]:hover .chapter-num-badge{color:#7b62c4;border-color:#7b62c440}
@@ -179,6 +197,34 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 }
 .chapter-card:hover .chapter-footer{color:#666}
 .chapter-footer-arrow{font-size:16px}
+
+/* ── CHAPTER 6 / YAKINDA KARTI ── */
+.chapter-card.chapter-soon{
+  position:relative;
+  cursor:default;
+}
+.chapter-card.chapter-soon:hover{border-color:#1a1a1a;background:#0d0d0d}
+.chapter-card.chapter-soon .chapter-img-placeholder{
+  opacity:.1;
+}
+.chapter-card.chapter-soon .chapter-body p{color:#4a4a4a}
+.chapter-card.chapter-soon .chapter-footer{color:#d9b54a99}
+.chapter-card.chapter-soon:hover .chapter-footer{color:#d9b54a99}
+
+.chapter-glow-dot{
+  position:absolute;bottom:14px;
+  width:7px;height:7px;border-radius:50%;
+  background:#d9b54a;
+  box-shadow:0 0 6px 2px rgba(217,181,74,.6);
+  animation:chGlowPulse 2.6s ease-in-out infinite;
+  pointer-events:none;
+}
+.chapter-glow-dot.dot-left{left:14px}
+.chapter-glow-dot.dot-right{right:14px;animation-delay:1.3s}
+@keyframes chGlowPulse{
+  0%,100%{opacity:.25;box-shadow:0 0 3px 1px rgba(217,181,74,.4)}
+  50%{opacity:1;box-shadow:0 0 11px 4px rgba(217,181,74,.85)}
+}
 
 /* ── SSS ── */
 .sss{max-width:820px;margin:0 auto 70px;padding:0 20px}
@@ -223,7 +269,7 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 /* ============================================
    YORUM SİSTEMİ
    ============================================ */
-.yorumlar-section{max-width:800px;margin:60px auto;padding:0 20px}
+.yorumlar-section{max-width:920px;margin:60px auto;padding:0 20px}
 
 /* yorumlar başlık toggle ortalama yıldız */
 .yorumlar-header{
@@ -300,12 +346,12 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
   margin-bottom:0;
 }
 
-.comment-form{background:#0f0f0f;border:1px solid #222;padding:25px;margin-bottom:40px}
-.form-group{margin-bottom:18px}
-.form-group label{display:block;font-size:12px;letter-spacing:1px;color:#888;margin-bottom:8px;text-transform:uppercase}
-.form-group input,.form-group textarea{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:12px 15px;font-size:14px;transition:all .2s ease}
+.comment-form{background:#0f0f0f;border:1px solid #222;padding:36px;margin-bottom:40px}
+.form-group{margin-bottom:22px}
+.form-group label{display:block;font-size:13px;letter-spacing:1px;color:#888;margin-bottom:10px;text-transform:uppercase}
+.form-group input,.form-group textarea{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:15px 18px;font-size:15px;transition:all .2s ease}
 .form-group input:focus,.form-group textarea:focus{outline:none;border-color:#555}
-.form-group textarea{min-height:100px;resize:vertical;max-height:300px}
+.form-group textarea{min-height:140px;resize:vertical;max-height:340px}
 
 .rating-group{display:flex;gap:8px;align-items:center;flex-direction:row-reverse;justify-content:flex-end}
 .rating-group input{display:none}
@@ -319,7 +365,7 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 
 .honeypot{position:absolute;left:-9999px;opacity:0}
 
-.submit-btn{width:100%;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);border:2px solid #333;color:#fff;padding:15px;font-size:14px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s ease}
+.submit-btn{width:100%;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);border:2px solid #333;color:#fff;padding:18px;font-size:15px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s ease}
 .submit-btn:hover{background:linear-gradient(135deg,#222,#1a1a1a);border-color:#555}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed}
 
@@ -330,16 +376,16 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 .comments-list{
   display:flex;
   flex-direction:column;
-  gap:12px;
-  width:calc(100% + 300px);
-  margin-left:-150px;
+  gap:16px;
+  width:calc(100% + 380px);
+  margin-left:-190px;
 }
 
 .comment-item{
   background:#0f0f0f;
   border:1px solid #1e1e1e;
   border-left:3px solid #2a2a2a;
-  padding:22px 26px;
+  padding:28px 34px;
   transition:all .2s ease-out;
 }
 .comment-item:hover{
@@ -377,7 +423,7 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 }
 
 .comment-name{
-  font-size:13px;
+  font-size:14px;
   font-weight:bold;
   letter-spacing:1.5px;
   color:#ddd;
@@ -386,7 +432,7 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 }
 
 .comment-stars{
-  font-size:13px;
+  font-size:14px;
   color:#aaa;
   letter-spacing:3px;
   cursor:default;
@@ -418,11 +464,11 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 
 /* YORUM METNİ */
 .comment-text{
-  font-size:14px;
+  font-size:15px;
   color:#bbb;
-  line-height:1.75;
+  line-height:1.8;
   border-top:1px solid #181818;
-  padding-top:14px;
+  padding-top:16px;
 }
 
 /* CEVAP GÖSTERGESİ */
@@ -750,6 +796,22 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
           <span class="chapter-footer-arrow">›</span>
         </div>
       </a>
+
+      <div class="chapter-card chapter-soon" data-ch="6">
+        <div class="chapter-img">
+          <div class="chapter-img-placeholder" style="display:flex">06</div>
+          <div class="chapter-num-badge">06</div>
+        </div>
+        <div class="chapter-body">
+          <h3>Chapter 6</h3>
+          <p>Serinin bir sonraki bölümü için Mob Entertainment'tan resmi duyuru bekleniyor. Detaylar açıklandıkça burada yer alacak.</p>
+        </div>
+        <div class="chapter-footer">
+          <span>Yakında</span>
+        </div>
+        <span class="chapter-glow-dot dot-left"></span>
+        <span class="chapter-glow-dot dot-right"></span>
+      </div>
 
     </div>
   </section>
