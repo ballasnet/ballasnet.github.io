@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Poppy Playtime Tüm Chapter'lar – Hub | BallasNet</title>
+<meta name="description" content="Poppy Playtime serisinin tüm chapter'larını tek yerden keşfet. Chapter 1'den Chapter 5'e kadar kısa açıklamalar, linkler ve sık sorulan sorular.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="BallasNet">
+<meta name="language" content="Turkish">
+<link rel="canonical" href="https://ballasnet.com/oyunindir/poppy-playtime/">
+<link rel="icon" type="image/png" href="/favicon/favicon2.png">
+<meta name="theme-color" content="#0b0b0b">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+
+/* ── BREADCRUMB ── */
+.breadcrumb{
+  width:100%;padding:14px 20px;
+  font-size:13px;color:#555;text-align:center;
+  border-bottom:1px solid #141414;
+  background:#090909;
+}
+.breadcrumb a{color:#555;text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:#999}
+.breadcrumb .sep{color:#333;margin:0 8px}
+.breadcrumb .cur{color:#777}
+
+/* ── HERO FULL ── */
+.hero-full{
+  width:100%;
+  background:#080808;
+  border-bottom:1px solid #181818;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:34px 20px 26px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.hero-full::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,#2a2a2a 30%,#2a2a2a 70%,transparent);
+}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:4px;color:#444;
+  text-transform:uppercase;margin-bottom:14px;
+}
+.hero-title{
+  font-size:42px;font-weight:700;letter-spacing:-1px;
+  color:#fff;line-height:1.1;margin-bottom:8px;
+}
+.hero-title em{
+  font-style:normal;color:#666;font-weight:400;font-size:28px;display:block;margin-top:4px;
+}
+.hero-sub{
+  font-size:14px;color:#555;margin-bottom:26px;letter-spacing:.5px;
+}
+.hero-btn{
+  display:inline-block;padding:12px 30px;margin-top:22px;
+  border:1px solid #2e2e2e;color:#aaa;font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;text-decoration:none;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.hero-btn:hover{border-color:#555;color:#fff;background:#111}
+.hero-img{
+  width:100%;max-width:1100px;
+  height:220px;
+  overflow:hidden;
+  border:1px solid #1a1a1a;
+  margin-top:0;
+}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.8;
+}
+
+/* ── HIKAYE ── */
+.hikaye{
+  max-width:1000px;margin:55px auto 60px;padding:0 20px;
+}
+.sec-label{
+  font-size:11px;letter-spacing:3px;color:#444;
+  text-transform:uppercase;margin-bottom:22px;
+  padding-bottom:12px;border-bottom:1px solid #1a1a1a;
+  text-align:left;
+}
+.hikaye-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+}
+.hikaye-blok{
+  background:#0d0d0d;border:1px solid #1a1a1a;padding:28px 30px;
+}
+.hikaye-blok h3{
+  font-size:13px;font-weight:600;letter-spacing:1px;
+  color:#888;margin-bottom:12px;text-transform:uppercase;
+}
+.hikaye-blok p{
+  font-size:14px;color:#666;line-height:1.8;
+}
+.hikaye-full{
+  background:#0d0d0d;border:1px solid #1a1a1a;
+  padding:28px 30px;margin-top:2px;
+}
+.hikaye-full p{
+  font-size:14px;color:#666;line-height:1.85;
+  margin-bottom:14px;
+}
+.hikaye-full p:last-child{margin-bottom:0}
+
+/* ── CHAPTER KARTLARI ── */
+.chapterler{
+  max-width:1100px;margin:0 auto 64px;padding:0 20px;
+}
+.chapter-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:2px;
+}
+
+.chapter-card{
+  flex:0 0 calc(33.333% - 2px);
+  display:flex;flex-direction:column;
+  background:#0d0d0d;border:1px solid #1a1a1a;
+  text-decoration:none;color:#fff;
+  transition:border-color .18s,background .18s;
+  overflow:hidden;
+}
+.chapter-card:hover{border-color:#2e2e2e;background:#111}
+
+.chapter-img{
+  width:100%;height:160px;overflow:hidden;
+  background:#0a0a0a;position:relative;
+}
+.chapter-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.7;transition:opacity .3s,transform .3s;
+}
+.chapter-card:hover .chapter-img img{opacity:1;transform:scale(1.04)}
+
+/* resim yoksa placeholder */
+.chapter-img-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:42px;font-weight:700;
+  opacity:.07;color:#fff;
+}
+
+.chapter-num-badge{
+  position:absolute;top:10px;left:10px;
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  padding:4px 9px;border:1px solid #2a2a2a;background:#0a0a0a;
+  color:#444;
+}
+.chapter-card[data-ch="1"]:hover .chapter-num-badge{color:#5b8dd9;border-color:#5b8dd940}
+.chapter-card[data-ch="2"]:hover .chapter-num-badge{color:#c46db0;border-color:#c46db040}
+.chapter-card[data-ch="3"]:hover .chapter-num-badge{color:#7b62c4;border-color:#7b62c440}
+.chapter-card[data-ch="4"]:hover .chapter-num-badge{color:#4ea882;border-color:#4ea88240}
+.chapter-card[data-ch="5"]:hover .chapter-num-badge{color:#c47b4e;border-color:#c47b4e40}
+
+.chapter-body{
+  flex:1;padding:18px 20px 20px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.chapter-body h3{font-size:15px;font-weight:600;color:#e0e0e0}
+.chapter-body p{font-size:13px;color:#5a5a5a;line-height:1.65;flex:1}
+.chapter-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;border-top:1px solid #161616;
+  font-size:12px;color:#333;letter-spacing:1px;text-transform:uppercase;
+  transition:color .18s;
+}
+.chapter-card:hover .chapter-footer{color:#666}
+.chapter-footer-arrow{font-size:16px}
+
+/* ── SSS ── */
+.sss{max-width:820px;margin:0 auto 70px;padding:0 20px}
+.sss-grid{display:flex;flex-direction:column;gap:2px}
+.sss-item{background:#0d0d0d;border:1px solid #1a1a1a;overflow:hidden}
+.sss-item summary{
+  padding:16px 20px;cursor:pointer;
+  font-size:14px;font-weight:600;color:#999;
+  list-style:none;position:relative;user-select:none;transition:color .15s;
+}
+.sss-item summary:hover{color:#fff}
+.sss-item summary::-webkit-details-marker{display:none}
+.sss-item summary::after{
+  content:'+';position:absolute;right:20px;top:50%;
+  transform:translateY(-50%);font-size:16px;color:#333;
+}
+.sss-item[open] summary::after{content:'−'}
+.sss-item[open] summary{color:#fff}
+.sss-item .cevap{
+  padding:0 20px 16px;color:#666;font-size:13px;line-height:1.8;
+  border-top:1px solid #141414;
+}
+
+/* ── FOOTER ── */
+.site-footer{
+  text-align:center;padding:24px;font-size:12px;
+  color:#2e2e2e;border-top:1px solid #141414;letter-spacing:1px;
+}
+
+/* ── MOBİL ── */
+@media(max-width:768px){
+  .hero-title{font-size:28px}
+  .hero-title em{font-size:19px}
+  .hero-img{height:170px}
+  .hikaye-grid{grid-template-columns:1fr}
+  .chapter-card{flex:0 0 100%}
+}
+@media(max-width:480px){
+  .hero-title{font-size:23px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── BREADCRUMB ── -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="https://ballasnet.com/">Ana Sayfa</a>
+  <span class="sep">&gt;</span>
+  <a href="https://ballasnet.com/oyunindir/">Oyun İndir</a>
+  <span class="sep">&gt;</span>
+  <span class="cur">Poppy Playtime</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero-full">
+  <p class="hero-eyebrow">Mob Entertainment &nbsp;·&nbsp; Korku / Bulmaca / Hayatta Kalma</p>
+  <h1 class="hero-title">
+    Poppy Playtime
+    <em>Tüm Chapter'lar</em>
+  </h1>
+  <p class="hero-sub">Playtime Co. fabrikasının karanlık sırları seni bekliyor</p>
+  <div class="hero-img">
+    <img src="/oyunindir/poppy-playtime/hero.webp" alt="Poppy Playtime – Playtime Co. fabrikası" loading="eager">
+  </div>
+  <a href="#chapterler" class="hero-btn">Chapter'lara Geç</a>
+</section>
+
+<main>
+
+  <!-- ── HİKAYE ── -->
+  <section class="hikaye">
+    <p class="sec-label">Oyun Hakkında</p>
+
+    <div class="hikaye-grid">
+      <div class="hikaye-blok">
+        <h3>Nerede geçiyor?</h3>
+        <p>1990'larda en sevilen oyuncak markalarından biri olan Playtime Co.'nun devasa fabrikasında. Fabrika on yıl önce tüm çalışanların bir anda ortadan kaybolmasıyla kapatıldı. Sen eski bir çalışan olarak geri dönüyorsun.</p>
+      </div>
+      <div class="hikaye-blok">
+        <h3>Ne oynuyorsun?</h3>
+        <p>Birinci şahıs hayatta kalma-korku oyunu. GrabPack adlı özel aletle bulmacaları çözüyor, elektrik devrelerini manipüle ediyor ve canlı oyuncak deneylerinden kaçıyorsun. Her chapter yeni bir düşman ve mekan sunuyor.</p>
+      </div>
+    </div>
+
+    <div class="hikaye-full">
+      <p>Poppy Playtime, 2021 yılında Mob Entertainment tarafından yayınlanan bağımsız bir korku oyunudur. Oyun, terk edilmiş bir oyuncak fabrikasında geçen gizemli bir hikâye anlatır. Fabrikanın sahibi Playtime Co., bir zamanlar dünyanın en popüler oyuncak markasıydı. Huggy Wuggy, Mommy Long Legs ve Poppy gibi ikonik karakterler milyonlarca çocuğun sevgilisiydi. Ancak 1995 yılında fabrikada çalışan tüm personel bir gecede kayboldu. Hiçbir iz bırakmadan.</p>
+      <p>On yıl sonra sen, fabrikanın eski bir çalışanı olarak gizlice gönderilen bir mektubu alırsın. Mektup seni fabrikaya çağırıyor. İçeri girdiğinde masum görünen oyuncakların aslında birer canlı deney olduğunu anlarsın. Her chapter fabrikayı daha da derinlemesine keşfederken Playtime Co.'nun karanlık geçmişini ve Prototype adlı gizli projeyi ortaya çıkarır.</p>
+      <p>Serinin en büyük özelliği, her chapter'ın hem bağımsız bir hikâye sunması hem de önceki bölümlerin sırlarını derinleştirmesidir. Chapter 1'den Chapter 5'e kadar oynadıkça fabrika hakkında bildiğini sandığın her şeyin yanlış olduğunu görürsün.</p>
+    </div>
+  </section>
+
+  <!-- ── CHAPTER KARTLARI ── -->
+  <section class="chapterler" id="chapterler">
+    <p class="sec-label">Bölümler</p>
+    <div class="chapter-grid">
+
+      <a href="/oyunindir/poppy-playtime/poppy-playtime-chapter-1/" class="chapter-card" data-ch="1">
+        <div class="chapter-img">
+          <img src="/oyunindir/poppy-playtime/chapter-1-cover.webp" alt="Poppy Playtime Chapter 1 kapak" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="chapter-img-placeholder" style="display:none">01</div>
+          <div class="chapter-num-badge">01</div>
+        </div>
+        <div class="chapter-body">
+          <h3>A Tight Squeeze</h3>
+          <p>Huggy Wuggy ile ilk karşılaşma. Terk edilmiş fabrikaya dönüşün başlangıç noktası. GrabPack'i ilk kez kullanıyorsun.</p>
+        </div>
+        <div class="chapter-footer">
+          <span>İncele</span>
+          <span class="chapter-footer-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="/oyunindir/poppy-playtime/poppy-playtime-chapter-2/" class="chapter-card" data-ch="2">
+        <div class="chapter-img">
+          <img src="/oyunindir/poppy-playtime/chapter-2-cover.webp" alt="Poppy Playtime Chapter 2 kapak" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="chapter-img-placeholder" style="display:none">02</div>
+          <div class="chapter-num-badge">02</div>
+        </div>
+        <div class="chapter-body">
+          <h3>Fly in a Web</h3>
+          <p>Mommy Long Legs'in ölümcül oyunları başlıyor. Game Station bölgesinde hayatta kalmak zorundasın.</p>
+        </div>
+        <div class="chapter-footer">
+          <span>İncele</span>
+          <span class="chapter-footer-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="/oyunindir/poppy-playtime/poppy-playtime-chapter-3/" class="chapter-card" data-ch="3">
+        <div class="chapter-img">
+          <img src="/oyunindir/poppy-playtime/chapter-3-cover.webp" alt="Poppy Playtime Chapter 3 kapak" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="chapter-img-placeholder" style="display:none">03</div>
+          <div class="chapter-num-badge">03</div>
+        </div>
+        <div class="chapter-body">
+          <h3>Deep Sleep</h3>
+          <p>Playcare yetimhanesine düşüyorsun. CatNap ve Smiling Critters'ın kâbus dolu dünyası seni bekliyor.</p>
+        </div>
+        <div class="chapter-footer">
+          <span>İncele</span>
+          <span class="chapter-footer-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="/oyunindir/poppy-playtime/poppy-playtime-chapter-4/" class="chapter-card" data-ch="4">
+        <div class="chapter-img">
+          <img src="/oyunindir/poppy-playtime/chapter-4-cover.webp" alt="Poppy Playtime Chapter 4 kapak" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="chapter-img-placeholder" style="display:none">04</div>
+          <div class="chapter-num-badge">04</div>
+        </div>
+        <div class="chapter-body">
+          <h3>Safe Haven</h3>
+          <p>Fabrikanın en derin katlarına inilir. Prototype'ın ordusu ve Playtime Co.'nun karanlık geçmişi ortaya çıkıyor.</p>
+        </div>
+        <div class="chapter-footer">
+          <span>İncele</span>
+          <span class="chapter-footer-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="/oyunindir/poppy-playtime/poppy-playtime-chapter-5/" class="chapter-card" data-ch="5">
+        <div class="chapter-img">
+          <img src="/oyunindir/poppy-playtime/chapter-5-cover.webp" alt="Poppy Playtime Chapter 5 kapak" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="chapter-img-placeholder" style="display:none">05</div>
+          <div class="chapter-num-badge">05</div>
+        </div>
+        <div class="chapter-body">
+          <h3>Broken Things</h3>
+          <p>Serinin en karanlık noktası. Prototype'ın gerçeği ve fabrikanın son büyük sırları nihayet aydınlanıyor.</p>
+        </div>
+        <div class="chapter-footer">
+          <span>İncele</span>
+          <span class="chapter-footer-arrow">›</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── SSS ── -->
+  <section class="sss">
+    <p class="sec-label">Sık Sorulan Sorular</p>
+    <div class="sss-grid">
+
+      <details class="sss-item">
+        <summary>Poppy Playtime ücretsiz mi?</summary>
+        <div class="cevap">Chapter 1 Steam'de ücretsiz olarak sunulmaktadır. Chapter 2, 3, 4 ve 5 ücretli DLC olarak satılır. BallasNet üzerinden tüm chapter'ların indirme sayfalarına ulaşabilirsiniz.</div>
+      </details>
+
+      <details class="sss-item">
+        <summary>Poppy Playtime kaç chapter'tan oluşuyor?</summary>
+        <div class="cevap">Şu anda 5 chapter yayınlanmıştır: A Tight Squeeze, Fly in a Web, Deep Sleep, Safe Haven ve Broken Things. Seri hâlâ devam etmektedir, Chapter 6 için duyuru beklenmektedir.</div>
+      </details>
+
+      <details class="sss-item">
+        <summary>Chapter'lar sırayla mı oynanmalı?</summary>
+        <div class="cevap">Evet, kesinlikle. Hikâye birbirine sıkı sıkıya bağlıdır. Chapter 1'den başlayıp sırayla ilerlemeniz önerilir; aksi hâlde önemli plot detaylarını kaçırırsınız.</div>
+      </details>
+
+      <details class="sss-item">
+        <summary>Poppy Playtime hangi platformlarda var?</summary>
+        <div class="cevap">PC (Steam), PlayStation 4/5, Xbox One/Series, Nintendo Switch ve mobil (Android/iOS) platformlarında mevcuttur. Chapter'lar konsollara PC'den daha geç gelmiştir.</div>
+      </details>
+
+      <details class="sss-item">
+        <summary>GrabPack nedir, ne işe yarar?</summary>
+        <div class="cevap">GrabPack, oyuncunun sırtında taşıdığı özel bir alettir. Sol ve sağ olmak üzere iki uzatılabilir el sayesinde uzak nesneleri yakalayabilir, elektrik akımı iletebilir, kapıları açabilir ve bulmacaları çözebilirsiniz. Serinin temel oynanış mekaniğidir.</div>
+      </details>
+
+      <details class="sss-item">
+        <summary>Oyun ne kadar sürüyor?</summary>
+        <div class="cevap">Chapter 1 yaklaşık 45–60 dakika, Chapter 2 ve 3 yaklaşık 2–3 saat, Chapter 4 ve 5 ise 3–4 saat arasındadır. Tüm seriyi bitirmek ortalama 8–10 saat sürer.</div>
+      </details>
+
+      <details class="sss-item">
+        <summary>Korku seviyesi nasıl?</summary>
+        <div class="cevap">Oyun jump scare, karanlık atmosfer ve kovalamaca sekansları içerir. Chapter ilerledikçe korku yoğunluğu artar. 12 yaş ve altı için önerilmez. Kulaklıkla oynamak atmosferi çok artırır.</div>
+      </details>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  &copy; BallasNet – Poppy Playtime Hub
+</footer>
+
+</body>
+</html>
