@@ -280,6 +280,13 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
   border-bottom:1px solid #222;
   padding-bottom:15px;
   margin-bottom:30px;
+  transition:margin-bottom .35s ease, padding-bottom .35s ease, border-bottom-color .35s ease;
+}
+
+.yorumlar-section:has(.yorumlar-content.collapsed) .yorumlar-header{
+  margin-bottom:0;
+  padding-bottom:12px;
+  border-bottom-color:#1a1a1a;
 }
 
 .yorumlar-header-left{
@@ -334,17 +341,15 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 
 /* yorumlar içerik */
 .yorumlar-content{
-  overflow:visible;
-  transition:max-height .4s ease-out, opacity .3s ease, margin .3s ease;
-  max-height:5000px;
+  overflow:hidden;
+  transition:max-height .4s ease, opacity .3s ease;
   opacity:1;
 }
 
 .yorumlar-content.collapsed{
-  max-height:0;
+  max-height:0 !important;
   opacity:0;
-  margin-top:0;
-  margin-bottom:0;
+  pointer-events:none;
 }
 
 .comment-form{background:#0f0f0f;border:1px solid #222;padding:36px;margin-bottom:40px}
@@ -1443,15 +1448,37 @@ formStartTime = Date.now();
     const toggleBtn = document.getElementById('yorum-toggle-btn');
     const content = document.getElementById('yorumlar-content');
 
-    // Yorumlar her zaman açık başlar
+    // Açık başla: gerçek yüksekliği yaz
     content.classList.remove('collapsed');
+    content.style.maxHeight = content.scrollHeight + 'px';
     toggleBtn.textContent = 'Gizle';
     toggleBtn.setAttribute('aria-label', 'Yorumları gizle');
 
+    // Yorumlar dinamik yüklendiğinde yüksekliği güncelle (açıksa)
+    const ro = new ResizeObserver(() => {
+        if (!content.classList.contains('collapsed')) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        }
+    });
+    ro.observe(content);
+
     toggleBtn.addEventListener('click', function() {
-        const collapsed = content.classList.toggle('collapsed');
-        toggleBtn.textContent = collapsed ? 'Göster' : 'Gizle';
-        toggleBtn.setAttribute('aria-label', collapsed ? 'Yorumları göster' : 'Yorumları gizle');
+        if (content.classList.contains('collapsed')) {
+            // Aç
+            content.classList.remove('collapsed');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            toggleBtn.textContent = 'Gizle';
+            toggleBtn.setAttribute('aria-label', 'Yorumları gizle');
+        } else {
+            // Kapat — önce mevcut yüksekliği sabitle, sonra 0'a animasyon
+            content.style.maxHeight = content.scrollHeight + 'px';
+            // reflow
+            content.offsetHeight;
+            content.classList.add('collapsed');
+            content.style.maxHeight = '0px';
+            toggleBtn.textContent = 'Göster';
+            toggleBtn.setAttribute('aria-label', 'Yorumları göster');
+        }
     });
 })();
 </script>
