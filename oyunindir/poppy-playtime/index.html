@@ -686,7 +686,7 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
   <div class="hero-img">
     <img src="/oyunindir/poppy-playtime/hero.webp" alt="Poppy Playtime – Playtime Co. fabrikası" loading="eager">
   </div>
-  <a href="#chapterler" class="hero-btn">Chapter'lara Geç</a>
+  <a href="#chapterler" class="hero-btn" id="go-to-chapters">Chapter'lara Geç</a>
 </section>
 
 <main>
@@ -1453,6 +1453,44 @@ formStartTime = Date.now();
         toggleBtn.textContent = collapsed ? 'Göster' : 'Gizle';
         toggleBtn.setAttribute('aria-label', collapsed ? 'Yorumları göster' : 'Yorumları gizle');
     });
+})();
+</script>
+
+<script>
+(function() {
+  function smoothScrollTo(targetY, duration) {
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+    const startTime = performance.now();
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function step(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, startY + distance * eased);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  const btn = document.getElementById('go-to-chapters');
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById('chapterler');
+      if (target) {
+        const targetY = target.getBoundingClientRect().top + window.pageYOffset;
+        // Kısa ve doğal animasyon (~550ms)
+        smoothScrollTo(targetY, 550);
+      }
+    });
+  }
 })();
 </script>
 
