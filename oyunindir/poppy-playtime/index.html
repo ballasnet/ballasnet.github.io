@@ -227,6 +227,24 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
   50%{opacity:1;box-shadow:0 0 11px 4px rgba(217,181,74,.85)}
 }
 
+.slider-not{
+  max-width:1200px;
+  margin:18px auto 0;
+  padding:0 20px;
+  text-align:center;
+  pointer-events:none;
+}
+.slider-not p{
+  font-size:11px;
+  color:#666;
+  font-weight:600;
+  font-style:normal;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  user-select:none;
+  cursor:default;
+}
+
 /* ── SSS ── */
 .sss{max-width:820px;margin:0 auto 70px;padding:0 20px}
 .sss-grid{display:flex;flex-direction:column;gap:2px}
@@ -280,13 +298,6 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
   border-bottom:1px solid #222;
   padding-bottom:15px;
   margin-bottom:30px;
-  transition:margin-bottom .35s ease, padding-bottom .35s ease, border-bottom-color .35s ease;
-}
-
-.yorumlar-section:has(.yorumlar-content.collapsed) .yorumlar-header{
-  margin-bottom:0;
-  padding-bottom:12px;
-  border-bottom-color:#1a1a1a;
 }
 
 .yorumlar-header-left{
@@ -341,15 +352,17 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
 
 /* yorumlar içerik */
 .yorumlar-content{
-  overflow:hidden;
-  transition:max-height .4s ease, opacity .3s ease;
+  overflow:visible;
+  transition:max-height .4s ease-out, opacity .3s ease, margin .3s ease;
+  max-height:5000px;
   opacity:1;
 }
 
 .yorumlar-content.collapsed{
-  max-height:0 !important;
+  max-height:0;
   opacity:0;
-  pointer-events:none;
+  margin-top:0;
+  margin-bottom:0;
 }
 
 .comment-form{background:#0f0f0f;border:1px solid #222;padding:36px;margin-bottom:40px}
@@ -818,6 +831,10 @@ body{background:#0b0b0b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-h
         <span class="chapter-glow-dot dot-right"></span>
       </div>
 
+    </div>
+
+    <div class="slider-not">
+      <p>Hikayeler birbirine bağlıdır · Chapter'ları sırayla oynamanız önerilir</p>
     </div>
   </section>
 
@@ -1448,37 +1465,15 @@ formStartTime = Date.now();
     const toggleBtn = document.getElementById('yorum-toggle-btn');
     const content = document.getElementById('yorumlar-content');
 
-    // Açık başla: gerçek yüksekliği yaz
+    // Yorumlar her zaman açık başlar
     content.classList.remove('collapsed');
-    content.style.maxHeight = content.scrollHeight + 'px';
     toggleBtn.textContent = 'Gizle';
     toggleBtn.setAttribute('aria-label', 'Yorumları gizle');
 
-    // Yorumlar dinamik yüklendiğinde yüksekliği güncelle (açıksa)
-    const ro = new ResizeObserver(() => {
-        if (!content.classList.contains('collapsed')) {
-            content.style.maxHeight = content.scrollHeight + 'px';
-        }
-    });
-    ro.observe(content);
-
     toggleBtn.addEventListener('click', function() {
-        if (content.classList.contains('collapsed')) {
-            // Aç
-            content.classList.remove('collapsed');
-            content.style.maxHeight = content.scrollHeight + 'px';
-            toggleBtn.textContent = 'Gizle';
-            toggleBtn.setAttribute('aria-label', 'Yorumları gizle');
-        } else {
-            // Kapat — önce mevcut yüksekliği sabitle, sonra 0'a animasyon
-            content.style.maxHeight = content.scrollHeight + 'px';
-            // reflow
-            content.offsetHeight;
-            content.classList.add('collapsed');
-            content.style.maxHeight = '0px';
-            toggleBtn.textContent = 'Göster';
-            toggleBtn.setAttribute('aria-label', 'Yorumları göster');
-        }
+        const collapsed = content.classList.toggle('collapsed');
+        toggleBtn.textContent = collapsed ? 'Göster' : 'Gizle';
+        toggleBtn.setAttribute('aria-label', collapsed ? 'Yorumları göster' : 'Yorumları gizle');
     });
 })();
 </script>
