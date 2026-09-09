@@ -883,10 +883,47 @@ a:focus,button:focus{outline:2px solid #aaa;outline-offset:2px}
   <iframe src="https://www.youtube.com/embed/zipPELxKiKc" title="WorldBox Oyun Videosu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen width="75%" height="250" style="border:2px solid #222; border-radius:8px" loading="lazy"></iframe>
 </div>
 
-<!-- BENZER OYUNLAR -->
+<!-- POPÜLER OYUNLAR -->
 <section class="benzer-oyunlar" aria-labelledby="benzer-oyunlar-baslik">
-  <h2 id="benzer-oyunlar-baslik">BENZER OYUNLAR</h2>
-  <div class="uc-kart-container" id="benzer-kartlar"></div>
+  <h2 id="benzer-oyunlar-baslik">POPÜLER OYUNLAR</h2>
+  <div class="uc-kart-container" id="benzer-kartlar">
+    <a href="/oyunindir/schedule-i/" class="game-card" aria-label="Schedule I oyununa git"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'kart-sol-schedule-i' });">
+      <div class="game-image">
+        <img src="/oyunindir/schedule-i/schedule1.webp" alt="Schedule I oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+      </div>
+      <div class="game-title">Schedule I</div>
+      <div class="game-tags-container">
+        <div class="game-tag">Indie</div>
+        <div class="game-tag">Düşük Sistem</div>
+        <div class="game-tag">Popüler</div>
+      </div>
+    </a>
+    <a href="/oyunindir/postal-2/" class="game-card" aria-label="Postal 2 oyununa git"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'kart-orta-postal-2' });">
+      <div class="game-image">
+        <img src="/oyunindir/postal-2/postal-2.webp" alt="Postal 2 oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+      </div>
+      <div class="game-title">Postal 2</div>
+      <div class="game-tags-container">
+        <div class="game-tag">Indie</div>
+        <div class="game-tag">Düşük Sistem</div>
+        <div class="game-tag">Popüler</div>
+      </div>
+    </a>
+    <a href="/oyunindir/stardew-valley/" class="game-card" aria-label="Stardew Valley oyununa git"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'kart-sag-stardew-valley' });">
+      <div class="game-image">
+        <img src="/oyunindir/stardew-valley/stardewvalley.jpg" alt="Stardew Valley oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+      </div>
+      <div class="game-title">Stardew Valley</div>
+      <div class="game-tags-container">
+        <div class="game-tag">Indie</div>
+        <div class="game-tag">Düşük Sistem</div>
+        <div class="game-tag">Popüler</div>
+      </div>
+    </a>
+  </div>
 </section>
 
 <!-- YORUMLAR  -->
@@ -1553,60 +1590,7 @@ formStartTime = Date.now();
 })();
 </script>
 
-<!-- ============================================
-     BENZER OYUNLAR JS
-     ============================================ -->
-<script>
-const allGames = [
-  { title: "Terraria", slug: "terraria", image: "/oyunindir/terraria/terraria.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Deltarune", slug: "deltarune", image: "/oyunindir/deltarune/deltarune.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Baba Is You", slug: "babaisyou", image: "/oyunindir/babaisyou/babaisyou.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "RimWorld", slug: "rimworld", image: "/oyunindir/rimworld/rimworld.webp", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Half-Life 2", slug: "half-life2", image: "/oyunindir/half-life2/half-life2.webp", tags: ["Popüler", "Düşük Sistem"] },
-  { title: "Papers, Please", slug: "papers-please", image: "/oyunindir/papers-please/papersplease2.jpg", tags: ["Indie", "Düşük Sistem"] },
-  { title: "Stardew Valley", slug: "stardew-valley", image: "/oyunindir/stardew-valley/stardewvalley.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] },
-  { title: "Hollow Knight", slug: "hollow-knight", image: "/oyunindir/hollow-knight/hollow-knight.jpg", tags: ["Indie", "Düşük Sistem", "Popüler"] }
-];
 
-const currentGameSlug = "worldbox";
-
-function getDailyRandomGames() {
-  const today = new Date().toDateString();
-  const cached = localStorage.getItem('dailyGames_' + currentGameSlug);
-  const cachedDate = localStorage.getItem('dailyGamesDate_' + currentGameSlug);
-  if (cached && cachedDate === today) return JSON.parse(cached);
-  const otherGames = allGames.filter(g => g.slug !== currentGameSlug);
-  const selected = otherGames.sort(() => 0.5 - Math.random()).slice(0, 3);
-  localStorage.setItem('dailyGames_' + currentGameSlug, JSON.stringify(selected));
-  localStorage.setItem('dailyGamesDate_' + currentGameSlug, today);
-  return selected;
-}
-
-function createGameCards() {
-  const container = document.getElementById('benzer-kartlar');
-  if (!container) return;
-  const games = getDailyRandomGames();
-  games.forEach(game => {
-    const card = document.createElement('a');
-    card.href = '/oyunindir/' + game.slug + '/';
-    card.className = 'game-card';
-    card.setAttribute('aria-label', game.title);
-    card.setAttribute('rel', 'nofollow');
-    card.innerHTML = `
-      <div class="game-image">
-        <img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.src='/images/fallback.jpg'">
-      </div>
-      <div class="game-title">${game.title}</div>
-      <div class="game-tags-container">
-        ${game.tags.slice(0, 3).map(tag => `<div class="game-tag">${tag}</div>`).join('')}
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', createGameCards);
-</script>
 
 </body>
 </html>
