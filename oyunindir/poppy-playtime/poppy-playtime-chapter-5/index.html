@@ -349,14 +349,7 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 }
 
 /* Linkler */
-.link-listesi{
-  display:flex;
-  gap:45px;
-  flex-wrap:nowrap;
-  justify-content:center;
-  overflow-x:auto;
-  padding-bottom:5px; 
-}
+.link-listesi{display:flex;gap:45px;flex-wrap:wrap;justify-content:center}
 .link-listesi a{padding:20px 50px;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);border:2px solid #333;color:#fff;text-decoration:none;font-size:18px;font-weight:bold;letter-spacing:2px;transition:all .3s ease;text-transform:uppercase}
 .link-listesi a:hover{background:linear-gradient(135deg,#222,#1a1a1a);border-color:#555;transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.5)}
 
@@ -692,18 +685,7 @@ a:focus,button:focus{outline:2px solid #555;outline-offset:2px}
 .form-group textarea{min-height:100px;resize:vertical;max-height:300px}
 
 .rating-group{display:flex;gap:8px;align-items:center;flex-direction:row-reverse;justify-content:flex-end}
-.rating-group input{
-  position:absolute;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-  opacity:0;
-}
+.rating-group input{display:none}
 .rating-group label{font-size:24px;color:#333;cursor:pointer;transition:color .2s ease}
 .rating-group input:checked ~ label,.rating-group label:hover,.rating-group label:hover ~ label{color:#fff}
 
