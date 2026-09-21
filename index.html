@@ -1361,17 +1361,14 @@ const allGames = [
 // OTOMATİK DAĞITIM FONKSİYONU
 // =====================
 function dagitOyunlari() {
-  // Tag'lere göre filtrele
   const indieGames = allGames.filter(g => g.tags.includes("Indie"));
   const populerGames = allGames.filter(g => g.tags.includes("Popüler"));
   const dusukGames = allGames.filter(g => g.tags.includes("Düşük Sistem"));
   
-  // Shuffle (karıştır)
   shuffle(indieGames);
   shuffle(populerGames);
   shuffle(dusukGames);
   
-  // Slider'lara doldur
   initSlider(".indie-wrapper", indieGames);
   initSlider(".shuffle-populer", populerGames);
   initSlider(".dusuk-wrapper", dusukGames);
@@ -1394,10 +1391,17 @@ document.addEventListener("DOMContentLoaded", () => {
     img.dataset.src = game.image;
     img.alt = game.title;
     titleBox.textContent = game.title;
-card.onclick = () => {
-  window.open("/oyunindir/" + game.slug + "/", "_blank");
-};
-});
+
+    // ✅ MOZAİK KART TIKLANDI
+    card.onclick = () => {
+      gtag("event", "oyun_tiklandi", {
+        event_category: "Mozaik Kart",
+        event_label: game.title,
+        value: game.slug
+      });
+      window.open("/oyunindir/" + game.slug + "/", "_blank");
+    };
+  });
 
   // Mozaik LazyLoad Observer
   const mozaikObserver = new IntersectionObserver((entries) => {
@@ -1417,11 +1421,8 @@ card.onclick = () => {
     mozaikObserver.observe(img);
   });
 
-
   dagitOyunlari();
 });
-
-
 
 
 const smallGames = [
@@ -1455,7 +1456,6 @@ function shuffle(array) {
 }
 
 // Slider'ı doldurma 
-
 function fillSlider(slider, games) {
   slider.innerHTML = "";
 
@@ -1495,14 +1495,19 @@ function fillSlider(slider, games) {
 
     a.appendChild(div);
     slider.appendChild(a);
+
+    // ✅ SLIDER KART TIKLANDI
+    a.addEventListener("click", () => {
+      gtag("event", "oyun_tiklandi", {
+        event_category: "Slider Kart",
+        event_label: game.title,
+        value: game.slug
+      });
+    });
   });
 }
 
-  
-
-
-
-// LazyLoad fonksiyonu: sadece slider içindeki görünür resimleri yükler
+// LazyLoad fonksiyonu
 function lazyLoadSlider(slider) {
   const imgs = Array.from(slider.querySelectorAll("img"));
   const transformX = parseInt(slider.style.transform.replace('translateX(','').replace('px)','')) || 0;
@@ -1510,7 +1515,7 @@ function lazyLoadSlider(slider) {
   const sliderRight = sliderLeft + slider.parentElement.offsetWidth;
 
   imgs.forEach((img, idx) => {
-    const cardWidth = 346; // slider kart genişliği
+    const cardWidth = 346;
     const cardStart = idx * cardWidth;
     const cardEnd = cardStart + cardWidth;
 
@@ -1532,14 +1537,14 @@ function initSlider(wrapperSelector, games) {
   if (!slider || !left || !right) return;
 
   fillSlider(slider, games);
-  lazyLoadSlider(slider); // lazyloadslider images 
+  lazyLoadSlider(slider);
   let index = 0;
   const cardWidth = 346;
 
-function update() {
-  slider.style.transform = `translateX(${-index * cardWidth}px)`;
-  lazyLoadSlider(slider);   
-}
+  function update() {
+    slider.style.transform = `translateX(${-index * cardWidth}px)`;
+    lazyLoadSlider(slider);   
+  }
 
   right.onclick = () => {
     if (index < slider.children.length - 1) {
@@ -1583,8 +1588,6 @@ function updateGameTags(slug, newTags) {
   });
 }
 
-
-
 // =====================
 // Gece / Gündüz Modu
 // =====================
@@ -1599,11 +1602,6 @@ if (toggleBtn) {
   });
 }
 
-// =====================
-// Slider LazyLoad (sadece sliderlar, JS ile doldurulanlar)
-// =====================
-  
-
 // ===========================
 // Zararsız Kar Efekti (Scroll + Mouse)
 // ===========================
@@ -1611,14 +1609,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const snowContainer = document.querySelector('.masa-panel .snow');
   if (!snowContainer) return;
 
-  // Başlangıç: görünmez
   snowContainer.style.opacity = 0;
   snowContainer.style.transition = "opacity 1s ease";
 
-  const snowCount = 40; // performans dostu
+  const snowCount = 40;
   const snowflakes = [];
 
-  // Kar tanelerini oluştur
   for (let i = 0; i < snowCount; i++) {
     const flake = document.createElement('div');
     flake.className = 'snowflake';
@@ -1632,7 +1628,6 @@ document.addEventListener("DOMContentLoaded", () => {
     snowflakes.push(flake);
   }
 
-  // Mouse pozisyonu
   let mouseX = -1000, mouseY = -1000;
   snowContainer.addEventListener('mousemove', e => {
     const rect = snowContainer.getBoundingClientRect();
@@ -1644,14 +1639,12 @@ document.addEventListener("DOMContentLoaded", () => {
     mouseY = -1000;
   });
 
-  // Animasyon fonksiyonu
   function animateSnow() {
     snowflakes.forEach(flake => {
       const dx = flake.x - mouseX;
       const dy = flake.y - mouseY;
       const dist = Math.sqrt(dx*dx + dy*dy);
 
-      // Mouse’a yaklaşınca kaçma
       if (dist < 100) { 
         const force = (100 - dist) / 100 * 2; 
         flake.vx += dx/dist * force;
@@ -1661,7 +1654,6 @@ document.addEventListener("DOMContentLoaded", () => {
       flake.x += flake.vx;
       flake.y += flake.vy;
 
-      // Sınırdan çıkanları başa al
       if (flake.y > snowContainer.offsetHeight) {
         flake.y = -10;
         flake.x = Math.random() * snowContainer.offsetWidth;
@@ -1678,7 +1670,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animateSnow();
 
-  // Scroll ile fade-in
   function checkVisibility() {
     const rect = snowContainer.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -1697,12 +1688,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("theme-toggle");
   const sliderBtns = document.querySelectorAll(".slider-btn");
 
-  // Theme toggle sayacı
   let toggleClickTimes = [];
   let toggleLocked = false;
   let toggleWarned = false;
 
-  // Slider sayacı
   let sliderClickTimes = [];
   let sliderLocked = false;
   let sliderWarned = false;
@@ -1712,70 +1701,44 @@ document.addEventListener("DOMContentLoaded", () => {
     e.stopImmediatePropagation();
   }
 
-  // Theme toggle kilit (tüm site)
   function lockToggle() {
     toggleLocked = true;
-
     if (!toggleWarned) {
       alert("Çok hızlı işlem algılandı. 1 dakika kilitlendi.");
       toggleWarned = true;
     }
-
     setTimeout(() => {
       toggleLocked = false;
       toggleClickTimes = [];
     }, 60000);
   }
 
-  // Slider kilit (sadece slider butonları)
   function lockSlider() {
     sliderLocked = true;
-
     if (!sliderWarned) {
       alert("Slider butonlarına çok hızlı basıldı. 1 dakika kilitlendi.");
       sliderWarned = true;
     }
-
     setTimeout(() => {
       sliderLocked = false;
       sliderClickTimes = [];
     }, 60000);
   }
 
-  // Theme toggle click
   function handleToggleClick(e) {
     const now = Date.now();
-
-    if (toggleLocked) {
-      blockEvent(e);
-      return;
-    }
-
+    if (toggleLocked) { blockEvent(e); return; }
     toggleClickTimes = toggleClickTimes.filter(t => now - t < 5000);
     toggleClickTimes.push(now);
-
-    if (toggleClickTimes.length >= 11) {
-      blockEvent(e);
-      lockToggle();
-    }
+    if (toggleClickTimes.length >= 11) { blockEvent(e); lockToggle(); }
   }
 
-  // Slider click
   function handleSliderClick(e) {
     const now = Date.now();
-
-    if (sliderLocked || toggleLocked) {
-      blockEvent(e);
-      return;
-    }
-
+    if (sliderLocked || toggleLocked) { blockEvent(e); return; }
     sliderClickTimes = sliderClickTimes.filter(t => now - t < 3000);
     sliderClickTimes.push(now);
-
-    if (sliderClickTimes.length >= 30) {
-      blockEvent(e);
-      lockSlider();
-    }
+    if (sliderClickTimes.length >= 30) { blockEvent(e); lockSlider(); }
   }
 
   if (toggleBtn) {
@@ -1787,7 +1750,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-  
 // ===========================
 // Snow LazyHide / LazyShow
 // ===========================
@@ -1797,17 +1759,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkSnowVisibility() {
     const rect = snowContainer.getBoundingClientRect();
-    // Eğer snow görünümden çıkmışsa gizle
     if (rect.bottom < 0 || rect.top > window.innerHeight) {
       snowContainer.style.opacity = 0;
     } else {
-      // Görünüyorsa tekrar aç
       snowContainer.style.opacity = 1;
     }
   }
 
   window.addEventListener('scroll', checkSnowVisibility);
-  checkSnowVisibility(); // sayfa yüklendiğinde de kontrol et
+  checkSnowVisibility();
 });
 
 // ===========================
@@ -1895,7 +1855,6 @@ document.querySelectorAll('.hero-tag-link').forEach(link => {
     const target = document.getElementById(targetId);
     if (!target) return;
 
-    // Slider'ı ekranın tam ortasına getir
     const rect = target.getBoundingClientRect();
     const elementHeight = rect.height;
     const viewportHeight = window.innerHeight;
@@ -1913,17 +1872,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const suggestions = document.querySelector(".search-suggestions");
   if (!searchInput || !suggestions) return;
 
-  // Tüm oyunları sakla (orijinal sırayla)
   const originalSlider = document.querySelector('.shuffle-populer').innerHTML;
 
-  // Tüm oyunları BİR KERE sakla
   const tumOyunlar = Array.from(document.querySelectorAll(".shuffle-populer .game, .shuffle-dusuk .game, .shuffle-indie .game")).map(g => ({
     title: g.querySelector(".game-title").textContent,
     slug: g.closest("a").getAttribute("href"),
     element: g.closest("a").cloneNode(true)
   }));
 
-  // Saklanan oyunları döndür
   function getAllGames() {
     return tumOyunlar.map(g => ({
       ...g,
@@ -1931,7 +1887,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
   }
 
-  // Input yazınca önerileri göster
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
     suggestions.innerHTML = "";
@@ -1960,18 +1915,14 @@ document.addEventListener("DOMContentLoaded", () => {
     suggestions.style.display = suggestions.children.length ? "block" : "none";
   });
 
-  // ARA butonuna veya Enter'a basınca filtreleme modu
   function aramaYap() {
     const query = searchInput.value.trim().toLowerCase();
     if (!query) return;
   
-    // SLIDER'I SIFIRLA - en başa gönder
     const sliderContainer = document.querySelector('.shuffle-populer');
     if (sliderContainer) {
       sliderContainer.style.transform = 'translateX(0)';
     }
-
-    suggestions.style.display = "none";
 
     suggestions.style.display = "none";
 
@@ -2047,10 +1998,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxWidth = cardsWrapper.clientWidth;
   const cardCount = cards.length;
 
-  // toplam boşluk
   const totalGap = gap * (cardCount - 1);
-
-  // kart başına düşen maksimum genişlik
   const cardWidth = Math.floor((maxWidth - totalGap) / cardCount);
 
   cards.forEach(card => {
@@ -2060,12 +2008,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-
 // Mevcut oyunları otomatik bul ve schema oluştur
 function autoGenerateGameSchemas() {
   const games = [];
   
-  // Slider'dan oyunları çek
   document.querySelectorAll('.game').forEach(game => {
     const title = game.querySelector('.game-title')?.textContent;
     const tags = Array.from(game.querySelectorAll('.game-tag')).map(t => t.textContent);
@@ -2076,7 +2022,6 @@ function autoGenerateGameSchemas() {
     }
   });
   
-  // Mozaikten oyunları çek
   document.querySelectorAll('.mozaik-card').forEach(card => {
     const title = card.querySelector('.mozaik-title')?.textContent;
     const img = card.querySelector('img')?.getAttribute('src');
@@ -2086,7 +2031,6 @@ function autoGenerateGameSchemas() {
     }
   });
   
-  // Her oyun için schema oluştur
   games.forEach(game => {
     const schema = {
       "@context": "https://schema.org",
@@ -2108,7 +2052,6 @@ function autoGenerateGameSchemas() {
   console.log(games.length + " oyun için schema oluşturuldu");
 }
 
-// Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 
 // =====================
@@ -2117,7 +2060,6 @@ document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById('karartma');
   
-  // Çekiliş kartlarına tıklayınca karartmayı aç + scroll kilidi
   document.querySelectorAll('.giveaway-card').forEach(kart => {
     kart.addEventListener('click', (e) => {
       e.preventDefault();
@@ -2126,7 +2068,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Discord butonuna tıklayınca yönlendir
   const discordBtn = document.querySelector('.karartma-yazi .discord-join-btn');
   if (discordBtn) {
     discordBtn.addEventListener('click', () => {
@@ -2134,26 +2075,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // KAPATMA FONKSİYONU - TÜM KARARTMAYI KAPAT (yazı + butonlar + siyah arka plan)
   function kapatKarartma() {
     overlay.classList.remove('aktif');
     document.body.classList.remove('scroll-kilit');
   }
 
-  // Siyaha tıklayınca kapat
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
-      kapatKarartma(); // Tüm karartma kapanır
+      kapatKarartma();
     }
   });
 
-  // İptal butonuna tıklayınca da kapat (aynı işlev)
   const iptalBtn = document.querySelector('.discord-iptal-btn');
   if (iptalBtn) {
-    iptalBtn.addEventListener('click', kapatKarartma); // Tüm karartma kapanır
+    iptalBtn.addEventListener('click', kapatKarartma);
   }
 });
-
 
 </script>
 
