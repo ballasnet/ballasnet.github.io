@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BallasNet | Oyun Keşfet</title>
+<meta name="description" content="BallasNet – PC oyun vitrini. Indie, düşük sistem ve popüler oyunları keşfet.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://ballasnet.com/">
+
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg:         #0a0a0a;
+  --surface:    #111;
+  --surface2:   #181818;
+  --border:     #1e1e1e;
+  --text:       #e8e8e8;
+  --muted:      #505050;
+  --safe-top:   env(safe-area-inset-top, 0px);
+  --safe-bot:   env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(56px + var(--safe-top));
+}
+
+body {
+  background: var(--bg);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  padding-top: var(--safe-top);
+  padding-bottom: calc(32px + var(--safe-bot));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img { display: block; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.site-logo b {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.header-search-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  transition: color 0.15s;
+}
+.header-search-btn:active { color: var(--text); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   SEARCH OVERLAY
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.97);
+  z-index: 200;
+  padding: calc(var(--safe-top) + 14px) 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+.search-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.search-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0 14px;
+}
+.search-input-wrap svg { color: var(--muted); flex-shrink: 0; }
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 16px;
+  padding: 13px 0;
+}
+.search-input::placeholder { color: var(--muted); }
+
+.search-cancel {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 0;
+  white-space: nowrap;
+}
+.search-cancel:active { color: var(--text); }
+
+.search-results-list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.search-result-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  cursor: pointer;
+  color: var(--text);
+}
+.search-result-row:last-child { border-bottom: none; }
+.search-result-row svg { color: var(--muted); flex-shrink: 0; }
+
+.search-empty-state {
+  padding: 60px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   CATEGORY PILLS
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.category-nav {
+  display: flex;
+  gap: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.category-nav::-webkit-scrollbar { display: none; }
+
+.pill {
+  flex-shrink: 0;
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.pill.active {
+  background: #fff;
+  color: #0a0a0a;
+  border-color: #fff;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION LABEL
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.label {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  color: var(--muted);
+  padding: 0 20px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   FEATURED CARD
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.featured-zone {
+  padding: 4px 20px 52px;
+}
+
+.featured-card {
+  position: relative;
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  aspect-ratio: 16/9;
+}
+
+.featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.3) 50%,
+    transparent 100%
+  );
+}
+
+.featured-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 18px 18px;
+}
+
+.featured-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: rgba(255,255,255,0.38);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.featured-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   SCROLL SECTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.scroll-section {
+  margin-bottom: 52px;
+  scroll-margin-top: 72px;
+}
+
+.scroll-row {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-row::-webkit-scrollbar { display: none; }
+
+/* Portrait game card */
+.g-card {
+  flex-shrink: 0;
+  width: 120px;
+  scroll-snap-align: start;
+  display: block;
+}
+
+.g-card-thumb {
+  width: 120px;
+  height: 160px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+  margin-bottom: 9px;
+}
+
+.g-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.g-card-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   MOSAIC GRID
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.mosaic-section {
+  margin-bottom: 52px;
+  scroll-margin-top: 72px;
+}
+
+.mosaic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 112px;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.m-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  position: relative;
+  display: block;
+}
+
+.m-card.tall { grid-row: span 2; }
+
+.m-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.m-card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 10px 8px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.site-footer {
+  padding: 24px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.3px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <div class="site-logo">Ballas<b>Net</b></div>
+  <button class="header-search-btn" id="searchOpenBtn" aria-label="Oyun ara">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+</header>
+
+<!-- ═══ SEARCH OVERLAY ═══ -->
+<div class="search-overlay" id="searchOverlay" aria-hidden="true">
+  <div class="search-top">
+    <div class="search-input-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input class="search-input" id="searchInput" type="search"
+             placeholder="Oyun ara..." autocomplete="off" enterkeyhint="search">
+    </div>
+    <button class="search-cancel" id="searchCloseBtn">İptal</button>
+  </div>
+  <div class="search-results-list" id="searchResults"></div>
+</div>
+
+<!-- ═══ CATEGORY NAV ═══ -->
+<nav class="category-nav">
+  <button class="pill active" data-target="section-populer">Popüler</button>
+  <button class="pill" data-target="section-dusuk">Düşük Sistem</button>
+  <button class="pill" data-target="section-indie">İndie</button>
+</nav>
+
+<main>
+
+  <!-- ─── FEATURED ─── -->
+  <div class="featured-zone">
+    <a class="featured-card" id="featuredCard" href="#">
+      <img id="featuredImg" src="" alt="" loading="eager">
+      <div class="featured-gradient"></div>
+      <div class="featured-info">
+        <div class="featured-eyebrow">Haftanın Oyunu</div>
+        <div class="featured-title" id="featuredTitle"></div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ─── POPÜLER ─── -->
+  <section class="scroll-section" id="section-populer">
+    <div class="label">Popüler Oyunlar</div>
+    <div class="scroll-row" id="populer-row"></div>
+  </section>
+
+  <!-- ─── DÜŞÜK SİSTEM ─── -->
+  <section class="scroll-section" id="section-dusuk">
+    <div class="label">Düşük Sistem</div>
+    <div class="scroll-row" id="dusuk-row"></div>
+  </section>
+
+  <!-- ─── İNDİE MOZAİK ─── -->
+  <section class="mosaic-section" id="section-indie">
+    <div class="label">İndie Oyunlar</div>
+    <div class="mosaic-grid" id="indie-grid"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  ballasnett@gmail.com
+</footer>
+
+
+<script>
+/* ─────────────────────────────────────────
+   VERİ
+───────────────────────────────────────── */
+const GAMES = [
+  { title: "Terraria",            slug: "terraria",         img: "https://ballasnet.com/oyunindir/terraria/terraria.webp",                   tags: ["Indie","Düşük Sistem"] },
+  { title: "GoreBox",             slug: "gorebox",          img: "https://ballasnet.com/oyunindir/gorebox/gorebox.webp",                     tags: ["Indie","Düşük Sistem"] },
+  { title: "Suicide Guy",         slug: "suicide-guy",      img: "https://ballasnet.com/oyunindir/suicide-guy/suicide-guy.webp",             tags: ["Indie","Düşük Sistem"] },
+  { title: "Hello Neighbor",      slug: "hello-neighbor",   img: "https://ballasnet.com/oyunindir/hello-neighbor/hello-neighbor.webp",       tags: ["Indie","Popüler"] },
+  { title: "Deltarune",           slug: "deltarune",        img: "https://ballasnet.com/oyunindir/deltarune/deltarune.webp",                 tags: ["Indie","Düşük Sistem"] },
+  { title: "Limbo",               slug: "limbo",            img: "https://ballasnet.com/oyunindir/limbo/limbo.webp",                         tags: ["Indie","Düşük Sistem"] },
+  { title: "Dusk",                slug: "dusk",             img: "https://ballasnet.com/oyunindir/dusk/dusk.webp",                           tags: ["Indie","Düşük Sistem"] },
+  { title: "Plants vs Zombies",   slug: "plants-vs-zombies",img: "https://ballasnet.com/oyunindir/plants-vs-zombies/plants-vs-zombies.webp", tags: ["Indie","Düşük Sistem"] },
+  { title: "Schedule I",          slug: "schedule-i",       img: "https://ballasnet.com/oyunindir/schedule-i/schedule1.webp",                tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Celeste",             slug: "celeste",          img: "https://ballasnet.com/oyunindir/celeste/celeste2.jpg",                     tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Baba Is You",         slug: "babaisyou",        img: "https://ballasnet.com/oyunindir/babaisyou/babaisyou.webp",                 tags: ["Indie","Düşük Sistem"] },
+  { title: "Project Zomboid",     slug: "project-zomboid",  img: "https://ballasnet.com/oyunindir/project-zomboid/project-zomboid.webp",     tags: ["Indie","Düşük Sistem"] },
+  { title: "Doki Doki Lit. Club", slug: "ddlc",             img: "https://ballasnet.com/oyunindir/ddlc/dokidoki2.webp",                     tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Geometry Dash",       slug: "geometry-dash",    img: "https://ballasnet.com/oyunindir/geometry-dash/geometry-dash.webp",         tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Katana Zero",         slug: "katana-zero",      img: "https://ballasnet.com/oyunindir/katana-zero/katanazero.webp",              tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Postal 2",            slug: "postal-2",         img: "https://ballasnet.com/oyunindir/postal-2/postal-2.webp",                   tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Postal",              slug: "postal-1",         img: "https://ballasnet.com/oyunindir/postal-1/postal-1.webp",                   tags: ["Indie","Düşük Sistem"] },
+  { title: "Hotline Miami",       slug: "hotline-miami",    img: "https://ballasnet.com/oyunindir/hotline-miami/hotline-miami.webp",         tags: ["Indie","Düşük Sistem"] },
+  { title: "GTA San Andreas",     slug: "gtasanandreas",    img: "https://ballasnet.com/oyunindir/gtasanandreas/gtasanandreas.webp",         tags: ["Popüler","Düşük Sistem"] },
+  { title: "GTA Vice City",       slug: "gta-vice-city",    img: "https://ballasnet.com/oyunindir/gta-vice-city/gtavicecity.webp",          tags: ["Popüler","Düşük Sistem"] },
+  { title: "GTA III",             slug: "gta-3",            img: "https://ballasnet.com/oyunindir/gta-3/gta3.webp",                         tags: ["Popüler","Düşük Sistem"] },
+  { title: "Half-Life 2",         slug: "half-life2",       img: "https://ballasnet.com/oyunindir/half-life2/half-life2.webp",              tags: ["Popüler","Düşük Sistem"] },
+  { title: "Doom 64",             slug: "doom64",           img: "https://ballasnet.com/oyunindir/doom64/doom64.webp",                      tags: ["Popüler","Düşük Sistem"] },
+  { title: "Undertale",           slug: "undertale",        img: "https://ballasnet.com/oyunindir/undertale/undertale.webp",                 tags: ["Indie","Düşük Sistem"] },
+  { title: "Muse Dash",           slug: "muse-dash",        img: "https://ballasnet.com/oyunindir/muse-dash/muse-dash.webp",                tags: ["Indie","Düşük Sistem"] },
+  { title: "Papers, Please",      slug: "papers-please",    img: "https://ballasnet.com/oyunindir/papers-please/papersplease2.jpg",         tags: ["Indie","Düşük Sistem"] },
+  { title: "Omori",               slug: "omori",            img: "https://ballasnet.com/oyunindir/omori/omori.webp",                        tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Stardew Valley",      slug: "stardew-valley",   img: "https://ballasnet.com/oyunindir/stardew-valley/stardewvalley.jpg",        tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "FNAF",                slug: "fnaf-1",           img: "https://ballasnet.com/oyunindir/fnaf-1/fnaf-1.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "FNAF 2",              slug: "fnaf-2",           img: "https://ballasnet.com/oyunindir/fnaf-2/fnaf-2.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "FNAF 3",              slug: "fnaf-3",           img: "https://ballasnet.com/oyunindir/fnaf-3/fnaf-3.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "FNAF 4",              slug: "fnaf-4",           img: "https://ballasnet.com/oyunindir/fnaf-4/fivenightsatfreddys4.webp",        tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Dead as Disco",       slug: "dead-as-disco",    img: "https://ballasnet.com/oyunindir/dead-as-disco/dead-as-disco.webp",        tags: ["Indie","Düşük Sistem"] },
+  { title: "Granny",              slug: "granny",           img: "https://ballasnet.com/oyunindir/granny/granny.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "Granny Remake",       slug: "granny-remake",    img: "https://ballasnet.com/oyunindir/granny-remake/granny-remake.webp",        tags: ["Indie"] },
+  { title: "Hollow Knight",       slug: "hollow-knight",    img: "https://ballasnet.com/oyunindir/hollow-knight/hollow-knight.jpg",         tags: ["Indie","Düşük Sistem","Popüler"] },
+  { title: "RimWorld",            slug: "rimworld",         img: "https://ballasnet.com/oyunindir/rimworld/rimworld.webp",                  tags: ["Indie","Düşük Sistem"] },
+  { title: "WorldBox",            slug: "worldbox",         img: "https://ballasnet.com/oyunindir/worldbox/worldbox.webp",                  tags: ["Indie","Düşük Sistem"] }
+];
+
+/* ─────────────────────────────────────────
+   YARDIMCILAR
+───────────────────────────────────────── */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function gameURL(slug) {
+  return `https://ballasnet.com/oyunindir/${slug}`;
+}
+
+/* ─────────────────────────────────────────
+   SCROLL SATIRI OLUŞTUR
+───────────────────────────────────────── */
+function buildScrollRow(rowId, games) {
+  const row = document.getElementById(rowId);
+  games.forEach(g => {
+    const a = document.createElement('a');
+    a.href = gameURL(g.slug);
+    a.className = 'g-card';
+    a.innerHTML = `
+      <div class="g-card-thumb">
+        <img src="${g.img}" alt="${g.title}" loading="lazy">
+      </div>
+      <div class="g-card-name">${g.title}</div>
+    `;
+    row.appendChild(a);
+  });
+}
+
+/* ─────────────────────────────────────────
+   MOZAİK IZGARASI OLUŞTUR
+   Her 5. kart "tall" (2 satır yükseklik)
+   Doğal CSS grid row-flow ile boşluksuz yerleşir
+───────────────────────────────────────── */
+function buildMosaic(gridId, games) {
+  const grid = document.getElementById(gridId);
+  games.forEach((g, i) => {
+    const tall = (i % 5 === 0);
+    const a = document.createElement('a');
+    a.href = gameURL(g.slug);
+    a.className = 'm-card' + (tall ? ' tall' : '');
+    a.innerHTML = `
+      <img src="${g.img}" alt="${g.title}" loading="lazy">
+      <div class="m-card-title">${g.title}</div>
+    `;
+    grid.appendChild(a);
+  });
+}
+
+/* ─────────────────────────────────────────
+   ARAMA
+───────────────────────────────────────── */
+function initSearch() {
+  const openBtn     = document.getElementById('searchOpenBtn');
+  const overlay     = document.getElementById('searchOverlay');
+  const closeBtn    = document.getElementById('searchCloseBtn');
+  const input       = document.getElementById('searchInput');
+  const resultsList = document.getElementById('searchResults');
+
+  function open() {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => input.focus(), 60);
+  }
+
+  function close() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    input.value = '';
+    resultsList.innerHTML = '';
+  }
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  input.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    resultsList.innerHTML = '';
+    if (!q) return;
+
+    const hits = GAMES.filter(g => g.title.toLowerCase().includes(q));
+    if (!hits.length) {
+      resultsList.innerHTML = '<div class="search-empty-state">Sonuç yok.</div>';
+      return;
+    }
+    hits.forEach(g => {
+      const div = document.createElement('div');
+      div.className = 'search-result-row';
+      div.innerHTML = `
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        ${g.title}
+      `;
+      div.addEventListener('click', () => { window.location.href = gameURL(g.slug); });
+      resultsList.appendChild(div);
+    });
+  });
+}
+
+/* ─────────────────────────────────────────
+   KATEGORİ PİLLLARI
+───────────────────────────────────────── */
+function initCategoryNav() {
+  document.querySelectorAll('.pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const target = document.getElementById(pill.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+/* ─────────────────────────────────────────
+   BAŞLAT
+───────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  const populer = shuffle(GAMES.filter(g => g.tags.includes('Popüler')));
+  const dusuk   = shuffle(GAMES.filter(g => g.tags.includes('Düşük Sistem')));
+  const indie   = shuffle(GAMES.filter(g => g.tags.includes('Indie')));
+
+  // Featured — popüler listesinin ilk elemanı
+  const featured = populer[0] || GAMES[0];
+  const card = document.getElementById('featuredCard');
+  card.href = gameURL(featured.slug);
+  document.getElementById('featuredImg').src = featured.img;
+  document.getElementById('featuredImg').alt = featured.title;
+  document.getElementById('featuredTitle').textContent = featured.title;
+
+  buildScrollRow('populer-row', populer);
+  buildScrollRow('dusuk-row', dusuk);
+  buildMosaic('indie-grid', indie);
+
+  initSearch();
+  initCategoryNav();
+});
+</script>
+</body>
+</html>
