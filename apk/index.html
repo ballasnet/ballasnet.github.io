@@ -486,44 +486,7 @@ img { display: block; }
    VERİ
 ───────────────────────────────────────── */
 const GAMES = [
-  { title: "Terraria",            slug: "terraria",         img: "https://ballasnet.com/oyunindir/terraria/terraria.webp",                   tags: ["Indie","Düşük Sistem"] },
-  { title: "GoreBox",             slug: "gorebox",          img: "https://ballasnet.com/oyunindir/gorebox/gorebox.webp",                     tags: ["Indie","Düşük Sistem"] },
-  { title: "Suicide Guy",         slug: "suicide-guy",      img: "https://ballasnet.com/oyunindir/suicide-guy/suicide-guy.webp",             tags: ["Indie","Düşük Sistem"] },
-  { title: "Hello Neighbor",      slug: "hello-neighbor",   img: "https://ballasnet.com/oyunindir/hello-neighbor/hello-neighbor.webp",       tags: ["Indie","Popüler"] },
-  { title: "Deltarune",           slug: "deltarune",        img: "https://ballasnet.com/oyunindir/deltarune/deltarune.webp",                 tags: ["Indie","Düşük Sistem"] },
-  { title: "Limbo",               slug: "limbo",            img: "https://ballasnet.com/oyunindir/limbo/limbo.webp",                         tags: ["Indie","Düşük Sistem"] },
-  { title: "Dusk",                slug: "dusk",             img: "https://ballasnet.com/oyunindir/dusk/dusk.webp",                           tags: ["Indie","Düşük Sistem"] },
-  { title: "Plants vs Zombies",   slug: "plants-vs-zombies",img: "https://ballasnet.com/oyunindir/plants-vs-zombies/plants-vs-zombies.webp", tags: ["Indie","Düşük Sistem"] },
-  { title: "Schedule I",          slug: "schedule-i",       img: "https://ballasnet.com/oyunindir/schedule-i/schedule1.webp",                tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Celeste",             slug: "celeste",          img: "https://ballasnet.com/oyunindir/celeste/celeste2.jpg",                     tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Baba Is You",         slug: "babaisyou",        img: "https://ballasnet.com/oyunindir/babaisyou/babaisyou.webp",                 tags: ["Indie","Düşük Sistem"] },
-  { title: "Project Zomboid",     slug: "project-zomboid",  img: "https://ballasnet.com/oyunindir/project-zomboid/project-zomboid.webp",     tags: ["Indie","Düşük Sistem"] },
-  { title: "Doki Doki Lit. Club", slug: "ddlc",             img: "https://ballasnet.com/oyunindir/ddlc/dokidoki2.webp",                     tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Geometry Dash",       slug: "geometry-dash",    img: "https://ballasnet.com/oyunindir/geometry-dash/geometry-dash.webp",         tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Katana Zero",         slug: "katana-zero",      img: "https://ballasnet.com/oyunindir/katana-zero/katanazero.webp",              tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Postal 2",            slug: "postal-2",         img: "https://ballasnet.com/oyunindir/postal-2/postal-2.webp",                   tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Postal",              slug: "postal-1",         img: "https://ballasnet.com/oyunindir/postal-1/postal-1.webp",                   tags: ["Indie","Düşük Sistem"] },
-  { title: "Hotline Miami",       slug: "hotline-miami",    img: "https://ballasnet.com/oyunindir/hotline-miami/hotline-miami.webp",         tags: ["Indie","Düşük Sistem"] },
-  { title: "GTA San Andreas",     slug: "gtasanandreas",    img: "https://ballasnet.com/oyunindir/gtasanandreas/gtasanandreas.webp",         tags: ["Popüler","Düşük Sistem"] },
-  { title: "GTA Vice City",       slug: "gta-vice-city",    img: "https://ballasnet.com/oyunindir/gta-vice-city/gtavicecity.webp",          tags: ["Popüler","Düşük Sistem"] },
-  { title: "GTA III",             slug: "gta-3",            img: "https://ballasnet.com/oyunindir/gta-3/gta3.webp",                         tags: ["Popüler","Düşük Sistem"] },
-  { title: "Half-Life 2",         slug: "half-life2",       img: "https://ballasnet.com/oyunindir/half-life2/half-life2.webp",              tags: ["Popüler","Düşük Sistem"] },
-  { title: "Doom 64",             slug: "doom64",           img: "https://ballasnet.com/oyunindir/doom64/doom64.webp",                      tags: ["Popüler","Düşük Sistem"] },
-  { title: "Undertale",           slug: "undertale",        img: "https://ballasnet.com/oyunindir/undertale/undertale.webp",                 tags: ["Indie","Düşük Sistem"] },
-  { title: "Muse Dash",           slug: "muse-dash",        img: "https://ballasnet.com/oyunindir/muse-dash/muse-dash.webp",                tags: ["Indie","Düşük Sistem"] },
-  { title: "Papers, Please",      slug: "papers-please",    img: "https://ballasnet.com/oyunindir/papers-please/papersplease2.jpg",         tags: ["Indie","Düşük Sistem"] },
-  { title: "Omori",               slug: "omori",            img: "https://ballasnet.com/oyunindir/omori/omori.webp",                        tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Stardew Valley",      slug: "stardew-valley",   img: "https://ballasnet.com/oyunindir/stardew-valley/stardewvalley.jpg",        tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "FNAF",                slug: "fnaf-1",           img: "https://ballasnet.com/oyunindir/fnaf-1/fnaf-1.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "FNAF 2",              slug: "fnaf-2",           img: "https://ballasnet.com/oyunindir/fnaf-2/fnaf-2.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "FNAF 3",              slug: "fnaf-3",           img: "https://ballasnet.com/oyunindir/fnaf-3/fnaf-3.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "FNAF 4",              slug: "fnaf-4",           img: "https://ballasnet.com/oyunindir/fnaf-4/fivenightsatfreddys4.webp",        tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Dead as Disco",       slug: "dead-as-disco",    img: "https://ballasnet.com/oyunindir/dead-as-disco/dead-as-disco.webp",        tags: ["Indie","Düşük Sistem"] },
-  { title: "Granny",              slug: "granny",           img: "https://ballasnet.com/oyunindir/granny/granny.webp",                      tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "Granny Remake",       slug: "granny-remake",    img: "https://ballasnet.com/oyunindir/granny-remake/granny-remake.webp",        tags: ["Indie"] },
-  { title: "Hollow Knight",       slug: "hollow-knight",    img: "https://ballasnet.com/oyunindir/hollow-knight/hollow-knight.jpg",         tags: ["Indie","Düşük Sistem","Popüler"] },
-  { title: "RimWorld",            slug: "rimworld",         img: "https://ballasnet.com/oyunindir/rimworld/rimworld.webp",                  tags: ["Indie","Düşük Sistem"] },
-  { title: "WorldBox",            slug: "worldbox",         img: "https://ballasnet.com/oyunindir/worldbox/worldbox.webp",                  tags: ["Indie","Düşük Sistem"] }
+  { title: "WorldBox",            slug: "worldbox",         img: "https://ballasnet.com/oyunindir/worldbox/worldbox.webp",                   tags: ["Popüler","Düşük Sistem"] },
 ];
 
 /* ─────────────────────────────────────────
@@ -563,8 +526,6 @@ function buildScrollRow(rowId, games) {
 
 /* ─────────────────────────────────────────
    MOZAİK IZGARASI OLUŞTUR
-   Her 5. kart "tall" (2 satır yükseklik)
-   Doğal CSS grid row-flow ile boşluksuz yerleşir
 ───────────────────────────────────────── */
 function buildMosaic(gridId, games) {
   const grid = document.getElementById(gridId);
