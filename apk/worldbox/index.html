@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>WorldBox İndir | BallasNet</title>
+<meta name="theme-color" content="#0a0a0a">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:      #0a0a0a;
+  --surface: #111;
+  --s2:      #181818;
+  --border:  #1f1f1f;
+  --text:    #e8e8e8;
+  --muted:   #525252;
+  --green:   #22c55e;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bot: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  background: #040404;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 74px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #040404;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--safe-top);
+}
+
+/* ── Sayfa sarmalayıcı — mobilde tam genişlik, PC'de ortalanmış ── */
+.wrap {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg);
+  min-height: 100dvh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    border-left: 1px solid #1a1a1a;
+    border-right: 1px solid #1a1a1a;
+    box-shadow: 0 0 60px rgba(0,0,0,0.7);
+  }
+}
+
+a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+img { display: block; }
+button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
+
+/* ══ TOP 3 BUTON ══ */
+.top-3 {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 74px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.tb {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px 11px;
+  background: #0d0d0d;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+
+.tb-img {
+  position: absolute;
+  inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.tb-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 100%);
+}
+
+.tb-label {
+  position: relative;
+  z-index: 1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.tb-sub {
+  position: relative;
+  z-index: 1;
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.8px;
+  margin-top: 2px;
+}
+
+.tb-left  { border-right: 1px solid var(--border); }
+
+/* ── Orta — İNDİR — YEŞİL ── */
+.tb-mid {
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #060f06;
+  border-right: 1px solid var(--border);
+}
+
+.tb-mid .tb-label {
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--green);
+}
+
+.tb-mid svg { color: rgba(34,197,94,0.45); position: relative; z-index: 1; }
+
+/* ══ HERO ══ */
+.hero {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+/* ══ META ══ */
+.meta { padding: 22px 20px 0; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 11px; }
+
+.tag {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--s2);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+
+.game-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  line-height: 1.05;
+  margin-bottom: 13px;
+}
+
+.game-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #999;
+}
+
+/* ══ İNDİR BUTONLARI ══ */
+.dl-section {
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dl-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 60px;
+  padding: 14px 16px;
+  background: var(--s2);
+  border: 1px solid rgba(34,197,94,0.18);
+  border-left: 3px solid rgba(34,197,94,0.5);
+  border-radius: 12px;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+}
+
+.dl-btn:active { background: #1e1e1e; }
+
+.dl-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(34,197,94,0.09);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dl-text { flex: 1; }
+.dl-name { font-size: 13px; font-weight: 700; line-height: 1.2; }
+.dl-hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.dl-arr  { color: var(--muted); flex-shrink: 0; }
+
+/* ══ GALERİ ══ */
+.gallery { padding: 0 20px 36px; }
+
+.sec-label {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 13px;
+}
+
+.ss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.ss-grid a {
+  display: block; aspect-ratio: 16/9;
+  border-radius: 9px; overflow: hidden;
+  background: var(--surface);
+}
+
+.ss-grid img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ══ YORUMLAR ══ */
+.comments { padding: 0 20px 32px; }
+
+.c-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.c-head-l { display: flex; flex-direction: column; gap: 5px; }
+
+#ortalama-yildiz {
+  font-size: 18px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.yildiz-puan { font-size: 13px; color: var(--muted); letter-spacing: 0; }
+.yildiz-bos  { color: var(--muted); }
+
+#yorum-toggle-btn {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+#yorum-toggle-btn:active { background: #1e1e1e; }
+
+#yorumlar-content { overflow: hidden; transition: max-height 0.35s cubic-bezier(.4,0,.2,1); }
+#yorumlar-content.collapsed { max-height: 0; }
+
+/* ── Form ── */
+.form-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 18px;
+  margin-bottom: 22px;
+}
+
+.form-head { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+
+#reply-indicator {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #aaa;
+}
+#reply-indicator button { background: none; border: none; color: var(--muted); font-size: 16px; cursor: pointer; }
+
+.fi {
+  width: 100%;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 10px;
+  font-family: inherit;
+  resize: none;
+}
+.fi::placeholder { color: var(--muted); }
+.fi:focus { border-color: #2e2e2e; }
+.honeypot { display: none !important; }
+
+#rating-field { margin-bottom: 14px; }
+.rating-hint { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+
+.star-group { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 1px; }
+.star-group input[type="radio"] { display: none; }
+.star-group label { font-size: 30px; color: var(--muted); cursor: pointer; line-height: 1; }
+.star-group input:checked ~ label,
+.star-group label:hover,
+.star-group label:hover ~ label { color: #f59e0b; }
+
+.captcha-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.captcha-q {
+  font-size: 14px; font-weight: 600;
+  background: var(--s2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 14px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.captcha-a { width: 80px; flex-shrink: 0; margin-bottom: 0 !important; }
+
+.submit-btn {
+  width: 100%; padding: 15px;
+  background: #fff; color: #0a0a0a;
+  border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.submit-btn:active  { opacity: 0.82; }
+.submit-btn:disabled { opacity: 0.4; }
+
+.form-msg { font-size: 13px; margin-top: 10px; display: none; border-radius: 8px; padding: 10px 14px; }
+.form-msg.show    { display: block; }
+.form-msg.success { background: rgba(34,197,94,.1); color: #22c55e; }
+.form-msg.error   { background: rgba(220,38,38,.1); color: #f87171; }
+
+.no-comments { text-align: center; padding: 44px 0; color: var(--muted); font-size: 14px; }
+
+.comment-item { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.comment-item:last-child { border-bottom: none; }
+.comment-item.pending { opacity: 0.55; }
+.comment-reply { padding-left: 18px; border-left: 2px solid var(--border); margin-left: 8px; }
+.comment-header { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-bottom: 7px; }
+.reply-arrow { color: var(--muted); font-size: 14px; }
+.comment-avatar { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+.comment-name  { font-size: 13px; font-weight: 700; }
+.comment-stars { font-size: 11px; color: #f59e0b; letter-spacing: 1px; }
+.comment-date  { font-size: 11px; color: var(--muted); margin-left: auto; }
+.role-badge    { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 100px; text-transform: uppercase; }
+.badge-kurucu  { background: rgba(251,191,36,.12); color: #fbbf24; }
+.badge-admin   { background: rgba(59,130,246,.12);  color: #60a5fa; }
+.pending-badge { font-size: 10px; color: #f59e0b; background: rgba(245,158,11,.1); padding: 2px 8px; border-radius: 100px; }
+.reply-to-label { font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+.comment-text  { font-size: 14px; line-height: 1.65; color: #bbb; margin-bottom: 10px; word-break: break-word; }
+.comment-actions { display: flex; gap: 6px; align-items: center; }
+.action-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: none; border: 1px solid var(--border);
+  border-radius: 100px; padding: 5px 10px;
+  font-size: 12px; color: var(--muted); cursor: pointer;
+}
+.action-btn:active { background: var(--s2); }
+.action-icon   { width: 13px; height: 13px; }
+.action-count  { font-size: 11px; }
+.active-like   { border-color: var(--green); color: var(--green); }
+.active-dislike{ border-color: #ef4444; color: #ef4444; }
+.reply-btn     { margin-left: 4px; font-size: 12px; }
+.replies-toggle-btn { display: block; width: 100%; text-align: left; background: none; border: none; color: #60a5fa; font-size: 13px; padding: 8px 0 8px 26px; cursor: pointer; }
+.replies-hidden      { display: none; }
+.replies-hidden.open { display: block; }
+.lazy-item    { opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; }
+.lazy-visible { opacity: 1; transform: none; }
+
+/* ══ FOOTER ══ */
+.footer {
+  margin-top: auto;
+  padding: 24px 20px calc(20px + var(--safe-bot));
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- TOP 3 BUTON -->
+<nav class="top-3">
+  <a class="tb tb-left" href="https://ballasnet.com/apk/">
+    <img class="tb-img" src="" alt="">
+    <div class="tb-fade"></div>
+    <span class="tb-label">APK</span>
+    <span class="tb-sub">Android</span>
+  </a>
+
+  <a class="tb tb-mid" href="#indir">
+    <img class="tb-img" src="" alt=""><!-- görseli sen koy -->
+    <div class="tb-fade"></div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v13M5 13l7 7 7-7"/>
+    </svg>
+    <span class="tb-label">İNDİR</span>
+  </a>
+
+  <a class="tb tb-right" href="#">
+    <img class="tb-img" src="" alt="">
+    <div class="tb-fade"></div>
+    <span class="tb-label">Benzer Oyun</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<img class="hero" src="https://ballasnet.com/oyunindir/worldbox/worldbox.webp" alt="WorldBox" loading="eager">
+
+<!-- META -->
+<div class="meta">
+  <div class="tags">
+    <span class="tag">Düşük Sistem</span>
+    <span class="tag">Sandbox</span>
+    <span class="tag">Strateji</span>
+  </div>
+  <h1 class="game-title">WorldBox</h1>
+  <p class="game-desc">Dünyanı yaratıp yönettiğin minimalist bir god simulator. Çobanlar, elfler, cüceler ve orklardan oluşan medeniyetler kur — ya da volkanlar ve zombilerle hepsini yok et. Tamamen özgür sandbox deneyimi.</p>
+</div>
+
+<!-- İNDİR -->
+<section class="dl-section" id="indir">
+  <a class="dl-btn" href="#">
+    <div class="dl-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+    </div>
+    <div class="dl-text"><div class="dl-name">Direkt İndir</div><div class="dl-hint">Hızlı indirme · Ücretsiz</div></div>
+    <svg class="dl-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </a>
+  <a class="dl-btn" href="#">
+    <div class="dl-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+      </svg>
+    </div>
+    <div class="dl-text"><div class="dl-name">Torrent İndir</div><div class="dl-hint">Magnet link · .torrent</div></div>
+    <svg class="dl-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </a>
+  <a class="dl-btn" href="#">
+    <div class="dl-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+      </svg>
+    </div>
+    <div class="dl-text"><div class="dl-name">Google Drive</div><div class="dl-hint">Alternatif link</div></div>
+    <svg class="dl-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </a>
+</section>
+
+<!-- GALERİ -->
+<section class="gallery" id="ekranlar">
+  <div class="sec-label">Ekran Görüntüleri</div>
+  <div class="ss-grid">
+    <a href="https://ballasnet.com/oyunindir/worldbox/worldbox.webp" target="_blank">
+      <img src="https://ballasnet.com/oyunindir/worldbox/worldbox.webp" alt="SS 1" loading="lazy">
+    </a>
+    <a href="https://ballasnet.com/oyunindir/worldbox/worldbox.webp" target="_blank">
+      <img src="https://ballasnet.com/oyunindir/worldbox/worldbox.webp" alt="SS 2" loading="lazy">
+    </a>
+  </div>
+</section>
+
+<!-- YORUMLAR -->
+<section class="comments" id="yorumlar">
+  <div class="c-head">
+    <div class="c-head-l">
+      <div class="sec-label" style="margin-bottom:4px;">Yorumlar</div>
+      <div id="ortalama-yildiz"><span class="yildiz-bos">☆☆☆☆☆</span></div>
+    </div>
+    <button id="yorum-toggle-btn">Gizle</button>
+  </div>
+  <div id="yorumlar-content">
+    <div class="form-wrap">
+      <div class="form-head">Yorum Yaz</div>
+      <div id="reply-indicator">
+        <span id="reply-label"></span>
+        <button onclick="cancelReply()">✕</button>
+      </div>
+      <form id="comment-form">
+        <input type="text" id="website" name="website" class="honeypot" autocomplete="off" tabindex="-1">
+        <input type="hidden" id="parent-id" value="">
+        <input type="hidden" id="reply-to-name" value="">
+        <input type="hidden" id="captcha-id" value="">
+        <input class="fi" type="text" id="name" placeholder="İsmin" required maxlength="50">
+        <textarea class="fi" id="comment" placeholder="Yorumun..." required maxlength="1000" rows="4"></textarea>
+        <div id="rating-field">
+          <div class="rating-hint">Puan ver (isteğe bağlı)</div>
+          <div class="star-group">
+            <input type="radio" id="s5" name="rating" value="5"><label for="s5">★</label>
+            <input type="radio" id="s4" name="rating" value="4"><label for="s4">★</label>
+            <input type="radio" id="s3" name="rating" value="3"><label for="s3">★</label>
+            <input type="radio" id="s2" name="rating" value="2"><label for="s2">★</label>
+            <input type="radio" id="s1" name="rating" value="1"><label for="s1">★</label>
+          </div>
+        </div>
+        <div class="captcha-row">
+          <div class="captcha-q" id="captcha-question">? + ? = ?</div>
+          <input class="fi captcha-a" type="number" id="captcha-answer" placeholder="?" required>
+        </div>
+        <button type="submit" class="submit-btn" id="submit-btn"><span id="submit-label">Gönder</span></button>
+        <div class="form-msg" id="form-message"></div>
+      </form>
+    </div>
+    <div id="comments-list"><p class="no-comments">Yorumlar yükleniyor…</p></div>
+  </div>
+</section>
+
+<footer class="footer">ballasnett@gmail.com</footer>
+</div><!-- /wrap -->
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, query, where, onSnapshot,
+         serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove }
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyA-RWDPv06t_4TXvzU06DzPhsQXKZ1Bkec",
+  authDomain:"ballasnet-100c0.firebaseapp.com",
+  projectId:"ballasnet-100c0",
+  storageBucket:"ballasnet-100c0.firebasestorage.app",
+  messagingSenderId:"31456745285",
+  appId:"1:31456745285:web:2db93eed879bb42b81102c"
+});
+const db = getFirestore(app);
+const PAGE_ID = "worldbox-mob"; /* Ana siteden ayrı */
+
+let captcha={}, formStart=Date.now();
+
+function genCaptcha(){
+  const a=Math.floor(Math.random()*10)+1, b=Math.floor(Math.random()*10)+1;
+  captcha={a,b,ans:a+b,id:Math.random().toString(36).slice(2)};
+  document.getElementById('captcha-question').textContent=`${a} + ${b} = ?`;
+  document.getElementById('captcha-id').value=captcha.id;
+}
+
+function cid(){let i=localStorage.getItem('cid');if(!i){i=Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('cid',i);}return i;}
+
+function rateOk(){
+  const now=Date.now(),c=cid();
+  const k10=`rl10_${c}`,kd=`rld_${c}_${new Date().toDateString()}`;
+  const d10=JSON.parse(localStorage.getItem(k10)||'{"n":0,"t":0}');
+  const dd=JSON.parse(localStorage.getItem(kd)||'{"n":0}');
+  if(now-d10.t>600000){d10.n=0;d10.t=now;}
+  if(d10.n>=7)return{ok:false,msg:'10 dakikada en fazla 7 yorum.'};
+  if(dd.n>=10)return{ok:false,msg:'Günlük limit doldu (10).'};
+  return{ok:true,d10,dd,k10,kd};
+}
+function recordComment(rl){rl.d10.n++;localStorage.setItem(rl.k10,JSON.stringify(rl.d10));rl.dd.n++;localStorage.setItem(rl.kd,JSON.stringify(rl.dd));}
+
+function likeOk(){
+  const c=cid(),now=Date.now(),lk=`llk_${c}`,rk=`lrl_${c}`;
+  const lu=parseInt(localStorage.getItem(lk)||'0');
+  if(now<lu)return{ok:false,msg:`${Math.ceil((lu-now)/1000)}s bekleyin.`};
+  let ts=JSON.parse(localStorage.getItem(rk)||'[]').filter(t=>now-t<60000);
+  if(ts.length>=5){localStorage.setItem(lk,String(now+120000));localStorage.removeItem(rk);return{ok:false,msg:'2 dakika bekleyin.'};}
+  ts.push(now);localStorage.setItem(rk,JSON.stringify(ts));return{ok:true};
+}
+
+function msg(m,t){const e=document.getElementById('form-message');e.textContent=m;e.className=`form-msg show ${t}`;setTimeout(()=>e.className='form-msg',5000);}
+function esc(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+
+function updStars(ys){
+  const ap=ys.filter(y=>y.status==='approved'&&y.rating>0);
+  const el=document.getElementById('ortalama-yildiz');
+  if(!ap.length){el.innerHTML='<span class="yildiz-bos">☆☆☆☆☆</span>';return;}
+  const avg=ap.reduce((s,y)=>s+(y.rating||0),0)/ap.length;
+  const p=Math.round(avg*10)/10,f=Math.round(avg);
+  el.innerHTML=`${'★'.repeat(f)}${'☆'.repeat(5-f)}<span class="yildiz-puan">${p}</span>`;
+}
+
+document.getElementById('comment-form').addEventListener('submit',async e=>{
+  e.preventDefault();const btn=document.getElementById('submit-btn');btn.disabled=true;
+  if(document.getElementById('website').value){msg('Bot.','error');btn.disabled=false;return;}
+  if(Date.now()-formStart<3000){msg('Çok hızlı.','error');btn.disabled=false;return;}
+  if(parseInt(document.getElementById('captcha-answer').value)!==captcha.ans){msg('Captcha yanlış.','error');genCaptcha();document.getElementById('captcha-answer').value='';btn.disabled=false;return;}
+  const rl=rateOk();if(!rl.ok){msg(rl.msg,'error');btn.disabled=false;return;}
+  const name=document.getElementById('name').value.trim();
+  const comment=document.getElementById('comment').value.trim();
+  const parentId=document.getElementById('parent-id').value||null;
+  const replyToName=document.getElementById('reply-to-name').value||null;
+  const rating=parentId?0:parseInt(document.querySelector('input[name="rating"]:checked')?.value||0);
+  if(!name||!comment){msg('İsim ve yorum zorunlu.','error');btn.disabled=false;return;}
+  if(comment.length>1000||name.length>50){msg('Çok uzun.','error');btn.disabled=false;return;}
+  try{
+    await addDoc(collection(db,'comments'),{name,comment,rating,ip:cid(),status:'pending',createdAt:serverTimestamp(),captchaId:captcha.id,pageId:PAGE_ID,parentId,replyToName,likes:[],dislikes:[]});
+    recordComment(rl);
+    document.getElementById('comment-form').reset();
+    ['parent-id','reply-to-name'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('reply-indicator').style.display='none';
+    document.getElementById('submit-label').textContent='Gönder';
+    document.getElementById('rating-field').style.display='';
+    formStart=Date.now();genCaptcha();
+    document.getElementById('comment-form').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(er){console.error(er);msg('Hata oluştu.','error');}
+  btn.disabled=false;
+});
+
+function loadComments(){
+  const q=query(collection(db,'comments'),where('pageId','==',PAGE_ID),where('status','in',['approved','pending']));
+  onSnapshot(q,snap=>{
+    const cont=document.getElementById('comments-list');cont.innerHTML='';
+    const me=cid();
+    const raw=[];snap.forEach(d=>raw.push({id:d.id,...d.data()}));
+    const ys=raw.filter(d=>d.status==='approved'||d.ip===me);
+    updStars(ys);
+    if(!ys.length){cont.innerHTML='<p class="no-comments">Henüz yorum yok. İlk yorumu sen yap!</p>';return;}
+    ys.sort((a,b)=>(b.createdAt?.toMillis()||Infinity)-(a.createdAt?.toMillis()||Infinity));
+    const ana=ys.filter(d=>!d.parentId),cevs=ys.filter(d=>d.parentId);
+    function rc(d,rep){
+      const pend=d.status==='pending';
+      const stars=d.rating?'★'.repeat(d.rating)+'☆'.repeat(5-d.rating):'';
+      const date=d.createdAt?new Date(d.createdAt.toDate()).toLocaleDateString('tr-TR'):'Az önce';
+      const lk=(d.likes||[]).length,dk=(d.dislikes||[]).length;
+      const uL=(d.likes||[]).includes(me),uD=(d.dislikes||[]).includes(me);
+      const role=d.role||'user';
+      let avi='',badge='';
+      if(role==='kurucu'){avi=`<img src="/avatar/kurucuu.webp" class="comment-avatar" alt="">`;badge=`<span class="role-badge badge-kurucu">KURUCU</span>`;}
+      else if(role==='admin1'||role==='admin2'){avi=`<img src="/avatar/${role}.webp" class="comment-avatar" alt="">`;badge=`<span class="role-badge badge-admin">ADMİN</span>`;}
+      const el=document.createElement('div');
+      el.className=`comment-item${pend?' pending':''}${rep?' comment-reply':''}`;
+      el.dataset.id=d.id;
+      el.innerHTML=`
+        <div class="comment-header">
+          ${rep?'<span class="reply-arrow">↳</span>':''}${avi}
+          <span class="comment-name">${esc(d.name)}</span>${badge}
+          ${stars?`<span class="comment-stars">${stars}</span>`:''}
+          <span class="comment-date">${date}</span>
+          ${pend?'<span class="pending-badge">Onaylanıyor…</span>':''}
+        </div>
+        ${d.replyToName&&rep?`<div class="reply-to-label">@${esc(d.replyToName)}'e yanıt</div>`:''}
+        <div class="comment-text">${esc(d.comment)}</div>
+        <div class="comment-actions">
+          <button class="action-btn like-btn ${uL?'active-like':''}" data-id="${d.id}" data-action="like">
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            <span class="action-count">${lk>0?lk:''}</span>
+          </button>
+          <button class="action-btn dislike-btn ${uD?'active-dislike':''}" data-id="${d.id}" data-action="dislike">
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+            <span class="action-count">${dk>0?dk:''}</span>
+          </button>
+          ${!pend?`<button class="action-btn reply-btn" data-id="${d.id}" data-name="${esc(d.name)}">↩ Cevapla</button>`:''}
+        </div>`;
+      return el;
+    }
+    function rsort(a,b){const rp=r=>r==='kurucu'?0:(r==='admin1'||r==='admin2')?1:2;const d=rp(a.role||'user')-rp(b.role||'user');if(d)return d;return(b.createdAt?.toMillis()||0)-(a.createdAt?.toMillis()||0);}
+    const LAZY=15;
+    ana.forEach((a,i)=>{
+      const lz=i>=LAZY;
+      const el=rc(a,false);if(lz)el.classList.add('lazy-item');cont.appendChild(el);
+      const bc=cevs.filter(c=>c.parentId===a.id).sort(rsort);
+      if(!bc.length)return;
+      if(bc.length<3){bc.forEach(c=>{const ce=rc(c,true);if(lz)ce.classList.add('lazy-item');cont.appendChild(ce);});}
+      else{
+        const fe=rc(bc[0],true);if(lz)fe.classList.add('lazy-item');cont.appendChild(fe);
+        const sb=document.createElement('button');sb.className='replies-toggle-btn'+(lz?' lazy-item':'');sb.textContent=`↓ Diğer ${bc.length-1} cevabı gör`;cont.appendChild(sb);
+        const hw=document.createElement('div');hw.className='replies-hidden';
+        bc.slice(1).forEach(c=>hw.appendChild(rc(c,true)));
+        const cb=document.createElement('button');cb.className='replies-toggle-btn';cb.textContent='↑ Cevapları kapat';hw.appendChild(cb);cont.appendChild(hw);
+        sb.addEventListener('click',()=>{hw.classList.add('open');sb.style.display='none';});
+        cb.addEventListener('click',()=>{hw.classList.remove('open');sb.style.display='';});
+      }
+    });
+    if(ana.length>LAZY){
+      const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('lazy-visible');obs.unobserve(e.target);}});},{rootMargin:'200px'});
+      cont.querySelectorAll('.lazy-item').forEach(el=>obs.observe(el));
+    }
+    cont.querySelectorAll('.like-btn,.dislike-btn').forEach(btn=>{
+      btn.addEventListener('click',async()=>{
+        const rl=likeOk();if(!rl.ok){msg(rl.msg,'error');return;}
+        const id=btn.dataset.id,act=btn.dataset.action,ref=doc(db,'comments',id);
+        const yd=ys.find(y=>y.id===id);if(!yd)return;
+        const lks=[...(yd.likes||[])],dks=[...(yd.dislikes||[])];
+        const uL=lks.includes(me),uD=dks.includes(me);
+        let nL=lks,nD=dks;
+        if(act==='like'){nL=uL?lks.filter(c=>c!==me):[...lks,me];nD=uL?dks:dks.filter(c=>c!==me);}
+        else{nD=uD?dks.filter(c=>c!==me):[...dks,me];nL=uD?lks:lks.filter(c=>c!==me);}
+        const ab=btn.closest('.comment-actions');
+        const lEl=ab.querySelector('.like-btn'),dEl=ab.querySelector('.dislike-btn');
+        lEl.classList.toggle('active-like',nL.includes(me));dEl.classList.toggle('active-dislike',nD.includes(me));
+        lEl.querySelector('.action-count').textContent=nL.length>0?nL.length:'';
+        dEl.querySelector('.action-count').textContent=nD.length>0?nD.length:'';
+        yd.likes=nL;yd.dislikes=nD;
+        try{
+          if(act==='like'){if(uL)await updateDoc(ref,{likes:arrayRemove(me)});else await updateDoc(ref,{likes:arrayUnion(me),dislikes:arrayRemove(me)});}
+          else{if(uD)await updateDoc(ref,{dislikes:arrayRemove(me)});else await updateDoc(ref,{dislikes:arrayUnion(me),likes:arrayRemove(me)});}
+        }catch(e){console.error(e);}
+      });
+    });
+    cont.querySelectorAll('.reply-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.getElementById('parent-id').value=btn.dataset.id;
+        document.getElementById('reply-to-name').value=btn.dataset.name;
+        document.getElementById('reply-label').textContent=`${btn.dataset.name}'e Cevap Ver`;
+        document.getElementById('reply-indicator').style.display='flex';
+        document.getElementById('submit-label').textContent='Cevapla';
+        document.querySelectorAll('input[name="rating"]').forEach(r=>r.checked=false);
+        document.getElementById('rating-field').style.display='none';
+        document.getElementById('comment-form').scrollIntoView({behavior:'smooth',block:'start'});
+        document.getElementById('comment').focus();
+      });
+    });
+  },err=>{console.error(err);document.getElementById('comments-list').innerHTML='<p class="no-comments">Yorumlar yüklenemedi.</p>';});
+}
+
+function cancelReply(){
+  document.getElementById('parent-id').value='';document.getElementById('reply-to-name').value='';
+  document.getElementById('reply-indicator').style.display='none';
+  document.getElementById('submit-label').textContent='Gönder';
+  document.getElementById('rating-field').style.display='';
+}
+window.cancelReply=cancelReply;
+genCaptcha();loadComments();formStart=Date.now();
+</script>
+
+<script>
+(function(){
+  const btn=document.getElementById('yorum-toggle-btn'),c=document.getElementById('yorumlar-content');
+  c.style.maxHeight='none';btn.textContent='Gizle';
+  btn.addEventListener('click',function(){
+    const col=!c.classList.contains('collapsed');
+    if(col){c.style.maxHeight=c.scrollHeight+'px';c.offsetHeight;requestAnimationFrame(()=>{c.classList.add('collapsed');c.style.maxHeight='0px';});}
+    else{c.classList.remove('collapsed');c.style.maxHeight=c.scrollHeight+'px';}
+    btn.textContent=col?'Göster':'Gizle';
+  });
+  c.addEventListener('transitionend',e=>{if(e.propertyName==='max-height'&&!c.classList.contains('collapsed'))c.style.maxHeight='none';});
+})();
+</script>
+</body>
+</html>
