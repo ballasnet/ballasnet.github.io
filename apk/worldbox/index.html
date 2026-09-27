@@ -104,14 +104,14 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   position: absolute;
   inset: 0; width: 100%; height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.48;
   pointer-events: none;
 }
 
 .tb-fade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 100%);
+  background: linear-gradient(160deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 100%);
 }
 
 .tb-label {
@@ -195,19 +195,35 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   padding: 28px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+}
+
+.dl-header {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.dl-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  margin-bottom: 6px;
 }
 
 .dl-btn {
   display: flex;
   align-items: center;
-  gap: 14px;
-  min-height: 60px;
-  padding: 14px 16px;
+  gap: 15px;
+  min-height: 68px;
+  padding: 16px 18px;
   background: var(--s2);
   border: 1px solid rgba(34,197,94,0.18);
   border-left: 3px solid rgba(34,197,94,0.5);
-  border-radius: 12px;
+  border-radius: 13px;
   color: var(--text);
   cursor: pointer;
   text-decoration: none;
@@ -217,8 +233,8 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .dl-btn:active { background: #1e1e1e; }
 
 .dl-icon {
-  width: 36px; height: 36px;
-  border-radius: 8px;
+  width: 40px; height: 40px;
+  border-radius: 9px;
   background: rgba(34,197,94,0.09);
   color: var(--green);
   display: flex;
@@ -228,8 +244,8 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 }
 
 .dl-text { flex: 1; }
-.dl-name { font-size: 13px; font-weight: 700; line-height: 1.2; }
-.dl-hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.dl-name { font-size: 14px; font-weight: 700; line-height: 1.2; }
+.dl-hint { font-size: 12px; color: var(--muted); margin-top: 3px; }
 .dl-arr  { color: var(--muted); flex-shrink: 0; }
 
 /* ══ GALERİ ══ */
@@ -679,6 +695,8 @@ medeniyetlerini oluşturup geliştirebilir ve dünyanın nasıl değiştiğini g
 
 <!-- İNDİR -->
 <section class="dl-section" id="indir">
+  <div class="dl-header">İNDİRME LİNKLERİ</div>
+  <div class="dl-line"></div>
   <a class="dl-btn" href="https://www.dropbox.com/scl/fi/q0i3up7xjpcsymnv0058a/worldboxapkballasnet0.51.4.apk?rlkey=utc90n8u77l1xbpw3tvbk5s37&st=2tp5l6do&e=1&dl=0">
     <div class="dl-icon">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -729,6 +747,8 @@ medeniyetlerini oluşturup geliştirebilir ve dünyanın nasıl değiştiğini g
     <h2>WorldBox Nedir?</h2>
     <p>WorldBox, kendi dünyanı sıfırdan oluşturup yönetebildiğin ücretsiz bir god simulator ve sandbox oyunudur. İnsanlar, elfler, cüceler ve orklar gibi farklı ırklar kurabilir, şehirler inşa edebilir, savaşlar izleyebilir veya volkan, meteor, zombi gibi afetlerle kaosu tetikleyebilirsin. Basit kontrolleri sayesinde düşük sistemli telefonlarda bile sorunsuz çalışır.</p>
     <p>WorldBox APK ile PC versiyonuna yakın özgür bir deneyim sunar. İstediğin gibi harita çizer, medeniyetlerin gelişimini izler ve dünyaya müdahale edersin. Sakin bir utopia da kurabilir, tamamen yıkıcı bir senaryo da yaratabilirsin — sınır yok.</p>
+    <p>Oyunda dünyanı şekillendirmek tamamen sana bağlı. Toprakları genişletebilir, okyanuslar oluşturabilir, dağlar ve ormanlar ekleyebilirsin. Medeniyetler kendi başlarına gelişir, ticaret yapar, savaşır veya ittifak kurar. İstersen tanrı gibi müdahale edip kaderlerini değiştirebilirsin. WorldBox, yaratıcılığını serbest bırakmak isteyen herkes için ideal bir sandbox deneyimi sunar.</p>
+    <p>Mobil versiyonu sayesinde her yerde oynayabilirsin. Düşük donanımlı cihazlarda bile akıcı çalışan optimizasyonu sayesinde milyonlarca oyuncu tarafından tercih ediliyor. Kendi efsanevi dünyanı yaratmaya bugün başla.</p>
   </div>
 
   <div class="seo-block">
@@ -742,18 +762,23 @@ medeniyetlerini oluşturup geliştirebilir ve dünyanın nasıl değiştiğini g
       <li>Düşük sistem gereksinimi — eski telefonlarda bile akıcı</li>
       <li>Türkçe dahil çoklu dil desteği</li>
       <li>Offline oynanabilir, reklamı minimum seviyede</li>
+      <li>Canlı istatistik paneli ile medeniyet gelişimini takip etme</li>
+      <li>Özel biyoloji ve kültür sistemleri ile gerçekçi toplum simülasyonu</li>
+      <li>Hızlı kayıt ve yükleme sayesinde dünyalarını kolayca saklama</li>
+      <li>Sürekli güncellenen içerikler ve yeni araçlar</li>
     </ul>
   </div>
 
   <div class="seo-block">
     <h2>WorldBox APK Nasıl İndirilir?</h2>
-    <p>Yukarıdaki <strong style="color:var(--green)">Direkt İndir</strong> butonlarından birine tıkla. Dosya Dropbox veya Proton Drive üzerinden güvenli şekilde iner. İndirdikten sonra:</p>
+    <p>Yukarıdaki <a href="#indir" style="color:var(--green);font-weight:700;text-decoration:underline;">Direkt İndir</a> butonlarından birine tıkla. Dosya Dropbox veya Proton Drive üzerinden güvenli şekilde iner. İndirdikten sonra:</p>
     <ul>
-      <li>Üstteki linklerden birine tıklayın. Ardından dosyayı indirin.</li>
-      <li>Dosyayı indirdikten sonra Aç'a tıklayın.</li>
-      <li>Kurulum bitince WorldBox’u açın ve dünyanı oluşturmaya başlayın</li>
+      <li>Üstteki <a href="#indir" style="color:var(--green);font-weight:600;">İndirme Linkleri</a> bölümünden birine tıklayın. Ardından dosyayı indirin.</li>
+      <li>Dosyayı indirdikten sonra “Aç”a tıklayın ve “Bilinmeyen kaynaklardan yükleme” iznini verin (gerekirse).</li>
+      <li>Kurulum bitince WorldBox’u açın ve kendi dünyanı oluşturmaya başlayın.</li>
+      <li>İlk açılışta dil seçeneğini Türkçe olarak ayarlayabilirsiniz.</li>
     </ul>
-    <p>Yedek linkler de aynı dosyayı sunar; biri çalışmazsa diğerini dene. Tüm linkler 2026 güncel sürümü (0.51.4) içindir.</p>
+    <p>Yedek linkler de aynı dosyayı sunar; biri çalışmazsa diğerini dene. Tüm linkler 2026 güncel sürümü (0.51.4) içindir. İndirme sırasında internet bağlantınızın stabil olması yeterlidir. Kurulum sonrası oyun tamamen çevrimdışı çalışır.</p>
   </div>
 
   <div class="seo-block">
@@ -761,37 +786,37 @@ medeniyetlerini oluşturup geliştirebilir ve dünyanın nasıl değiştiğini g
 
     <div class="faq-item">
       <div class="faq-q">WorldBox APK ücretsiz mi?</div>
-      <div class="faq-a">Evet, bu sayfadaki WorldBox APK tamamen ücretsizdir. Ekstra ödeme veya gizli abonelik yoktur. Direkt indirme linklerinden sorunsuz indirebilirsin.</div>
+      <div class="faq-a">Evet, bu sayfadaki WorldBox APK tamamen ücretsizdir. Ekstra ödeme, gizli abonelik veya zorunlu satın alma yoktur. Direkt indirme linklerinden sorunsuz indirebilirsin. Oyun içi reklamlar minimum seviyededir ve deneyimi bozmaz.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">WorldBox APK güvenli mi? Virüs var mı?</div>
-      <div class="faq-a">Dosyalar bilinen güvenilir depolama servislerinden (Dropbox / Proton) sunulur. Tüm dosyalar güvenlidir.</div>
+      <div class="faq-a">Dosyalar bilinen güvenilir depolama servislerinden (Dropbox / Proton Drive) sunulur. Tüm dosyalar taranmış ve güvenlidir. Yine de indirmeden önce antivirüs uygulamanızla kontrol etmenizi öneririz. Sadece bu sayfadaki resmi linkleri kullanın.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">Hangi Android sürümlerinde çalışır?</div>
-      <div class="faq-a">WorldBox APK genellikle Android 5.0 ve üzeri cihazlarda sorunsuz çalışır. Düşük sistemli telefonlar için optimize edilmiştir.</div>
+      <div class="faq-a">WorldBox APK genellikle Android 5.0 (Lollipop) ve üzeri cihazlarda sorunsuz çalışır. Düşük sistemli telefonlar için özel olarak optimize edilmiştir; 2 GB RAM ve üzeri cihazlarda akıcı performans alırsınız. Daha eski cihazlarda da denenebilir.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">WorldBox’ta ne yapabilirim?</div>
-      <div class="faq-a">Harita oluşturabilir, medeniyetler kurabilir, savaşları izleyebilir, doğal afetler gönderebilir, zombi salgını başlatabilir veya sakin bir dünya inşa edebilirsin. Tamamen özgür sandbox oynanış sunar.</div>
+      <div class="faq-a">Harita oluşturabilir, medeniyetler kurabilir, savaşları izleyebilir, doğal afetler gönderebilir, zombi salgını başlatabilir veya sakin bir dünya inşa edebilirsin. Toprak şekillendirme, biyom oluşturma, kültür ve din sistemleri gibi birçok detaylı özellik mevcuttur. Tamamen özgür sandbox oynanış sunar — hayal gücün sınırdır.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">PC versiyonuyla farkı var mı?</div>
-      <div class="faq-a">Mobil APK, PC sürümüne oldukça yakındır. Temel araçlar ve medeniyet mekanikleri mevcuttur. Bazı ileri seviye özellikler PC’de daha geniştir; mobil ise dokunmatik kontrollere göre sadeleştirilmiştir.</div>
+      <div class="faq-a">Mobil APK, PC sürümüne oldukça yakındır. Temel araçlar, medeniyet mekanikleri ve afet sistemleri mevcuttur. Bazı ileri seviye özellikler ve daha büyük harita boyutları PC’de daha geniştir; mobil ise dokunmatik kontrollere göre sadeleştirilmiş ve optimize edilmiştir. Genel deneyim neredeyse aynıdır.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">Güncelleme geldiğinde ne yapmalıyım?</div>
-      <div class="faq-a">Bu sayfayı takip et. Yeni sürüm çıktığında indirme linkleri güncellenir. Eski kaydettiğin dünyalar genellikle korunur, yine de önemli dünyaları yedeklemen iyi olur.</div>
+      <div class="faq-a">Bu sayfayı takip et. Yeni sürüm çıktığında indirme linkleri güncellenir. Eski kaydettiğin dünyalar genellikle korunur, yine de önemli dünyaları yedeklemen iyi olur. Güncelleme sonrası eski APK’yı kaldırıp yenisini kurman yeterlidir.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">WorldBox internet ister mi?</div>
-      <div class="faq-a">Hayır. Oyun tamamen offline oynanabilir. İnternet sadece ilk indirme ve olası güncelleme kontrolü için gerekir.</div>
+      <div class="faq-a">Hayır. Oyun tamamen offline oynanabilir. İnternet sadece ilk indirme ve olası güncelleme kontrolü için gerekir. Bir kez indirdikten sonra uçak modunda bile sorunsuz oynayabilirsiniz.</div>
     </div>
   </div>
 </section>
@@ -806,6 +831,7 @@ medeniyetlerini oluşturup geliştirebilir ve dünyanın nasıl değiştiğini g
     <button id="yorum-toggle-btn">Gizle</button>
   </div>
   <div id="yorumlar-content">
+    <p style="font-size:13px;color:#999;line-height:1.6;margin-bottom:18px;">WorldBox deneyimini paylaş, soru sor veya diğer oyuncularla sohbet et. Yorumların onaylandıktan sonra görünür hale gelir. Nazik ve yapıcı olmaya özen göster.</p>
     <div class="form-wrap">
       <div class="form-head">Yorum Yaz</div>
       <div id="reply-indicator">
