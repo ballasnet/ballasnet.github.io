@@ -40,6 +40,15 @@
 <!-- Theme -->
 <meta name="theme-color" content="#0b0b0b">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EEX25QC86J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EEX25QC86J');
+</script>
+
 <!-- Schema (Gelişmiş VideoGame + Review) -->
 <script type="application/ld+json">
 {
@@ -656,9 +665,24 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
 <div class="linkler">
   <h2>LİNKLER</h2>
   <div class="link-listesi">
-    <a href="https://drive.google.com/file/d/1XzrtAuwwr02HNkC6lq3ahAcQKD1KEt2G/view?usp=sharing" id="link1">LİNK 1</a>
-    <a href="https://mega.nz/file/CkowEBRS#zNTyFvTG_SYI3SOP82jBfpec-rkwZw2_CQ4we0fDcq4" id="link2">LİNK 2</a>
-    <a href="https://www.dropbox.com/scl/fi/mz1jt61b63ja8cwsm24i1/Papers-Please-BallasNet.zip?rlkey=zn7tmfxyve0w4u23wytmkhtg4&st=eg5qpiax&dl=0" id="link2">LİNK 3</a>
+    <a href="https://drive.google.com/file/d/1XzrtAuwwr02HNkC6lq3ahAcQKD1KEt2G/view?usp=sharing"
+       rel="nofollow noopener noreferrer"
+       target="_blank"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'Link 1' });">
+       LİNK 1
+    </a>
+    <a href="https://mega.nz/file/CkowEBRS#zNTyFvTG_SYI3SOP82jBfpec-rkwZw2_CQ4we0fDcq4"
+       rel="nofollow noopener noreferrer"
+       target="_blank"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'Link 2' });">
+       LİNK 2
+    </a>
+    <a href="https://www.dropbox.com/scl/fi/mz1jt61b63ja8cwsm24i1/Papers-Please-BallasNet.zip?rlkey=zn7tmfxyve0w4u23wytmkhtg4&st=eg5qpiax&dl=0"
+       rel="nofollow noopener noreferrer"
+       target="_blank"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'Link 3' });">
+       LİNK 3
+    </a>
   </div>
 </div> 
 
@@ -670,7 +694,12 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
 <div class="linkler resmi">
   <h2>RESMİ İNDİRME LİNKLERİ</h2>
   <div class="link-listesi">
-    <a href="https://store.steampowered.com/app/239030/Papers_Please/" id="link1">STEAM İNDİRME LİNKİ</a>
+    <a href="https://store.steampowered.com/app/239030/Papers_Please/"
+       rel="nofollow noopener noreferrer"
+       target="_blank"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'Steam' });">
+       STEAM İNDİRME LİNKİ
+    </a>
   </div>
 </div> 
   
@@ -693,9 +722,10 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
 
   
 <section class="benzer-oyunlar" aria-labelledby="benzer-oyunlar-baslik">
-  <h2 id="benzer-oyunlar-baslik">BENZER OYUNLAR</h2>
+  <h2 id="benzer-oyunlar-baslik">POPÜLER OYUNLAR</h2>
   <div class="uc-kart-container" id="benzer-kartlar">
-    <a href="/oyunindir/undertale/" class="game-card" aria-label="Undertale oyununa git">
+    <a href="/oyunindir/undertale/" class="game-card" aria-label="Undertale oyununa git"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'kart-sol-undertale' });">
       <div class="game-image">
         <img src="/oyunindir/undertale/undertale.webp" alt="Undertale oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
       </div>
@@ -705,26 +735,26 @@ Eğer strateji, simülasyon ve karar verme üzerine bir PC oyunu arıyorsanız, 
         <div class="game-tag">Düşük Sistem</div>
       </div>
     </a>
-    <a href="/oyunindir/stardew-valley/" class="game-card" aria-label="Stardew Valley oyununa git">
+    <a href="/oyunindir/gta-vice-city/" class="game-card" aria-label="GTA Vice City oyununa git"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'kart-orta-gta-vice-city' });">
       <div class="game-image">
-        <img src="/oyunindir/stardew-valley/stardewvalley.jpg" alt="Stardew Valley oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+        <img src="/oyunindir/gta-vice-city/gta-vice-city.webp" alt="GTA Vice City oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
       </div>
-      <div class="game-title">Stardew Valley</div>
+      <div class="game-title">GTA Vice City</div>
       <div class="game-tags-container">
-        <div class="game-tag">Indie</div>
-        <div class="game-tag">Düşük Sistem</div>
         <div class="game-tag">Popüler</div>
+        <div class="game-tag">Düşük Sistem</div>
       </div>
     </a>
-    <a href="/oyunindir/celeste/" class="game-card" aria-label="Celeste oyununa git">
+    <a href="/oyunindir/half-life2/" class="game-card" aria-label="Half-Life 2 oyununa git"
+       onclick="gtag('event', 'download_link_click', { 'link_name': 'kart-sag-half-life2' });">
       <div class="game-image">
-        <img src="/oyunindir/celeste/celeste2.jpg" alt="Celeste oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
+        <img src="/oyunindir/half-life2/half-life2.webp" alt="Half-Life 2 oyunu" loading="lazy" onerror="this.src='/images/fallback.jpg'">
       </div>
-      <div class="game-title">Celeste</div>
+      <div class="game-title">Half-Life 2</div>
       <div class="game-tags-container">
-        <div class="game-tag">Indie</div>
-        <div class="game-tag">Düşük Sistem</div>
         <div class="game-tag">Popüler</div>
+        <div class="game-tag">Düşük Sistem</div>
       </div>
     </a>
   </div>
@@ -867,8 +897,8 @@ function createGameCards() {
     container.appendChild(card);
   });
 }
-// Başlat
-document.addEventListener('DOMContentLoaded', createGameCards);
+// Başlat - statik POPÜLER OYUNLAR kartları kullanıldığı için devre dışı
+// document.addEventListener('DOMContentLoaded', createGameCards);
 
 // Lazy-load YouTube iframe
 document.addEventListener('DOMContentLoaded', () => {
