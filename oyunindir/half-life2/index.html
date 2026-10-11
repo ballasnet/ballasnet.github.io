@@ -1317,6 +1317,19 @@ function loadComments() {
         const anaYorumlar = tumYorumlar.filter(d => !d.parentId);
         const cevaplar = tumYorumlar.filter(d => d.parentId);
 
+        // Cevaba verilen cevapları da ana yorumun altında toplamak için
+        const yorumMap = {};
+        tumYorumlar.forEach(y => { yorumMap[y.id] = y; });
+
+        function kokBul(c) {
+            let cur = c;
+            let guard = 0;
+            while (cur && cur.parentId && guard++ < 50) {
+                cur = yorumMap[cur.parentId];
+            }
+            return cur ? cur.id : null;
+        }
+
         function renderComment(d, isReply) {
             const pending = d.status === 'pending';
             const stars = d.rating ? '★'.repeat(d.rating) + '☆'.repeat(5 - d.rating) : '';
@@ -1387,7 +1400,7 @@ function loadComments() {
             if (isLazy) mainEl.classList.add('lazy-item');
             container.appendChild(mainEl);
 
-            const buCevaplar = cevaplar.filter(c => c.parentId === ana.id);
+            const buCevaplar = cevaplar.filter(c => kokBul(c) === ana.id);
             buCevaplar.sort(replySortFn);
 
             if (buCevaplar.length === 0) return;
