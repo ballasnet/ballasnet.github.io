@@ -103,7 +103,7 @@ button:hover{border-color:#555;background:#1a1a1a}
   text-transform:uppercase;
   margin-bottom:6px;
 }
-.stars{color:#ccc;letter-spacing:2px;font-size:13px;margin-bottom:2px}
+.stars{color:#ccc;letter-spacing:2px;font-size:13px;margin-bottom:2px;min-height:4px}
 .comment{color:#ccc;font-size:14px;margin:10px 0;line-height:1.65}
 
 .actions{
@@ -120,6 +120,10 @@ button:hover{border-color:#555;background:#1a1a1a}
 .detail-btn{border-color:#1a1a2a;color:#778;font-size:11px}
 .detail-btn:hover{border-color:#2a2a4a;color:#aab}
 .detail-btn.open{border-color:#1e3a5a;color:#6699bb;background:#080c10}
+
+/* yıldız kaldır butonu */
+.unstar-btn{border-color:#3a3315;color:#8a7a3a;font-size:11px;letter-spacing:1.5px}
+.unstar-btn:hover{border-color:#6a5a20;background:#141004;color:#ccaa44}
 
 /* ----- DETAILS PANEL ----- */
 .details-panel{
@@ -477,7 +481,7 @@ async function loadComments() {
         <span>📅 ${date}</span>
       </div>
       <div class="name">${escapeHtml(c.name)}</div>
-      <div class="stars">${stars}</div>
+      <div class="stars" id="stars-${d.id}">${stars}</div>
       <div class="comment">${escapeHtml(c.comment)}</div>
       <div class="role-row">
         <span class="role-label-pre">Rol</span>
@@ -489,6 +493,7 @@ async function loadComments() {
       <div class="actions">
         <button class="approve" onclick="approve('${d.id}')">ONAYLA</button>
         <button class="reject"  onclick="reject('${d.id}')">REDDET</button>
+        ${(c.rating || 0) > 0 ? `<button class="unstar-btn" data-unstar="${d.id}" onclick="removeRating('${d.id}')">★ YILDIZI KALDIR</button>` : ''}
         <button class="detail-btn" id="dbtn-${d.id}" onclick="toggleDetails('${d.id}')">▸ DETAYLAR</button>
       </div>
       <div class="details-panel" id="details-${d.id}">
@@ -509,6 +514,24 @@ window.approve = async function (id) {
 window.reject = async function (id) {
   await updateDoc(doc(db, 'comments', id), { status: 'rejected' });
   loadComments();
+};
+
+/* ── REMOVE RATING (yıldızı kaldır) ──────────────────────── */
+window.removeRating = async function (id) {
+  if (!confirm('Bu yorumun yıldızı kaldırılsın mı?\n(Yorum kalır, puan ortalamaya dahil edilmez. Geri alınamaz.)')) return;
+  try {
+    await updateDoc(doc(db, 'comments', id), { rating: 0 });
+
+    // Arayüzü anında güncelle (iki sekmedeki kart için de)
+    ['stars-', 'astars-'].forEach(prefix => {
+      const el = document.getElementById(prefix + id);
+      if (el) el.textContent = '';
+    });
+    document.querySelectorAll(`[data-unstar="${id}"]`).forEach(b => b.remove());
+  } catch (e) {
+    console.error(e);
+    alert('Yıldız kaldırma hatası: ' + e.message);
+  }
 };
 
 /* ── ALL COMMENTS ────────────────────────────────────────── */
@@ -548,9 +571,10 @@ async function loadAllComments() {
           <span class="status-tag ${statusClass}">${statusLabel}</span>
         </div>
         <div class="name">${escapeHtml(c.name)}</div>
-        <div class="stars">${stars}</div>
+        <div class="stars" id="astars-${d.id}">${stars}</div>
         <div class="comment">${escapeHtml(c.comment)}</div>
         <div class="actions">
+          ${(c.rating || 0) > 0 ? `<button class="unstar-btn" data-unstar="${d.id}" onclick="removeRating('${d.id}')">★ YILDIZI KALDIR</button>` : ''}
           <button class="delete-btn" onclick="deleteComment('${d.id}')">SİL</button>
         </div>
       `;
