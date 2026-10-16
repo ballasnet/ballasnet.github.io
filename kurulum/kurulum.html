@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurulum Videosu</title>
+<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" type="image/png" href="/favicon/favicon2.png">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#0b0b0b;color:#fff;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+body.lock{overflow:hidden}
+main{flex:1;padding:0 20px 50px}
+
+h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase}
+
+/* Video alanı: yer her zaman ayrılır (sayfa kaymaz) */
+.player-wrap{max-width:1000px;margin:30px auto 0;aspect-ratio:2520/1080;position:relative}
+
+.player{
+  position:absolute;inset:0;
+  background:#000;border:2px solid #222;border-radius:12px;
+  overflow:hidden;contain:layout paint;
+  outline:none;user-select:none;-webkit-user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.player:focus-visible{border-color:#555}
+
+video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cursor:pointer}
+
+/* Büyük mod: tam ekran değil, ortada büyük bir pencere */
+.player.big{
+  position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);
+  width:min(90vw,calc(75vh * 2520 / 1080));aspect-ratio:2520/1080;
+  z-index:1001;border-color:#333;box-shadow:0 20px 80px rgba(0,0,0,.8);
+}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1000;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.backdrop.on{opacity:1;pointer-events:auto}
+
+/* Ortadaki oynat butonu */
+.center-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:84px;height:84px;border-radius:50%;
+  background:rgba(15,15,15,.85);border:2px solid #333;color:#fff;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all .15s ease-out;
+}
+.center-btn:hover{border-color:#555;transform:translate(-50%,-50%) scale(1.05);box-shadow:0 0 8px rgba(255,255,255,.03)}
+.center-btn svg{width:34px;height:34px;margin-left:4px;fill:currentColor}
+.player.playing .center-btn{opacity:0;pointer-events:none}
+
+/* Durum mesajı (yükleniyor / hata) */
+.msg{
+  position:absolute;top:12px;left:12px;display:none;
+  font-size:12px;letter-spacing:1px;color:#aaa;text-transform:uppercase;
+  background:rgba(15,15,15,.85);border:1px solid #222;border-radius:4px;padding:4px 10px;
+}
+.msg.show{display:block}
+
+/* Kontrol çubuğu */
+.controls{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;align-items:center;gap:10px;
+  padding:28px 12px 10px;
+  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
+  transition:opacity .2s ease;
+}
+.player.idle .controls{opacity:0;pointer-events:none}
+.player.idle{cursor:none}
+.player.idle video{cursor:none}
+
+.ctrl{
+  flex:none;display:flex;align-items:center;justify-content:center;
+  min-width:38px;height:34px;padding:0 10px;
+  background:#1a1a1a;border:1px solid #333;border-radius:6px;color:#fff;
+  font-size:13px;font-weight:bold;letter-spacing:1px;cursor:pointer;
+  transition:all .15s ease-out;
+}
+.ctrl:hover{background:#222;border-color:#555}
+.ctrl svg{width:18px;height:18px;fill:currentColor}
+.ctrl:focus-visible,.center-btn:focus-visible{outline:2px solid #555;outline-offset:2px}
+
+.time{flex:none;min-width:90px;text-align:center;font-size:12px;color:#aaa;font-variant-numeric:tabular-nums}
+
+.seek{-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:18px;background:transparent;cursor:pointer;--p:0%}
+.seek:focus-visible{outline:2px solid #555;outline-offset:2px}
+.seek::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(to right,#ddd var(--p),#333 var(--p))}
+.seek::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;margin-top:-4px;border:0;border-radius:50%;background:#fff}
+.seek::-moz-range-track{height:4px;border-radius:2px;background:#333}
+.seek::-moz-range-progress{height:4px;border-radius:2px;background:#ddd}
+.seek::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:#fff}
+
+.site-footer{text-align:center;padding:20px;font-size:13px;color:#777;border-top:1px solid #222}
+
+@media(max-width:768px){
+  h1{font-size:20px}
+  main{padding:0 12px 40px}
+  .center-btn{width:64px;height:64px}
+  .center-btn svg{width:26px;height:26px}
+  .controls{gap:6px;padding:22px 8px 8px}
+  .ctrl{min-width:34px;height:30px;padding:0 8px}
+  .player.big{width:min(96vw,calc(75vh * 2520 / 1080))}
+}
+@media(max-width:520px){.time{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Kurulum Videosu</h1>
+</header>
+
+<main>
+<div class="player-wrap">
+  <div class="player" id="player" tabindex="0" aria-label="Kurulum videosu oynatıcı">
+
+    <!-- #t=0.001: ilk kareyi gösterir, preload="metadata" ile sadece küçük bir kısım iner -->
+    <video id="video" src="kurulum/kurulum.mp4#t=0.001" width="2520" height="1080" preload="metadata" playsinline disablepictureinpicture disableremoteplayback></video>
+
+    <button class="center-btn" id="center" type="button" aria-label="Videoyu oynat">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"></use></svg>
+    </button>
+
+    <div class="msg" id="msg" role="status"></div>
+
+    <div class="controls">
+      <button class="ctrl" id="play" type="button" aria-label="Oynat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use id="playIcon" href="#i-play"></use></svg>
+      </button>
+      <input class="seek" id="seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Video konumu">
+      <span class="time" id="time">0:00 / 0:00</span>
+      <button class="ctrl" id="speed" type="button" aria-label="Oynatma hızı">1x</button>
+      <button class="ctrl" id="big" type="button" aria-label="Büyüt" title="Büyüt">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use id="bigIcon" href="#i-expand"></use></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="backdrop" id="backdrop"></div>
+</main>
+
+<footer class="site-footer">
+<p>&copy; BallasNet - Kurulum</p>
+</footer>
+
+<!-- İkonlar -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 4h6v2H6v4H4zM14 4h6v6h-2V6h-4zM4 14h2v4h4v2H4zM18 14h2v6h-6v-2h4z"/></symbol>
+  <symbol id="i-compress" viewBox="0 0 24 24"><path d="M8 4h2v6H4V8h4zM14 4h2v4h4v2h-6zM4 14h6v6H8v-4H4zM14 14h6v2h-4v4h-2z"/></symbol>
+</svg>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const player = $('player'), v = $('video'), seek = $('seek'), time = $('time'), msg = $('msg');
+  const playBtn = $('play'), playIcon = $('playIcon'), center = $('center');
+  const speedBtn = $('speed'), bigBtn = $('big'), bigIcon = $('bigIcon'), backdrop = $('backdrop');
+  let dragging = false, idleTimer = 0, lastWake = 0;
+
+  const fmt = s => {
+    if (!isFinite(s)) s = 0;
+    s = Math.floor(s);
+    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  };
+  const paint = () => seek.style.setProperty('--p', seek.value / 10 + '%');
+  const say = t => { msg.textContent = t || ''; msg.classList.toggle('show', !!t); };
+
+  /* Oynat / duraklat */
+  const toggle = () => { v.paused ? v.play().catch(() => {}) : v.pause(); };
+  playBtn.addEventListener('click', toggle);
+  center.addEventListener('click', toggle);
+  v.addEventListener('click', toggle);
+
+  const setPlaying = on => {
+    player.classList.toggle('playing', on);
+    playIcon.setAttribute('href', on ? '#i-pause' : '#i-play');
+    playBtn.setAttribute('aria-label', on ? 'Duraklat' : 'Oynat');
+    wake();
+  };
+  v.addEventListener('play', () => setPlaying(true));
+  v.addEventListener('pause', () => setPlaying(false));
+  v.addEventListener('ended', () => setPlaying(false));
+
+  /* İlerleme çubuğu */
+  const sync = () => {
+    const d = v.duration || 0, c = v.currentTime || 0;
+    if (!dragging) { seek.value = d ? c / d * 1000 : 0; paint(); }
+    time.textContent = fmt(c) + ' / ' + fmt(d);
+  };
+  v.addEventListener('timeupdate', sync);
+  v.addEventListener('loadedmetadata', sync);
+  v.addEventListener('durationchange', sync);
+
+  seek.addEventListener('pointerdown', () => { dragging = true; });
+  seek.addEventListener('input', () => {
+    paint();
+    const d = v.duration || 0;
+    time.textContent = fmt(seek.value / 1000 * d) + ' / ' + fmt(d);
+  });
+  seek.addEventListener('change', () => {
+    if (v.duration) v.currentTime = seek.value / 1000 * v.duration;
+  });
+  const endDrag = () => requestAnimationFrame(() => { dragging = false; });
+  seek.addEventListener('pointerup', endDrag);
+  seek.addEventListener('pointercancel', endDrag);
+
+  /* Hız: 1x <-> 2x */
+  speedBtn.addEventListener('click', () => {
+    v.playbackRate = v.playbackRate === 1 ? 2 : 1;
+    speedBtn.textContent = v.playbackRate + 'x';
+  });
+
+  /* Büyük mod (tarayıcı tam ekranı / F11 kullanılmaz) */
+  const setBig = on => {
+    player.classList.toggle('big', on);
+    backdrop.classList.toggle('on', on);
+    document.body.classList.toggle('lock', on);
+    bigIcon.setAttribute('href', on ? '#i-compress' : '#i-expand');
+    const label = on ? 'Küçült' : 'Büyüt';
+    bigBtn.setAttribute('aria-label', label);
+    bigBtn.title = label;
+  };
+  bigBtn.addEventListener('click', () => setBig(!player.classList.contains('big')));
+  backdrop.addEventListener('click', () => setBig(false));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && player.classList.contains('big')) setBig(false);
+  });
+
+  /* Klavye: Boşluk / K = oynat-duraklat, F = büyüt-küçült */
+  player.addEventListener('keydown', e => {
+    if (e.target.closest('button,input')) return;
+    const k = e.key.toLowerCase();
+    if (k === ' ' || k === 'k') { e.preventDefault(); toggle(); }
+    else if (k === 'f') { setBig(!player.classList.contains('big')); }
+  });
+
+  /* Oynarken kontroller bir süre sonra gizlenir */
+  function wake() {
+    const now = performance.now();
+    if (now - lastWake < 200 && !player.classList.contains('idle')) return;
+    lastWake = now;
+    player.classList.remove('idle');
+    clearTimeout(idleTimer);
+    if (!v.paused) idleTimer = setTimeout(() => player.classList.add('idle'), 2500);
+  }
+  player.addEventListener('pointermove', wake, { passive: true });
+  player.addEventListener('pointerdown', wake, { passive: true });
+
+  /* Yükleniyor / hata */
+  v.addEventListener('waiting', () => say('Yükleniyor'));
+  v.addEventListener('playing', () => say(''));
+  v.addEventListener('canplay', () => say(''));
+  v.addEventListener('error', () => say('Video yüklenemedi'));
+})();
+</script>
+
+</body>
+</html>
