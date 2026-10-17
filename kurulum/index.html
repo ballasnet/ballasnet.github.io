@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kurulum Videosu</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="theme-color" content="#0b0b0b">
 <link rel="icon" type="image/png" href="/favicon/favicon2.png">
 
@@ -15,8 +18,13 @@ main{flex:1;padding:0 20px 50px}
 
 h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase}
 
-/* Video alanı: yer her zaman ayrılır (sayfa kaymaz) */
-.player-wrap{max-width:1000px;margin:30px auto 0;aspect-ratio:2520/1080;position:relative}
+.breadcrumb{max-width:1000px;margin:10px auto;padding:0 20px;font-size:14px;text-align:center;color:#aaa}
+.breadcrumb a{color:#aaa;text-decoration:none;transition:color .2s ease}
+.breadcrumb a:hover{color:#ccc}
+.breadcrumb .separator{color:#aaa;margin:0 8px;pointer-events:none;cursor:default;user-select:none}
+.breadcrumb .current{color:#888;pointer-events:none;cursor:default;user-select:none;display:inline-block}
+
+.player-wrap{max-width:1000px;margin:20px auto 0;aspect-ratio:2520/1080;position:relative}
 
 .player{
   position:absolute;inset:0;
@@ -29,7 +37,6 @@ h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:
 
 video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cursor:pointer}
 
-/* Büyük mod: tam ekran değil, ortada büyük bir pencere */
 .player.big{
   position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);
   width:min(90vw,calc(75vh * 2520 / 1080));aspect-ratio:2520/1080;
@@ -38,7 +45,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1000;opacity:0;pointer-events:none;transition:opacity .2s ease}
 .backdrop.on{opacity:1;pointer-events:auto}
 
-/* Ortadaki oynat butonu */
 .center-btn{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:84px;height:84px;border-radius:50%;
@@ -50,7 +56,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
 .center-btn svg{width:34px;height:34px;margin-left:4px;fill:currentColor}
 .player.playing .center-btn{opacity:0;pointer-events:none}
 
-/* Durum mesajı (yükleniyor / hata) */
 .msg{
   position:absolute;top:12px;left:12px;display:none;
   font-size:12px;letter-spacing:1px;color:#aaa;text-transform:uppercase;
@@ -58,7 +63,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
 }
 .msg.show{display:block}
 
-/* Kontrol çubuğu */
 .controls{
   position:absolute;left:0;right:0;bottom:0;
   display:flex;align-items:center;gap:10px;
@@ -80,6 +84,7 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
 .ctrl:hover{background:#222;border-color:#555}
 .ctrl svg{width:18px;height:18px;fill:currentColor}
 .ctrl:focus-visible,.center-btn:focus-visible{outline:2px solid #555;outline-offset:2px}
+#speed{min-width:52px}
 
 .time{flex:none;min-width:90px;text-align:center;font-size:12px;color:#aaa;font-variant-numeric:tabular-nums}
 
@@ -100,6 +105,7 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
   .center-btn svg{width:26px;height:26px}
   .controls{gap:6px;padding:22px 8px 8px}
   .ctrl{min-width:34px;height:30px;padding:0 8px}
+  #speed{min-width:46px}
   .player.big{width:min(96vw,calc(75vh * 2520 / 1080))}
 }
 @media(max-width:520px){.time{display:none}}
@@ -113,12 +119,17 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
 <h1>Kurulum Videosu</h1>
 </header>
 
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="https://ballasnet.com/" rel="nofollow">Ana Sayfa</a>
+  <span class="separator">&gt;</span>
+  <span class="current" aria-current="page">Kurulum</span>
+</nav>
+
 <main>
 <div class="player-wrap">
   <div class="player" id="player" tabindex="0" aria-label="Kurulum videosu oynatıcı">
 
-    <!-- #t=0.001: ilk kareyi gösterir, preload="metadata" ile sadece küçük bir kısım iner -->
-    <video id="video" src="kurulum/kurulum.mp4#t=0.001" width="2520" height="1080" preload="metadata" playsinline disablepictureinpicture disableremoteplayback></video>
+    <video id="video" src="kurulum.mp4#t=0.001" width="2520" height="1080" preload="metadata" playsinline disablepictureinpicture disableremoteplayback></video>
 
     <button class="center-btn" id="center" type="button" aria-label="Videoyu oynat">
       <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"></use></svg>
@@ -146,7 +157,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
 <p>&copy; BallasNet - Kurulum</p>
 </footer>
 
-<!-- İkonlar -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
   <symbol id="i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></symbol>
@@ -160,6 +170,7 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
   const player = $('player'), v = $('video'), seek = $('seek'), time = $('time'), msg = $('msg');
   const playBtn = $('play'), playIcon = $('playIcon'), center = $('center');
   const speedBtn = $('speed'), bigBtn = $('big'), bigIcon = $('bigIcon'), backdrop = $('backdrop');
+  const rates = [1, 1.5, 2];
   let dragging = false, idleTimer = 0, lastWake = 0;
 
   const fmt = s => {
@@ -170,7 +181,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
   const paint = () => seek.style.setProperty('--p', seek.value / 10 + '%');
   const say = t => { msg.textContent = t || ''; msg.classList.toggle('show', !!t); };
 
-  /* Oynat / duraklat */
   const toggle = () => { v.paused ? v.play().catch(() => {}) : v.pause(); };
   playBtn.addEventListener('click', toggle);
   center.addEventListener('click', toggle);
@@ -186,7 +196,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
   v.addEventListener('pause', () => setPlaying(false));
   v.addEventListener('ended', () => setPlaying(false));
 
-  /* İlerleme çubuğu */
   const sync = () => {
     const d = v.duration || 0, c = v.currentTime || 0;
     if (!dragging) { seek.value = d ? c / d * 1000 : 0; paint(); }
@@ -209,13 +218,11 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
   seek.addEventListener('pointerup', endDrag);
   seek.addEventListener('pointercancel', endDrag);
 
-  /* Hız: 1x <-> 2x */
   speedBtn.addEventListener('click', () => {
-    v.playbackRate = v.playbackRate === 1 ? 2 : 1;
+    v.playbackRate = rates[(rates.indexOf(v.playbackRate) + 1) % rates.length];
     speedBtn.textContent = v.playbackRate + 'x';
   });
 
-  /* Büyük mod (tarayıcı tam ekranı / F11 kullanılmaz) */
   const setBig = on => {
     player.classList.toggle('big', on);
     backdrop.classList.toggle('on', on);
@@ -231,7 +238,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
     if (e.key === 'Escape' && player.classList.contains('big')) setBig(false);
   });
 
-  /* Klavye: Boşluk / K = oynat-duraklat, F = büyüt-küçült */
   player.addEventListener('keydown', e => {
     if (e.target.closest('button,input')) return;
     const k = e.key.toLowerCase();
@@ -239,7 +245,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
     else if (k === 'f') { setBig(!player.classList.contains('big')); }
   });
 
-  /* Oynarken kontroller bir süre sonra gizlenir */
   function wake() {
     const now = performance.now();
     if (now - lastWake < 200 && !player.classList.contains('idle')) return;
@@ -251,7 +256,6 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
   player.addEventListener('pointermove', wake, { passive: true });
   player.addEventListener('pointerdown', wake, { passive: true });
 
-  /* Yükleniyor / hata */
   v.addEventListener('waiting', () => say('Yükleniyor'));
   v.addEventListener('playing', () => say(''));
   v.addEventListener('canplay', () => say(''));
