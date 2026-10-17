@@ -16,15 +16,15 @@ body{background:#0b0b0b;color:#fff;line-height:1.6;min-height:100vh;display:flex
 body.lock{overflow:hidden}
 main{flex:1;padding:0 20px 50px}
 
-h1{text-align:center;font-size:28px;letter-spacing:3px;margin:30px 0 20px;color:#fff;text-transform:uppercase}
+h1{text-align:center;font-size:28px;line-height:1.3;letter-spacing:3px;margin:22px 0 2px;color:#fff;text-transform:uppercase}
 
-.breadcrumb{max-width:1000px;margin:10px auto;padding:0 20px;font-size:14px;text-align:center;color:#aaa}
+.breadcrumb{max-width:1000px;margin:0 auto;padding:0 20px;font-size:14px;text-align:center;color:#aaa}
 .breadcrumb a{color:#aaa;text-decoration:none;transition:color .2s ease}
 .breadcrumb a:hover{color:#ccc}
 .breadcrumb .separator{color:#aaa;margin:0 8px;pointer-events:none;cursor:default;user-select:none}
 .breadcrumb .current{color:#888;pointer-events:none;cursor:default;user-select:none;display:inline-block}
 
-.player-wrap{max-width:1000px;margin:20px auto 0;aspect-ratio:2520/1080;position:relative}
+.player-wrap{max-width:1000px;margin:40px auto 0;aspect-ratio:2520/1080;position:relative}
 
 .player{
   position:absolute;inset:0;
@@ -96,11 +96,19 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
 .seek::-moz-range-progress{height:4px;border-radius:2px;background:#ddd}
 .seek::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:#fff}
 
+.aciklama{max-width:800px;margin:40px auto 0;line-height:1.8;color:#ccc;font-size:15px;background:#0f0f0f;border:1px solid #222;padding:30px 40px;text-align:center}
+.aciklama h2{font-size:18px;letter-spacing:2px;color:#fff;margin-bottom:20px}
+.aciklama h3{font-size:16px;color:#fff;margin-top:30px;margin-bottom:10px}
+.aciklama p{margin-bottom:20px}
+.aciklama p:last-child{margin-bottom:0}
+
 .site-footer{text-align:center;padding:20px;font-size:13px;color:#777;border-top:1px solid #222}
 
 @media(max-width:768px){
   h1{font-size:20px}
   main{padding:0 12px 40px}
+  .player-wrap{margin-top:24px}
+  .aciklama{padding:20px}
   .center-btn{width:64px;height:64px}
   .center-btn svg{width:26px;height:26px}
   .controls{gap:6px;padding:22px 8px 8px}
@@ -151,6 +159,17 @@ video{width:100%;height:100%;display:block;object-fit:contain;background:#000;cu
   </div>
 </div>
 <div class="backdrop" id="backdrop"></div>
+
+<section class="aciklama" aria-label="Oyunlar nasıl kurulur">
+<h2>OYUNLAR NASIL KURULUR?</h2>
+<p>(buraya yaz)</p>
+
+<h3>(buraya yaz)</h3>
+<p>(buraya yaz)</p>
+
+<h3>(buraya yaz)</h3>
+<p>(buraya yaz)</p>
+</section>
 </main>
 
 <footer class="site-footer">
