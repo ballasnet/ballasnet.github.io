@@ -205,6 +205,40 @@ html.theme-anim #themeBtn svg{animation:tpop .4s ease}
   .icon-btn:hover{background:var(--surface2);color:var(--text)}
   .to-top.show:hover{transform:translateY(-2px)}
 }
+
+/* PC redirect overlay */
+.pc-overlay{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.82);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .25s ease,visibility 0s .25s;
+}
+.pc-overlay.show{opacity:1;visibility:visible;pointer-events:all;transition-delay:0s}
+.pc-dialog{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:28px 24px 22px;max-width:400px;width:100%;text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.45);
+  transform:scale(.94) translateY(8px);
+  transition:transform .25s ease;
+}
+.pc-overlay.show .pc-dialog{transform:none}
+.pc-dialog p{
+  font-size:15px;line-height:1.55;color:var(--text);margin-bottom:22px;
+}
+.pc-btns{display:flex;gap:12px;justify-content:center}
+.pc-btn{
+  flex:1;padding:12px 14px;border-radius:10px;font-size:14px;font-weight:600;
+  border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:transform .12s,filter .15s,background .15s;
+}
+.pc-btn:active{transform:scale(.97)}
+.pc-btn-yes{background:#3ddc84;color:#04210f}
+.pc-btn-no{background:#e74c3c;color:#fff}
+@media (hover:hover){
+  .pc-btn-yes:hover{filter:brightness(1.08)}
+  .pc-btn-no:hover{filter:brightness(1.1)}
+}
 </style>
 </head>
 <body>
@@ -276,6 +310,16 @@ html.theme-anim #themeBtn svg{animation:tpop .4s ease}
 <button class="to-top" id="toTop" aria-label="Yukarı çık">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
+
+<div class="pc-overlay" id="pcOverlay" aria-hidden="true">
+  <div class="pc-dialog" role="dialog" aria-labelledby="pcMsg">
+    <p id="pcMsg">Galiba bilgisayar ile giriş yaptınız, BallasNet'in PC sayfasına gitmek istermisiniz?</p>
+    <div class="pc-btns">
+      <button class="pc-btn pc-btn-yes" id="pcYes">Evet</button>
+      <button class="pc-btn pc-btn-no" id="pcNo">Hayır, mobil sayfada duracağım</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const FEATURED = "worldbox";
@@ -414,6 +458,45 @@ if ('IntersectionObserver' in window) {
       ? hits.map(g => `<a class="search-result-row" href="${href(g)}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>${esc(g.title)}</a>`).join('')
       : '<div class="search-empty-state">Sonuç yok.</div>';
   });
+})();
+
+/* PC algılama ve yönlendirme overlay — sadece masaüstünde */
+(function () {
+  const isPC = () => {
+    const ua = navigator.userAgent || '';
+    const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(ua);
+    const coarse = window.matchMedia('(pointer: coarse)').matches;
+    const narrow = window.matchMedia('(max-width: 768px)').matches;
+    // Mobil/tablet değilse ve geniş ekran + ince pointer ise PC kabul et
+    return !mobileUA && !coarse && !narrow;
+  };
+
+  if (!isPC()) return;
+
+  const overlay = $('pcOverlay');
+  const dialog = overlay.querySelector('.pc-dialog');
+  const show = () => {
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const hide = () => {
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  $('pcYes').addEventListener('click', () => { location.href = 'https://ballasnet.com'; });
+  $('pcNo').addEventListener('click', hide);
+  overlay.addEventListener('click', e => { if (e.target === overlay) hide(); });
+  dialog.addEventListener('click', e => e.stopPropagation());
+
+  // Sayfa yüklenince göster
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', show);
+  } else {
+    show();
+  }
 })();
 </script>
 </body>
