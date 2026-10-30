@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BallasNet APK | Android Oyunları</title>
+<meta name="description" content="BallasNet APK – Android oyun APK'larını keşfet. Popüler, karışık ve indie oyunlar tek sayfada.">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="canonical" href="https://ballasnet.com/apk/">
+<script>
+/* Boyamadan önce temayı uygula: varsayılan GECE, kayıtlı seçim varsa o */
+try{if(localStorage.getItem('theme')==='light'){document.documentElement.dataset.theme='light';document.querySelector('meta[name=theme-color]').content='#e3e7ed'}}catch(e){}
+</script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/apk/*"},"eagerness":"conservative"}]}</script>
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  color-scheme:dark;
+  --bg:#0a0b0d; --surface:#121316; --surface2:#1a1b1f; --border:#23252a;
+  --text:#ececee; --muted:#8b8f98;
+  --accent:#3ddc84; --on-accent:#04210f;
+  --overlay:rgba(10,11,13,.97);
+  --shadow:none; --chip:transparent;
+  --tint-bg:var(--accent); --tint-text:var(--on-accent); --tint-border:var(--accent);
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bot:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#e3e7ed; --surface:#eceff4; --surface2:#d6dbe3; --border:#cdd3dc;
+  --text:#2a313c; --muted:#566172;
+  --accent:#2b8a57; --on-accent:#fff;
+  --overlay:rgba(227,231,237,.98);
+  --shadow:0 8px 22px rgba(60,72,96,.18);
+  --chip:rgba(255,255,255,.35);
+  --tint-bg:#cfe6da; --tint-text:#1f6b43; --tint-border:#a3cdb5;
+}
+
+[hidden]{display:none!important}
+
+html{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  -webkit-text-size-adjust:100%;
+  scroll-padding-top:calc(56px + var(--safe-top));
+}
+body{
+  position:relative;background:var(--bg);min-height:100dvh;overflow-x:hidden;
+  padding-top:var(--safe-top);padding-bottom:calc(32px + var(--safe-bot));
+}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+img{display:block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* tema geçiş animasyonu (sadece tıklanınca kısa süre aktif) */
+html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,border-color .3s!important}
+
+/* HEADER (blur yok: düşük donanımda hızlı) */
+.site-header{
+  position:sticky;top:0;z-index:100;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 12px 0 20px;background:var(--bg);border-bottom:1px solid var(--border);
+}
+.site-logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700;letter-spacing:-.5px;color:var(--text);transition:transform .12s}
+.site-logo:active{transform:scale(.96)}
+.site-logo b{font-weight:400;color:var(--muted)}
+.logo-mark{width:30px;height:30px;flex-shrink:0;margin-right:2px;border-radius:8px;object-fit:contain}
+.apk-badge{
+  font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 6px;border-radius:6px;
+  background:var(--tint-bg);color:var(--tint-text);border:1px solid var(--tint-border);
+}
+.header-actions{display:flex;gap:2px}
+.icon-btn{
+  width:40px;height:40px;display:grid;place-items:center;background:none;border:0;border-radius:50%;
+  color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.icon-btn:active{background:var(--surface2);color:var(--text)}
+[data-theme="dark"] .icon-moon,[data-theme="light"] .icon-sun{display:none}
+
+/* ARAMA */
+.search-overlay{
+  position:fixed;inset:0;background:var(--overlay);z-index:200;
+  padding:calc(var(--safe-top) + 14px) 20px 20px;display:flex;flex-direction:column;gap:18px;
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);
+  transition:opacity .2s ease,transform .2s ease,visibility 0s .2s;
+}
+.search-overlay.open{opacity:1;visibility:visible;pointer-events:all;transform:none;transition-delay:0s}
+.search-top{display:flex;align-items:center;gap:12px}
+.search-input-wrap{
+  flex:1;display:flex;align-items:center;gap:10px;background:var(--surface2);
+  border:1px solid var(--border);border-radius:12px;padding:0 14px;
+}
+.search-input-wrap svg{color:var(--muted);flex-shrink:0}
+.search-input{flex:1;background:none;border:0;outline:0;color:var(--text);font-size:16px;padding:13px 0}
+.search-input::placeholder{color:var(--muted)}
+.search-cancel{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;padding:8px 0;white-space:nowrap}
+.search-results-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.search-result-row{
+  display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);
+  font-size:15px;color:var(--text);
+}
+.search-result-row:last-child{border-bottom:0}
+.search-result-row svg{color:var(--muted);flex-shrink:0}
+.search-empty-state{padding:60px 0;text-align:center;color:var(--muted);font-size:14px}
+
+/* KATEGORİ PİLLERİ */
+.category-nav{display:flex;gap:8px;padding:16px 20px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.category-nav::-webkit-scrollbar{display:none}
+.pill{
+  flex-shrink:0;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;
+  border:1px solid var(--border);background:var(--chip);color:var(--muted);white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+  transition:background-color .2s,color .2s,border-color .2s,transform .12s;
+}
+.pill:active{transform:scale(.95)}
+.pill.active{background:var(--tint-bg);color:var(--tint-text);border-color:var(--tint-border);font-weight:600}
+
+.label{
+  font-size:11px;letter-spacing:1.8px;color:var(--muted);padding:0 20px;margin-bottom:14px;
+  text-transform:uppercase;font-weight:600;
+}
+.label::before{
+  content:"";display:inline-block;width:3px;height:11px;margin-right:8px;vertical-align:-1px;
+  background:var(--accent);border-radius:2px;
+}
+
+/* ÖNE ÇIKAN */
+.featured-zone{padding:4px 20px 44px}
+.featured-card{
+  position:relative;display:block;border-radius:16px;overflow:hidden;
+  background:var(--surface);aspect-ratio:16/9;box-shadow:var(--shadow);
+}
+.featured-card img{width:100%;height:100%;object-fit:cover}
+.featured-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.3) 50%,transparent 100%)}
+.featured-info{position:absolute;left:0;right:0;bottom:0;padding:20px 18px 18px}
+.featured-eyebrow{font-size:10px;letter-spacing:2.5px;color:#3ddc84;text-transform:uppercase;margin-bottom:5px;font-weight:700}
+.featured-title{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.5px;line-height:1.1}
+
+/* BÖLÜMLER (ekran dışındakiler render edilmez) */
+.scroll-section,.mosaic-section{
+  margin-bottom:44px;scroll-margin-top:72px;
+  content-visibility:auto;contain-intrinsic-size:auto 260px;
+}
+.scroll-row{
+  display:flex;gap:12px;padding:0 20px;overflow-x:auto;
+  scroll-snap-type:x mandatory;scroll-padding-inline:20px;
+  overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.scroll-row::-webkit-scrollbar{display:none}
+
+.g-card{flex-shrink:0;width:120px;scroll-snap-align:start;display:block}
+.g-card-thumb{
+  position:relative;width:120px;height:160px;border-radius:10px;overflow:hidden;
+  background:var(--surface);margin-bottom:9px;transition:transform .12s;
+}
+.g-card-thumb img{width:100%;height:100%;object-fit:cover}
+.g-card:active .g-card-thumb{transform:scale(.97)}
+.g-card-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+
+.mosaic-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:112px;gap:10px;padding:0 20px}
+.m-card{position:relative;display:block;border-radius:12px;overflow:hidden;background:var(--surface);transition:transform .12s}
+.m-card:active{transform:scale(.97)}
+.m-card.tall{grid-row:span 2}
+.m-card img{width:100%;height:100%;object-fit:cover}
+.m-card-title{
+  position:absolute;left:0;right:0;bottom:0;padding:10px 10px 8px;
+  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
+  font-size:11px;font-weight:600;color:#fff;line-height:1.2;
+}
+.g-card-thumb::after,.m-card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(128,128,128,.2);
+}
+
+/* YUKARI ÇIK */
+.top-sentinel{position:absolute;top:480px;left:0;width:1px;height:1px;pointer-events:none}
+.to-top{
+  position:fixed;right:16px;bottom:calc(20px + var(--safe-bot));z-index:90;width:44px;height:44px;
+  display:grid;place-items:center;border-radius:50%;border:1px solid var(--border);
+  background:var(--surface);color:var(--accent);box-shadow:var(--shadow);cursor:pointer;
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+
+.site-footer{padding:24px 20px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border);letter-spacing:.3px}
+
+/* resimler yüklenince yumuşakça belirir */
+.g-card-thumb img,.m-card img{opacity:0;transition:opacity .4s ease}
+.g-card-thumb img.ld,.m-card img.ld{opacity:1}
+/* tema butonu ikonu dönerek değişir */
+@keyframes tpop{from{transform:rotate(-80deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
+html.theme-anim #themeBtn svg{animation:tpop .4s ease}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="site-logo" id="logo" href="/apk/" aria-label="BallasNet APK ana sayfa">
+    <img class="logo-mark" src="apklogo.webp" alt="" width="30" height="30" decoding="async" data-fb="1">
+    <span>Ballas<b>Net</b></span><span class="apk-badge">APK</span>
+  </a>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir">
+      <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <button class="icon-btn" id="searchOpenBtn" aria-label="Oyun ara">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="search-overlay" id="searchOverlay" aria-hidden="true">
+  <div class="search-top">
+    <div class="search-input-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Oyun ara..." autocomplete="off" enterkeyhint="search">
+    </div>
+    <button class="search-cancel" id="searchCloseBtn">İptal</button>
+  </div>
+  <div class="search-results-list" id="searchResults"></div>
+</div>
+
+<nav class="category-nav">
+  <button class="pill active" data-target="section-populer">Popüler</button>
+  <button class="pill" data-target="section-karisik">Karışık</button>
+  <button class="pill" data-target="section-indie">İndie</button>
+</nav>
+
+<main>
+  <div class="featured-zone" id="featuredZone">
+    <a class="featured-card" id="featuredCard" href="#">
+      <img id="featuredImg" alt="" width="640" height="360" decoding="async" fetchpriority="high">
+      <div class="featured-gradient"></div>
+      <div class="featured-info">
+        <div class="featured-eyebrow">Ayın En Popüler Oyunu</div>
+        <div class="featured-title" id="featuredTitle"></div>
+      </div>
+    </a>
+  </div>
+
+  <section class="scroll-section" id="section-populer">
+    <div class="label">Popüler Oyunlar</div>
+    <div class="scroll-row" id="populer-row"></div>
+  </section>
+
+  <section class="scroll-section" id="section-karisik">
+    <div class="label">Karışık Oyunlar</div>
+    <div class="scroll-row" id="karisik-row"></div>
+  </section>
+
+  <section class="mosaic-section" id="section-indie">
+    <div class="label">İndie Oyunlar</div>
+    <div class="mosaic-grid" id="indie-grid"></div>
+  </section>
+</main>
+
+<footer class="site-footer"><a href="mailto:ballasnett@gmail.com">ballasnett@gmail.com</a></footer>
+
+<div class="top-sentinel" id="topSentinel" aria-hidden="true"></div>
+<button class="to-top" id="toTop" aria-label="Yukarı çık">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+/* ─────────── AYARLAR ─────────── */
+const FEATURED  = "worldbox";            // Ayın en popüler oyunu → oyunun slug'ını yaz
+const MIX_COUNT = 12;                    // Karışık bölümünde rastgele gösterilecek oyun sayısı
+const FALLBACK  = "images/fallback.jpg"; // Görsel yüklenmezse yedek görsel
+
+/* ─────────── VERİ ───────────
+   Yeni oyun: { title, slug, img, tags }  → link otomatik /apk/<slug>/
+   Etiketler: "Popüler" → Popüler bölümü, "Indie" → İndie bölümü
+   (Karışık bölüm etiket istemez, tüm oyunlardan rastgele seçilir) */
+const GAMES = [
+  { title: "WorldBox", slug: "worldbox", img: "https://ballasnet.com/oyunindir/worldbox/worldbox.webp", tags: ["Popüler","Indie"] }
+];
+
+/* ─────────── YARDIMCILAR ─────────── */
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const href = g => g.url || `/apk/${g.slug}/`;
+
+/* Kendi animasyonlu kaydırmamız (her cihazda çalışır, hedef kayarsa takip eder) */
+let rafId = 0;
+function scrollToY(getY, done) {
+  cancelAnimationFrame(rafId);
+  const from = scrollY, t0 = performance.now(), gap = Math.abs(getY() - from);
+  if (gap < 2) { if (done) done(); return; }
+  const dur = Math.min(700, 350 + gap * 0.12);
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const step = now => {
+    const t = Math.min(1, Math.max(0, (now - t0) / dur));
+    scrollTo(0, from + (getY() - from) * ease(t));
+    if (t < 1) rafId = requestAnimationFrame(step); else if (done) done();
+  };
+  rafId = requestAnimationFrame(step);
+}
+['touchstart', 'wheel'].forEach(ev => addEventListener(ev, () => cancelAnimationFrame(rafId), { passive: true }));
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* Yedek görsel (tek dinleyici, sonsuz döngü korumalı) */
+document.addEventListener('error', e => {
+  const t = e.target;
+  if (t.tagName === 'IMG' && !t.dataset.fb) { t.dataset.fb = 1; t.src = FALLBACK; }
+}, true);
+document.addEventListener('load', e => { if (e.target.tagName === 'IMG') e.target.classList.add('ld'); }, true);
+
+/* ─────────── KARTLAR ─────────── */
+const card = g =>
+  `<a class="g-card" href="${href(g)}"><div class="g-card-thumb"><img src="${g.img}" alt="${esc(g.title)}" width="120" height="160" loading="lazy" decoding="async"></div><div class="g-card-name">${esc(g.title)}</div></a>`;
+const mosaic = (g, i) =>
+  `<a class="m-card${i % 5 === 0 ? ' tall' : ''}" href="${href(g)}"><img src="${g.img}" alt="${esc(g.title)}" width="240" height="224" loading="lazy" decoding="async"><div class="m-card-title">${esc(g.title)}</div></a>`;
+
+/* ─────────── SAYFAYI KUR ─────────── */
+const f = GAMES.find(g => g.slug === FEATURED) || GAMES[0];
+if (f) {
+  $('featuredCard').href = href(f);
+  const img = $('featuredImg');
+  img.alt = f.title;
+  img.src = f.img;
+  $('featuredTitle').textContent = f.title;
+} else {
+  $('featuredZone').hidden = true;
+}
+
+[
+  ['populer', GAMES.filter(g => g.tags.includes('Popüler')), 'populer-row', card],
+  ['karisik', shuffle(GAMES).slice(0, MIX_COUNT),            'karisik-row', card],
+  ['indie',   GAMES.filter(g => g.tags.includes('Indie')),   'indie-grid',  mosaic]
+].forEach(([name, list, box, tpl]) => {
+  if (!list.length) {                         // boş bölümü ve pilini gizle
+    $('section-' + name).hidden = true;
+    document.querySelector(`.pill[data-target="section-${name}"]`).hidden = true;
+    return;
+  }
+  $(box).innerHTML = list.map(tpl).join('');
+});
+
+const pills = [...document.querySelectorAll('.pill')];
+pills.forEach(p => p.classList.remove('active'));
+const first = pills.find(p => !p.hidden);
+if (first) first.classList.add('active');
+
+pills.forEach(p => p.addEventListener('click', () => {
+  pills.forEach(x => x.classList.remove('active'));
+  p.classList.add('active');
+  const el = $(p.dataset.target);
+  scrollToY(() => el.getBoundingClientRect().top + scrollY - 72);
+}));
+
+/* ─────────── TEMA ─────────── */
+$('themeBtn').addEventListener('click', () => {
+  const root = document.documentElement;
+  const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  root.classList.add('theme-anim');
+  root.dataset.theme = next;
+  document.querySelector('meta[name=theme-color]').content = next === 'light' ? '#e3e7ed' : '#0a0b0d';
+  try { localStorage.setItem('theme', next); } catch (e) {}
+  setTimeout(() => root.classList.remove('theme-anim'), 350);
+});
+
+/* ─────────── YUKARI ÇIK ─────────── */
+const toTop = $('toTop');
+toTop.addEventListener('click', () => scrollToY(() => 0));
+
+/* Logo / yazı / APK: en başa kaydır, sonra sayfayı yenile */
+$('logo').addEventListener('click', e => {
+  if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault();
+  scrollToY(() => 0, () => location.reload());
+});
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(([e]) => {
+    toTop.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }).observe($('topSentinel'));
+} else {
+  toTop.classList.add('show');
+}
+
+/* ─────────── ARAMA ─────────── */
+(function () {
+  const overlay = $('searchOverlay'), input = $('searchInput'), list = $('searchResults');
+  const open = () => {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => input.focus(), 60);
+  };
+  const close = () => {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    input.value = '';
+    list.innerHTML = '';
+  };
+  $('searchOpenBtn').addEventListener('click', open);
+  $('searchCloseBtn').addEventListener('click', close);
+  input.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    if (!q) { list.innerHTML = ''; return; }
+    const hits = GAMES.filter(g => g.title.toLowerCase().includes(q));
+    list.innerHTML = hits.length
+      ? hits.map(g => `<a class="search-result-row" href="${href(g)}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>${esc(g.title)}</a>`).join('')
+      : '<div class="search-empty-state">Sonuç yok.</div>';
+  });
+})();
+</script>
+</body>
+</html>
