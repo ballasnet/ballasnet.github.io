@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>BallasNet APK | Android Oyunları</title>
+<title>BallasNet APK | Android Oyunlar Full İndir</title>
 <meta name="description" content="BallasNet APK – Android oyun APK'larını keşfet. Popüler, karışık ve indie oyunlar tek sayfada.">
 <meta name="theme-color" content="#0a0b0d">
 <link rel="canonical" href="https://ballasnet.com/apk/">
 <script>
-
 try{if(localStorage.getItem('theme')==='light'){document.documentElement.dataset.theme='light';document.querySelector('meta[name=theme-color]').content='#e3e7ed'}}catch(e){}
 </script>
 <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/apk/*"},"eagerness":"conservative"}]}</script>
@@ -54,10 +53,8 @@ a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
 img{display:block}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-/* tema geçiş animasyonu (sadece tıklanınca kısa süre aktif) */
 html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,border-color .3s!important}
 
-/* HEADER (blur yok: düşük donanımda hızlı) */
 .site-header{
   position:sticky;top:0;z-index:100;height:56px;
   display:flex;align-items:center;justify-content:space-between;
@@ -79,7 +76,6 @@ html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,bord
 .icon-btn:active{background:var(--surface2);color:var(--text)}
 [data-theme="dark"] .icon-moon,[data-theme="light"] .icon-sun{display:none}
 
-/* ARAMA */
 .search-overlay{
   position:fixed;inset:0;background:var(--overlay);z-index:200;
   padding:calc(var(--safe-top) + 14px) 20px 20px;display:flex;flex-direction:column;gap:18px;
@@ -105,7 +101,6 @@ html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,bord
 .search-result-row svg{color:var(--muted);flex-shrink:0}
 .search-empty-state{padding:60px 0;text-align:center;color:var(--muted);font-size:14px}
 
-/* KATEGORİ PİLLERİ */
 .category-nav{display:flex;gap:8px;padding:16px 20px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .category-nav::-webkit-scrollbar{display:none}
 .pill{
@@ -126,7 +121,6 @@ html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,bord
   background:var(--accent);border-radius:2px;
 }
 
-/* ÖNE ÇIKAN */
 .featured-zone{padding:4px 20px 44px}
 .featured-card{
   position:relative;display:block;border-radius:16px;overflow:hidden;
@@ -138,7 +132,6 @@ html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,bord
 .featured-eyebrow{font-size:10px;letter-spacing:2.5px;color:#3ddc84;text-transform:uppercase;margin-bottom:5px;font-weight:700}
 .featured-title{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.5px;line-height:1.1}
 
-/* BÖLÜMLER (ekran dışındakiler render edilmez) */
 .scroll-section,.mosaic-section{
   margin-bottom:44px;scroll-margin-top:72px;
   content-visibility:auto;contain-intrinsic-size:auto 260px;
@@ -174,7 +167,6 @@ html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,bord
   box-shadow:inset 0 0 0 1px rgba(128,128,128,.2);
 }
 
-/* YUKARI ÇIK */
 .top-sentinel{position:absolute;top:480px;left:0;width:1px;height:1px;pointer-events:none}
 .to-top{
   position:fixed;right:16px;bottom:calc(20px + var(--safe-bot));z-index:90;width:44px;height:44px;
@@ -187,12 +179,31 @@ html.theme-anim,html.theme-anim *{transition:background-color .3s,color .3s,bord
 
 .site-footer{padding:24px 20px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border);letter-spacing:.3px}
 
-/* resimler yüklenince yumuşakça belirir */
 .g-card-thumb img,.m-card img{opacity:0;transition:opacity .4s ease}
 .g-card-thumb img.ld,.m-card img.ld{opacity:1}
-/* tema butonu ikonu dönerek değişir */
 @keyframes tpop{from{transform:rotate(-80deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
 html.theme-anim #themeBtn svg{animation:tpop .4s ease}
+@media (min-width:768px){
+  .site-header{padding-left:max(20px,calc((100% - 1100px)/2 + 20px));padding-right:max(12px,calc((100% - 1100px)/2 + 12px))}
+  .category-nav,main{max-width:1100px;margin-inline:auto}
+  .featured-card{aspect-ratio:21/9;max-height:340px}
+  .featured-info{padding:28px 28px 24px}
+  .featured-title{font-size:32px}
+  .scroll-row{flex-wrap:wrap;overflow:visible;gap:16px 14px}
+  .g-card,.g-card-thumb{width:150px}
+  .g-card-thumb{height:200px}
+  .g-card-name{font-size:13px}
+  .mosaic-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;grid-auto-flow:dense;gap:14px}
+  .m-card-title{font-size:13px;padding:14px 12px 10px}
+  .search-overlay{padding-top:48px}
+  .search-top,.search-results-list{width:100%;max-width:640px;margin-inline:auto}
+}
+@media (hover:hover){
+  .g-card:hover .g-card-thumb,.m-card:hover{transform:translateY(-3px)}
+  .pill:not(.active):hover{color:var(--text)}
+  .icon-btn:hover{background:var(--surface2);color:var(--text)}
+  .to-top.show:hover{transform:translateY(-2px)}
+}
 </style>
 </head>
 <body>
@@ -266,25 +277,18 @@ html.theme-anim #themeBtn svg{animation:tpop .4s ease}
 </button>
 
 <script>
-/* ─────────── AYARLAR ─────────── */
-const FEATURED  = "worldbox";            // Ayın en popüler oyunu → oyunun slug'ını yaz
-const MIX_COUNT = 12;                    // Karışık bölümünde rastgele gösterilecek oyun sayısı
-const FALLBACK  = "images/fallback.jpg"; // Görsel yüklenmezse yedek görsel
+const FEATURED = "worldbox";
+const MIX_COUNT = 12;
+const FALLBACK = "images/fallback.jpg";
 
-/* ─────────── VERİ ───────────
-   Yeni oyun: { title, slug, img, tags }  → link otomatik /apk/<slug>/
-   Etiketler: "Popüler" → Popüler bölümü, "Indie" → İndie bölümü
-   (Karışık bölüm etiket istemez, tüm oyunlardan rastgele seçilir) */
 const GAMES = [
   { title: "WorldBox", slug: "worldbox", img: "https://ballasnet.com/oyunindir/worldbox/worldbox.webp", tags: ["Popüler","Indie"] }
 ];
 
-/* ─────────── YARDIMCILAR ─────────── */
 const $ = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const href = g => g.url || `/apk/${g.slug}/`;
 
-/* Kendi animasyonlu kaydırmamız (her cihazda çalışır, hedef kayarsa takip eder) */
 let rafId = 0;
 function scrollToY(getY, done) {
   cancelAnimationFrame(rafId);
@@ -310,20 +314,17 @@ function shuffle(arr) {
   return a;
 }
 
-/* Yedek görsel (tek dinleyici, sonsuz döngü korumalı) */
 document.addEventListener('error', e => {
   const t = e.target;
   if (t.tagName === 'IMG' && !t.dataset.fb) { t.dataset.fb = 1; t.src = FALLBACK; }
 }, true);
 document.addEventListener('load', e => { if (e.target.tagName === 'IMG') e.target.classList.add('ld'); }, true);
 
-/* ─────────── KARTLAR ─────────── */
 const card = g =>
   `<a class="g-card" href="${href(g)}"><div class="g-card-thumb"><img src="${g.img}" alt="${esc(g.title)}" width="120" height="160" loading="lazy" decoding="async"></div><div class="g-card-name">${esc(g.title)}</div></a>`;
 const mosaic = (g, i) =>
   `<a class="m-card${i % 5 === 0 ? ' tall' : ''}" href="${href(g)}"><img src="${g.img}" alt="${esc(g.title)}" width="240" height="224" loading="lazy" decoding="async"><div class="m-card-title">${esc(g.title)}</div></a>`;
 
-/* ─────────── SAYFAYI KUR ─────────── */
 const f = GAMES.find(g => g.slug === FEATURED) || GAMES[0];
 if (f) {
   $('featuredCard').href = href(f);
@@ -340,7 +341,7 @@ if (f) {
   ['karisik', shuffle(GAMES).slice(0, MIX_COUNT),            'karisik-row', card],
   ['indie',   GAMES.filter(g => g.tags.includes('Indie')),   'indie-grid',  mosaic]
 ].forEach(([name, list, box, tpl]) => {
-  if (!list.length) {                         // boş bölümü ve pilini gizle
+  if (!list.length) {
     $('section-' + name).hidden = true;
     document.querySelector(`.pill[data-target="section-${name}"]`).hidden = true;
     return;
@@ -360,7 +361,6 @@ pills.forEach(p => p.addEventListener('click', () => {
   scrollToY(() => el.getBoundingClientRect().top + scrollY - 72);
 }));
 
-/* ─────────── TEMA ─────────── */
 $('themeBtn').addEventListener('click', () => {
   const root = document.documentElement;
   const next = root.dataset.theme === 'light' ? 'dark' : 'light';
@@ -371,11 +371,9 @@ $('themeBtn').addEventListener('click', () => {
   setTimeout(() => root.classList.remove('theme-anim'), 350);
 });
 
-/* ─────────── YUKARI ÇIK ─────────── */
 const toTop = $('toTop');
 toTop.addEventListener('click', () => scrollToY(() => 0));
 
-/* Logo / yazı / APK: en başa kaydır, sonra sayfayı yenile */
 $('logo').addEventListener('click', e => {
   if (e.metaKey || e.ctrlKey || e.shiftKey) return;
   e.preventDefault();
@@ -389,7 +387,6 @@ if ('IntersectionObserver' in window) {
   toTop.classList.add('show');
 }
 
-/* ─────────── ARAMA ─────────── */
 (function () {
   const overlay = $('searchOverlay'), input = $('searchInput'), list = $('searchResults');
   const open = () => {
