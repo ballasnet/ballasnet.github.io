@@ -1041,6 +1041,64 @@ body.scroll-kilit {
   background: linear-gradient(135deg, #dc2626, #b91c1c);
 }
 
+/* parlayan butonlar: Ödül Avı Kuralları (yeşil) + Vazgeçtim (kırmızı) */
+.karartma-yazi .kurallar-btn,
+.karartma-yazi .vazgec-btn {
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.karartma-yazi .kurallar-btn {
+  padding: 16px 32px;
+  font-size: 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  animation: yesilParla 1.8s ease-in-out infinite;
+}
+
+.karartma-yazi .kurallar-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.karartma-yazi .vazgec-btn {
+  padding: 12px 24px;
+  font-size: 14px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  animation: kirmiziParla 1.8s ease-in-out infinite;
+}
+
+.karartma-yazi .vazgec-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+@keyframes yesilParla {
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.5), 0 0 16px rgba(34, 197, 94, 0.3); }
+  50%      { box-shadow: 0 0 20px rgba(34, 197, 94, 0.95), 0 0 40px rgba(34, 197, 94, 0.6); }
+}
+
+@keyframes kirmiziParla {
+  0%, 100% { box-shadow: 0 0 8px rgba(239, 68, 68, 0.5), 0 0 16px rgba(239, 68, 68, 0.3); }
+  50%      { box-shadow: 0 0 20px rgba(239, 68, 68, 0.95), 0 0 40px rgba(239, 68, 68, 0.6); }
+}
+
+@media (max-width: 600px) {
+  .karartma-yazi {
+    width: 90vw;
+    font-size: 18px;
+  }
+}
+
 .no-result {
   text-align: center;
   font-size: 18px;
@@ -1317,8 +1375,11 @@ body:not(.dark) .hero-tag-link:hover {
 <!--  -->
 <div class="karartma-overlay" id="karartma">
   <div class="karartma-yazi">
-    Sitemizde en çok vakit geçiren kullanıcıya ödül verilmektedir!<br><br>
+    Sitemizde en çok vakit geçiren kullanıcıya ödül verilmektedir!<br><br><br>
        ➤ Detaylı bilgi veya Katılım için; (ballasnett@gmail.com)
+
+    <a class="kurallar-btn" href="https://ballasnet.com/odul-avi-kurallari/" target="_blank" rel="noopener noreferrer">Ödül Avı Kurallarına Git</a>
+    <button type="button" class="vazgec-btn">Vazgeçtim</button>
   </div>
 </div>
 
@@ -2071,7 +2132,7 @@ function autoGenerateGameSchemas() {
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 
 // =====================
-// ÇEKİLİŞ KARTLARI - KARARTMA + DISCORD BUTONU
+// ÇEKİLİŞ KARTLARI
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById('karartma');
@@ -2084,13 +2145,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const discordBtn = document.querySelector('.karartma-yazi .discord-join-btn');
-  if (discordBtn) {
-    discordBtn.addEventListener('click', () => {
-      window.open("https://discord.gg/GsuJYfRxNq", "_blank", "noopener,noreferrer");
-    });
-  }
-
   function kapatKarartma() {
     overlay.classList.remove('aktif');
     document.body.classList.remove('scroll-kilit');
@@ -2102,9 +2156,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const iptalBtn = document.querySelector('.discord-iptal-btn');
-  if (iptalBtn) {
-    iptalBtn.addEventListener('click', kapatKarartma);
+  const vazgecBtn = document.querySelector('.vazgec-btn');
+  if (vazgecBtn) {
+    vazgecBtn.addEventListener('click', kapatKarartma);
   }
 });
 
