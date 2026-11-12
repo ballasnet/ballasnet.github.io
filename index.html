@@ -967,9 +967,10 @@ body {
   
 .karartma-yazi {
   position: absolute;
-  top: 40%;
+  top: 16%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  width: min(94vw, 1200px);
+  transform: translateX(-50%);
   color: #fff;
   font-size: 24px;
   font-weight: bold;
@@ -1041,7 +1042,17 @@ body.scroll-kilit {
   background: linear-gradient(135deg, #dc2626, #b91c1c);
 }
 
-/* ödül avı parlayan butonlar */
+/* karartma yazıları */
+.karartma-yazi .karartma-baslik {
+  font-size: 30px;
+}
+
+.karartma-yazi .karartma-detay {
+  font-size: 18px;
+  margin-top: 45px;
+}
+
+/* parlayan butonlar: Ödül Avı Kuralları (yeşil) + Vazgeçtim (kırmızı) */
 .karartma-yazi .kurallar-btn,
 .karartma-yazi .vazgec-btn {
   display: inline-block;
@@ -1053,49 +1064,59 @@ body.scroll-kilit {
   text-align: center;
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .karartma-yazi .kurallar-btn {
-  padding: 16px 32px;
-  font-size: 16px;
+  margin-top: 65px;
+  padding: 14px 60px;
+  font-size: 22px;
   border-radius: 12px;
   background: linear-gradient(135deg, #22c55e, #16a34a);
-  animation: yesilParla 1.8s ease-in-out infinite;
+  box-shadow: 0 0 14px rgba(34, 197, 94, 0.55), 0 0 28px rgba(34, 197, 94, 0.3);
 }
 
 .karartma-yazi .kurallar-btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
   background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 0 0 26px rgba(34, 197, 94, 0.95), 0 0 55px rgba(34, 197, 94, 0.7);
 }
 
 .karartma-yazi .vazgec-btn {
-  padding: 12px 24px;
-  font-size: 14px;
-  border-radius: 8px;
+  margin-top: 15px;
+  padding: 11px 44px;
+  font-size: 18px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #ef4444, #dc2626);
-  animation: kirmiziParla 1.8s ease-in-out infinite;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.55), 0 0 28px rgba(239, 68, 68, 0.3);
 }
 
 .karartma-yazi .vazgec-btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
   background: linear-gradient(135deg, #dc2626, #b91c1c);
-}
-
-@keyframes yesilParla {
-  0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.5), 0 0 16px rgba(34, 197, 94, 0.3); }
-  50%      { box-shadow: 0 0 20px rgba(34, 197, 94, 0.95), 0 0 40px rgba(34, 197, 94, 0.6); }
-}
-
-@keyframes kirmiziParla {
-  0%, 100% { box-shadow: 0 0 8px rgba(239, 68, 68, 0.5), 0 0 16px rgba(239, 68, 68, 0.3); }
-  50%      { box-shadow: 0 0 20px rgba(239, 68, 68, 0.95), 0 0 40px rgba(239, 68, 68, 0.6); }
+  box-shadow: 0 0 26px rgba(239, 68, 68, 0.95), 0 0 55px rgba(239, 68, 68, 0.7);
 }
 
 @media (max-width: 600px) {
   .karartma-yazi {
+    top: 12%;
     width: 90vw;
-    font-size: 18px;
+  }
+  .karartma-yazi .karartma-baslik {
+    font-size: 20px;
+  }
+  .karartma-yazi .karartma-detay {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  .karartma-yazi .kurallar-btn {
+    margin-top: 30px;
+    padding: 13px 32px;
+    font-size: 16px;
+  }
+  .karartma-yazi .vazgec-btn {
+    padding: 10px 30px;
+    font-size: 15px;
   }
 }
 
@@ -1375,11 +1396,11 @@ body:not(.dark) .hero-tag-link:hover {
 <!--  -->
 <div class="karartma-overlay" id="karartma">
   <div class="karartma-yazi">
-    Sitemizde en çok vakit geçiren kullanıcıya ödül verilmektedir!<br><br>
-       ➤ Detaylı bilgi veya Katılım için; (ballasnett@gmail.com)
+    <div class="karartma-baslik">Sitemizde en çok vakit geçiren kullanıcıya ödül verilmektedir!</div>
+    <div class="karartma-detay">➤ Detaylı bilgi veya Katılım için; (ballasnett@gmail.com)</div>
 
     <a class="kurallar-btn" href="https://ballasnet.com/odul-avi-kurallari/" target="_blank" rel="noopener noreferrer">Ödül Avı Kurallarına Git</a>
-    <button type="button" class="vazgec-btn">İptal et</button>
+    <button type="button" class="vazgec-btn">Vazgeçtim</button>
   </div>
 </div>
 
@@ -2132,7 +2153,7 @@ function autoGenerateGameSchemas() {
 document.addEventListener('DOMContentLoaded', autoGenerateGameSchemas);
 
 // =====================
-// ÇEKİLİŞ KARTLARI
+// ÇEKİLİŞ KARTLARI - KARARTMA + DISCORD BUTONU
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById('karartma');
