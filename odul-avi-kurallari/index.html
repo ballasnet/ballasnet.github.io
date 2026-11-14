@@ -119,6 +119,27 @@ h1{
   .katil-btn,.geri{transition:none;}
   .katil-btn:hover{transform:none;}
 }
+
+/* ÖNCEKİ KOD: kod tek satır, kutu koda göre uzar */
+.kod-kutu{
+  width:max-content;
+  min-width:100%;
+  max-width:calc(100vw - 24px);
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  padding:26px 28px;
+}
+.kod-deger{
+  white-space:nowrap;
+  word-break:normal;
+  font-size:min(28px,calc((100vw - 90px) / 21));
+  letter-spacing:.2em;
+  text-indent:.2em;
+}
+@media (max-width:600px){
+  .kod-kutu{padding:20px 16px;}
+}
 </style>
 </head>
 
@@ -204,7 +225,7 @@ h1{
     <h2>ÖNCEKİ KOD</h2>
     <div class="kod-kutu">
       <span class="kod-ad">Ödüller yenilendi! Henüz süresi dolan ödül yok.</span>
-      <span class="kod-deger kod-bos">Ⓑ A Ƚ Ƚ A $ N E T - 47</span
+      <span class="kod-deger kod-bos">Ⓑ A Ƚ Ƚ A $ N E T - 47</span>
     </div>
   </section>
 
