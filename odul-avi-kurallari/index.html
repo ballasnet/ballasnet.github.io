@@ -58,6 +58,7 @@ h1{
 .kurallar p{font-size:14px;line-height:1.6;color:#bbb;}
 .kurallar p a{color:#22c55e;}
 .kurallar p a:hover{text-decoration:underline;}
+.kurallar p a.mail-link{text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
 
 .aksiyon{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:32px;}
 
@@ -91,13 +92,23 @@ h1{
 }
 
 .aydinlatma{margin-top:44px;}
-.aydinlatma h2{font-size:15px;letter-spacing:3px;border-bottom:1px solid #222;padding-bottom:10px;margin-bottom:16px;}
+.aydinlatma h2{font-size:15px;letter-spacing:3px;text-align:center;border-bottom:1px solid #222;padding-bottom:10px;margin-bottom:16px;}
 .aydinlatma p{font-size:14px;line-height:1.6;color:#bbb;margin-bottom:14px;}
+.aydinlatma p a{color:#22c55e;}
 .aydinlatma dl{background:#141414;border-radius:16px;padding:6px 20px;}
 .aydinlatma dt{font-size:14px;font-weight:700;margin-top:14px;}
 .aydinlatma dd{font-size:14px;line-height:1.6;color:#bbb;margin:4px 0 14px;padding-bottom:14px;border-bottom:1px solid #222;}
 .aydinlatma dd:last-child{border-bottom:none;padding-bottom:0;}
 .logo-notu{font-size:12px;line-height:1.6;color:#777;text-align:center;margin-top:36px;}
+
+.kod-kutu{background:#141414;border:1px solid #222;border-radius:16px;padding:26px 16px;text-align:center;margin-bottom:14px;}
+.kod-ad{display:block;font-size:13px;letter-spacing:1px;color:#777;margin-bottom:12px;}
+.kod-deger{display:block;font-family:"Courier New",Courier,monospace;font-size:34px;font-weight:700;letter-spacing:10px;text-indent:10px;color:#22c55e;word-break:break-all;}
+.kod-deger.kod-bos{color:#444;}
+
+@media (max-width:600px){
+  .kod-deger{font-size:24px;letter-spacing:5px;text-indent:5px;}
+}
 
 @media (max-width:600px){
   .kurallar li{padding:16px 14px;gap:12px;}
@@ -120,83 +131,81 @@ h1{
 <main>
   <h1>ÖDÜL AVI KURALLARI (2026)</h1>
 
-  <p class="giris">Sitemizde en çok vakit geçiren kullanıcıya ödül verilmektedir. Ödül Avı BallasNet tarafından düzenlenir. Katılım ücretsizdir ve herhangi bir satın alma şartı yoktur. Katılmadan önce aşağıdaki kuralları okuyun.</p>
+  <p class="giris">Sitemizde saklı gizli kodu bulan kullanıcıya ödül verilmektedir. Ödül Avı BallasNet tarafından düzenlenir. Katılım ücretsizdir ve herhangi bir satın alma şartı yoktur. Katılmadan önce aşağıdaki kuralları okuyun.</p>
 
   <ol class="kurallar">
     <li>
       <div>
-        <h2>Her ödül için ayrı katılım</h2>
-        <p>Dört ödülün her biri, kendi bitiş tarihinde ayrı bir kazanana verilir. Her ödül için ayrıca katılmanız gerekir. Bitiş tarihleri ana sayfada her ödül kartının altında yazar.</p>
+        <h2>Her ödül için ayrı gizli kod</h2>
+        <p>Dört ödülün her birinin kendi gizli kodu ve kendi bitiş tarihi vardır. Her ödül ayrı bir kazanana verilir. Bitiş tarihleri ana sayfada her ödül kartının altında yazar.</p>
       </div>
     </li>
     <li>
       <div>
-        <h2>Katılım Gmail ile onaylanır</h2>
-        <p><a href="mailto:ballasnett@gmail.com">ballasnett@gmail.com</a> adresine kendi Gmail hesabınızdan, katılmak istediğiniz ödülü belirterek “Ödül Avına katılıyorum” yazan bir e-posta göndererek katılımınızı onaylamanız gerekir. Onay e-postası göndermeyen kullanıcılar o ödüle dahil edilmez.</p>
+        <h2>Gizli kod nerede saklı</h2>
+        <p>Gizli kodlar genellikle sitenin içinde saklıdır. Çok nadiren bir oyunun içinde de (örneğin bir .txt dosyasında) saklanmış olabilir. Koda ulaşmanız için ipuçları BallasNet tarafından yayınlanır.</p>
       </div>
     </li>
     <li>
       <div>
-        <h2>Süre nasıl ölçülür</h2>
-        <p>Sitede geçirilen süre, katılımınızı onayladığınız Gmail hesabıyla giriş yaptığınız oturumlarda ölçülür. Sekme arka plandayken veya sayfada hareketsizken süre sayılmaz. Süre, ödülün kartının altında yazan bitiş tarihine kadar ölçülür.</p>
+        <h2>Nasıl katılırsınız</h2>
+        <p>Bulduğunuz gizli kodu, hangi ödül için olduğunu belirterek, kendi Gmail hesabınızdan <a class="mail-link" href="#katil-btn">ballasnett@gmail.com</a> adresine e-postayla gönderin. Bu e-posta aynı zamanda katılımınızın onayıdır. Süresi dolan ödüllerin gizli kodları aşağıdaki “Önceki Kodlar” bölümünde yayınlanır, eski kodlar geçersizdir.</p>
       </div>
     </li>
     <li>
       <div>
-        <h2>Ödül kime verilir</h2>
-        <p>Her ödül, kendi bitiş tarihinde o ödüle katılanlar arasında sitede en çok vakit geçiren kişiye verilir. Aynı kişi birden fazla ödül kazanamaz: birden fazla ödülde ilk sırada olan kişi bitiş tarihi önce olan ödülü alır, diğer ödül sıralamadaki bir sonraki katılımcıya geçer.</p>
+        <h2>Kazanan kim olur</h2>
+        <p>Bitiş tarihine kadar doğru gizli kodu ilk gönderen kişi kazanır. Sıralama, e-postaların Gmail’deki gönderim zamanına göre belirlenir.</p>
       </div>
     </li>
     <li>
       <div>
-        <h2>Beraberlik</h2>
-        <p>İki kişinin süresi eşit çıkarsa, o ödül için katılımını önce onaylayan kişi kazanır.</p>
+        <h2>Kişi başı tek ödül</h2>
+        <p>Aynı kişi birden fazla ödül kazanamaz. Bir ödülü kazanan kişinin diğer ödüllerdeki doğru cevapları geçersiz sayılır ve o ödül sıradaki doğru cevap verene geçer.</p>
       </div>
     </li>
     <li>
       <div>
         <h2>Tek hesap ve adil kullanım</h2>
-        <p>Her kişi yalnızca bir Gmail hesabıyla katılabilir. Birden fazla hesapla katılım ile süreyi yapay yollarla artırmaya yönelik bot, otomatik yenileme ve benzeri yöntemler yasaktır. Tespit edilen katılımlar geçersiz sayılır.</p>
+        <p>Her kişi yalnızca bir Gmail hesabıyla katılabilir. Siteyi bot veya otomatik araçlarla tarayarak gizli kodu bulmaya çalışmak yasaktır. Tespit edilen katılımlar geçersiz sayılır.</p>
       </div>
     </li>
     <li>
       <div>
         <h2>Kazanana ulaşım</h2>
-        <p>Kazanan, katıldığı Gmail adresi üzerinden bilgilendirilir. 7 gün içinde yanıt vermeyen kazananın hakkı sıralamadaki bir sonraki katılımcıya geçer.</p>
+        <p>Kazanan, katıldığı Gmail adresi üzerinden bilgilendirilir. 7 gün içinde yanıt vermeyen kazananın hakkı sıralamadaki bir sonraki doğru cevap verene geçer.</p>
       </div>
     </li>
     <li>
       <div>
         <h2>Ödül teslimi</h2>
-        <p>Ödüller kod veya hediye yoluyla teslim edilir. Nakde çevrilemez ve devredilemez. BallasNet sizden hiçbir zaman oyun hesabı şifresi istemez.</p>
+        <p>Ödüller ödül kodu veya hediye gönderimi yoluyla teslim edilir. Nakde çevrilemez ve devredilemez. Bu bulmacadaki gizli kod ile oyun hesabı şifresi farklı şeylerdir: BallasNet sizden hiçbir zaman oyun hesabı şifresi istemez.</p>
       </div>
     </li>
     <li>
       <div>
         <h2>Değişiklik ve iptal</h2>
-        <p>BallasNet gerekli gördüğünde kuralları değiştirme veya ödül avını iptal etme hakkını saklı tutar. Ödül avının iptal edilmesi hâlinde bu durum sitede duyurulur.</p>
+        <p>BallasNet gerekli gördüğünde kuralları değiştirme, bir ödülün süresini uzatma, ek ipucu yayınlama veya ödül avını iptal etme hakkını saklı tutar. Ödül avının iptal edilmesi hâlinde bu durum sitede duyurulur.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h2>Gizlilik</h2>
+        <p>Gmail adresiniz ve gönderdiğiniz e-posta yalnızca Ödül Avı için (kazananı belirlemek ve kazananla iletişim kurmak) kullanılır ve ilgili ödülün bitiş tarihinden 30 gün sonra silinir. Verilerinizle ilgili talepleriniz için ballasnett@gmail.com adresine yazabilirsiniz.</p>
       </div>
     </li>
   </ol>
 
   <div class="aksiyon">
-    <a class="katil-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ballasnett@gmail.com&amp;su=%C3%96d%C3%BCl%20Av%C4%B1%20Kat%C4%B1l%C4%B1m&amp;body=%C3%96d%C3%BCl%20Av%C4%B1na%20kat%C4%B1l%C4%B1yorum.%0AKat%C4%B1lmak%20istedi%C4%9Fim%20%C3%B6d%C3%BCl%3A%20" target="_blank" rel="noopener noreferrer">Gmail ile Katıl</a>
+    <a class="katil-btn" id="katil-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ballasnett@gmail.com&amp;su=%C3%96d%C3%BCl%20Av%C4%B1%20Kat%C4%B1l%C4%B1m&amp;body=%C3%96d%C3%BCl%3A%20%0ABuldu%C4%9Fum%20kod%3A%20" target="_blank" rel="noopener noreferrer">Kodu Gmail ile Gönder</a>
     <a class="geri" href="/">← Ana sayfaya dön</a>
   </div>
   <section class="aydinlatma">
-    <h2>KİŞİSEL VERİLERİN KORUNMASI</h2>
-    <dl>
-      <dt>Veri sorumlusu</dt>
-      <dd>BallasNet — <a href="mailto:ballasnett@gmail.com">ballasnett@gmail.com</a></dd>
-      <dt>İşlenen veriler</dt>
-      <dd>Gmail adresiniz ve sitede geçirdiğiniz süre.</dd>
-      <dt>Amaç</dt>
-      <dd>Katılımınızı doğrulamak, süreyi ölçmek, kazananı belirlemek ve kazananla iletişim kurmak. Verileriniz başka bir amaçla kullanılmaz.</dd>
-      <dt>Saklama süresi</dt>
-      <dd>İlgili ödülün bitiş tarihinden itibaren 30 gün sonra silinir.</dd>
-      <dt>Haklarınız</dt>
-      <dd>6698 sayılı KVKK’nın 11. maddesi uyarınca verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, düzeltilmesini veya silinmesini isteme ve itiraz etme haklarına sahipsiniz. Başvuru için <a href="mailto:ballasnett@gmail.com">ballasnett@gmail.com</a> adresine yazabilirsiniz.</dd>
-    </dl>
+    <h2>ÖNCEKİ KODLAR</h2>
+    <div class="kod-kutu">
+      <span class="kod-ad">Ödüller yenilendi! Henüz süresi dolan ödül yok.</span>
+      <span class="kod-deger kod-bos">BN- Ⓑ A Ƚ Ƚ A $ N E T -47</span
+    </div>
   </section>
 
   <p class="logo-notu">Riot Games, Epic Games ve Spotify logoları ilgili şirketlere aittir; BallasNet bu şirketlerle bağlantılı değildir.</p>
@@ -205,6 +214,34 @@ h1{
 <footer class="site-footer">
   ballasnett@gmail.com
 </footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('katil-btn');
+  var links=document.querySelectorAll('.mail-link');
+  if(!btn||!links.length)return;
+  function git(e){
+    e.preventDefault();
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var r=btn.getBoundingClientRect();
+    var start=window.pageYOffset;
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+    var target=Math.max(0,Math.min(start+r.top-(window.innerHeight-r.height)/2,max));
+    var dist=target-start;
+    function bitti(){btn.focus({preventScroll:true});}
+    if(reduce||Math.abs(dist)<2){window.scrollTo(0,target);bitti();return;}
+    var sure=280,t0=null;
+    function adim(t){
+      if(t0===null)t0=t;
+      var p=Math.min((t-t0)/sure,1);
+      window.scrollTo(0,start+dist*(1-Math.pow(1-p,3)));
+      if(p<1)requestAnimationFrame(adim);else bitti();
+    }
+    requestAnimationFrame(adim);
+  }
+  for(var i=0;i<links.length;i++)links[i].addEventListener('click',git);
+})();
+</script>
 
 </body>
 </html>
