@@ -50,7 +50,7 @@ body {
   padding-top: var(--safe-top);
 }
 
-/* ── Sayfa sarmalayıcı — mobilde tam genişlik, PC'de ortalanmış ── */
+
 .wrap {
   width: 100%;
   max-width: 480px;
@@ -73,7 +73,7 @@ a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transpar
 img { display: block; }
 button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 
-/* ══ TOP 3 BUTON ══ */
+
 .top-3 {
   position: sticky;
   top: 0;
@@ -134,7 +134,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 
 .tb-left  { border-right: 1px solid var(--border); }
 
-/* ── Orta — İNDİR — YEŞİL ── */
+
 .tb-mid {
   align-items: center;
   justify-content: center;
@@ -151,7 +151,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 
 .tb-mid svg { color: rgba(34,197,94,0.45); position: relative; z-index: 1; }
 
-/* ══ HERO ══ */
+/* HERO */
 .hero {
   width: 100%;
   aspect-ratio: 16/9;
@@ -159,7 +159,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   display: block;
 }
 
-/* ══ META ══ */
+/* META */
 .meta { padding: 22px 20px 0; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
@@ -187,7 +187,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   color: #999;
 }
 
-/* ══ İNDİR BUTONLARI ══ */
+/* İNDİR */
 .dl-section {
   padding: 34px 20px;
   display: flex;
@@ -296,7 +296,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   object-fit: cover;
 }
 
-/* ══ SEO / FAQ ══ */
+/* SEO FAQ */
 .seo-section { padding: 0 20px 34px; }
 
 .seo-block {
@@ -307,7 +307,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   margin-bottom: 8px;
 }
 
-/* Özellikler kartı akordeonlardan biraz ayrı dursun */
+
 .seo-block:not(.acc) { margin-bottom: 24px; }
 .seo-block.acc:last-child { margin-bottom: 0; }
 
@@ -426,7 +426,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   color: #999;
 }
 
-/* ══ YORUMLAR ══ */
+/*  YORUMLAR  */
 .comments { padding: 0 20px 32px; }
 
 .c-head {
@@ -577,7 +577,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .lazy-item    { opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; }
 .lazy-visible { opacity: 1; transform: none; }
 
-/* ══ FOOTER ══ */
+/* footer*/
 .footer {
   margin-top: auto;
   padding: 24px 20px calc(20px + var(--safe-bot));
@@ -587,15 +587,15 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   border-top: 1px solid var(--border);
 }
 
-/* ── Özel düzeltmeler ── */
-/* BENZER OYUN: görsel biraz daha az koyu */
+
+
 .tb-right .tb-img { opacity: 0.58; }
 
-/* APK Ana sayfa: bölüm biraz daha koyu */
+
 .tb-left { background: #070707; }
 .tb-left .tb-img { opacity: 0.40; }
 
-/* ══ PC YÖNLENDİRME PENCERESİ ══ */
+
 .pc-overlay {
   position: fixed;
   inset: 0;
@@ -998,7 +998,7 @@ deneyimini cebinde taşıyabilir, kendi tarzında oynamaya başlayabilirsin.
 
 <div class="pc-overlay" id="pcOverlay" aria-hidden="true">
   <div class="pc-dialog" role="dialog" aria-labelledby="pcMsg">
-    <p id="pcMsg">Galiba bilgisayar ile giriş yaptınız, BallasNet'in PC sayfasına gitmek istermisiniz?</p>
+    <p id="pcMsg">Galiba bilgisayar ile giriş yaptınız, Gta San Andreas'i bilgisayarınıza indirmek için PC sayfasına gitmek istermisiniz?</p>
     <div class="pc-btns">
       <button class="pc-btn pc-btn-yes" id="pcYes">Evet</button>
       <button class="pc-btn pc-btn-no" id="pcNo">Hayır, mobil sayfada duracağım</button>
@@ -1021,7 +1021,7 @@ const app = initializeApp({
   appId:"1:31456745285:web:2db93eed879bb42b81102c"
 });
 const db = getFirestore(app);
-const PAGE_ID = "gta-sa-mob"; /* Ana siteden ayrı */
+const PAGE_ID = "gta-sa-mob";
 
 let captcha={}, formStart=Date.now();
 
@@ -1238,7 +1238,7 @@ genCaptcha();loadComments();formStart=Date.now();
 })();
 </script>
 <script>
-/* PC algılama ve yönlendirme penceresi — sadece masaüstünde */
+/* PC ALGILAMA */
 (function () {
   const isPC = () => {
     const ua = navigator.userAgent || '';
