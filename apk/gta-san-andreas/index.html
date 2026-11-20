@@ -8,11 +8,10 @@
 <meta name="keywords" content="GTA San Andreas APK, GTA SA indir, GTA San Andreas ücretsiz, GTA SA APK 2026, GTA San Andreas Türkçe, açık dünya oyunu, GTA mobil">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Ballasnet">
-<link rel="icon" type="image/png" href="/favicon/favicon3.png">
 <link rel="canonical" href="https://ballasnet.com/apk/gta-san-andreas/">
 <meta property="og:title" content="Gta San Andreas APK İndir - Full Türkçe 2026">
 <meta property="og:description" content="GTA San Andreas APK ile klasik açık dünya deneyimini ücretsiz yaşa. Full Türkçe, düşük sistem, hızlı indirme.">
-<meta property="og:image" content="https://ballasnet.com/oyunindir/gta-san-andreas/gta-sa.webp">
+<meta property="og:image" content="https://ballasnet.com/apk/gta-san-andreas/gta-sa.webp">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary_large_image">
@@ -118,10 +117,9 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .tb-label {
   position: relative;
   z-index: 1;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
+  letter-spacing: 0.4px;
   line-height: 1.2;
 }
 
@@ -130,7 +128,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   z-index: 1;
   font-size: 9px;
   color: rgba(255,255,255,0.4);
-  letter-spacing: 0.8px;
+  letter-spacing: 0.2px;
   margin-top: 2px;
 }
 
@@ -146,8 +144,8 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 }
 
 .tb-mid .tb-label {
-  font-size: 15px;
-  letter-spacing: 3px;
+  font-size: 14px;
+  letter-spacing: 1px;
   color: var(--green);
 }
 
@@ -164,25 +162,23 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 /* ══ META ══ */
 .meta { padding: 22px 20px 0; }
 
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 11px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 
 .tag {
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-size: 12px;
+  color: #8a8a8a;
   background: var(--s2);
   border: 1px solid var(--border);
-  padding: 3px 9px;
-  border-radius: 100px;
+  padding: 3px 10px;
+  border-radius: 3px;
 }
 
 .game-title {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: -0.6px;
-  line-height: 1.05;
-  margin-bottom: 13px;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin-bottom: 12px;
 }
 
 .game-desc {
@@ -193,38 +189,32 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 
 /* ══ İNDİR BUTONLARI ══ */
 .dl-section {
-  padding: 28px 20px;
+  padding: 34px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .dl-header {
-  font-size: 12px;
+  font-size: 17px;
   font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
+  letter-spacing: 1px;
   text-align: center;
-  margin-bottom: 2px;
+  color: var(--text);
+  margin-bottom: 8px;
 }
 
-.dl-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
-  margin-bottom: 6px;
-}
+.dl-line { display: none; }
 
 .dl-btn {
   display: flex;
   align-items: center;
-  gap: 15px;
-  min-height: 68px;
-  padding: 16px 18px;
+  gap: 12px;
+  min-height: 64px;
+  padding: 14px 16px;
   background: var(--s2);
-  border: 1px solid rgba(34,197,94,0.18);
-  border-left: 3px solid rgba(34,197,94,0.5);
-  border-radius: 13px;
+  border: 1px solid #262626;
+  border-radius: 6px;
   color: var(--text);
   cursor: pointer;
   text-decoration: none;
@@ -233,69 +223,71 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 
 .dl-btn:active { background: #1e1e1e; }
 
+/* ilk buton ana indirme: düz yeşil */
+.dl-btn:first-of-type {
+  background: var(--green);
+  border-color: var(--green);
+  color: #04130a;
+}
+.dl-btn:first-of-type:active { background: #1fb457; }
+
 .dl-icon {
-  width: 40px; height: 40px;
-  border-radius: 9px;
-  background: rgba(34,197,94,0.09);
-  color: var(--green);
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: var(--green);
 }
+.dl-btn:first-of-type .dl-icon { color: #04130a; }
 
 .dl-text { flex: 1; }
-.dl-name { font-size: 14px; font-weight: 700; line-height: 1.2; }
-.dl-hint { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.dl-name { font-size: 15px; font-weight: 600; line-height: 1.2; }
+.dl-hint { font-size: 12px; color: #777; margin-top: 3px; }
+.dl-btn:first-of-type .dl-hint { color: rgba(4,19,10,0.68); }
 .dl-arr  { color: var(--muted); flex-shrink: 0; }
+.dl-btn:first-of-type .dl-arr { color: #04130a; }
 
 /* ══ GALERİ ══ */
-.gallery { padding: 8px 20px 40px; }
+.gallery { padding: 34px 20px 0; }
 
 .sec-label {
-  font-size: 11px;
-  letter-spacing: 1.8px;
-  color: var(--muted);
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-bottom: 13px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--text);
+  line-height: 1.25;
 }
 
 .gallery-title {
   font-size: 20px;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
   color: var(--text);
-  margin-bottom: 6px;
-  line-height: 1.2;
+  margin-bottom: 4px;
+  line-height: 1.25;
 }
 
 .gallery-sub {
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 18px;
-  letter-spacing: 0.3px;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 14px;
 }
 
 .ss-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
+  gap: 10px;
 }
 
 .ss-grid a {
   display: block;
   aspect-ratio: 16/10;
-  border-radius: 14px;
+  border-radius: 4px;
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.ss-grid a:active {
-  transform: scale(0.98);
 }
 
 .ss-grid img {
@@ -305,16 +297,77 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 }
 
 /* ══ SEO / FAQ ══ */
-.seo-section {
-  padding: 0 20px 36px;
-}
+.seo-section { padding: 0 20px 34px; }
 
 .seo-block {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px 18px;
-  margin-bottom: 16px;
+  border-radius: 4px;
+  padding: 18px 16px;
+  margin-bottom: 8px;
+}
+
+/* Özellikler kartı akordeonlardan biraz ayrı dursun */
+.seo-block:not(.acc) { margin-bottom: 24px; }
+.seo-block.acc:last-child { margin-bottom: 0; }
+
+.seo-block.acc {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.acc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  gap: 12px;
+}
+
+.acc-header:active { background: rgba(255,255,255,0.03); }
+
+.seo-block.acc .acc-header h2 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.35;
+}
+
+.acc-chevron {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: transform 0.28s ease;
+}
+
+.seo-block.acc.open .acc-chevron { transform: rotate(180deg); color: var(--text); }
+
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 16px;
+}
+
+.seo-block.acc.open .acc-body {
+  max-height: 2200px;
+  padding: 0 16px 16px;
 }
 
 .seo-block h2 {
@@ -337,28 +390,19 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .seo-block ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 10px;
 }
+.seo-block ul:last-child { margin-bottom: 0; }
 
 .seo-block li {
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.6;
   color: #aaa;
-  padding: 8px 0 8px 18px;
-  position: relative;
+  padding: 9px 0;
   border-bottom: 1px solid var(--border);
 }
-
-.seo-block li:last-child { border-bottom: none; }
-
-.seo-block li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--green);
-  font-weight: 700;
-  font-size: 13px;
-}
+.seo-block li:first-child { padding-top: 0; }
+.seo-block li:last-child { border-bottom: none; padding-bottom: 0; }
 
 .faq-item {
   border-bottom: 1px solid var(--border);
@@ -373,33 +417,13 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   font-size: 14px;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 7px;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.faq-q::before {
-  content: "Q";
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  background: rgba(34,197,94,0.12);
-  color: var(--green);
-  font-size: 11px;
-  font-weight: 700;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
+  margin-bottom: 6px;
 }
 
 .faq-a {
   font-size: 13.5px;
   line-height: 1.7;
   color: #999;
-  padding-left: 28px;
 }
 
 /* ══ YORUMLAR ══ */
@@ -411,7 +435,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   justify-content: space-between;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .c-head-l { display: flex; flex-direction: column; gap: 5px; }
@@ -430,7 +454,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 #yorum-toggle-btn {
   background: var(--s2);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 8px 14px;
   font-size: 12px;
   color: var(--muted);
@@ -445,12 +469,12 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .form-wrap {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 13px;
-  padding: 18px;
-  margin-bottom: 22px;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 24px;
 }
 
-.form-head { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+.form-head { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
 
 #reply-indicator {
   display: none;
@@ -458,7 +482,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   justify-content: space-between;
   background: var(--s2);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 9px 12px;
   margin-bottom: 12px;
   font-size: 12px;
@@ -470,7 +494,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   width: 100%;
   background: var(--s2);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 13px 14px;
   color: var(--text);
   font-size: 14px;
@@ -497,7 +521,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .captcha-q {
   font-size: 14px; font-weight: 600;
   background: var(--s2); border: 1px solid var(--border);
-  border-radius: 10px; padding: 13px 14px;
+  border-radius: 4px; padding: 13px 14px;
   white-space: nowrap; flex-shrink: 0;
 }
 .captcha-a { width: 80px; flex-shrink: 0; margin-bottom: 0 !important; }
@@ -505,13 +529,13 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .submit-btn {
   width: 100%; padding: 15px;
   background: #fff; color: #0a0a0a;
-  border: none; border-radius: 10px;
+  border: none; border-radius: 4px;
   font-size: 14px; font-weight: 700; cursor: pointer;
 }
 .submit-btn:active  { opacity: 0.82; }
 .submit-btn:disabled { opacity: 0.4; }
 
-.form-msg { font-size: 13px; margin-top: 10px; display: none; border-radius: 8px; padding: 10px 14px; }
+.form-msg { font-size: 13px; margin-top: 10px; display: none; border-radius: 4px; padding: 10px 14px; }
 .form-msg.show    { display: block; }
 .form-msg.success { background: rgba(34,197,94,.1); color: #22c55e; }
 .form-msg.error   { background: rgba(220,38,38,.1); color: #f87171; }
@@ -528,17 +552,17 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .comment-name  { font-size: 13px; font-weight: 700; }
 .comment-stars { font-size: 11px; color: #f59e0b; letter-spacing: 1px; }
 .comment-date  { font-size: 11px; color: var(--muted); margin-left: auto; }
-.role-badge    { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 100px; text-transform: uppercase; }
+.role-badge    { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 3px; text-transform: uppercase; }
 .badge-kurucu  { background: rgba(251,191,36,.12); color: #fbbf24; }
 .badge-admin   { background: rgba(59,130,246,.12);  color: #60a5fa; }
-.pending-badge { font-size: 10px; color: #f59e0b; background: rgba(245,158,11,.1); padding: 2px 8px; border-radius: 100px; }
+.pending-badge { font-size: 10px; color: #f59e0b; background: rgba(245,158,11,.1); padding: 2px 8px; border-radius: 3px; }
 .reply-to-label { font-size: 12px; color: var(--muted); margin-bottom: 5px; }
 .comment-text  { font-size: 14px; line-height: 1.65; color: #bbb; margin-bottom: 10px; word-break: break-word; }
 .comment-actions { display: flex; gap: 6px; align-items: center; }
 .action-btn {
   display: flex; align-items: center; gap: 5px;
   background: none; border: 1px solid var(--border);
-  border-radius: 100px; padding: 5px 10px;
+  border-radius: 4px; padding: 5px 10px;
   font-size: 12px; color: var(--muted); cursor: pointer;
 }
 .action-btn:active { background: var(--s2); }
@@ -570,6 +594,60 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 /* APK Ana sayfa: bölüm biraz daha koyu */
 .tb-left { background: #070707; }
 .tb-left .tb-img { opacity: 0.40; }
+
+/* ══ PC YÖNLENDİRME PENCERESİ ══ */
+.pc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0,0,0,0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0s 0.25s;
+}
+.pc-overlay.show { opacity: 1; visibility: visible; pointer-events: all; transition-delay: 0s; }
+
+.pc-dialog {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 26px 22px 22px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.pc-dialog p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+
+.pc-btns { display: flex; gap: 12px; justify-content: center; }
+
+.pc-btn {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  border: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pc-btn-yes { background: #3ddc84; color: #04210f; }
+.pc-btn-no  { background: #e74c3c; color: #fff; }
+@media (hover: hover) {
+  .pc-btn-yes:hover { filter: brightness(1.08); }
+  .pc-btn-no:hover  { filter: brightness(1.1); }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -648,7 +726,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
     "priceCurrency": "TRY"
   },
   "description": "GTA San Andreas APK - Klasik açık dünya ve hikaye odaklı mobil deneyim. Full Türkçe, ücretsiz ve düşük sistemli telefonlarda sorunsuz çalışan GTA San Andreas.",
-  "image": "https://ballasnet.com/oyunindir/gta-san-andreas/gta-sa.webp"
+  "image": "https://ballasnet.com/apk/gta-san-andreas/gta-sa.webp"
 }
 </script>
 </head>
@@ -679,7 +757,7 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 </nav>
 
 <!-- HERO -->
-<img class="hero" src="https://ballasnet.com/oyunindir/gta-san-andreas/gta-sa.webp" alt="GTA San Andreas APK - Full Türkçe Açık Dünya Oyunu 2026" loading="eager">
+<img class="hero" src="https://ballasnet.com/apk/gta-san-andreas/gta-sa.webp" alt="GTA San Andreas APK - Full Türkçe Açık Dünya Oyunu 2026" loading="eager">
 
 <!-- META -->
 <div class="meta">
@@ -698,6 +776,7 @@ performansı sayesinde düşük sistemli telefonlarda bile sorunsuz çalışır.
 için Full Türkçe dil desteği ve offline oynanabilir yapı büyük avantaj sunar. GTA San Andreas APK ile klasik Rockstar 
 deneyimini cebinde taşıyabilir, kendi tarzında oynamaya başlayabilirsin.
 </p>
+</div>
 
 <!-- GALERİ -->
 <section class="gallery" id="ekranlar">
@@ -709,6 +788,9 @@ deneyimini cebinde taşıyabilir, kendi tarzında oynamaya başlayabilirsin.
     </a>
     <a href="https://ballasnet.com/apk/gta-san-andreas/gta-sa2.webp" target="_blank">
       <img src="https://ballasnet.com/apk/gta-san-andreas/gta-sa2.webp" alt="GTA San Andreas APK ekran görüntüsü - araç ve görev sahneleri" loading="lazy">
+    </a>
+    <a href="https://ballasnet.com/apk/gta-san-andreas/gta-sa3.webp" target="_blank">
+      <img src="https://ballasnet.com/apk/gta-san-andreas/gta-sa3.webp" alt="GTA San Andreas APK ekran görüntüsü - oyun içi görüntü" loading="lazy">
     </a>
   </div>
 </section>
@@ -747,6 +829,9 @@ deneyimini cebinde taşıyabilir, kendi tarzında oynamaya başlayabilirsin.
   </a>
 </section>
 
+<!-- SEO & FAQ -->
+<section class="seo-section" id="bilgi">
+
   <div class="seo-block">
     <h2>GTA San Andreas APK Özellikleri</h2>
     <ul>
@@ -765,65 +850,100 @@ deneyimini cebinde taşıyabilir, kendi tarzında oynamaya başlayabilirsin.
     </ul>
   </div>
 
-<!-- SEO & FAQ -->
-<section class="seo-section" id="bilgi">
-  <div class="seo-block">
-    <h2>GTA San Andreas Nedir?</h2>
-    <p>GTA San Andreas, Rockstar Games’in efsanevi açık dünya serisinin en sevilen oyunlarından biridir. Carl “CJ” Johnson karakteriyle Los Santos, San Fierro ve Las Venturas şehirlerinde özgürce gezebilir, görevleri tamamlayabilir, araç kullanabilir ve çete savaşlarına katılabilirsin.</p>
-    <p>GTA San Andreas APK, bu klasik deneyimi mobil cihazlara uyarlanmış haliyle sunar. Full Türkçe dil desteği, optimize edilmiş kontroller ve düşük sistem gereksinimi sayesinde eski telefonlarda bile rahatça oynanabilir. Hikaye odaklı ilerleyebilir veya tamamen özgür sandbox tarzında dünyayı keşfedebilirsin.</p>
-    <p>Oyunda araç çalmak, silah toplamak, yan görevler yapmak, yarışlara katılmak ve kendi tarzını oluşturmak tamamen sana bağlı. Klasik rock, rap ve funk müzikleriyle 90’lar atmosferini yaşarken, büyük açık dünyada istediğin gibi hareket edebilirsin.</p>
-    <p>Mobil versiyonu sayesinde her yerde oynayabilirsin. Düşük donanımlı cihazlarda bile akıcı çalışan optimizasyonu sayesinde milyonlarca oyuncu tarafından tercih ediliyor. GTA San Andreas macerasına bugün başla.</p>
+  <div class="seo-block acc">
+    <button class="acc-header" type="button" aria-expanded="false">
+      <h2>GTA San Andreas Nedir?</h2>
+      <span class="acc-chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+    </button>
+    <div class="acc-body">
+      <p>GTA San Andreas, Rockstar Games’in efsanevi açık dünya serisinin en sevilen oyunlarından biridir. Carl “CJ” Johnson karakteriyle Los Santos, San Fierro ve Las Venturas şehirlerinde özgürce gezebilir, görevleri tamamlayabilir, araç kullanabilir ve çete savaşlarına katılabilirsin.</p>
+      <p>GTA San Andreas APK, bu klasik deneyimi mobil cihazlara uyarlanmış haliyle sunar. Full Türkçe dil desteği, optimize edilmiş kontroller ve düşük sistem gereksinimi sayesinde eski telefonlarda bile rahatça oynanabilir. Hikaye odaklı ilerleyebilir veya tamamen özgür sandbox tarzında dünyayı keşfedebilirsin.</p>
+      <p>Oyunda araç çalmak, silah toplamak, yan görevler yapmak, yarışlara katılmak ve kendi tarzını oluşturmak tamamen sana bağlı. Klasik rock, rap ve funk müzikleriyle 90’lar atmosferini yaşarken, büyük açık dünyada istediğin gibi hareket edebilirsin.</p>
+      <p>Mobil versiyonu sayesinde her yerde oynayabilirsin. Düşük donanımlı cihazlarda bile akıcı çalışan optimizasyonu sayesinde milyonlarca oyuncu tarafından tercih ediliyor. GTA San Andreas macerasına bugün başla.</p>
+    </div>
   </div>
 
-
-  <div class="seo-block">
-    <h2>GTA San Andreas APK Nasıl İndirilir?</h2>
-    <p>Yukarıdaki <a href="#indir" style="color:var(--green);font-weight:700;text-decoration:underline;">Direkt İndir</a> butonlarından birine tıkla. Dosya Dropbox veya Proton Drive üzerinden güvenli şekilde iner. İndirdikten sonra:</p>
-    <ul>
-      <li>Üstteki <a href="#indir" style="color:var(--green);font-weight:600;">İndirme Linkleri</a> bölümünden birine tıklayın. Ardından dosyayı indirin.</li>
-      <li>Dosyayı indirdikten sonra “Aç”a tıklayın ve “Bilinmeyen kaynaklardan yükleme” iznini verin (gerekirse).</li>
-      <li>Kurulum bitince GTA San Andreas’ı açın ve maceraya başlayın.</li>
-      <li>İlk açılışta dil seçeneğini Türkçe olarak ayarlayabilirsiniz.</li>
-    </ul>
-    <p>Yedek linkler de aynı dosyayı sunar; biri çalışmazsa diğerini dene. Tüm linkler 2026 güncel sürümü içindir. İndirme sırasında internet bağlantınızın stabil olması yeterlidir. Kurulum sonrası oyun tamamen çevrimdışı çalışır.</p>
+  <div class="seo-block acc">
+    <button class="acc-header" type="button" aria-expanded="false">
+      <h2>GTA San Andreas APK Nasıl İndirilir?</h2>
+      <span class="acc-chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+    </button>
+    <div class="acc-body">
+      <p>Yukarıdaki <a href="#indir" style="color:var(--green);font-weight:700;text-decoration:underline;">Direkt İndir</a> butonlarından birine tıkla. Dosya Dropbox veya Proton Drive üzerinden güvenli şekilde iner. İndirdikten sonra:</p>
+      <ul>
+        <li>Üstteki <a href="#indir" style="color:var(--green);font-weight:600;">İndirme Linkleri</a> bölümünden birine tıklayın. Ardından dosyayı indirin.</li>
+        <li>Dosyayı indirdikten sonra “Aç”a tıklayın ve “Bilinmeyen kaynaklardan yükleme” iznini verin (gerekirse).</li>
+        <li>Kurulum bitince GTA San Andreas’ı açın ve maceraya başlayın.</li>
+        <li>İlk açılışta dil seçeneğini Türkçe olarak ayarlayabilirsiniz.</li>
+      </ul>
+      <p>Yedek linkler de aynı dosyayı sunar; biri çalışmazsa diğerini dene. Tüm linkler 2026 güncel sürümü içindir. İndirme sırasında internet bağlantınızın stabil olması yeterlidir. Kurulum sonrası oyun tamamen çevrimdışı çalışır.</p>
+    </div>
   </div>
 
-  <div class="seo-block">
-    <h2>Sıkça Sorulan Sorular (FAQ)</h2>
-
-    <div class="faq-item">
-      <div class="faq-q">GTA San Andreas APK ücretsiz mi?</div>
-      <div class="faq-a">Evet, bu sayfadaki GTA San Andreas APK tamamen ücretsizdir. Ekstra ödeme, gizli abonelik veya zorunlu satın alma yoktur. Direkt indirme linklerinden sorunsuz indirebilirsin.</div>
+  <div class="seo-block acc">
+    <button class="acc-header" type="button" aria-expanded="false">
+      <h2>GTA San Andreas Türkçe Yama Nasıl Kurulur?</h2>
+      <span class="acc-chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+    </button>
+    <div class="acc-body">
+      <p>Türkçe yamayı kurmadan önce oyunun telefonuna kurulu olduğundan ve en az bir kez açılıp kapatıldığından emin ol. Ardından:</p>
+      <ul>
+        <li>Türkçe yama dosyasını indirin ve telefonunuza kaydedin.</li>
+        <li>Dosya ZIP veya RAR olarak geldiyse önce bir klasöre çıkarın.</li>
+        <li>Yama dosyalarını oyunun veri klasörüne kopyalayın. Aynı isimli dosya varsa üzerine yazmayı onaylayın.</li>
+        <li>Oyunu açın ve ayarlardan dili Türkçe olarak seçin.</li>
+      </ul>
     </div>
+  </div>
 
-    <div class="faq-item">
-      <div class="faq-q">GTA San Andreas APK güvenli mi? Virüs var mı?</div>
-      <div class="faq-a">Dosyalar bilinen güvenilir depolama servislerinden (Dropbox / Proton Drive) sunulur. Tüm dosyalar taranmış ve güvenlidir. Yine de indirmeden önce antivirüs uygulamanızla kontrol etmenizi öneririz. Sadece bu sayfadaki resmi linkleri kullanın.</div>
-    </div>
+  <div class="seo-block acc">
+    <button class="acc-header" type="button" aria-expanded="false">
+      <h2>Sıkça Sorulan Sorular (FAQ)</h2>
+      <span class="acc-chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+    </button>
+    <div class="acc-body">
+      <div class="faq-item">
+        <div class="faq-q">GTA San Andreas APK ücretsiz mi?</div>
+        <div class="faq-a">Evet, bu sayfadaki GTA San Andreas APK tamamen ücretsizdir. Ekstra ödeme, gizli abonelik veya zorunlu satın alma yoktur. Direkt indirme linklerinden sorunsuz indirebilirsin.</div>
+      </div>
 
-    <div class="faq-item">
-      <div class="faq-q">Hangi Android sürümlerinde çalışır?</div>
-      <div class="faq-a">GTA San Andreas APK genellikle Android 5.0 (Lollipop) ve üzeri cihazlarda sorunsuz çalışır. Düşük sistemli telefonlar için özel olarak optimize edilmiştir; 2 GB RAM ve üzeri cihazlarda akıcı performans alırsınız. Daha eski cihazlarda da denenebilir.</div>
-    </div>
+      <div class="faq-item">
+        <div class="faq-q">GTA San Andreas APK güvenli mi? Virüs var mı?</div>
+        <div class="faq-a">Dosyalar bilinen güvenilir depolama servislerinden (Dropbox / Proton Drive) sunulur. Tüm dosyalar taranmış ve güvenlidir. Yine de indirmeden önce antivirüs uygulamanızla kontrol etmenizi öneririz. Sadece bu sayfadaki resmi linkleri kullanın.</div>
+      </div>
 
-    <div class="faq-item">
-      <div class="faq-q">GTA San Andreas’ta ne yapabilirim?</div>
-      <div class="faq-a">Açık dünyada özgürce gezebilir, ana ve yan görevleri tamamlayabilir, araç kullanabilir, silah toplayabilir, çete savaşlarına katılabilir, yarışlara girebilir ve klasik hikayeyi oynayabilirsin. İstediğin gibi özgürce hareket edebilirsin — hayal gücün sınırdır.</div>
-    </div>
+      <div class="faq-item">
+        <div class="faq-q">Hangi Android sürümlerinde çalışır?</div>
+        <div class="faq-a">GTA San Andreas APK genellikle Android 5.0 (Lollipop) ve üzeri cihazlarda sorunsuz çalışır. Düşük sistemli telefonlar için özel olarak optimize edilmiştir; 2 GB RAM ve üzeri cihazlarda akıcı performans alırsınız. Daha eski cihazlarda da denenebilir.</div>
+      </div>
 
-    <div class="faq-item">
-      <div class="faq-q">PC versiyonuyla farkı var mı?</div>
-      <div class="faq-a">Mobil APK, PC sürümüne oldukça yakındır. Temel hikaye, görevler, araçlar ve açık dünya mekanikleri mevcuttur. Dokunmatik kontrollere göre sadeleştirilmiş ve optimize edilmiştir. Genel deneyim neredeyse aynıdır.</div>
-    </div>
+      <div class="faq-item">
+        <div class="faq-q">GTA San Andreas’ta ne yapabilirim?</div>
+        <div class="faq-a">Açık dünyada özgürce gezebilir, ana ve yan görevleri tamamlayabilir, araç kullanabilir, silah toplayabilir, çete savaşlarına katılabilir, yarışlara girebilir ve klasik hikayeyi oynayabilirsin. İstediğin gibi özgürce hareket edebilirsin — hayal gücün sınırdır.</div>
+      </div>
 
-    <div class="faq-item">
-      <div class="faq-q">Güncelleme geldiğinde ne yapmalıyım?</div>
-      <div class="faq-a">Bu sayfayı takip et. Yeni sürüm çıktığında indirme linkleri güncellenir. Eski kaydettiğin oyunlar genellikle korunur, yine de önemli kayıtlarını yedeklemen iyi olur. Güncelleme sonrası eski APK’yı kaldırıp yenisini kurman yeterlidir.</div>
-    </div>
+      <div class="faq-item">
+        <div class="faq-q">PC versiyonuyla farkı var mı?</div>
+        <div class="faq-a">Mobil APK, PC sürümüne oldukça yakındır. Temel hikaye, görevler, araçlar ve açık dünya mekanikleri mevcuttur. Dokunmatik kontrollere göre sadeleştirilmiş ve optimize edilmiştir. Genel deneyim neredeyse aynıdır.</div>
+      </div>
 
-    <div class="faq-item">
-      <div class="faq-q">GTA San Andreas internet ister mi?</div>
-      <div class="faq-a">Hayır. Oyun tamamen offline oynanabilir. İnternet sadece ilk indirme ve olası güncelleme kontrolü için gerekir. Bir kez indirdikten sonra uçak modunda bile sorunsuz oynayabilirsiniz.</div>
+      <div class="faq-item">
+        <div class="faq-q">Güncelleme geldiğinde ne yapmalıyım?</div>
+        <div class="faq-a">Bu sayfayı takip et. Yeni sürüm çıktığında indirme linkleri güncellenir. Eski kaydettiğin oyunlar genellikle korunur, yine de önemli kayıtlarını yedeklemen iyi olur. Güncelleme sonrası eski APK’yı kaldırıp yenisini kurman yeterlidir.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">GTA San Andreas internet ister mi?</div>
+        <div class="faq-a">Hayır. Oyun tamamen offline oynanabilir. İnternet sadece ilk indirme ve olası güncelleme kontrolü için gerekir. Bir kez indirdikten sonra uçak modunda bile sorunsuz oynayabilirsiniz.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -838,7 +958,6 @@ deneyimini cebinde taşıyabilir, kendi tarzında oynamaya başlayabilirsin.
     <button id="yorum-toggle-btn">Gizle</button>
   </div>
   <div id="yorumlar-content">
-    <p style="font-size:13px;color:#999;line-height:1.6;margin-bottom:18px;">GTA San Andreas deneyimini paylaş, soru sor veya diğer oyuncularla sohbet et. Yorumların onaylandıktan sonra görünür hale gelir. Nazik ve yapıcı olmaya özen göster.</p>
     <div class="form-wrap">
       <div class="form-head">Yorum Yaz</div>
       <div id="reply-indicator">
@@ -875,6 +994,16 @@ deneyimini cebinde taşıyabilir, kendi tarzında oynamaya başlayabilirsin.
 </section>
 
 <footer class="footer">ballasnett@gmail.com</footer>
+</div>
+
+<div class="pc-overlay" id="pcOverlay" aria-hidden="true">
+  <div class="pc-dialog" role="dialog" aria-labelledby="pcMsg">
+    <p id="pcMsg">Galiba bilgisayar ile giriş yaptınız, BallasNet'in PC sayfasına gitmek istermisiniz?</p>
+    <div class="pc-btns">
+      <button class="pc-btn pc-btn-yes" id="pcYes">Evet</button>
+      <button class="pc-btn pc-btn-no" id="pcNo">Hayır, mobil sayfada duracağım</button>
+    </div>
+  </div>
 </div>
 
 <script type="module">
@@ -1093,6 +1222,59 @@ genCaptcha();loadComments();formStart=Date.now();
     btn.textContent=col?'Göster':'Gizle';
   });
   c.addEventListener('transitionend',e=>{if(e.propertyName==='max-height'&&!c.classList.contains('collapsed'))c.style.maxHeight='none';});
+})();
+</script>
+
+<script>
+(function(){
+  document.querySelectorAll('.seo-block.acc .acc-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var block = btn.closest('.seo-block.acc');
+      var isOpen = block.classList.contains('open');
+      block.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+  });
+})();
+</script>
+<script>
+/* PC algılama ve yönlendirme penceresi — sadece masaüstünde */
+(function () {
+  const isPC = () => {
+    const ua = navigator.userAgent || '';
+    const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(ua);
+    const coarse = window.matchMedia('(pointer: coarse)').matches;
+    const narrow = window.matchMedia('(max-width: 768px)').matches;
+    return !mobileUA && !coarse && !narrow;
+  };
+
+  if (!isPC()) return;
+
+  const overlay = document.getElementById('pcOverlay');
+  const dialog = overlay.querySelector('.pc-dialog');
+  const show = () => {
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const hide = () => {
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  document.getElementById('pcYes').addEventListener('click', () => {
+    location.href = 'https://ballasnet.com/oyunindir/gtasanandreas/';
+  });
+  document.getElementById('pcNo').addEventListener('click', hide);
+  overlay.addEventListener('click', e => { if (e.target === overlay) hide(); });
+  dialog.addEventListener('click', e => e.stopPropagation());
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', show);
+  } else {
+    show();
+  }
 })();
 </script>
 </body>
