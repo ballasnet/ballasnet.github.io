@@ -1429,7 +1429,7 @@ function showMsg(msg, type) {
 }
 
 function escapeHtml(text) {
-    const div = document.creatteest.jpglement('div');
+    const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
 }
@@ -1603,7 +1603,7 @@ function loadComments() {
                 badgeHtml  = `<span class="role-badge badge-admin">ADMİN</span>`;
             }
 
-            const div = document.creatteest.jpglement('div');
+            const div = document.createElement('div');
             div.className = `comment-item ${pending ? 'pending' : ''} ${isReply ? 'comment-reply' : ''}`;
             div.dataset.id = d.id;
 
@@ -1671,19 +1671,19 @@ function loadComments() {
                 if (isLazy) firstEl.classList.add('lazy-item');
                 container.appendChild(firstEl);
 
-                const showBtn = document.creatteest.jpglement('button');
+                const showBtn = document.createElement('button');
                 showBtn.className = 'replies-toggle-btn';
                 if (isLazy) showBtn.classList.add('lazy-item');
                 showBtn.textContent = `↓ Diğer ${buCevaplar.length - 1} cevabı gör`;
                 container.appendChild(showBtn);
 
-                const hiddenWrap = document.creatteest.jpglement('div');
+                const hiddenWrap = document.createElement('div');
                 hiddenWrap.className = 'replies-hidden';
                 buCevaplar.slice(1).forEach(cevap => {
                     hiddenWrap.appendChild(renderComment(cevap, true));
                 });
 
-                const collapseBtn = document.creatteest.jpglement('button');
+                const collapseBtn = document.createElement('button');
                 collapseBtn.className = 'replies-toggle-btn replies-collapse-btn';
                 collapseBtn.textContent = '↑ Cevapları kapat';
                 hiddenWrap.appendChild(collapseBtn);
